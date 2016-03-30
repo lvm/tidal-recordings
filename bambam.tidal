@@ -1,0 +1,610 @@
+cps 0.666
+
+let ddd d = (|+| delay d) . (|+| delaytime d) .(|+| delayfeedback d)
+
+d1 $ every 7 (chop 4 . chop 2) $ every 4 rev $ sound "rapman sid:7 rapman:1 sid:8*2? rapman:2"
+|+| crush "7"
+|+| coarse "1"
+
+
+d1 $ sound "rapman [sid:7 rapman:1] sid:8*2? rapman"
+
+d1 $ sound "rapman sid:7 [rapman:1 sid:8*2?] rapman"
+
+d1 $ sound "rapman sid:7 [rapman:1 sid:8*2?] [sid:7 !?]"
+
+
+cps 0.666
+
+d1 $ every 8 rev . stut 2 0.25 0.5 . every 4 (slow 2) $ sound "rapman sid:7 [rapman:1 sid:8*2?] [sid:8 sid:7]"
+
+
+----
+
+hush
+
+cps 0.666
+
+cps 1
+
+d1 $ juxBy 0 (|+| coarse ((floor <$>) $ scale 4 13 $ sine1)) . every 36 (retrig) . foldEvery [15, 7] (gap 4 . chop 4) . retrig $ seqP[
+(0, 4, sound "rapman sid:7 [rapman:1 sid:8*2?] [sid:7 !?]")
+,
+(4, 8, sound "rapman [sid:7 rapman:1] sid:8*2? rapman")
+,
+(8, 10, sound "rapman sid:7 [rapman:1 sid:8*2?] [sid:7 !?]")
+,
+(10, 16, sound "rapman sid:7 [rapman:1 sid:8*2?] rapman")
+,
+(16, 22, sound "rapman [sid:7 rapman:1] sid:8*2? rapman")
+,
+(22, 36, sound "rapman sid:7 [rapman:1 sid:8*2?] [sid:7 !?]")
+]
+|+| gain "1.35"
+
+d2 $ gap 4 $ sound "sid:8 sid:7 [house:3 sid:7] sid:2"
+|+| speed (scale 0.9 1.8 $ sine1)
+|+| coarse ((floor <$>) $ scale 2 10 $ sine1)
+|+| gain "1.25"
+
+d1 $ juxBy 0 (|+| coarse ((floor <$>) $ scale 4 13 $ sine1)) . foldEvery [15, 7] (gap 4 . chop 4) $ sound "rapman sid:7 [rapman:1 sid:8*2?] [sid:7 !?]"
+|+| gain "1.35"
+
+d1 $ juxBy 0 (|+| coarse ((floor <$>) $ scale 4 13 $ sine1)) . foldEvery [15, 7] (gap 4 . chop 4) $ sound "rapman [sid:7 rapman:1] sid:8*2? rapman"
+|+| gain "1.35"
+
+d1 $ juxBy 0 (|+| coarse ((floor <$>) $ scale 4 13 $ sine1)) . foldEvery [15, 7] (gap 4 . chop 4) $ sound "rapman [sid:7 rapman:1] sid:8*2? [sid:11 rapman]"
+|+| gain "1.35"
+
+d1 $ juxBy 0 (|+| coarse ((floor <$>) $ scale 4 13 $ sine1)) . foldEvery [15, 7] (gap 4 . chop 4) $ sound "rapman [sid:7 rapman:1] sid:8*2? [sid:11*2 rapman]"
+|+| gain "1.35"
+
+d3 $ juxcut (|+| crush "8") . slowspread gap [2..8] . slowspread chop [2..8] $ (sound $ samples "rhodes(5,8)" $ slow 0.25 "0 2 3 4")
+|+| speed (scale 1.666 1.9 $ rand)
+|+| vowel "[a i o]/3"
+|+| gain "0.666"
+|+| coarse ((floor <$>) $ scale 8 23 $ rand)
+|+| cut "1"
+
+d3 silence
+
+
+cps 1
+
+-----
+hush
+
+cps 1
+
+d1 $ juxBy 0 (|+| vowel "a") $ every 3 (stut 4 0.25 0.5) $ gap 2 $ sound "hh27:2"
+|+| resonance "0.23"
+|+| cutoff "[0.37 0.05 0.15 0.08]/4"
+|+| bandq "0.01"
+|+| coarse ((floor <$>) $ scale 2 10 $ sine1)
+
+d2 $ juxBy 0 (|+| coarse ((floor <$>) $ scale 4 13 $ sine1)) $ every 13 (stut 2 0.25 0.5) . slowspread gap [2..4] $ sound "sid:8 sid:7 [house:3 sid:7] sid:2"
+|+| speed (scale 0.9 1.8 $ sine1)
+|+| coarse ((floor <$>) $ scale 2 10 $ sine1)
+|+| resonance "0.23"
+|+| cutoff "[0.37 0.05 0.15 0.08]/4"
+|+| bandf "0.05"
+
+----
+
+
+cps 0.666
+
+d1 $ every 8 rev $ sound "rapman ~ [rapman sid:8] [sid:8 sid:7]"
+
+d2 $ juxBy 0 (|+| coarse ((floor <$>) $ scale 4 13 $ sine1)) $ every 3 (gap 2) . slowspread gap [2..4] $ sound "sid:8 cp house:3 ~"
+|+| coarse ((floor <$>) $ scale 2 10 $ sine1)
+
+
+---
+
+
+cps 0.823
+
+let t t = echo (t/4)
+
+d2 $ juxBy 0 (foldEvery [3, 5, 7] (slowspread t [4, 1, 1, 7, 2, 4])) . every 8 (within(0, 0.15) (|+| speed "-1")) . every 3 (gap 2) . slowspread gap [2..4] $ sound "sid:8 sid:7 [house:3 sid:7] house"
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.25 0.012 0.05 0.15 0.25 0.18 0.05 0.08 0.15 0.08]/12"
+|+| bandq "[0.05 0.125 0.01]/3"
+|+| coarse ((floor <$>) $ scale 2 4 $ rand)
+
+d3 $ juxcut rev . every 4 (slow 2) . striate 8 $ sound "kos:5"
+|+| cut "1"
+|+| gain "0.8"
+
+hush
+
+--
+
+cps 0.666
+
+d2 $ juxBy 0 (foldEvery [3, 5, 7] (slowspread t [2, 1, 1, 7, 2, 4])) . every 2 (stut 2 0.25 0.5) . every 8 (within(0, 0.15) (|+| speed "-1")) . every 3 (gap 2) . slowspread gap [2..4] $ sound "td:23 td:15 [td:2 td:9] td:6"
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.15 0.18]/5"
+|+| bandq "[0.05 0.125 0.01]/3"
+
+d3 $ juxBy 0 (chop 2) $ slowcat[
+(sound $ samples "syllnon(5,8)" $ every 4 (slow 2.5) . slow 2 $ run 30)
+,
+(sound $ samples "syll(5,8)" $ every 4 (slow 2.5) . slow 2 $ run 30)
+,
+(sound $ samples "atari(5,8)" $ every 4 (slow 2.5) . slow 2 $ run 30)
+,
+(sound $ samples "syllbr(5,8)" $ every 4 (slow 2.5) . slow 2 $ run 30)
+]
+
+d4 $ juxBy 0 (chop 2) $ (sound $ samples "wobble(3,8)" $ slow 2.5 $ run 4)
+|+| speed "1.12"
+
+
+hush
+
+--
+
+cps 0.666
+
+d2 $ fadeOut 8 $ every 13 (within (0, 0.2) (gap 2)) . juxBy 0 (foldEvery [3, 5, 7] (slowspread t [2, 1, 1, 7, 2, 4])) . every 2 (stut 2 0.25 0.5) . every 8 (within(0, 0.1) (|+| speed "-1")) . slowspread gap [2..4] $ sound "td:23 td:15 [td:2 td:9] td:6"
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.15 0.18]/5"
+|+| bandq "[0.05 0.125 0.01]/3"
+
+d3 $ fadeOut 4 $ within (0, 0.25) (brak) . superimpose ((|+| vowel "[o a]/2") . (|+| gain "0.6")) . juxcut ((|+| coarse "2") . striate 2) $ striate 4 . slow 8 $ sound "gentle"
+|+| gain "0.8"
+|+| speed "0.7"
+
+d4 $ fadeOut 4 $ juxcut (|+| coarse "2") $ sound "wobble(2,8)"
+|+| speed "1.23"
+|+| gain "0.666"
+
+
+---
+
+cps 0.666
+
+d2 $ every 9 (within (0, 0.2) (gap 4)) . juxBy 0 (foldEvery [3, 5, 7] (slowspread t [2, 1, 1, 7, 2, 4])) . every 2 (stut 2 0.25 0.5) . every 8 (within(0, 0.15) (|+| speed "-1")) . every 3 (gap 2) . slowspread gap [2..4] $ sound "if:23 if:15 [if:2 if:9] if:6"
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.15 0.18]/5"
+|+| bandq "[0.05 0.125 0.01]/3"
+
+d4 $ slow 16 . slowspread gap [2..4] . chop 2 . striate 4 $ sound "ribbed"
+|+| speed (scale 1 1.12 $ sine1)
+|+| cut "1"
+|+| unit "c"
+|+| speed "[0.05 0.045]/2"
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.15 0.18]/5"
+
+hush
+
+
+---
+
+
+
+d2 $ every 13 (within (0, 0.2) (gap 2)) . juxBy 0 (foldEvery [3, 5, 7] (slowspread t [2, 1, 1, 7, 2, 4])) . every 2 (stut 2 0.25 0.5) . every 8 (within(0, 0.1) (|+| speed "-1")) . slowspread gap [2..4] $ slowcat[
+sound "td:23 td:15 td:2 td:9"
+,
+sound "td:23 td:15 [td:2 td:9] td:6"
+,
+sound "td:15 td:15 [td:23 td:23] td:6"
+]
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.15 0.18]/5"
+|+| bandq "[0.05 0.125 0.01]/3"
+
+
+---
+sound "[td:23 td:9 td:9/2, td:2 td]"
+
+cps 1
+
+d2 $ density 1.25 $ stack[
+every 2 (slow 2) . chop 2 . gap 2 $ sound "sn:4"
+|+| speed "0.777"
+,
+foldEvery [3,5] (|+| speed "-1") . every 4 (gap 2) . density 2 $ sound "~ td:18"
+|+| end "[0.1 0.1 0.25]/3"
+,
+density 2 . gap 2 $ (sound $ samples "jvbass(2,8)" $ slow 0.25 $ iter 2 "0 3 1 2")
+|+| coarse "[7 5 5 8 4]/5"
+|+| speed "[0.5 0.6 0.7 0.8]/4"
+]
+
+d3 $ superimpose ((|+| vowel "[o a]/2") . (|+| gain "0.6")) . juxcut ((|+| coarse "[2 3 5]/3")) $ striate' 8 (1.2) $ sound "pad"
+|+| speed "0.5"
+|+| resonance "0.23"
+|+| cutoff "0.23"
+
+d4 $ juxcut (|+| coarse "2") $ sound "wobble(2,8)"
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.15 0.18]/5"
+|+| bandq "[0.05 0.125 0.01]/3"
+
+----
+
+hush
+
+cps 1
+
+d2 $ slow 1.25 . juxBy 0 (foldEvery [3, 5, 7] (slowspread t [2, 1, 6, 2, 1, 6])) . every 2 (stut 2 0.25 0.5) . slowspread gap [2..3] $ sound "td:23 td:15 td:9 ! ! td:6"
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.15 0.18]/5"
+|+| bandq "[0.05 0.125 0.01]/3"
+
+
+
+d2 $ every 13 (within (0, 0.2) (gap 2)) . juxBy 0 (foldEvery [3, 5, 7] (slowspread t [2, 1, 1, 7, 2, 4])) . every 2 (stut 2 0.25 0.5) . every 8 (within(0, 0.1) (|+| speed "-1")) . slowspread gap [2..4] $ sound "td:23 td:15 [td:2 td:9] td:6"
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.25 0.18]/5"
+
+
+hush
+
+---
+
+let w = within (0, 0.15) (gap 2)
+
+
+----
+
+let d d = within (0, 0.15) (density d)
+
+let dd d = within (0, 0.25) (density d)
+
+
+d1 $ every 2 (superimpose (juxBy 0 (echo (5/3)))) $ slow 1.25 $ stack[
+slowspread ($) [dd 2, d 2] $ sound "bd:8 bd8:1 bd8:1"
+,
+spread' density "2 4" . every 4 (density 2) $ sound "~ sn:4 ~"
+,
+stut 2 0.25 0.5 . spread' density "1 2 4" $ sound "~ ~ ch"
+]
+|+| gain "1"
+|+| shape "0.23"
+|+| coarse ((floor <$>) $ scale 5 8 $ sine1)
+
+d2 $ sound "[wobble(5,8)]/2"
+|+| shape "0.23"
+|+| coarse ((floor <$>) $ scale 5 8 $ sine1)
+|+| speed (scale 1.5 1.8 $ sine1)
+
+d3 $ within (0, 0.25) (brak) . superimpose ((|+| vowel "o") . (|+| gain "0.6")) . juxcut ((|+| coarse "2") . striate 2) $ striate 4 . slow 8 $ sound "gentle"
+|+| speed "0.25"
+|+| gain "0.5"
+
+d5 $ every 8 (|+| speed "0.8") $ striate' 8 (0.8) . slow 8 $ sound "padlong"
+|+| speed "0.666"
+|+| gain "0.8"
+|+| cut "1"
+
+
+-----
+hush
+-----
+
+
+
+----
+
+let w = within (0, 0.15) (gap 2)
+
+let d d = within (0, 0.15) (density d)
+
+let dd d = within (0, 0.25) (density d)
+
+--every 3 (stut 2 0.25 0.5) . 
+
+d2 $ w . every 13 (within (0, 0.2) (gap 2)) . every 8 (within(0, 0.1) (|+| speed "-1")) . slowspread gap [2..4] $ stack[
+whenmod 18 9 (dd 2) $ sound "[[td:9 td:23*2] ~]"
+,
+spread' density "1 2 4" $ sound "~ td:16"
+|+| coarse "[16 1 4 2 13]/4"
+]
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.25 0.18]/5"
+|+| gain "0.1"
+
+d3 $ within (0, 0.25) (brak) . superimpose ((|+| vowel "o") . (|+| gain "0.6")) . juxcut ((|+| coarse "2") . striate 2) $ striate 4 . slow 4 $ sound "gentle"
+|+| speed ("0.23")
+|+| gain "0.3"
+
+d4 $ sound "wobble(2,8)"
+|+| speed "1.23"
+|+| shape "0.1"
+|+| gain "0.4"
+
+d5 $ within (0, 0.25) (brak) . striate 4 . slow 8 $ sound "padlong"
+|+| speed "0.8"
+|+| gain "0.3"
+|+| cut "1"
+
+hush
+
+---
+
+cps 0.666
+
+d2 $ every 13 (within (0, 0.2) (gap 2)) . juxBy 0 (foldEvery [3, 5, 7] (slowspread t [2, 1, 1, 7, 2, 1])) . every 2 (stut 2 0.25 0.5) . every 8 (within(0, 0.1) (|+| speed "-1")) . slowspread gap [2..4] $ sound "td:23 td:16 [td:2 td:9] td:6"
+
+-- |+| resonance "[0.23 0.666 0.28]/3" |+| cutoff "[0.25 0.05 0.25 0.18]/5" -- |+| bandq "[0.05 0.125 0.01]/3"
+
+d3 $ within (0, 0.25) (brak) . superimpose ((|+| vowel "o") . (|+| gain "0.6")) . juxcut ((|+| coarse "2") . striate 2) $ striate 4 . slow 8 $ sound "gentle"
+|+| speed "0.666"
+|+| gain "0.1"
+
+d4 $ sound "wobble(2,8)"
+|+| speed "1.23"
+|+| gain "0.7"
+
+
+hush
+
+--hush
+'
+
+
+-- -- mixed density
+-- d2 $ every 10 rc . slow 1.5 . every 8 (within (0, 0.25) (rev)) . foldEvery [5,17] (gap 2 . chop 2) $ spread' density "1 [2 1]/2 1 2" $ stack[(sound $ samples "td td:2 td:9*2 td:9*2" $ iter 8 "2 1")|+| gain "0.9", density 2 $ sound "td! !! !! !!" |+| shape "0.5"]
+-- |+| speed "1.2"
+
+-- -- density poly
+-- d2 $ every 10 rc . slow 1.5 . every 8 (within (0, 0.25) (rev)) . foldEvery [5,17] (gap 2 . chop 2) $ spread' density "[4 2 1]/3 2 [2 2 1]/3 [4 1 2]/3" $ stack[(sound $ samples "td td:2 td:9*2 td:9*4" $ iter 8 "2 1")|+| gain "0.9", sound "td! !! !! !!" |+| shape "0.5"]
+-- |+| speed "1.2"
+
+
+-- |+| bandq "[0.05 0.125 0.01]/3"
+
+
+
+
+
+---
+
+
+d2 $ every 13 (within (0, 0.2) (gap 2)) . every 2 (stut 2 0.25 0.5) . every 8 (within(0, 0.1) (|+| speed "-1")) . slowspread gap [2..4] $ stack[
+whenmod 18 9 (slowspread ($) [dd 2]) $ sound "[[td:9 td:23*2] cp/9]"
+,
+spread' density "1 2 4" $ sound "~ td:16"
+|+| coarse "[16 1 4 2 13]/4"
+]
+|+| resonance "[0.23 0.666 0.28]/3"
+|+| cutoff "[0.25 0.05 0.25 0.18]/5"
+|+| gain "1"
+
+
+
+hush
+----
+
+cps 0.666
+
+
+d2 $ fadeOut 16 $ slow 1.25 . spread' density "[2 2 2 1 4]/5 1 [1 2 1 1 1 4]/6 [2 4 1 1]/4" $ stack[
+every 8 (within (0, 0.75) (gap 2 . slow 2 . chop 2)) $ sound "td:2 [td:9 td:14] td:23 td:2"
+|+| speed (scale 0.9 1.1 $ sine1)
+,
+echo (1/4) $ slow 1.25 . density 2 $ sound "wobble [~ ~] ~ ~"
+|+| gain "0.8"
+]
+
+d3 $ slow 48 . striate 256 $ sound "idmel"
+|+| cut "1"
+|+| speed (scale 0.5 0.666 $ sine1)
+|+| end "0.2"
+|+| gain (scale 0.5 0.6 $ sine1)
+
+d5 $ juxBy 0 (|+| speed "0.8") . striate' 16 (0.8) . within (0, 0.15) (chop 2) . slow 48 $ sound "kids"
+|+| speed "0.9"
+|+| gain (scale 0.23 0.4 $ sine1)
+
+hush
+
+d5 silence
+
+
+d2 $ echo (1/4) . slow 1.25 . spread' density "1 2" $ sound "td:2 [td:9 td:17] td:23 td:4"
+|+| speed (scale 0.9 1.1 $ sine1)
+|+| cut "1"
+
+d2 $ echo (1/4) . slow 1.25 . spread' density "1 2" $ sound "td:2 [td:9 td:9] td:23 td:4"
+|+| speed (scale 0.9 1.1 $ sine1)
+|+| cut "1"
+
+
+d3 $ slow 48 . striate 256 $ sound "idmel"
+|+| cut "1"
+|+| speed (scale 0.5 0.8 $ sine1)
+
+d3 $ slow 8 . striate 8 $ sound "idmel"
+|+| cut "1"
+|+| speed (((0.5-) <$>) $ scale 0.9 1.1 $ sine1)
+|+| end "0.2"
+|+| speed (scale 0.5 0.8 $ sine1)
+
+
+hush
+----
+
+
+cps 0.666
+
+d3 $ spread' density "2 4 1 1 1 1 1 8" $ sound "rolandlofi:6 [house house:4/4]"
+|+| speed "[0.13 0.15 0.2 0.25]/4 1"
+
+d4 $ echo (1/4) $ sound "rm click:2 rm click:2"
+|+| speed "[0.13 0.15 0.2 0.25]/4"
+
+d5 $ sound "wobble(2,8)"
+|+| speed "1.5"
+|+| shape "0.3"
+
+
+solo $ d3 $ stack[
+spread' gap "24 4 8 16" $ spread' density "2 4 1 1 1 1 1 8" $ sound "dr [house house:4/8]"
+|+| speed "0.25 1"
+|+| end "0.1 0.9"
+,
+juxcut (|+| speed "0.1") . foldEvery [3,5] (slow 2 . gap 2) . spread' density "2 4 1 1 1 1 1 8" $ sound "rm:1 ! rm click:2*2"
+|+| speed "[0.63 0.65 0.62 0.625]/4"
+,
+sound "wobble(3,8)"
+|+| speed (every 5 ((1.0-) <$>) $ "2.3")
+|+| shape "0.3"
+]
+|+| delay "0.25"
+|+| delaytime "0.25"
+|+| delayfeedback "0.25"
+
+
+
+d3 $ slowcat[
+sound "~ rolandlofi:2 ~ [rolandlofi:6 rolandlofi:3]"
+,
+sound "~ rolandlofi:2 rolandlofi:6 rolandlofi:3"
+]
+
+---
+
+
+hush
+
+
+
+
+d2 $ every 13 (within (0, 0.2) (gap 2)) . juxBy 0 (foldEvery [3, 5, 7] (slowspread t [2, 1, 1, 7, 2, 1])) . every 2 (stut 2 0.25 0.5) . every 8 (within(0, 0.1) (|+| speed "-1")) . slowspread gap [2..4] $ sound "td:23 td:16 [td:2 td:9] td:6"
+
+cps 1
+
+
+
+let t t = echo (t/4)
+
+cps 0.8
+hush
+d2 $ retrig $ stack[
+slowcat[
+every 8 (within (0, 0.05) (chop 4 . gap 4)) . palindrome $ sound "[td:23, td:3(2,4) td:3(4,4)]"
+,
+every 13 (within (0, 0.2) (gap 2)) . sometimes (juxBy 0 (foldEvery [3, 5, 7] (slowspread t [2, 1, 1, 7, 2, 1]))) . every 2 (stut 2 0.25 0.5) . every 8 (within(0, 0.1) (|+| speed "-1")) . slowspread gap [2..4] $ palindrome $ sound $ samples "td:23 td:15 ~ [td td:9]" $ iter 2 $ "3 23"
+]
+--,sound "td:13(2,8) ~"
+,every 2 (stut 2 0.25 0.25) $ sound "~ [cp(7,8)]/4" |+| gain "0.7" |+| delay "0.1"
+,
+stut 2 0.25 0.25 $ sound "td:13*4 ~ "
+,
+stut 2 0.25 0.25 $ sound "~ [td:13(3,8)]/2"
+,
+stack[
+sound "~ wobble:0(4,8)"
+,
+sound "~ td:14(4,8)"
+|+| gain "0.8"
+|+| coarse "[1 1 1 3]/4"
+]
+|+| speed (slow 4 $ scale 1.5 2.3 $ rand)
+,
+sound "td:3/4"
+]
+
+d5 $ juxBy 0 (|+| coarse "[3 2 4 1 5]/5") . slow 8 . striate' 8 (1/10) $ sound "kid"
+|+| cut "1"
+|+| speed (((0.1-) <$>) $ scale 0.9 1.1 $ sine1)
+|+| gain "0.6"
+|+| vowel "[x e q q]/4"
+
+
+
+
+
+
+
+d4 $ whenmod 16 8 ( sometimes (within (0, 0.25) (spread' gap (every 3 rev "2 4 8") . spread' chop (every 3 rev "2 4 8")) ) ) $ slow 8 . striate' 32 (1/100) $ sound "thib:2"
+|+| cut "1"
+|+| speed (scale 0.5 0.9 $ sine1)
+|+| gain "0.7"
+|+| pan "0.5"
+|+| vowel "e"
+
+
+
+
+
+
+
+d5 $ retrig $ seqP[
+(0, 30, slow 5.25 . every 2 (chop 2) . foldEvery [3,5,7] (chop 4) . spread slow [12, 21, 13] . within (0, 0.1) ((0.1<~)) . slow 8.25 . gap 8 . chop 8 . striate' 8 (1/100) $ sound "woman:3" |+| gain "0.666"  |+| speed (scale 1 1.1 $ sine1) )
+,
+(30, 45, slow 5.25 . every 2 (chop 2) . foldEvery [3,5,7] (chop 4) . spread slow [12, 21, 13] . within (0, 0.1) ((0.1<~)) . slow 8.25 . gap 8 . chop 8 . striate' 8 (1/100) $ sound "woman:5" |+| gain "0.666"  |+| speed (scale 1 1.1 $ sine1) )
+,
+(45, 66, stut 2 0.25 0.5 . slow 5.25 . foldEvery [3,5,7] (chop 4) . spread slow [12, 11, 13] . slow 8.25 . gap 8 . chop 8 . striate' 8 (1/100) $ sound "woman:28" |+| gain "0.8" )
+,
+(66, 100, slow 5.25 . every 2 (chop 2) . foldEvery [3,5,7] (chop 4) . spread slow [12, 21, 13] . within (0, 0.1) ((0.1<~)) . slow 8.25 . gap 8 . chop 8 . striate' 8 (1/100) $ sound "woman:3" |+| gain "0.666"  |+| speed (scale 1 1.1 $ sine1) )
+,
+(100, 128, slow 5.25 . every 2 (chop 2) . foldEvery [3,5,7] (chop 4) . spread slow [12, 21, 13] . within (0, 0.1) ((0.1<~)) . slow 8.25 . gap 8 . chop 8 . striate' 8 (1/100) $ sound "woman:5" |+| gain "0.666"  |+| speed (scale 1 1.1 $ sine1) )
+]
+|+| cut "1"
+
+d5 $ slow 5.25 . every 2 (chop 2) . foldEvery [3,5,7] (chop 4) . spread slow [12, 21, 13] . within (0, 0.1) ((0.1<~)) . slow 8.25 . gap 8 . chop 8 . striate' 8 (1/100) $ (sound $ samples "woman" $ iter 2 "5 3")
+|+| cut "1"
+|+| gain "0.8"
+
+
+
+
+
+
+
+
+
+d5 $ stack[
+juxcut (|+| pan "[0.25 0.5]/2") . slow 3.25 . every 2 (chop 2) . foldEvery [3,5,7] (chop 4) . spread slow [12, 21, 13] . within (0, 0.1) ((0.1<~)) . slow 8.25 . gap 8 . chop 8 . striate' 8 (1/100) $ sound "woman:28"
+|+| gain "0.8"
+,
+striate' 8 (1/100) $ sound "kos:2"
+|+| cut "1"
+|+| speed (((0.1-) <$>) $ scale 0.54 0.6 $ rand)
+|+| coarse (iter 8 "5 6")
+]
+
+
+
+d4 $ slow 2 . gap 4 . striate' 8 (1/100) $ sound "woman:15"
+|+| cut "1"
+|+| speed (scale 0.8 0.9 $ slow 1.25 $ squarewave1)
+
+d3 silence
+
+d3 $ striate' 8 (1/100) $ sound "kos:2"
+|+| cut "1"
+|+| speed (((0.1-) <$>) $ scale 0.7 0.9 $ rand)
+|+| gain "1.5"
+|+| coarse (iter 8 "5 6")
+
+
+juxcut (slow 4) $ 
+|+| resonance "0.08"
+|+| cutoff "0.03"
+|+| speed (((0.1-) <$>) $ "1") --scale 0.7 0.9 $ rand)
+
+
+
+hush
+
+
+
+-----
+
+cps 0.8
+
+d3 $ stut 2 0.25 0.5 . chop 2 . iter 8 . striate 4 $ (sound $ samples "deepsky" $ iter 9 $ whenmod 8 10 rev $ "0 2 1 3 4 7 6 5 3 7")
+|+| coarse (iter 8 "5 6 11")
+|+| speed (scale 1.13 1.23 $ sine1)
+
+d4 $ whenmod 16 8 ( within (0, 0.25) ((|+| speed ( ((0.1-) <$>) $ "[0.75 0.8 0.666]/3") ) . (gap 2 . chop 2))) $ slow 8 . striate' 32 (1/100) $ sound "thib"
+|+| cut "1"
+|+| speed (scale 0.5 0.9 $ sine1)

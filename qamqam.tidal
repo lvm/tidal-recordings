@@ -1,0 +1,213 @@
+let t t = echo (t/4)
+
+cps 0.8
+
+d2 $ retrig $ stack[
+slowcat[
+every 8 (within (0, 0.05) (chop 4 . gap 4)) . palindrome $ sound "[td:23, td:3(2,4) td:3(4,4)]"
+,
+every 13 (within (0, 0.2) (gap 2)) . sometimes (juxBy 0 (foldEvery [3, 5, 7] (slowspread t [2, 1, 1, 7, 2, 1]))) . every 2 (stut 2 0.25 0.5) . every 8 (within(0, 0.1) (|+| speed "-1")) . slowspread gap [2..4] $ palindrome $ sound $ samples "td:23 td:15 ~ [td td:9]" $ iter 2 $ "3 23"
+]
+--,sound "td:13(2,8) ~"
+,every 2 (stut 2 0.25 0.25) $ sound "~ [cp(7,8)]/4" |+| gain "0.7" |+| delay "0.1"
+,
+stut 2 0.25 0.25 $ sound "td:13*4 ~ "
+,
+stut 2 0.25 0.25 $ sound "~ [td:13(3,8)]/2"
+,
+stack[
+sound "~ wobble:0(4,8)"
+,
+sound "~ td:14(4,8)"
+|+| gain "0.8"
+|+| coarse "[1 1 1 3]/4"
+]
+|+| speed (slow 4 $ scale 1.5 2.3 $ rand)
+,
+sound "td:3/4"
+]
+
+d5 $ juxBy 0 (|+| coarse "[3 2 4 1 5]/5") . slow 8 . striate' 8 (1/10) $ sound "kid"
+|+| cut "1"
+|+| speed (((0.1-) <$>) $ scale 0.9 1.1 $ sine1)
+|+| gain "0.6"
+|+| vowel "[x e q q]/4"
+
+
+hush
+
+----
+
+
+cps 0.5
+
+let w = within (0, 0.15) (gap 2)
+
+let d d = within (0, 0.15) (density d)
+
+let dd d = within (0, 0.25) (density d)
+
+
+d2 $ echo (1/4) . slow 1.25 . spread' density "1 2 1 2" $ sound "td:2 td:9 td:23 [td:4(2,4)]/2"
+|+| speed (scale 0.9 1.1 $ sine1)
+
+d3 $ spread density [2, 1, 2] $ (sound $ samples "~ bell" $ iter 16 $ run 16)
+|+| speed "0.5"
+|+| speed (scale 0.9 1.1 $ sine1)
+
+
+cps 0.66
+
+d2 $ stack[
+sound "~ cp:0/2"
+|+| delay "0.23"
+,
+density 2 $ slowcat[
+every 9 (iter 2 . gap 4 . chop 4) $ sound "td:9 td:4"
+,
+sound "td:9*2 td:4"
+,
+sound "td:9*2 td:4*2"
+,
+sound "td:9 td:4*4"
+]
+,
+spread density [4, 2] $ sound "td:6 !"
+|+| gain "0.5"
+]
+
+d3 $ sometimes (whenmod 16 8 (within (0, 0.25)(|+| sound "poly ~")) ) $ stack[
+sometimes (within (0, 0.25) (density 2)) . spread' density "2 1" $ (sound $ samples "[poly(5,8)]" $ iter 16 $ "7 10 9 4 6 3 5 14 1 11 8 0 13 2 12 15")
+]
+
+|+| speed (((0.8-) <$>) $ scale 0.9 1.0 $ sine1)
+
+
+
+d3 $ sometimes (whenmod 16 8 (within (0, 0.25)(|+| sound "ork ~")) ) $ stack[
+sometimes (within (0, 0.25) (density 2)) . spread' density "2 1" $ (sound $ samples "[ork(5,8)]" $ iter 16 $  "7 10 9 4 6 3 5 14 1 11 8 0 13 2 12 15")
+]
+|+| gain "0.666"
+|+| speed "-0.5"
+
+
+
+d3 $ stack[
+sound "bass:2 bass bass:3 bass:4"
+]
+
+cps 0.5
+
+d1 $ every 2 (superimpose (juxBy 0 (echo (5/3)))) $ slow 1.25 $ stack[
+slowspread ($) [dd 2, d 2] $ sound "td:4 ~ bd8:1 td:4"
+,
+sometimes (within (0, 0.25) (density 2)) . spread' density "2 4" . every 4 (density 2) $ sound "~ sn:4 ~"
+,
+stut 2 0.25 0.5 . spread' density "1 2 [1, 8, 2, 4]/4" $ sound "~ ~ ch"
+]
+|+| gain "1"
+|+| shape "0.23"
+|+| coarse ((floor <$>) $ scale 5 8 $ sine1)
+
+d3 $ sound "cp"
+|+| delay "0.45"
+|+| delayfeedback "0.23"
+|+| delaytime "0.23"
+
+hush
+
+
+let irand = ((floor <$>) $ scale 0 15 $ sine1)
+
+cps 0.5
+
+d2 $ sometimes ( whenmod 16 8 (within (0, 0.25)(|+| sound "ork ~")) ) $ stack[
+sometimesBy 0.25 (|+| speed "-1") . sometimes (within (0, 0.25) (density 2)) . spread' density "2 1" $ (sound $ samples "[ork(5,8)]" $ iter 16 $ run 16)
+]
+|+| gain "0.666"
+
+hush
+
+
+
+---
+
+
+-- d4 $ retrig $ every 7 (sometimes rev) . slowspread e [1, 2, 3, 2, 1] . foldEvery [6, 9, 13] (sometimes (juxcut (dd 2))) . stut 2 0.25 0.25 $ almostNever (slow 1.25) . spread' density "[4, 2]/2 4 [2, 4]/2" $ slowcat[
+-- sound "td:16 td:9 [td:9 td:4]"
+-- ,
+-- sound "td:9 ~ [td:9 td:16]"
+-- ,
+-- slow 2 $ sound "~ td:4*2 [~ ~]"
+-- ,
+-- sound "td:9 ~ [td:9 td:16]"
+-- ,
+-- sound "td:9 td:4 [td:9 td:16]"
+-- ]
+-- |+| cut "1"
+
+-- d3 $ slow 8 . stut 2 0.5 0.5 $ sound "cp"
+-- |+| delay "0.45"
+-- |+| delayfeedback "0.23"
+-- |+| delaytime "0.3"
+
+-- d3 silence
+
+-- d1 $ fadeOut 8 $ sound "td:9 td:4 [td:4 td:9*2]"
+
+
+
+d3 $ stut 2 0.5 0.5 $ sound "cp"
+|+| gain "0.8"
+|+| delay "0.45"
+|+| delayfeedback "0.23"
+|+| delaytime "0.3"
+
+d3 silence
+
+
+hush
+
+cps 0.25
+
+let e t = echo (t/3)
+
+let dd d = within (0, 0.25) (density d)
+
+d4 $ slowspread e [1, 2, 3, 2, 1] . foldEvery [6, 9, 13] (sometimes (dd 2)) . stut 2 0.25 0.25 $ spread' density "2 4 [2, 4]/2" $ slowcat[
+sound "td:16 td:9 [td:9? td:4]"
+,
+sound "td:9 ~ [td:9 td:16]"
+,
+sound "td:16 td:16 [td:9 ~]"
+,
+sound "td:9 ~ [td:9 td:16]"
+,
+sound "td:9 td:4 [td:9? td:16]"
+]
+|+| cut "[-1 0 1]/3"
+|+| coarse ((floor <$>) $ scale 1 3 $ rand)
+
+
+
+--juxBy 0 (sometimes(within (0, 0.25) (|+| coarse "7")))
+--retrig $ u'7 10 9 4 6 3 5 14 1 11 8 0 13 2 12 15'
+
+let rand0 = "7 10 9 4 6 3 5 14 1 11 8 0 13 2 12 15"
+let rand1 = "3 13 8 7 2 1 10 6 0 5 12 9 14 15 11 4"
+
+d2 $ fadeOut 8 $ stack[
+foldEvery [3, 5, 15] (slow 2) . slowspread density [1, 2, 1, 2] . density 4 $ (sound $ samples "bell" $ every 2 rev . iter 16 $ "7 10 9 4 6 3 5 14 1 11 8 0 13 2 12 15")
+|+| speed (every 3 ((/2) <$>) $ ((0.1-) <$>) $ scale 0.5 0.9 $ sine1)
+]
+|+| gain "0.4"
+|+| vowel "[x e q a q]/4"
+|+| vowel "o"
+
+
+d1 $ slow 48 . superimpose ((|+| vowel "o") .(|+| coarse "[2 3 5]/3")) $ striate' 8 (1.2) $ sound "quotes"
+|+| gain "0.8"
+
+
+hush
+

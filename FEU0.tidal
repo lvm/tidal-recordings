@@ -1,0 +1,56 @@
+hush
+---------------------------------------------------------------------------------------
+-- take 3
+---------------------------------------------------------------------------------------
+bps 0.5
+
+
+-- vocals
+
+d1 $ jux (|+| gain "1") $ whenmod 8 4 (echo (5/4)) $ every 3 (echo (7/8)) $ every 2 ((|+| speed "0.5 0.9")) $ stack [sound "space:2 e*2/4", every 2 (rev) $ smash 8 [8..10] $ density 16 $ striate' 32 (0.1) $ (sound "~ spoken ~"), every 2 (rev) $ slow 2 $ (sound "bd sn:1" |+| gain "0.5")]
+ |+| gain "0.666"
+ |+| pan "0.666 0"
+
+
+-- bass
+
+d2 $ every 3 (echo (5/24)) $ whenmod 8 4 (echo (1/4)) $ every 2 ((|+| speed "1.5 1.2")) $ stack[(every 3 (rev) $ sound "~ erk/12" |+| end (slow 8 "0.2 0.5") |+| shape "0.2"), sound (samples "moog*2 moog/8" (iter 5 $ run 5)), sound "[moog*8]/16"]
+ |+| end "0.3 0.5"
+ |+| speed "0.9"
+ |+| gain "0.666 0.8"
+ |+| slow 2 (vowel "i o i u o")
+
+-- platillos
+
+d3 $ whenmod 8 4 (echo (5/4)) $ every 3 (echo (7/8)) $ every 2 ((|+| speed "0.5 0.9")) $ stack [sound "feelfx jvbass", every 2 (rev) $ smash 8 [8..10] $ density 16 $ striate' 24 (0.1) $ (sound "dr2/8 bd"), sound "psr:4 [dr*8]/4", every 2 (rev) $ smash 8 [8..10] $ slow 16 $ striate' 32 (0.1) $ (sound "lsdj:5 rhodes" |+| gain "0.5")]
+ |+| gain "0.666"
+ |+| pan "0 0.666"
+
+-- drums
+
+d4 $ echo (7/8) $ every 2 (echo (7/4)) $ stut 2 0.9 (-0.5) $ stack[spread' density "2 1 4 1 2" $ sound "house/4 ~ ~ ~", sound "~ ~ unix:1 ~", sound "unix:3/2 ~ ~ unix"]
+ |+| speed (every 4 ((*2) <$>) $ every 10 ((0.1-) <$>) $ iter 4 "0.7 0.92 0.93")
+ |+| shape (iter 4 "0.2 0.3 0.4")
+
+
+hush
+
+------------------------------------------------------------------------------------------------
+
+
+bps 0.3
+
+
+d4 $ echo (7/8) $ every 2 (echo (7/4)) $ density 3 . stut 2 0.9 (-0.5) $ sound "unix ~ unix:1 ~"
+ |+| speed (every 4 ((*2) <$>) $ every 10 ((0.1-) <$>) $ iter 4 "0.7 0.92 0.93")
+
+------------------------------------------------------------------------------------------------
+
+bps 1
+
+d1 $ every 8 (rev) $ every 4 (slow 4 . striate' 4 (0.5)) $ sound "mouth:1 mouth:2 mouth:3 mouth:4 mouth:5 mouth:6"
+ |+| shape "0.6"
+ |+| shape (every 4 ((0.2+) <$>) $ every 10 ((0.1-) <$>) $ iter 4 "0.7 0.92 0.93")
+
+d2 $ every 2 (rev) $ stack[sound "~ unix ~ ~", density 4 $ striate 32 $ sound "dr dr/8 ~ dr2"]
+ |+| speed "0.9"

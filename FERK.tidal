@@ -1,0 +1,115 @@
+cps 1
+
+cps 0.666
+
+cps 0.45
+
+d3 $ echo (7/4) $ every 7 (density 2) . slow 4 . every 5 (rev) . every 3 (chop 2) . spread' striate "4 2 1" $ sound "sid:2 odx:3 db:8 sid:2 "
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ "1.2")
+ |+| shape (scale 0.5 0.87 $ sine1)
+
+d4 $ within (0, 0.2) (|+| speed "2") . density 2 $ every 7 (chop 2) . every 9 (stut 2 0.5 0.5) $ stack[sound "rapman rapman:9", every 2 (rev) . slow 2 . chop 2 . striate' 2 (0.5) $ sound "rapman:3*2"]
+ |+| shape (scale 0.5 0.87 $ sine1)
+ |+| speed (every 32 ((0.1-) <$>) $ scale 0.2 0.5 $ sine1)
+
+-- d4 $ every 2 (chop 2) . rev . within (0, 0.2) (|+| speed "2") . density 2 $ every 15 (chop 2) . every 9 (stut 2 0.5 0.5) $ stack[sound "visco:5 visco:5", every 2 (rev) . slow 2 . chop 2 . striate' 2 (0.5) $ sound "rapman:3*2"]
+--  |+| shape (scale 0.5 0.87 $ sine1)
+--  |+| speed (every 32 ((0.1-) <$>) $ scale 0.2 0.5 $ sine1)
+
+-- d4 $ every 2 (chop 2) . rev . within (0, 0.2) (|+| speed "2") . density 2 $ every 15 (chop 2) . every 9 (stut 2 0.5 0.5) $ stack[every 2 (rev) . slow 2 . chop 2 . striate' 2 (0.5) $ sound "rapman:3*2"]
+--  |+| shape (scale 0.5 0.87 $ sine1)
+--  |+| speed (every 32 ((0.1-) <$>) $ scale 0.2 0.5 $ sine1)
+
+d5 $ every 2 (chop 2) . rev . within (0, 0.2) (|+| speed "2") . density 2 $ every 15 (chop 2) . every 9 (stut 2 0.5 0.5) $ stack[every 2 (rev) . slow 2 . chop 2 . striate' 2 (0.5) $ sound "sf(2,1)"]
+ |+| shape (scale 0.5 0.87 $ sine1)
+ |+| speed (every 32 ((0.1-) <$>) $ scale 0.2 0.5 $ sine1)
+
+
+hush
+
+
+----
+-- clean
+
+cps 0.666
+
+d1 $ echo (7/4) $ every 7 (density 2) . slow 4 . every 5 (rev) . every 3 (chop 2) . spread' striate "4 2 1" $ sound "feel:6 odx:3*4 odx:2 hardcore"
+ |+| pan "0"
+
+d2 $ echo (7/4) $ every 7 (density 2) . slow 4 . every 5 (rev) . every 3 (chop 2) . spread' striate "4 2 1" $ sound "feel:6 odx:3*4 odx:2 hardcore"
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ "1.2")
+ |+| pan "1"
+
+d3 $ every 32 (density 2) . density 2 $ every 15 (chop 2) . every 9 (stut 2 0.5 0.5) $ stack[sound "rapman rapman:9", every 2 (rev) . slow 2 . chop 2 . striate' 2 (0.5) $ sound "rapman:3*2"]
+ |+| pan "1"
+
+d4 $ density 2 $ every 15 (chop 2) . every 9 (stut 2 0.5 0.5) $ stack[sound "rapman rapman:9", every 2 (rev) . slow 2 . chop 2 . striate' 2 (0.5) $ sound "rapman:3*2"]
+ |+| speed (scale 0.2 0.5 $ sine1)
+ |+| pan "0"
+
+d5 $ slow 4 . every 5 (rev) . spread' chop "4 2 1" $ sound "sea"
+ |+| cut "1"
+ |+| shape (scale 0.5 0.87 $ sine1)
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ "5")
+
+-- d5 $ within (0, 0.5) (density 2 . rev) . every 2 (rev) . every 4 (density 2) $ chop 2 . density 2 $ sound "feel:6"
+--  |+| speed (every 2 ((*2) <$>) $ every 4 ((*1.2) <$>) $ every 3 ((0.1-) <$>) $ scale 1.2 2.5 $ sine1)
+--  |+| vowel "i"
+
+cps 0.35
+
+d5 $ stut 2 0.5 0.5 . striate 2 . within (0.5, 0.75) (rev) . within (0, 0.5) (density 2) . density 4 $ sound "sid sf/3"
+ |+| speed (((2*) <$>) $ every 2 ((*2) <$>) $ every 4 ((*1.2) <$>) $ every 3 ((0.1-) <$>) $ scale 1.2 2.5 $ sine1)
+ |+| shape "0.2"
+ |+| cut "1"
+
+d3 $ density 4 $ stack[every 4 (density 2 . rev) $ sound "[rapman:1 rapman:3]", sound "[visco:5 rapman:1]"]
+ |+| speed "0.566"
+ |+| shape "0.2"
+
+d2 $ every 8 (density 2) . every 4 ( within (0, 0.25) (chop 2) ) . chop 2 . density 4 $ sound "~ rapman:8"
+ |+| speed "0.566"
+ |+| shape "0.2"
+ |+| end "0.1"
+
+hush
+
+cps 0.25
+
+d3 $ spin 2 . every 4 ( within (0, 0.25) (chop 2) ) . chop 2 . density 4 $ stack[degradeBy 0.3 $ sound "rapman:1 !! !?", sound "~ rapman:8"]
+ |+| speed "0.9 0.566"
+ |+| shape "0.2"
+ |+| end "0.1"
+
+d2 $ every 7 (rev) . every 4 (chop 2) . chop 2 . density 4 $ sound "rapman:2 !? !!"
+ |+| speed "[0.566 0.5 0.6]/2"
+ |+| shape "0.2"
+ |+| end "0.1"
+
+d1 $ chop 2 . density 4 $ sound "~ sf:7 !!"
+ |+| speed (every 9 ((0.1-) <$>) $ "[0.566 0.5 0.6]/2")
+
+
+hush
+
+
+
+cps 0.25
+
+d3 $ every 4 ( within (0, 0.25) (chop 2) ) . chop 2 . density 4 $ stack[degradeBy 0.3 $ sound "rapman:1 !! !?", sound "~ rapman:8"]
+ |+| speed "0.5 0.566"
+ |+| shape "0.2"
+ |+| end "0.1"
+
+d2 $ every 8 (chop 4) . chop 2 . density 4 $ sound "rapman:2 !? !!"
+ |+| speed "[0.6 0.666 0.66]/2"
+ |+| shape "0.1"
+ |+| end "0.1"
+
+d1 $ every 9 (chop 2) . chop 2 . density 4 $ sound "~ sf !!"
+ |+| speed (every 9 ((0.1-) <$>) $ "[0.566 0.5 0.6]/2")
+
+d4 $ within (0.7, 0.75) (slow 2 . chop 2) . chop 8 . density 4 $ sound "sf:6"
+ |+| speed (every 9 ((0.1-) <$>) $ "[0.566 0.5 0.6]/2")
+
+hush

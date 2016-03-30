@@ -1,0 +1,105 @@
+cps 0.666
+
+let fill n q = within (q, q+0.25) (density n)
+
+let cill n q = within (q, q+0.25) (chop n)
+
+let ch q w e = chop q . slow (w+2) . striate (e*2)
+
+let db x y = x*2 + y*x
+
+let rcbb q w e r =  (|+| resonance q) . (|+| cutoff w) . (|+| bandf e) .(|+| bandq r)
+
+let ddd d = (|+| delay d) . (|+| delaytime d) . (|+| delayfeedback d)
+
+let tt t = echo (2/t)
+
+let t t = echo (7/t)
+
+let js = juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5"))
+
+let irand i = (floor . (*i)) <$> rand
+
+d2 $ slow 4 . juxcut rev . ch 2 1.5 2 $ weave 8 (speed $ "[2 3 4]/3") [sound "~ wcd"]
+|+| cut "1"
+|+| vowel "[ o q u i x o ]/6"
+|+| speed (every 4 ((0.1-) <$>) "1")
+|+| end rand
+|+| gain "0.666"
+
+d1 $ every 6 (within (0.0, 0.25) (|+| crush "4")) . foldEvery [3, 4, 5, 7] (ddd "0.1" . (|+| vowel "a")) . every 2 rev $ stack[
+superimpose (|+| coarse "[16 23 8 4 32]/5") . stut 2 0.5 0.5 . slowspread ($) [tt 4, t 4] $ weave 2 (speed $ squarewave1) [
+ cat[
+  sound "bd8:1?"
+  ,
+  every 4 (spread' density "2 1 4") $ sound " tabla:3 tabla"
+  |+| end "0.9 0.01"
+  ,
+  sound "tabla:4 [tabla:5 tabla:5, ~ ~ ~ ]"
+ ],
+ stack[
+  sound "e [e ~ ~ e]"
+  |+| coarse "23"
+  |+| vowel "[o a e x x x]/6"
+  |+| shape "0.666"
+ ]
+]
+,
+superimpose (|+| coarse "[16 23 8 4 32]/5") . slowspread ($) [tt 4, t 4] $ weave' 2 (
+stack[
+ cat[
+  every 4 (spread' density "2 1 4") $ sound "tabla:3 tabla"
+  |+| end "0.9 0.01"
+  ,
+  sound "tabla:4 [tabla:5 tabla:5, ~ ~ ~ ]"
+ ],
+ stack[
+  sound "e [e ~ ~ e]"
+  |+| coarse "23"
+  |+| vowel "[o a e x x x]/6"
+  |+| shape "0.666"
+ ]
+]
+) [slow 2]
+]
+
+
+hush
+
+----
+
+cps 0.5
+
+d1 $ superimpose (|+| coarse "[16 23 8 4 32]/5") . stut 2 0.5 0.5 . slowspread ($) [tt 4, t 4] $ weave 2 (speed $ squarewave1) [
+ cat[
+  every 4 (spread' density "2 1 4") $ sound "tabla:3 tabla"
+  |+| end "0.9 0.01"
+  ,
+  sound "tabla:4 [tabla:5 tabla:5, ~ ~ ~ ]"
+ ],
+ stack[
+  sound "e [e ~ ~ e]"
+  |+| coarse "23"
+  |+| vowel "[o a e x x x]/6"
+  |+| shape "0.666"
+ ]
+]
+
+d1 $ superimpose (|+| coarse "[16 23 8 4 32]/5") . stut 2 0.5 0.5 . slowspread ($) [tt 4, t 4] $ weave' 2 (
+stack[
+ cat[
+  spread' density "2 2 4" $ sound "minipops:3 minipops:2"
+  ,
+  sound "tabla:4 [tabla:5 tabla:5, ~ ~ ~ ]"
+ ],
+ stack[
+  sound "e [e ~ ~ e]"
+  |+| coarse "23"
+  |+| vowel "[o a e x x x]/6"
+  |+| shape "0.666"
+ ]
+]
+) [slow 2]
+
+
+hush

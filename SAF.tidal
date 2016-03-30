@@ -1,0 +1,147 @@
+cps 0.5
+
+
+
+d1 $ stack[
+chop 8 $ sound "thib:2"
+|+| cut "1"
+|+| gain "[0.9 0.7]/2"
+,
+density 1.5 . chop 2 . every 8 (chop 2) . density 2 . stut 4 0.5 0.1 $ (sound $ samples "amencutup !" $ iter 6 $ run 6)
+,
+sound ""
+,
+sound ""
+]
+
+--
+
+d1 $ stack[
+chop 8 $ sound "thib:2"
+|+| cut "1"
+|+| gain "[0.9 0.7]/2"
+,
+within (0, 0.5) (density 1.5) . density 1.5 . chop 2 . every 8 (chop 2) . density 2 . stut 4 0.5 0.1 $ (sound $ samples "amencutup !" $ iter 6 $ run 6)
+,
+sound ""
+,
+sound ""
+]
+
+
+--
+
+
+d1 $ stack[
+chop 8 $ sound "thib:2"
+|+| cut "1"
+|+| gain "[0.9 0.7]/2"
+|+| speed (every 2 ((0.1-) <$>) "1")
+,
+density 1.5 . density 1.5 . chop 2 . every 8 (chop 2) . density 2 . stut 4 0.5 0.1 $ (sound $ samples "amencutup !" $ iter 6 $ run 6)
+,
+sound "",
+sound ""
+]
+
+---
+
+
+d1 $ stack[
+chop 8 $ sound "thib:2"
+|+| cut "1"
+|+| gain "[0.9 0.7]/2"
+|+| speed (((0.1-) <$>) "1") 
+,
+density 1.5 . density 1.5 . chop 2 . every 8 (chop 2) . density 2 . stut 4 0.5 0.1 $ (sound $ samples "amencutup !" $ iter 6 $ run 6)
+,
+slow 4 . chop 128 $ sound "bev"
+,
+sound ""
+]
+
+---
+
+d1 $ stack[
+chop 8 $ sound "thib:2"
+|+| cut "1"
+|+| gain "[0.9 0.7]/2"
+|+| speed (((0.1-) <$>) "1") 
+,
+density 3 . chop 2 . every 8 (chop 2) . density 2 . stut 4 0.5 0.1 $ (sound $ samples "amencutup !" $ iter 6 $ run 6)
+,
+juxcut rev . slow 2 . chop 32 $ sound "bev"
+|+| cut "1"
+,
+sound ""
+]
+
+---
+
+d1 $ stack[
+chop 8 $ sound "thib:2"
+|+| cut "1"
+|+| gain "[0.9 0.7]/2"
+|+| speed (((0.1-) <$>) "1") 
+,
+density 3 . chop 2 . every 8 (chop 2) . density 2 . stut 4 0.5 0.1 $ (sound $ samples "amencutup !" $ iter 6 $ run 6)
+,
+juxcut rev . slow 2 . chop 32 $ sound "bev"
+|+| cut "1"
+,
+sound "gab:8*3 ~ gab:8"
+]
+
+
+---
+
+d1 $ stack[
+chop 8 $ sound "thib:2"
+|+| cut "1"
+|+| gain "[0.9 0.7]/2"
+|+| speed (((0.1-) <$>) "[0.5 1]/2") 
+,
+density 3 . chop 2 . every 8 (chop 2) . density 2 . stut 4 0.5 0.1 $ (sound $ samples "amencutup !?" $ iter 6 $ run 6)
+|+| speed (every 4 ((0.1-) <$>) "1") 
+|+| accelerate "[1 0 -1]/3"
+,
+sound ""
+]
+
+
+---
+
+d1 $ stack[
+chop 8 $ sound "thib:2"
+|+| cut "1"
+|+| gain "[0.9 0.7]/2"
+|+| speed (((0.1-) <$>) "[0.5 1]/2") 
+|+| coarse "11"
+,
+density 1.5 . chop 2 . every 8 (chop 2) . density 2 . stut 4 0.5 0.1 $ (sound $ samples "amencutup !?" $ iter 6 $ run 6)
+|+| speed (every 4 ((0.1-) <$>) "1") 
+|+| accelerate "[1 0 -1]/3"
+,
+sound ""
+]
+
+
+---
+
+d1 $ stack[
+chop 8 $ sound "thib:2"
+|+| cut "1"
+|+| gain "[0.7 0.5]/2"
+|+| speed (((0.1-) <$>) "[0.5 1]/2") 
+|+| coarse "11"
+,
+density 1.5 . every 8 (chop 2) . density 2 . stut 4 0.5 0.1 $ (sound $ samples "amencutup !?" $ iter 6 $ run 6)
+|+| speed (every 4 ((0.1-) <$>) "1") 
+|+| accelerate "[1 0 -1]/3"
+,
+sound ""
+]
+
+
+hush
+

@@ -1,0 +1,19 @@
+cps 1
+
+b $ slow 1.25 . spin 2 . every 7 (sometimes (within (0, 0.25) (chop 2))) . smash 2 [5] $ stack[
+  drum "bd bd",
+  drum "~ [~ sn]?",
+  drum "cp",
+  drum "~ [ag*2]?",
+  density 2 $ palindrome $ drum "ch*2 oh",
+  sometimes (within (0, 0.5) (chop 2 . slow 2)) $ drum "[lt(4,4)]"
+  ]
+|+| scl (scale 0.5 0.75 sine1)
+|+| doh "0.75"
+|+| stt "0"
+|+| std "0.2"
+
+q $ sometimes (chop 2) . smash 2 [5] $ slowcat[note "38 [~ 38] 36*4 50*2", note "38 [~ 38] 60 50*2"]
+|+| decay "[0.9 0.5 0.7 0.5 0.9]/5"
+|+| cutoffegint (scale 0.25 0.9 sine1)
+

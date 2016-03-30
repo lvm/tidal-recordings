@@ -1,0 +1,104 @@
+----- org
+
+bps (150/60)
+
+bps (69/60)
+
+---- base ------------------
+
+
+-- d4 $ echo (5/24) $ every 16 ((striate' 8 (0.1)) . rev) $ every 2 ((|+| speed "2 5 2 2 5")) $ interlace (sound (pick <$> "sn psr:3 ~ psr psr:4" <*> run 5)) (every 2 (rev) $ sound (pick <$> "sn ~ house:5/3 ~ ~ [psr:4, bass:4]/4" <*> run 2))
+--   |+| shape triwave1
+--   |+| slow 8 (vowel (pick <$> "e o ~ u" <*> run 4))
+--   |+| gain "1.15 0.5 1.2 1"
+
+
+d4 $ every 3 (echo (5/4)) $ whenmod 8 4 (echo (5/24)) $ every 16 ((striate' 8 (0.1)) . rev) $ every 2 ((|+| speed "2 5 2 2 5")) $ interlace (sound (pick <$> "sn psr:3 ~ psr psr:4" <*> run 5)) (every 2 (rev) $ sound (pick <$> "sn ~ house:5/3 ~ ~ [psr:4, bass:4]/4" <*> run 2))
+  |+| shape triwave1
+  |+| slow 8 (vowel (pick <$> "e o ~ u" <*> run 4))
+  |+| gain "1.15 0.5 1.2 1"
+
+----------------------------
+
+d6 $ slow 2 $ every 24 ((striate' 24 (0.5)) . (|+| delay "0.8") . (|+| delayfeedback "0.9") . (|+| delaytime "0.9")) $ every 2 (|+| speed "2.5") $ sound (samples "koy" (slow 5 "0 1 2 3 4"))
+  |+| speed "5"
+  |+| slow 8 (vowel (pick <$> "a i o i e i u" <*> run 6))
+  |+| shape triwave1
+  |+| delay "0.8"
+  |+| delayfeedback "0.7"
+  |+| delaytime "0.9"
+
+d7 $ slow 4 $ every 24 (striate' 32 (0.5)) $ every 8 (|+| accelerate "0.5 1.2 2.3") $ every 16 (|+| accelerate "5 12 3") $ every 2 (|+| speed "0.5") $ sound (samples "moan" (slow 5 "0 1 2 3 4"))
+  |+| speed "0.4"
+  |+| slow 8 (vowel (pick <$> "a i o i e i u" <*> run 6))
+  |+| shape triwave1
+  |+| gain "0.9"
+  |+| delay "0.9"
+  |+| delayfeedback "0.7"
+  |+| delaytime "0.5"
+
+d8 $ slow 4 $ every 24 ((striate' 32 (0.5))) $ every 8 (|+| accelerate "0.5 1.2 2.3") $ every 16 (|+| accelerate "5 12 3") $ every 2 (|+| speed "1.5") $ sound (samples "hmm" (slow 5 "0 1 2 3 4"))
+  |+| speed "1"
+  |+| slow 8 (vowel (pick <$> "a i o i e i u" <*> run 6))
+  |+| shape triwave1
+  |+| gain "0.9"
+  |+| delay "0.9"
+  |+| delayfeedback "0.5"
+  |+| delaytime "0.5"
+
+--------------------------------------------------
+hush
+
+
+---- pre org
+
+d4 $ every 2 ((|+| speed "2 5 2 2 5")) $ interlace (sound (pick <$> "sn psr:3 ~ psr psr:4" <*> run 5)) (every 2 (rev) $ sound (pick <$> "bd ~ bass0/3 bass0 ~" <*> run 4))
+  |+| shape triwave1
+  |+| slow 2 (vowel (pick <$> "e o u" <*> run 3))
+  |+| gain "1.2"
+
+
+
+
+
+
+
+
+
+hush
+---- org
+
+bps (150/60)
+
+solo $ d4 $ every 2 ((|+| speed "2 5 2 2 5")) $ stack[sound (pick <$> "sn psr:3 ~ psr psr:4/3" <*> run 5), every 2 (rev) $ every 3 (echo (5/24)) $ every 2 (echo (7/4)) $ sound (pick <$> "bd ~ bass0/3 ifdrums/5 ~" <*> run 4), sound "bas"]
+  |+| shape triwave1
+  |+| slow 2 (vowel (pick <$> "e o u" <*> run 3))
+
+
+d6 $ echo (1/6) $ slow 2 $ every 16 (striate' 32 (0.5) . (|+| delay "0.8") . (|+| delayfeedback "0.9") . (|+| delaytime "0.9")) $ every 2 (|+| speed "5") $ sound (samples "koy" (slow 5 "0 1 2 3 4"))
+  |+| speed "2.5"
+  |+| slow 8 (vowel (pick <$> "a i o i e i u" <*> run 6))
+  |+| shape triwave1
+  |+| delay "0.8"
+  |+| delayfeedback "0.9"
+  |+| delaytime "0.9"
+
+d7 $ slow 4 $ every 24 (striate' 32 (0.5)) $ every 8 (|+| accelerate "0.5 1.2 2.3") $ every 16 (|+| accelerate "5 12 3") $ every 2 (|+| speed "0.5") $ sound (samples "moan" (slow 5 "0 1 2 3 4"))
+  |+| speed "0.4"
+  |+| slow 8 (vowel (pick <$> "a i o i e i u" <*> run 6))
+  |+| shape triwave1
+  |+| gain "0.9"
+  |+| delay "0.9"
+  |+| delayfeedback "0.9"
+  |+| delaytime "0.5"
+
+d8 $ slow 4 $ every 24 (striate' 32 (0.5)) $ every 8 (|+| accelerate "0.5 1.2 2.3") $ every 16 (|+| accelerate "5 12 3") $ every 2 (|+| speed "1.5") $ sound (samples "hmm" (slow 5 "0 1 2 3 4"))
+  |+| speed "1"
+  |+| slow 8 (vowel (pick <$> "a i o i e i u" <*> run 6))
+  |+| shape triwave1
+  |+| gain "0.9"
+  |+| delay "0.9"
+  |+| delayfeedback "0.9"
+  |+| delaytime "0.5"
+
+hush

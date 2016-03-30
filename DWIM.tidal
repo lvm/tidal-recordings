@@ -1,0 +1,44 @@
+cps 1
+
+cps 0.5
+
+let chop2 = chop 2 . stut 2 0.5 0.5
+
+d4 $ every 5 (chop2) . every 9 (|+| shape "0.9") $ stut 3 0.5 0.5 . palindrome . every 3 (iter 3) . chop 2 . density 3 $ every 2 (slow 3 . iter 2 . rev) $ stack[sound "[{db, ~, ~}%2, hardcore !?]", sound "psr:1/3"]
+ |+| end "0.1"
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| shape (every 4 ((0.2+) <$>) $ "0.666")
+
+d3 $ stut 3 0.5 0.5 . every 3 (rev) $ sound "seqdru seqdru*2? seqdru? seqdru?"
+ |+| speed (((0.5+) <$>) $ every 3 ((2.5+) <$>) $ every 13 ((/2) <$>) "4")
+ |+| shape (every 4 ((0.2+) <$>) $ "0.666")
+
+d2 $ stut 2 0.9 0.5 . chop2 . every 3 (chop 2 . stut 3 0.5 0.5) . density 2 $ sound "{peri:2 drum*4 peri:1*2}%3"
+ |+| speed (every 3 ((*2) <$>) $ every 2 ((*1.5) <$>) "2")
+
+
+cps 1
+
+let start = now
+
+d1 $ sound "peri peri:1 db d e e:1"
+
+d2 $ stack[every 2 (retrig) $ seqP[(0, 8, chop 2 . chop2 $ sound "peri perc*2"), (0, 16, sound "peri:1 peri:2")], sound "perc:4", sound "dr dr*2 dr*2 dr", sound "hardcore db"]
+
+d3 silence
+
+
+hush
+
+cps 0.7
+
+let chop2 = chop 2 . stut 2 0.5 0.5 . slow 2
+
+d2 $ stut 2 0.9 0.5 . chop2 . every 3 (chop 2) . density 2 $ sound "drum {drum*2 peri:1, drum:1/2 peri:1}%2 drum"
+ |+| speed (every 3 ((*2) <$>) $ every 2 ((*1.5) <$>) "2")
+
+
+
+
+
+hush

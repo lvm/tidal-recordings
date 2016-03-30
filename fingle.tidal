@@ -1,0 +1,65 @@
+cps 1
+
+let nm p = note $ toMIDI p
+
+m1 $ slowcat[
+nm "f5 d5 c5 b5",
+nm "f6 d5 c5 b5",
+nm "f5 d6 c6 b5",
+nm "f6 d6 c6 b6",
+nm "f5 d5 c5 b6",
+nm "f5 d5 c6 b5",
+nm "f5 d6 c5 b5",
+nm "f6 d5 c5 b5"
+]
+|+| dur "0.05"
+
+m1 silence
+
+-- m2 $ every 4 (sometimes (# dur "0.1")) $ slowcat[
+-- every 3 (within(0, 0.5) (spin 2 . chop 2)) $ nm "[~ c4 ~ ~] [~ ~ c4 ~]"
+-- ,nm "c4(7,8)"
+-- ]
+-- |+| dur "0.9"
+-- |+| vel "0.7"
+
+hush
+
+
+cps 0.5
+
+m4 $ degrade . every 8 (iter 8) $ slowcat[
+  nm "[d5 ~ d5 ~] [d5 d5 ~ d5]",
+  nm "[~ f5 ~ d5] [c5 ~ g5 ~]"
+]
+|+| dur "0.1"
+
+m2 $ every 4 (sometimes (# dur "0.1")) $ stack[
+nm "[~ c4 ~ ~] [~ c4 ~ ~]",
+every 9 (chop 2) $ slowcat[
+  nm "[d5 ~ d5 ~] [d5 d5 ~ d5]",
+  nm "[~ f5 ~ d5] [c5 ~ g5 ~]"
+]
+]
+|+| dur "0.05"
+|+| vel "0.7"
+|+| nudge "[0 0.25]/2"
+
+let pm3 = nm "[d5 ~ d5 ~] [d5 d5 ~ d5]"
+    pm31 = nm "[d5 ~ d5 ~] [d4 d4 ~ d4]"
+
+m3 $ density 1.2 $ slowcat[pm3, pm3, pm3]
+|+| dur "0.9"
+|+| vel "0.6"
+|+| sustainpedal (scale 0.1 0.65 $ sometimes rev $ sine1)
+
+-- m4 $ slow 2 $ nm "[~ f5 ~ d5] [c5 ~ g5 ~]"
+-- |+| dur "0.1"
+-- |+| sustainpedal (scale 0 0.65 rand)
+
+m4 silence
+
+|+| vel (scale 0.1 0.5 rand)
+
+
+hush

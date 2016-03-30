@@ -1,0 +1,52 @@
+bps (140/60)
+
+d1 $ brak $ sound (every 2 (density 4) "bd sn sn*3")
+
+d1 $ every 2 rev $ spread' (striate' 6) (((+0.1) . (*0.2)) <$> slow 32 sinewave1) $ sound "printshort:2*4/4"
+
+d1 silence
+
+d2 $ jux ((|+| speed "0.5") . rev) $ sound "future*8 pluck perc" |+| pan sinewave
+
+d2 silence
+
+--d3 $ sound "bd*2 sn*8"
+--d3 $ jux (rev) (sound (every 2 (density 4) "bass0:3/2 bass0:3*8/4 house:3/2"))
+d3 $ sound "bass0:3/2 bass0:3*8/4 house:3/2"
+ 
+d3 silence
+
+d4 $ jux ((|+| speed "0.5") . rev) $ (sound (pick <$> "future*8" <*> slow 7 "3 4 1 2 0"))
+--d4
+--d4 $ jux ((|+| speed "0.5") . rev) $ (sound (pick <$> "sax:1/4" <*> slow 7 "3 4 1 2 0"))
+d4 $ jux ((|+| speed "0.5") . rev) $ (sou nd (pick <$> "sax:1" <*> slow 7 "2 3 1 2 0"))
+--d4 $ sound "house"
+d4 silence
+
+--d5 $ slow 4 $ jux ((|+| speed "0.5") . rev) $ sound "[bd bd] [bd [sn [sn sn] sn] sn] bd jvbass*3/8 can*8/32 future [sn sn]"
+
+d5 $ jux (rev) (sound "[bd jvbass*3 [sn, sn]]")
+
+
+
+d5 $ sound "jvbass*3/4"
+
+d5 silence 
+
+
+d6 $ sound "jvbass:2 jvbass:1*4"
+d6 $ (echo (1/32) $ whenmod 4 2 (rev) $ density 4 $ striate 2 $ sound $ samples "[pluck [bd sn pluck]*3 bd]*1/8" (slow 2 $ run 8))
+  |+| speed "2"
+d6 silence
+
+d7 $ jux (rev) (sound "perc*8/2 odx*3/6")
+d7 $ sound "perc*8/2 odx*3/6"
+d7 silence
+
+d8 $ jux ((|+| delay "0.8") . rev ) $ sound (every 2 (density 8) "koy:1")
+d8 silence
+
+d9 $ brak $ sound "drumtraks drumtraks:4"
+d9 silence
+ 
+hush

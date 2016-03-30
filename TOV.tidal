@@ -1,0 +1,99 @@
+
+cps 0.35
+
+
+
+
+
+
+cps 0.25
+
+
+
+hush
+
+
+cps 0.5
+
+d2 $ echo (7/4) $ every 8 (|+| coarse "11") $ every 2 (stut 2 0.5 0.5) . chop 2 $ stack[
+sound "hh27(3,18)"
+,
+every 2 (density 3) . stut 2 0.5 (-0.5) $ sound "hh27:2(1,4)"
+]
+ |+| speed (iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+ |+| shape (iter 2 $ every 4 (rev) $ "[0.5 0.6 0.4 0.3]")
+
+d3 $ echo (8/5) $ every 3 (rev) $ sound "{sid:2(2,1) linndrum:4}%3"
+ |+| shape (iter 2 $ every 4 (rev) $ "[0.5 0.6 0.4 0.3]")
+ |+| coarse "1 11 1"
+
+
+
+
+hush
+
+
+
+
+d2 $ echo (7/4) $ spread' density "3 1 3 1 3" $ sound "~ ul:3(3,3)"
+ |+| speed (iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+
+d2 $ echo (7/4) $ spread' density "3 1 3 1 3" $ sound "~ ul:3(3,3)"
+ |+| speed (iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+
+d3 $ spread' density "2 1 1 1 2" $ sound "ul:1(3,8) ~ peri:1(1,8) ~"
+ |+| speed (iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+
+
+hush
+
+
+cps 0.25
+
+d2 $ echo (7/4) $ every 3 (rev) . chop 2 $ sound "{sid:2(2,1) linndrum:3(3,3)}%3"
+
+
+cps 0.35
+
+cps 0.5
+
+d6 $ chop 3 $ every 3 (stut 4 0.5 0.5) . density 2 $ sound "db(2,1)"
+
+d5 $ sound "visco:5(1,4)"
+ |+| speed (((*0.25) <$>) $ iter 2 $ every 4 (rev) $ "0.5")
+
+d4 $ stut 2 0.5 (-0.1) . spread' density "2 1 2 1 2 1" $ sound "sid:2(2,1) [bd:8(2,1) bd(2,1)]"
+ |+| speed (every 2 (((*0.6)) <$>) $ every 5 (((*0.98)) <$>) $ iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+
+d3 $ stut 2 0.9 0.5 . every 3 (rev) . chop 2 . spread' slow "2 1 2 1 2" $ sound "hardcore:1"
+ |+| speed (((/2) <$>) $ every 2 (((*0.6)) <$>) $ every 3 (((*0.98)) <$>) $ iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+ |+| vowel (slow 8 "s a l o")
+
+d2 $ juxcut rev . slow 2 . within (0,0.25) ((|+| speed "0.5")) . stut 2 0.5 0.5 $ sound "ade"
+ |+| speed (every 2 (((*1.5)) <$>) $ every 3 (((*1.3)) <$>) $ iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+ |+| cut "1"
+ |+| end "0.2"
+ |+| vowel (slow 6 "c u l o")
+ |+| gain "0.3" --(scale 0.3 0.5 $ sine1)
+
+
+hush
+
+
+
+
+
+cps 0.25
+
+cps 0.35
+
+d1 $ within (0.5, 0.7) (stut 2 0.5 0.5 . chop 2) . spread' density "3" $ sound "bass3:2(3,8) !?"
+ |+| speed (((1.2*) <$>) $ every 2 ((*2) <$>) $ every 4 ((*1.2) <$>) $ scale 1.2 2.5 $ sine1)
+
+d2 $ spread' density "3 2 3 3" $ sound "mattel:2(2,1) mattel:5(2,1)"
+ |+| speed ("1 2")
+ |+| shape "0.666"
+
+
+hush
+

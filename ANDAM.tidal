@@ -1,0 +1,201 @@
+--------------------------- 
+hush
+
+
+bps (155/60/2)
+
+
+
+--- basic
+
+d8 $ every 9 ((|+| speed "10") . (slow 0.5)) $ every 4 ((|+| speed "4%3") . (0.25 <~)) $ every 10 ((|+| speed "2%3") . rev . (|+| shape "0.9")) $ density 8 $ striate' 32 (0.1) $ spread' slow "[4, 3, 4, 2]/3" $ sound "odx:5 odx:10 sn:2*2 odx:1"
+ |+| shape triwave1
+ |+| speed ((0.5+) <$> sine1)
+
+
+d8 $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ smash 4 [4..8] $ spread' slow "[4, 3, 4, 2]/2" $ stack[sound "odx:5 odx:10 sn:2*2 odx:1", sound "~ gab:3 gab:4"]
+ |+| shape triwave1
+ |+| speed ((0.5+) <$> sine1)
+
+
+d8 $ every 128 (spread (striate) [2,3,4,1]) $ every 32 ((|+| shape triwave1) . rev . (|+| speed "2")) $ every 16 ((|+| speed "7") . rev) $ every 10 ((|+| speed "7") . (0.25 <~)) $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed ((0.5+) <$> sine1)
+
+
+d8 $ slow 2 $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+
+d8 $ slow 4 $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.9"
+ |+| delayfeedback "0.2"
+ |+| delaytime "0.1"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+
+
+d8 $ slow 4 $ smash 2 [4..5] $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+
+
+
+
+d8 $ every 128 (spread (striate) [2,3,4,1]) $ every 32 ((|+| shape triwave1) . rev . (|+| speed "2")) $ every 16 ((|+| speed "7") . rev) $ every 10 ((|+| speed "7") . (0.25 <~)) $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+  |+| shape triwave1
+  |+| speed "1"
+  |+| pan (slow 2 triwave1)
+  |+| delay "0.9"
+  |+| delayfeedback "0.1"
+  |+| delaytime "0.1"
+
+
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+
+ |+| accelerate "3 14 -15 9 6 2"
+
+
+--- broken
+
+d8 $ echo (7/4) $ every 3 ((|+| speed "10")) $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ every 4 ((|+| speed "2%3") . rev . (|+| shape "0.9")) $ density 8 $ striate' 32 (0.1) $ spread' slow "[4, 3, 4, 2]" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+--- cray
+
+d8 $ every 3 ((|+| speed "10")) $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ every 4 ((|+| speed "2%3") . rev . (|+| shape "0.9")) $ density 8 $ striate' 32 (0.1) $ spread' slow "[4, 3, 4, 2]" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+--- w/ fx
+
+d8 $ every 3 ((|+| speed "10")) $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ every 4 ((|+| speed "2%3") . rev . (|+| shape "0.9")) $ density 8 $ striate' 32 (0.1) $ smash 4 [4..8] $ spread' slow "[4, 3, 4, 2]" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+--- clean
+
+d8 $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ smash 4 [4..8] $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+--- cleaner
+
+
+d8 $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+
+
+--- speed up
+
+
+d8 $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+
+--- slow down
+
+d8 $ slow 2 $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+
+
+d8 $ slow 4 $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.9"
+ |+| delayfeedback "0.2"
+ |+| delaytime "0.1"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+
+
+d8 $ slow 4 $ smash 2 [4..5] $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+ |+| shape triwave1
+ |+| speed "1.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 2 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+
+--- improv
+
+
+d8 $ every 128 (spread (striate) [2,3,4,1]) $ every 32 ((|+| shape triwave1) . rev . (|+| speed "2")) $ every 16 ((|+| speed "7") . rev) $ every 10 ((|+| speed "7") . (0.25 <~)) $ every 2 ((|+| speed "4%3") . (0.25 <~)) $ density 8 $ striate' 32 (0.1) $ spread' slow "4 3 4 2" $ interlace (sound "odx:5 odx:10 sn:2*2 odx:1") (sound "~ gab:3 gab:4")
+  |+| shape triwave1
+  |+| speed "1"
+  |+| pan (slow 2 triwave1)
+  |+| delay "0.9"
+  |+| delayfeedback "0.1"
+  |+| delaytime "0.1"
+-- |+| end rand
+-- |+| accelerate "3 14 15 9 6 2"
+
+
+
+
+hush

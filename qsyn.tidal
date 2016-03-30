@@ -1,0 +1,100 @@
+cps 0.666
+
+
+q $ slow 1.25 . spin 2 . every 7 (sometimes (within (0, 0.25) (chop 2))) . smash 2 [5] $ stack[
+  drum "bd bd",
+  drum "~ [~ sn]?",
+  drum "cp",
+  drum "~ [ag*2]?",
+  density 2 $ palindrome $ drum "ch*2 oh",
+  sometimes (within (0, 0.5) (chop 2 . slow 2)) $ drum "[lt(4,4)]"
+  ]
+|+| scl (scale 0.5 0.75 sine1)
+|+| doh "0.75"
+|+| stt "0"
+|+| std "0.2"
+
+---
+
+hush
+
+cps 1
+
+m2 $ spin 2 . sometimes (within (0, 0.5) (spin 2)) $ slowcat[
+   note $ (toMIDI "[f5 c5] [c5 c5] [c5 f5]")
+   ]
+  
+|+| gate "0.9" --(scale 0 0.5 sine1)
+|+| expression "0.95"
+|+| lforate (scale 0.5 0.7 sine1)
+|+| lfoint (scale 0.2 0.3  $ density 2 $ sine1)
+|+| pitch3 (scale 0.25 0.9 sine1)
+|+| decay "0"
+|+| cutoffegint (scale 0 0.9 squarewave1)
+
+
+
+q $ iter 5 $ note $ (toMIDI "f3 c4 c6 c5 f4")
+
+---
+
+cps 0.4
+
+q $ stack[
+  iter 2 . smash 2 [5] . every 2 (jux(within (0, 0.25) (chop 2))) $ stack[
+   note $ toMIDI "[~ ~ ~ ~] [~ c5 ~ ~] [~ ~ ~ c5] [~ ~ ~ ~]"
+   ,
+   note $ toMIDI "[~ f5 ! !] [f5 ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+   ,
+   note $ toMIDI "[c5 d5 ! !] [~ ~ ~ ~] [~ ~ ~ ~] [d5 ~ ~ ~]"
+   ,
+   note $ toMIDI "[b3 ~ b3 ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+   ,
+   note $ toMIDI "[~ ~ ~ ~] [~ ~ ~ ~] [b4 ~ ~ ~] [~ ~ ~ ~]"
+   ,
+   note $ toMIDI "[~ ~ ~ ~] [~ ~ ~ ~] [~ g4 ~ ~] [c4 ~ ~ ~]"
+   ,
+   note $ toMIDI "[~ ~ ~ ~] [~ ~ ~ f4] [~ ~ ~ ~] [~ ~ ~ ~]"
+   ,
+   note $ toMIDI "[~ ~ ~ ~] [~ ~ g3 ~] [g3 ~ ~ ~] [~ ~ g3 ~]"
+   ,
+   note $ toMIDI "[~ ~ ~ ~] [~ ~ e3 ~] [~ ~ ~ ~] [~ ~ e3 ~]"
+   ]
+]
+---
+
+
+
+
+
+
+
+
+hush
+
+cps 0.35
+
+q $ every 23 (slow 8) $ slow 1.25 . iter 16 . smash 2 [5] . every 2 (jux(within (0, 0.25) (chop 2))) $ stack[
+   note $ toMIDI "~ ~ ~ ~ ~ c5 ~ ~ ~ ~ ~ c5 ~ ~ ~ ~"
+   ,
+   note $ toMIDI "~ f5 ! ! f5 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"
+   ,
+   note $ toMIDI "c5 d5 ! ! ~ ~ ~ ~ ~ ~ ~ ~ d5 ~ ~ ~"
+   ,
+   note $ toMIDI "b3 ~ b3 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~"
+   ,
+   note $ toMIDI "~ ~ ~ ~ ~ ~ ~ ~ b4 ~ ~ ~ ~ ~ ~ ~"
+   ,
+   note $ toMIDI "~ ~ ~ ~ ~ ~ ~ ~ ~ g4 ~ ~ c4 ~ ~ ~"
+   ,
+   note $ toMIDI "~ ~ ~ ~ ~ ~ ~ f4 ~ ~ ~ ~ ~ ~ ~ ~"
+   ,
+   note $ toMIDI "~ ~ ~ ~ ~ ~ g3 ~ g3 ~ ~ ~ ~ ~ g3 ~"
+   ,
+   note $ toMIDI "~ ~ ~ ~ ~ ~ e3 ~ ~ ~ ~ ~ ~ ~ e3 ~"
+]
+ 
+
+d1 silence
+
+hush

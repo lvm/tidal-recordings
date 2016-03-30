@@ -1,0 +1,3 @@
+d1$stack[sometimes(within(0,0.5)(iter 2.(0.25<~))).superimpose((# pan "0.25").(# speed "1")).slow 64.spread'(striate' 256)(scale 0.05 0.1 sine1)$sound"bev"#hresonance"0.001"#bandq"0.8"#bandf "0.8"#coarse(floor <$> scale 1 3 sine1)#vowel"a"#speed"-1"#pan"0.75"#gain"1",jux(#bandf"1")$density 1.5.sometimes((# bandf "0.05").brak).foldEvery[8,13](iter 4).every 7(gap 2.within(0,0.25)(slow 2)).gap 2.every 2(slowspread(stut 2 0.5)[0.25..0.75])$sometimes(#sound "[glitch!!! amencutup:4!!]")$sound"[[[glitch ~] [amencutup:3 ~]] [amencutup:4 glitch]]"#resonance"0.01"#bandq"0.5"#bandf"0.15"#cut"1"#gain"0.9"#coarse"[1 4 2 8]/4"#delay"0.1"#delayfeedback"0.5"#delaytime"0.6"]
+
+hush

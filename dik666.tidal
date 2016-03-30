@@ -1,0 +1,62 @@
+bps (120/160)
+
+b1 $ sometimes( within (0, 0.25)( smash 2 [3] ) ) $ stack[
+   drum "[bd ~ ~ ~] [bd ~ bd ~ ] [ ~ ~ ~ ~]"
+   ,
+   drum "[~ ch ~ ~] [~ ch([1 2]/2, 2)] [~ ch ~ ~]"
+   |+| dch "0.5"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~ ] [ ~ ~ oh/2 ~]"
+   |+| doh "0.75"
+   ,
+   drum "[~ ~ ~ sn] [~ ~ ~ ~] [~ sn sn? ~]"
+   ,
+   slowspread slow [2, 2, 2, 1] . chop 2 $ drum "cl([7 9]/2, 12)"
+]
+|+| dhg "0.1"
+
+b1 silence
+
+--
+
+--b1 $ sometimes( within (0, 0.25)( smash 2 [3] ) ) $ stack[
+bps (120/160)
+
+cps 0.375
+
+cps 0.5
+
+let st0 = (|+| stt "0") . (|+| std "0")
+let st1 = (|+| std "0.1") . (|+| stt "0.25")
+
+b1 $ st0 . sometimes st1 . smash 2 [3] $ stack[
+  slowcat[
+   drum "[bd ~ ~ ~] [bd ~ bd ~ ] [ ~ ~ ~ ~]"
+   ,
+   drum "[bd ~ ~ ~] [bd ~ bd ~ ] [ ~ ~ ~ ~]"
+   ,
+   drum "[bd ~ ~ ~] [bd ~ bd ~ ] [ ~ ~ ~ ~]"
+   ,
+   drum "[bd ~ ~ ~] [bd ~ bd bd ] [ ~ ~ ~ ~]"
+   ]
+   ,
+   drum "[~ ch ~ ~] [~ ch([1 2]/2, 2)] [~ ch ~ ~]"
+   |+| dch "0.25"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~ ] [ ~ ~ oh ~]"
+   |+| doh "0.75"
+   ,
+   slowcat[
+     drum "[~ ~ ~ sn] [~ ~ ~ ~] [~ sn sn? ~]"
+     ,
+     drum "[~ ~ ~ sn] [sn([3 1]/2,4)] [~ sn sn? ~]"
+   ]
+   ,
+   every 7 ( sometimes brak ) .  slowspread slow [1, 1, 2, 1] . chop 2 $ drum "cl([7 9]/2, 12)"
+]
+|+| dhg "0.05"
+|+| scl "0.99"
+
+b1 silence
+
+

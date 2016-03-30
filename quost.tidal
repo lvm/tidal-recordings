@@ -1,0 +1,262 @@
+cps 1
+
+import System.Cmd -- for `espeak`
+
+-- lazy helpers
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    nm p = note $ toMIDI p
+    ---
+    ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    --- q $ note (cho 48 "1 [~ 1] 1 1 " [0, 3, 7, 5])
+    cho n pat chord = preplace(1,1) pat $ listToPat [ch + n | ch <- chord]
+    --- q $ note (cho' 48 3 "1 [~ 1] 1 1 " [0, 3, 7, 5])
+    cho' n off pat chord = cho (n+off) pat chord
+    --- q $ slowcho [47, 45, 42] "[1 !] 1 1 1" [0, 3, 0, 3]
+    slowcho nlist pat chord = slowcat[note (cho n pat chord) | n <- nlist]
+    --- q $ slowcho' [47, 45, 42] 3 "[1 !] 1 1 1" [0, 3, 0, 3]
+    slowcho' nlist off pat chord = slowcat[note (cho' n off pat chord) | n <- nlist]
+    --  q $ slowcat[note (cho 60 "1 1 1" (rotate i [0,3,7,10])) | i <- [0..3]]
+    rotate :: Int -> [a] -> [a]
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+    -- q $ chrot [51, 48] "1 1 1 1" [0, 3, 5, 7] 3
+    chrot nlist pat chord = slowcat[slowcho nlist pat (rotate i chord) | i <- [0..((length chord)-1)]]
+    -- espeak: msg, voice, amp, pitch, speed
+    espeak' m v a p s = system $ "espeak -v " ++ v ++ " -a " ++ a ++ " -p " ++ p ++ " -s " ++ s ++ " \"" ++ m ++ "\""
+    shespeak' m v a p s = system $ "espeak -v " ++ v ++ "+f1 -a " ++ a ++ " -p " ++ p ++ " -s " ++ s ++ " \"" ++ m ++ "\""
+    whisper' m v a p s = system $ "espeak -v " ++ v ++ "+whisper -a " ++ a ++ " -p " ++ p ++ " -s " ++ s ++ " \"" ++ m ++ "\""
+    croak' m v a p s = system $ "espeak -v " ++ v ++ "+croak -a " ++ a ++ " -p " ++ p ++ " -s " ++ s ++ " \"" ++ m ++ "\""
+    espeak m = espeak' m "en" "25" "50" "160"
+    shespeak m = shespeak' m "en" "25" "50" "160"
+    whisper m = whisper' m "en" "25" "50" "160"
+    croak m = croak' m "en" "25" "50" "160"
+
+cps 1.2
+
+
+
+
+
+
+
+
+
+
+hush
+
+cps 0.8
+
+m3 $ every 3 (slow 2) . stut 2 0 0.25 $ stack[
+chrot [69] "[1(5, 8)]/2" [0, 3, 5, 7, 5, 3]
+] # dur "0.25" # vel "0.75"
+
+q $ slowspread (stut 2 0) [0.25, 0, 0.5, 0.25] $ stack[
+chrot [48] "1([3 3 3 5 8 5 3 5]/8, 8)" [0, 3, 5, 7, 5, 3]
+] # decay "1" # dur "0.01" # cutoffegint (scale 0 0.2 $ palindrome $ sine1) # lforate "0.85" # lfoint "0.05" # vel "1"
+
+-- drums
+b $ every 18 (chop 2) . foldEvery [21, 23] (# stt "0.23") . foldEvery [13,15,17] (sw(# std "0.1")) $ stack[
+stack[drum "[bd [~ bd]/3, ~ bd/2] bd", drum "~ cp"],
+drum $ preplace (1,1) "[x([5 8]/2,8)]" "cl sn",
+slowcat[
+      every 3 (sw(slow 2)) . every 16 (chop 4 . slow 2 . iter 2) $ drum "[ch(9,16)]/4",
+      every 3 (sw(slow 2)) . every 16 (chop 4 . slow 2 . iter 2) $ drum "[ch([5 8]/2,8)]/2"
+],
+drum "~ ~ oh/8 ~"
+] # dch "0.01" # scp "0.8" # stt "0" # std "0"
+
+-- drums
+b $ density 2 . every 18 (chop 2) . foldEvery [21, 23] (# stt "0.23") . foldEvery [13,15,17] (sw(# std "0.1")) $ stack[
+drum "bd/3 bd/2 bd/4 sn/4",
+drum $ preplace (1,1) "[x([2 4 3 4]/4,4)]/4" "sn cp*2 cp cp",
+slowcat[
+      every 3 (sw(slow 2)) . every 16 (chop 4 . slow 2 . iter 2) $ drum "[ch(9,16)]/4",
+      every 3 (sw(slow 2)) . every 16 (chop 4 . slow 2 . iter 2) $ drum "[ch([5 8]/2,8)]/2"
+],
+drum "cp/16 ~ oh/8 ~"
+] # dch "0.01" # scp "0.8" # stt "0" # std "0"
+
+
+
+q $ chrot [48] "1([3 5 8 5]/4, 8)" [0, 3, 5, 7, 5, 3]
+
+
+q $ slowcat[
+q $ chrot [48] "1([3 5 8 5]/4, 8)" [0, 3, 5, 7, 5, 3]
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0, 3, 5, 7, 5, 3]
+] # decay "1" # dur "0.05" # cutoffegint (scale 0 0.2 $ palindrome $ sine1) # lforate "0.666" # lfoint "0"
+
+q $ slowcat[
+chrot [48] "1 ~ 1 1 ~ ~ 1 1" [0, 3, 5, 7, 5, 3]
+] # decay "1" # dur "0.05" # cutoffegint (scale 0 0.2 $ palindrome $ sine1) # lforate "0.666" # lfoint "0"
+
+
+
+
+q $ every 8 (# cutoffegint "0.23") $ slowcat[
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0,3,5,7,10,7,5,3]
+] # decay "1" # dur "0.05" # cutoffegint "0" # lforate "0.666" # lfoint "0.0"
+
+q $ every 4 (# note "60 ~ 48 ~") $ slowcat[
+chrot [48] "1 ~ ~ 1 ~ ~ 1 1" [0, 3, 5, 7, 5, 3]
+] # decay "1" # dur "0.05" # cutoffegint (scale 0 0.2 $ palindrome $ sine1) # lforate "0.666" # lfoint "0"
+
+
+q $ every 8 (iter 2 . slow 2) . every 4 (# note "60 ~ 48 ~") $ slowcat[
+chrot [48] "1 ~ ~ 1 ~ ~ 1 1" [0, 3, 5, 7, 5, 3]
+] # decay "1" # dur "0.05" # cutoffegint (scale 0 0.2 $ palindrome $ sine1) # lforate "0.666" # lfoint "0"
+
+
+
+
+
+
+
+
+m3 $ density 2 . stut 2 0 0.25 $ every 8 (# cutoffegint "0.23") $ slowcat[
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [3],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [3],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [5],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [7],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [10],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [7],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [5],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [3],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [3],
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [3]
+--,chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0, 3, 0, 5, 0, 3, 5, 7, 0, 3, 0, 3, 0, 3, 0, 7, 5, 3]
+--,chrot [48] "~ 1 1 ~ 1 1 ~ 1" [0, 3, 0, 5, 0, 3, 5, 7, 0, 3, 0, 3, 0, 3, 0, 7, 5, 3]
+] # decay "1" # dur "0.05" # cutoffegint "0" # lforate "0.666" # lfoint "0.0"
+
+
+
+
+
+q $ every 8 (iter 2 . slow 2) . every 4 (# note "60 ~ 48 [60 !]") $ stack[
+chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0, 3, 5, 7],
+slow 2 . iter 2 $ chrot [48] "~ ~ 1 ~ ~ 1 ~ ~" [0, 3, 5, 7]
+] # decay "1" # dur "0.05" # cutoffegint (scale 0 0.2 $ palindrome $ sine1) # lforate "0.666" # lfoint "0"
+
+-- -- basic
+-- q $ every 8 (iter 2 . slow 2) . every 4 (# note "60 ~ 48 [60 !]") $ stack[
+-- chrot [48] "1 ~ ~ 1 ~ ~ 1 ~" [0, 3, 5, 7]
+-- ] # decay "1" # dur "0.05" # cutoffegint (scale 0 0.2 $ palindrome $ sine1) # lforate "0.666" # lfoint "0"
+
+
+
+
+
+
+
+
+
+
+
+
+-- atmosphere
+m1 $ slow 1.2 . palindrome . sw(rev) $ stack[
+slowcat[
+chrot [48] "1 ~ ~ 1" [0,3,5,7],
+chrot [48] "1 ~ 1 1" [3,0,5,7],
+chrot [48] "1 1 ~ 1" [3,5,0,7]
+] # dur "0.01"
+] # vel "0.75"
+
+m3 $ density 1.2 . palindrome $ slowcat[
+chrot [32] "1 1 ~ 1" [0,3,0,3],
+chrot [32] "~ 1 ~ 1" [0,3,0,3],
+chrot [32] "1 ~ 1 ~" [0,3,0,3],
+chrot [32] "~ 1 ~ 1" [0,3,0,3],
+chrot [32] "1 ~ 1 1" [0,3,0,3],
+chrot [32] "1 ~ 1 ~" [0,3,0,3]
+] # decay "1" # dur "0.1" # cutoffegint (scale 0 0.2 $ palindrome $ sine1) # lforate "0.666" # lfoint "0"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- orig
+m3 $ density 1.2 . palindrome $ slowcat[
+chrot [32, 35] "1 1 ~ 1" [0,3,0,3],
+chrot [37, 39] "~ ~ ~ 1" [3,5,3,5],
+chrot [42, 46] "1 ~ ~ ~" [5,7,5,7],
+chrot [51] "1 1 ~ 1" [7,10,7,10],
+chrot [32, 35] "~ ~ ~ 1" [7,10,7,10],
+chrot [37, 39] "1 ~ ~ ~" [5,7,5,7],
+chrot [42, 46] "1 1 1 ~" [3,5,3,5],
+chrot [51] "~ ~ ~ 1" [0,3,0,3],
+chrot [51] "1 ~ ~ ~" [7,5,3,0]
+] # dur "0.01"
+
+-- mod
+m1 $ palindrome . sw(rev) $ slowcat[
+chrot [48] "1 ~ ~ 1" [7,10,7,10],
+chrot [48] "1 ~ 1 1" [5,7,5,7],
+chrot [48] "1 1 ~ 1" [3,5,3,5]
+] # dur "0.1"
+
+
+-- mod 2
+m1 $ slow 1.2 . palindrome . sw(rev) $ stack[
+slow 2 . iter 4 $ chrot [36] "1 ~ ~ ~" [0,3,5,7] # dur "0.01",
+slowcat[
+chrot [48] "1 ~ ~ 1" [0,3,5,7],
+chrot [48] "1 ~ 1 1" [3,0,5,7],
+chrot [48] "1 1 ~ 1" [3,5,0,7]
+] # dur "0.01"
+]
+
+hush
+
+-----
+
+m3 $ density 3 . palindrome $ slowcat[
+--chrot [32, 35] "1 1 ~ 1" [0,3,0,3],
+chrot [32, 35] "1 1 ~ 1" [3,5,3,5],
+chrot [37, 39] "~ ~ ~ 1" [3,5,3,5],
+chrot [42, 46] "1 ~ ~ ~" [5,7,5,7],
+chrot [48] "1 1 ~ 1" [7,10,7,10],
+chrot [32, 35] "~ ~ ~ 1" [7,10,7,10],
+chrot [37, 39] "1 ~ ~ ~" [5,7,5,7],
+chrot [42, 46] "1 1 1 ~" [3,5,3,5],
+chrot [48] "~ ~ ~ 1" [0,3,0,3],
+chrot [48] "1 ~ ~ ~" [7,5,3,0]
+] # decay "1" # dur "0.05" # cutoffegint (scale 0 0.2 $ palindrome $ sine1)
+
+-- mod 2
+m3 $ density 2 . palindrome . sw(rev) $ stack[
+slowcat[
+chrot [48] "1 ~ ~ 1" [0,3,5,7],
+chrot [48] "1 ~ 1 1" [3,0,5,7],
+chrot [48] "1 1 ~ 1" [3,5,0,7]
+] # dur "0.05"
+]
+
+
+
+
+
+q silence
+
+
+hush

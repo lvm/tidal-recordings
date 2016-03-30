@@ -1,0 +1,30 @@
+cps 0.25
+
+cps 0.3
+
+d2 $ spread' density "2 1 2" . chop 2 $ sound "bd:7 [sn ~ sn:4]"
+ |+| shape ( ((*0.5) <$>) sinewave1)
+ |+| speed "0.5"
+
+d3 $ chop 2 . rev . density 3 . within (0, 0.25) (superimpose(|+| vowel "u o i")) $ sound "rapman:2 [visco:5(1,1) rapman:11(1,1)] "
+ |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ every 5 ((*1.2) <$>) $ every 13 ((0.1-) <$>) $ "0.666")
+ |+| shape (iter 4 $ scale 0.1 0.5 $ sinewave1)
+
+d4 $ every 15 (within (0.23, 0.5) (retrig . rev . iter 3 . slow 1.5)) . every 4 (rev) . density 2 . chop 2 . stut 2 0.5 0.5 $ sound "sid:8 rapman rapman:1"
+ |+| speed (every 2 (((*0.8)) <$>) $ every 4 ((*0.62) <$>) $ every 5 ((*0.725) <$>) $ every 7 (((*0.84)) <$>) $ scale 0.23 0.666 $ sine1)
+ |+| shape ( ((*0.5) <$>) sinewave1)
+
+d5 $ echo (7/4) $ within (0, 0.25) (iter 3) . striate' 2 (0.5) . within (0, 1) (spread' density "2 2 2 2 2 3 2 3") $ within (0.25, 0.75) (stut 2 0.2 0.5) $ sound "drumtraks:2 ~"
+ |+| speed (((*0.9) <$>) $ every 2 (((*0.8)) <$>) $ every 4 ((*0.62) <$>) $ every 5 ((*0.725) <$>) $ every 7 (((*0.84)) <$>) $ scale 0.1 0.5 $ sine1)
+ |+| vowel "p o c a"
+ |+| end "0.1"
+
+
+ hush
+
+
+
+
+d5 $ echo (7/8) $ within (0, 0.25) ((|+| delay "0.9") . (|+| delayfeedback "0.9") . (|+| delaytime "0.9")) . within (0, 0.25) (iter 3) . striate' 2 (0.5) . within (0, 1) (spread' density "2 2 2 2 2 3 2 3") $ within (0.25, 0.75) (stut 2 0.2 0.5) $ sound "drumtraks:2 ~"
+ |+| speed (((*0.9) <$>) $ every 2 (((*0.8)) <$>) $ every 4 ((*0.62) <$>) $ every 5 ((*0.725) <$>) $ every 7 (((*0.84)) <$>) $ scale 0.1 0.5 $ sine1)
+ |+| end rand

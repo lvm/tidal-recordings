@@ -1,0 +1,46 @@
+cps 1
+
+
+d1 $ slow 2 . chop 16 $ sound "dist"
+ |+| shape (iter 4 $ "0.3 0.5 0.666 0.4")
+
+d2 $ jux rev . slow 2 . chop 4 . striate' 8 (0.5) $ sound (samples "diphone" (iter 40 $ run 40))
+ |+| speed (((*2) <$>) $ iter 4 "0.51 0.7 0.5 0.61 0.7")
+ |+| shape "0.5"
+ |+| vowel "u"
+ |+| cut "1"
+
+hush
+
+
+
+
+
+d5 $ echo (7/4) $ palindrome . every 9 (slow 2 . (|+| sound "visco:5*16") . (|+| speed "1")) . every 3 (density 2) . every 2 (echo (5/3)) $ stack[sound "visco:4/3 bubble:3 bubble:2", every 3 (slow 2) . every 2 (rev) $ sound "visco:5*2 ~ drum"]
+ |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 2 ((*0.2) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+ |+| shape "0.23"
+
+
+cps 0.4
+
+cps 0.5
+
+cps 0.666
+
+
+d5 $ echo (7/4) $ every 2 (chop 4 . (|+| cut "1")) . chop 2 $ sound "rhodes:2 ~ rhodes:2 drum"
+ |+| shape "0.23"
+
+d4 $ echo (7/4) $ every 4 (|+| vowel "a") . every 3 (density 2) . every 2 (echo (5/3)) $ sound "~ ~ psr:1"
+ |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 2 ((*0.2) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+ |+| shape "0.2"
+ |+| vowel "u"
+
+d3 $ slow 8 . striate' 8 (0.5) $ sound (samples "diphone" (iter 40 $ run 40))
+ |+| speed (((*2) <$>) $ iter 4 "0.51 0.7 0.5 0.61 0.7")
+ |+| shape "0.5"
+ |+| vowel "u"
+ |+| cut "1"
+
+
+hush

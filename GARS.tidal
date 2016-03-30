@@ -1,0 +1,35 @@
+cps 0.2
+
+
+d1 $ every 2 (density 3) . rev . chop 128 $ sound "kurt"
+ |+| gain "0.8"
+ |+| shape "0.8"
+ |+| speed (((*9) <$>) $ every 2 ((*2) <$>) $ sine1)
+
+d2 $ rev . chop 32 $ sound "glitch"
+ |+| gain "0.8"
+ |+| shape "0.8"
+
+
+
+
+
+
+d1 $ rev . chop 32 $ sound "glitch"
+ |+| gain "0.8"
+ |+| shape "0.8"
+
+d2 $ every 8 (|+| sound "mattel:5") $ rev . chop 32 $ sound "glitch"
+ |+| gain "0.8"
+ |+| shape "0.8"
+
+d1 $ stut 8 0.9 0.5 . every 2 (slow 2) . density 2 . chop 64 $ sound "mattel:5"
+ |+| gain "0.3"
+ |+| speed (every 2 ((*2) <$>) $ sine1)
+ |+| vowel (slow 32 "a u")
+
+
+hush
+
+
+

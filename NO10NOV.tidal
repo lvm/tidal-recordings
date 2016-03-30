@@ -1,0 +1,14 @@
+cps 0.45
+
+
+d4 $ stack[sound " sid:8*4 ~ serge ~ dr" ]
+ |+| speed ((((*0.1) . (0.9+)) <$>) $ scale 0.6 0.8 $ sine1)
+ |+| end rand
+
+
+d3 $ spread' density "2 1 2 1 2 " $ sound " [glitch, ~ sid:2, ~ ~ glitch ~] [~ peri:3 , ~ ~ visco:5, sid:2 glitch:1 ~] ~ sid:8/2"
+ |+| shape "0.666"
+ |+| speed "0.666"
+
+
+hush

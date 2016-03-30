@@ -1,0 +1,114 @@
+hush
+
+cps 0.5
+
+d2 $ (0.25<~) . every 2 (stut 2 0.25 0.5) . chop 32 . slow 2 . gap 2 $ sound "pluck:2 ~ ~ "
+|+| cutoff "0.05"
+|+| speed "-1"
+|+| gain "0.5"
+|+| coarse "23"
+|+| resonance "0.2"
+
+d2 silence
+
+
+
+d3 $ gap 2 $ stack[
+every 5 (within (0, 0.15) (|+| speed "-1")) . every 16 (rev) $ stut 2 0.5 0.5 . echo (2/3) . density 2 . gap 2 $ (sound $ samples "td" $ iter 8 $ run 8)
+|+| speed (scale 0.9 1.2 $ sine1)
+,
+slow 2 . juxBy 0 ( |+| coarse "23" ) . foldEvery [3, 5, 7] (stut 2 0.25 0.25) . echo (2/2) . slowspread ($) [density 2, density 2, density 2, chop 2 . gap 2] . every 4 (gap 2) $ within (0, 0.1) (degrade) $ sound "[bd8 ! !, ~ glitch]"
+|+| speed "0.5"
+|+| resonance "[0.2 0.0 0.8 0.5 0.6]/4"
+|+| cutoff (scale 0 0.5 $ rand)
+,
+seqP[
+(0, 16, every 8 (density 4 . gap 2) $ sound "db ! !")
+,
+(17, 32, append (sound "db ! !") (sound "deepsky:12 ! !?"))
+,
+(32, 64, every 4 (density 4 . gap 2) $ sound "db ! !")
+]
+]
+|+| resonance "0.8"
+|+| cutoff "0.05"
+|+| bandq "0.5"
+|+| bandf "0.2"
+
+
+----
+
+cps 0.25
+
+d1 $ smash 2 [1..2] . every 4 ( slow 2 . within (0, 0.15) (|+| speed "-1") ) . juxBy 0 ( |+| coarse "23" ) . stut 2 0.5 0.25 . echo (2/4) . density 4 . gap 2 $ sound "[bd:4 ! !, sn]"
+|+| speed (every 4 ((0.1-) <$>) $ scale 0.9 1.2 $ sine1)
+|+| speed (scale 0.5 2.9 $ squarewave1)
+|+| resonance "[0.2 0.0 0.8 0.5 0.6]/4"
+|+| cutoff (scale 0 0.5 $ rand)
+|+| bandq "0.28"
+|+| bandf "0.92"
+
+
+d2 $ every 16 (rev) $ stut 4 0.5 0.5 . density 4 . gap 2 $ stack[
+slow 2 . striate 2 $ sound "pluck:4"
+]
+|+| speed (scale 0.9 1.2 $ sine1)
+|+| resonance "0.8"
+|+| cutoff "0.2"
+|+| bandq "0.8"
+|+| bandf "0.2"
+
+hush
+
+-----
+
+
+
+
+
+
+
+-----
+
+
+d1 $ juxBy 0 ((|+| pan "[0 0.5 0.75]/3") . foldEvery [3, 5] (within (0, 0.15) (|+| vowel "a"))) $ stack[
+every 16 (rev) $ echo (2/3) . slowspread (density) [2, 4, 3] $ (sound $ samples "jvbass" $ iter 8 $ run 8)
+|+| coarse "7"
+|+| speed (slow 0.5 $ scale 0.9 1.2 $ squarewave1)
+]
+|+| coarse "6"
+|+| cutoff "0.05"
+|+| resonance (scale 0 0.25 $ rand)
+
+
+d1 $ juxBy 0 ((|+| pan "[0 0.5 0.75]/3") . foldEvery [3, 5] (within (0, 0.15) (|+| vowel "a"))) $ stack[
+every 16 (rev) $ echo (2/3) . slowspread (density) [2, 4, 3] $ (sound $ samples "jvbass" $ iter 8 $ run 8)
+|+| coarse "7"
+|+| speed (slow 0.5 $ scale 0.9 1.2 $ triwave1)
+,
+juxBy 0 ((|+| gain "0.35") . (|+| speed "0.25")) . every 5 (within (0, 0.25) (|+| speed "-1")) $ every 8 (stut 2 0.25 0.5) $ stut 2 0.5 0.5 $ weave 4 (speed $ scale 1 1.5 $ squarewave1) [append (sound "[bd:4 ! !, sd8 ~]") (sound "peri:4 peri:2 ")]
+|+| speed "[0.8 0.85 0.9]/3"
+]
+|+| coarse "6"
+|+| cutoff "0.05"
+|+| resonance (scale 0 0.8 $ rand)
+
+cps 0.5
+
+hush
+
+----
+
+hush
+
+
+hush
+
+solo $ d1 $ gap 4 . chop 8 . iter 2  $ sound "amenfixed"
+
+
+cps 1
+
+cps 0.666
+
+|+| cut "1"

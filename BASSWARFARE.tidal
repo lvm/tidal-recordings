@@ -1,0 +1,65 @@
+------------- bass warfare
+hush
+
+--bps (166/60)
+
+bps ((166/60)/2)
+
+bps ((90/60)/2)
+
+cps 0.8
+
+
+bps 0.8
+-- bass 0
+
+d1 $ (0.5 <~ ) $ interlace (sound "~ ~") (sound "~ jvbass*16/2")
+ |+| pan (slow 8 triwave1)
+
+-- bass
+
+d2 $ every 3 (rev) $ every 2 (density 2) $ interlace (sound "sn ~ sn*2 bd") (sound "~ jvbass")
+ |+| slow 8 (vowel (pick <$> "a e i" <*> run 3))
+ |+| pan (slow 8 triwave1)
+
+-- bombo
+
+d3 $ every 32 (density 4) $ echo (1/2) $ interlace (spread slow [4, 8] $ sound "e msg:1/4 ~") (every 3 ((density 8) . (|+| speed "1.2")) $ every 2 ((slow 2) . (|+| speed "1.1")) $ sound "house ~ ~")
+ |+| shape triwave1
+ |+| pan (slow 32 triwave1)
+
+-- clock
+
+d4 $ sound "[east, east:1*4/8] east"
+ |+| slow 2 (vowel "a o u")
+ |+| speed "0.1"
+ |+| vowel "a"
+
+
+-- creepy
+
+d5 $ jux (rev) $ every 2 ((|+| speed "0.9")) $ every 3 ((|+| speed "3")) $ stack[sound "~ e e*8 e", every 2 (|+| vowel "u e") $ density 2 $ sound (samples "pluck*2 ~" (iter 5 $ run 5)) ]
+ |+| density 8 (vowel "a o u")
+ |+| shape triwave1
+ |+| speed ((0.5+) <$> sine1)
+
+
+-- creepy breath / platillos
+
+d6 $ every 8 (|+| speed ((0.5+) <$> sine1)) $ every 3 (echo (1/2)) $ every 4 (echo (7/4)) $ ((0.5 <~) $ stack[interlace (every 8 (density 2) $ sound "dr2*2 dr2:2/7") (every 4 (striate 2) $ sound "hh*2 dr*4"), (every 8 ((|+| gain "1.3") . (|+| speed ((0.1+) <$> sine1)) . (striate 8)) $ every 31 (|+| gain "1.5") $ sound "breathe" |+| gain "0")])
+ |+| pan (slow 8 triwave1)
+
+-----------------------------------------------------------------------------------
+
+
+
+d5 $ juxcut rev $ every 2 ((|+| speed "0.9")) $ every 3 ((|+| speed "3")) $ stack[sound "~ e e*8 e", every 2 (|+| vowel "u e") $ density 2 $ sound (samples "pluck*2 ~" (iter 5 $ run 5)) ]
+ |+| density 8 (vowel "a u o")
+ |+| shape triwave1
+ |+| speed ((0.5+) <$> sine1)
+
+
+solo $ d5 $ juxcut rev $ every 3 ((|+| speed "3")) $ stack[sound "~ e e*8 e", every 2 ((|+| speed "0.9") . rev) $ density 2 $ sound (samples "pluck*2 ~" (iter 5 $ run 5)) ]
+ |+| density 8 (vowel "a u o")
+ |+| shape triwave1
+ |+| speed ((0.5+) <$> sine1)

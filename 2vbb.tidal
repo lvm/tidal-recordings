@@ -1,0 +1,80 @@
+cps 1
+
+b1 silence
+b2 silence
+b3 silence
+
+b $ stack[
+  every 2 (sometimes (within (0, 0.5) ((# std "0.9")))) $ foldEvery [3,5,7] (sometimes ((# stt "0"))) $ stack[
+  drum "[ch(1,3)] ! ! !"
+|+| nudge (scale 0 0.5 sine1)
+,
+  drum "[~ oh] !"
+,
+foldEvery [3,5] (sometimes (chop 2)) $ slowcat[
+  drum "[[cp cr] ~]"
+  ,
+  drum "[cp ~]"
+  ]
+]
+|+| dch "0.5"
+|+| doh "0.15"
+|+| scr "0.9"
+|+| stt "0.1"
+|+| std "0.15"
+,
+stack[
+   drum "[bd ~ ~] [~ ~ ~ ~] [bd ~ ~] [~ ~ ~ ~]"
+   ,
+   every 8 (sometimes (chop 2)) . slow 2 $ drum "[~ ~ ~ ~] [~ ~ sn ~] [~ ~ ~ ~] [~ ~ sn ~]"
+]
+,
+sometimes (# sag "0.8") $ stack[
+  degrade $ drum "[cl ag ag ag]"
+  ,
+  slow 2 $ drum "[~ cl cl cl] !"
+          ]
+|+| sag (scale 0.5 0.7 $ sine1)
+|+| nudge (scale 0 0.25 sine1)
+|+| scl (scale 0.5 0.7 $ sine1)
+]
+
+---
+
+b $ note "50(16,16)"
+
+hush
+
+q1 silence
+
+cps 0.25
+
+
+
+cps 1
+
+b $ every 2 (sometimes (within (0, 0.5) ((# std "0.9")))) $ foldEvery [3,5,7] (sometimes ((# stt "0"))) $ stack[
+  drum "[ch(1,3)] ! ! !"
+|+| nudge (scale 0 0.5 sine1)
+,
+  drum "[~ oh] !"
+,
+foldEvery [3,5] (sometimes (chop 2)) $ slowcat[
+  drum "[[cp cr] ~]"
+  ,
+  drum "[cp ~]"
+  ]
+  ,
+  drum "[bd ~ ~] [~ ~ ~ ~] [bd ~ ~] [~ ~ ~ ~]"
+   ,
+   every 8 (sometimes (chop 2)) . slow 2 $ drum "[~ ~ ~ ~] [~ ~ sn ~] [~ ~ ~ ~] [~ ~ sn ~]"
+   ,
+  degrade $ drum "[cl ag ag ag]"
+  ,
+  slow 2 $ drum "[~ cl cl cl] !"
+   ]
+|+| sag (scale 0.5 0.7 $ sine1)
+|+| nudge (scale 0 0.25 sine1)
+|+| scl (scale 0.5 0.7 $ sine1)
+
+---

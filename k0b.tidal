@@ -1,0 +1,13 @@
+cps 1
+
+b $ sw' 0 0.5 (# scr "1") $ stack[
+slowcat[stut 2 0 0.75 $ drum "[bd ~ ~ ~] [~ ~ ~ bd]",drum "[~ ~ ~ bd] [~ bd ~ ~]", stut 2 0 0.5 $ drum "[~ bd ~ ~] [~ bd ~ ~]"],
+every 13 (stut 2 0 0.5) $ every 2 (stut 2 0 0.75) $ drum "[~ ~ ~ ~] [~ cp ~ ~]",
+every 5 (sw' 0 0.25 (spin 2)) . every 4 (# drum "[ cr ~ cr cr ] [~ cr ~ cr]") $ every 13 (# drum "[ ~ cr ~ ~ ] [~ cr ~ cr]") $ drum "[ ~ cr ~ cr ] [~ cr ~ cr]"
+] # stt "0" # std "0" # lbd "0.5" # scp "0.45" # hg "0.75" # doh "0.5" #loh "1" # scr "0.85" # hg "0.1" # dch "0.1" # scl "1" # lcl (scale 0.23 1 rand)
+
+q $ palindrome . density 8 $ stack[
+  slowcho [60] "1" [0, 5, 0, 3, 5, 0, 3, 7, 0, 3, 7, 10, 5]
+] # dur "0.01" # decay "1"
+
+hush

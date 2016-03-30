@@ -1,0 +1,166 @@
+bps (120/80)
+
+bps (120/100)
+
+bps (120/125)
+
+-- b1 $ sometimes (every 8 ( within (0, 0.25) ( chop 2 ) ) ) . smash 2 [3] $ stack[
+--    drum "[bd ~ bd ~] [~ ~ bd ~] [ ~ ~ bd ~] [~ ~ ~ ~]"
+--    ,
+--    drum "[~ sn ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ sn? ~]"
+--    ,
+--    drum "ch([9 16]/2, 16)"
+--    |+| dch "0.25"
+--    |+| lch "0.5"
+--    ,
+--    drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh? ~]"
+--    |+| doh "0.75"
+--    |+| loh "0.75"
+--    |+| dhg "0.5"
+--    ,
+--    drum "cl(10,16)"
+--    |+| scl (scale 0.8 0.9 $ squarewave1)
+--    |+| lcl "0.99"
+-- ]
+
+superimpose (slow 2 . sometimes (chop 2)) $ drum "cl([10 7 16 9]/4,16)"
+|+| scl (scale 0.8 0.9 $ squarewave1)
+|+| lcl "0.99"
+,
+
+b1 $ smash 2 [3] $ stack[
+  randcat[
+stack[
+   drum "[~ ~ bd ~] [~ ~ bd ~] [ ~ ~ ~ ~ ] [~ bd ~ ~]"
+   ,
+   drum "[~ sn ~ ~] [~ ~ ~ sn] [~ sn([1 3]/2,3)?] [sn ~ sn? ~]"
+   ,
+   degrade $ drum "ch(8, 16)"
+   |+| dch "0.25"
+   |+| lch "0.5"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ oh ~] [~ ~ ~ ~] [~ ~ oh? ~]"
+   |+| doh "0.75"
+   |+| loh "0.75"
+   |+| dhg "0.5"
+]
+,
+slow 2 . chop 2 $ stack[
+   drum "[bd ~ ~ ~] [~ bd([2 1]/2,3)] [ ~ ~ ~ ~] [~ ~ ~ ~]"
+   ,
+   drum "[~ sn ~ ~] [sn ~ ~ sn] [~ sn sn sn] [~ ~ sn ~]"
+],
+within (0, 0.5) degrade . sometimes (within (0, 0.25) ( chop 2 ) ) $ stack[
+   drum "[bd ~ bd ~] [~ ~ bd? ~] [ ~ ~ bd ~] [~ ~ ~ ~]"
+   ,
+   drum "[~ sn ~ ~] [sn ~ ~ sn?] [~ sn ~ ~] [sn ~ sn? ~]"
+   ,
+   drum "ch([9 16]/2, 16)"
+   |+| dch "0.25"
+   |+| lch "0.5"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh? ~]"
+   |+| doh "0.75"
+   |+| loh "0.75"
+   |+| dhg "0.5"
+]
+,
+stack[
+slow 2 . chop 2 $ stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~] [ ~ ~ ~ ~] [~ ~ ~ ~]"
+   ,
+   drum "[~ sn ~ ~] [sn ~ ~ ~] [~ sn ~ ~] [sn ~ ~ ~]"
+],
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~]"
+|+| doh "0.25"
+|+| loh "0.75"
+|+| dhg "0.5"
+]
+]
+]
+
+---
+
+|+| sag (scale 0.9 0.99 $ squarewave1)
+|+| scr (scale 0.9 0.99 $ squarewave1)
+|+| lag "0.99"
+|+| lcr "0.99"
+
+
+
+b $ stack[
+smash 2 [3] $ slowcat[
+stack[
+   drum "[bd ~ ~ bd] [~ ~ ~ ~] [ ~ ~ bd ~] [~ ~ ~ ~]"
+   ,
+   drum "[~ ~ ~ ~] [sn ~ ~ sn?] [~ sn ~ ~] [sn ~ sn? ~]"
+   ,
+   drum "ch([9 16]/2, 16)"
+   |+| dch "0.25"
+   |+| lch "0.5"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh? ~]"
+   |+| doh "0.75"
+   |+| loh "0.75"
+   |+| dhg "0.5"
+]
+,
+every 5 (within (0, 0.5) degrade) . sometimes (within (0, 0.25) ( chop 2 ) ) $ stack[
+   randcat [drum "[bd ~ bd ~]", drum "[~ ~ bd? ~]", drum "[ ~ ~ bd ~]", drum "[~ ~ ~ ~]"]
+   ,
+   drum "[~ sn ~ ~] [sn ~ ~ sn?] [~ sn ~ ~] [sn ~ sn? ~]"
+   ,
+   drum "ch([9 16]/2, 16)"
+   |+| dch "0.25"
+   |+| lch "0.5"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh? ~]"
+   |+| doh "0.75"
+   |+| loh "0.75"
+   |+| dhg "0.5"
+]
+]
+]
+
+b1 silence
+
+
+cps 0.45
+
+b $ stack[
+smash 2 [3] $ randcat[
+stack[
+   drum "[bd ~ ~ bd] [~ ~ ~ ~] [ ~ ~ bd ~] [~ ~ ~ ~]"
+   ,
+   drum "[~ ~ ~ ~] [sn ~ ~ sn?] [~ sn ~ ~] [sn ~ sn? ~]"
+   ,
+   drum "ch([9 16]/2, 16)"
+   |+| dch "0.25"
+   |+| lch "0.5"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh? ~]"
+   |+| doh "0.75"
+   |+| loh "0.75"
+   |+| dhg "0.5"
+]
+,
+every 5 (within (0, 0.5) degrade) . sometimes (within (0, 0.25) ( chop 2 ) ) $ stack[
+   randcat [drum "[bd ~ bd ~] [~ ~ bd? ~] [ ~ ~ bd ~] [~ ~ ~ ~]",
+            drum "[bd ~ ~ bd] [~ ~ ~ ~] [ ~ ~ bd ~] [~ ~ ~ ~]"
+            ]
+   ,
+   drum "[~ sn ~ ~] [sn ~ ~ sn?] [~ sn ~ ~] [sn ~ sn? ~]"
+   ,
+   drum "ch([9 16]/2, 16)"
+   |+| dch "0.25"
+   |+| lch "0.5"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh? ~]"
+   |+| doh "0.75"
+   |+| loh "0.75"
+   |+| dhg "0.5"
+]
+]
+]
+
+b1 silence

@@ -1,0 +1,201 @@
+cps 0.5
+
+
+d1 $ stack[
+sound "dr dr db dr"
+,
+slow 2 . slowspread (striate) [2, 8, 4] $ sound "unix unix unix"
+|+| speed "0.5"
+|+| shape "0.5"
+|+| coarse "[16 8 24]/3"
+,
+sound ""
+]
+
+
+d2 $ stack[
+slowspread (striate) [2, 4] $ sound "choir"
+|+| cut "1"
+|+| speed (every 4 ((0.1-) <$>) $ "1")
+|+| gain "[0.7 0.666]/2"
+,
+every 4 (rev) . within (0, 0.5) (stut 4 0.5 0.1) . striate 2 . density 1.5 . density 3 $ (sound $ samples "amencutup*2" $ iter 8 $ run 8)
+|+| speed (every 8 ((0.1-) <$>) $ "1")
+]
+
+
+d2 $ stack[
+slowspread (striate) [2, 4] $ sound "choir"
+|+| cut "1"
+|+| speed (every 4 ((0.1-) <$>) $ "0.5")
+]
+
+
+cps 0.666
+
+hush
+
+
+
+
+d1 $ echo (7/4) $ stack[
+every 2 (slow 2) . striate 2 $ sound "ae ae:6 ~"
+,
+density 2 . stut 2 0.5 0.1 $ sound "~ ~ ae:2"
+,
+sound "ae:7 !? ~"
+]
+|+| coarse "[5 11 16]/3"
+
+
+----
+
+cps 0.5
+
+cps 0.666
+
+d1 $ every 8 (chop 2) . every 4 (echo (7/4)) $ stack[
+every 5 (rev) . every 2 (slow 2) . striate 2 $ sound "ae ae:6 ~"
+,
+density 2 . stut 2 0.5 0.1 $ sound "~ ~ ae:2"
+]
+
+d2 $ every 4 (echo (7/4) . stut 2 0.5 0.1) $ stack[
+sound "ae:7 bd:8 bd8:1"
+,
+sound "~ ma8 cy:5/2"
+,
+sound "bottle bottle:1 bottle:2 bottle:1"
+]
+|+| coarse "1 [11 5 1]/3 [16 8 32]/3"
+
+d3 $ within (0, 0.25) (stut 8 0.5 0.1) $ stack[
+sound "glitch:2 click*4 glitch "
+]
+|+| coarse "[11 5 1]/3"
+
+-- d3 $ within (0, 0.25) (stut 8 0.5 0.1) $ stack[
+-- sound "gabba:1 ~ gabba:1"
+-- ,
+-- sound "~ sn:1*2 ~ "
+-- ]
+
+
+hush
+----
+
+cps 0.5
+
+d3 $ echo (3/4) . stut 2 0.5 0.5 . every 2 (revArc(0, 0.5)) . within (0, 0.25) (stut 8 0.5 0.1) $ stack[
+sound "gabba:1 ~ gabba:1"
+,
+sound "~ sn:1 ~ "
+,
+sound "~ ~ sn:3?"
+]
+
+---
+
+d3 $ echo (3/4) . stut 2 0.5 0.5 . every 2 (revArc(0, 0.5)) . within (0, 0.25) (stut 8 0.5 0.1) $ stack[
+sound "gabba:1 ~ gabba:1"
+,
+sound "~ sn:1 ~ "
+,
+sound "~ ~ sn:3?"
+,
+(sound $ samples "nlsdj" $ iter 32 $ run 32)
+|+| cut "1"
+|+| end rand
+]
+
+d4 $ juxcut rev . smash 2 [1..5] . slow 16 . chop 128 $ sound "nana"
+|+| gain "[0.7 0.8]/2"
+|+| end rand
+
+d5 $ every 4 (rev) . within (0, 0.25) (striate 2) . slowspread (chop) [8, 8, 8, 8, 16] $ sound "breaks125"
+|+| cut "1"
+
+cps 0.666
+
+d6 $ slow 2 . every 4 ( (|+| accelerate "-10") . within (0, 0.5) (striate 2) ) .slowspread (chop) [8] . slowspread (density) [3]  $ (sound $ samples  "amencutup*2 amencutup" $ iter 2 $ run 2)
+|+| speed (every 4 ((/2) <$>) $ "1")
+
+d7 $ stut 2 0.5 0.1 . within (0,0.5) (density 1.2) . density 1.5 $ sound "~ sn:1"
+
+d8 $ slow 2 . slow 8 . rev . chop 32 $ sound "bjork"
+|+| cut "1"
+
+
+d9 $ rev . slow 2 $ chop 16 $ sound "thib:2"
+|+| cut "1"
+|+| speed "[0.7 1 0.8 1.2]/4"
+
+
+hush
+
+
+
+
+-----
+cps 0.5
+
+d1 $ stack[
+density 8 $ sound "gabba:1 ~"
+,
+striate 2 . stut 4 0.5 0.1 . density 4 $ sound "~ oc:4"
+|+| end "0.5"
+,
+striate 2 . stut 4 0.5 0.1 . density 8 $ sound "~ ~ sn:1"
+]
+
+
+cps 0.666
+
+cps 0.555
+
+d2 silence
+
+d2 $ every 2 (echo (7/4)) $ stack[
+every 5 (rev) . every 2 (slow 2) . striate 2 $ sound "ae ae:6 ~"
+|+| coarse "[16 11 44]/3"
+,
+density 2 . stut 2 0.5 0.1 $ sound "~ ~ ae:2*2?"
+,
+sound "~ wurlitzer:4/2 ~"
+,
+sound "~ ~ minipops:4?"
+]
+|+| speed (every 4 ((0.1-) <$>) "1")
+
+d3 $ fadeOut 4 $ within (0, 0.5) (juxcut rev) $ striate 2 . slow 2 . stut 4 0.5 0.1 $ stack[
+slowspread (density) [4,2,2] $ sound "glitch:2 glitch ~"
+,
+every 4 (|+| vowel "o") $ chop 2 $ (sound $ samples "~ ~ jvbass" $ iter 4 $ scan 4)
+|+| coarse "[22 33 44]/3"
+|+| cut "1"
+]
+|+| coarse "16 11 44"
+
+d4 $ density 1.5 $ stack[
+every 2 (striate 2) . striate 2 $ sound "db dr:2?"
+,
+sound "~ amenkit:5 !? ~ "
+,
+sound "~ rapman ~ unix"
+]
+|+| crush "4"
+|+| accelerate "[0 1 0 -1]/4"
+
+
+d5 $ stack[
+density 1.5 . density 3 $ (sound $ samples "amencutup*2" $ iter 6 $ run 6)
+,
+
+
+d5 $ density 1.5 . density 3 $ (sound $ samples "amencutup*2" $ iter 6 $ run 6)
+
+
+every 4 (rev) . within (0, 0.5) (stut 4 0.5 0.1) . striate 2 . density 1.5 . density 3 $ (sound $ samples "amencutup*2" $ iter 8 $ run 8)
+|+| speed (every 8 ((0.1-) <$>) $ "1")
+
+hush

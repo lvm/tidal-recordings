@@ -1,0 +1,12 @@
+cps 0.53
+
+let chop2 = chop 2 . every 2 (rev) . stut 2 0.5 (-0.5)
+
+d4 $ echo (1/4) . chop2 . density 3 $ every 2 (iter 2) . every 3 (rev) $ sound "{sn db:7 visco:5*3}%1 ~"
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| shape "0.666"
+ |+| gain "0.8"
+ |+| cut "1"
+
+
+hush

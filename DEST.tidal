@@ -1,0 +1,181 @@
+cps 0.666
+
+cps 0.3
+
+-- d1 $ density 3 . chop 2 $ sound "linndrum [linndrum [linndrum [linndrum:4] linndrum] linndrum] linndrum"
+--  |+| crush "4"
+
+
+-- d2 $ within (0,0.25) (smash 2 [1..4]) . spread' slow (iter 2 "2 4") $ stack[sound "gabba seqdru ! seqdru:1", density 2 $ sound "gabba:1(4,4) ~ bass0"]
+--  |+| crush "4"
+--  |+| speed "0.5"
+
+-- d3 $ stut 2 0.5 (-0.1) $ sound "db db*2 db? db"
+--  |+| crush "6"
+--  |+| delay "0.5" 
+--  |+| delaytime "0.5" 
+--  |+| delayfeedback "0.5" 
+
+d4 $ stut 2 0.9 0.5 $ sound "ade:1 {tink tink:2} ~"
+ |+| cut "1"
+ |+| speed (scale 0.5 1.2 $ sine1)
+ |+| delay "0.5" 
+ |+| delaytime "0.5" 
+ |+| delayfeedback "0.5" 
+
+d2 $ within (0,0.25) (smash 2 [1..4]) . every 4 (spread' slow (iter 2 "2 4")) $ stack[sound "gabba seqdru ! seqdru:1", density 2 $ sound "gabba:1(4,4) ~ bass0"]
+ |+| crush "4"
+ |+| speed "0.5"
+
+d2 $ density 2 $ sound "gabba [gabba:1 gabba] ~"
+ |+| crush "4"
+ |+| speed "0.5"
+
+
+d2 $ echo (1/8) $ within (0.5, 0.666) (chop 2 . (|+| speed "0.8")) $ every 2 (density 2) $ stack[sound "unix ~ ~ ~", chop 4 $ sound "~ ~ unix/2 ~"]
+ |+| crush "4"
+
+d2 $ echo (1/8) $ within (0.5, 0.666) (chop 2 . (|+| speed "0.8")) $ every 2 (density 2) $ stack[sound "unix ~ ~ ~", sound "~ unix? ~ ~", chop 4 $ sound "~ ~ unix/2 ~"]
+ |+| crush "4"
+
+
+d3 $ every 4 (slow 2) $ sound "gabba gabba:1 gabba gabba"
+ |+| crush (iter 4 "4 8")
+ |+| speed "0.5"
+ |+| end "0.3"
+
+hush
+
+d4 $ brak . stut 2 0.9 0.5 $ sound "{tink tink:2} tink:3/4"
+ |+| cut "1"
+ |+| speed (scale 0.5 1.2 $ sine1)
+ |+| delay "0.5" 
+ |+| delaytime "0.5" 
+ |+| delayfeedback "0.5" 
+
+
+
+d1 $ every 2 (density 2) $ sound "[unix unix] [unix [sn:3 [sn:3 sn:3] sn:3] sn:3]"
+ |+| crush "4"
+
+
+d1 $ sound "[bd bd bd, sn cp sn cp]"
+
+d1 $ sound "[unix*2, [{amenkit:3 ~ amenkit:3}%2 cp]]"
+
+
+
+d1 $ sound "{bd [ht sn, lt mt ht] lt, sn cp}%5"
+
+
+d1 $ sound "{bd [ht sn, lt mt ht] lt, sn cp}"
+
+
+d1 $ sound "[bd:8 db [bd:8 ~, bd:4]*2] [cp cp]"
+
+
+cps 1
+
+d1 $ (brak (sound "bd sn:2 bd sn"))
+   |+| pan ((*) <$> sinewave1 <*> (slow 8 $ "0 0.25 0.75"))
+
+
+d1 $ iter 4 $ sound "bd hh sn cp"
+
+
+
+d1 $ brak $ sound "[[[feel:5*8,feel*3] feel:3*8], feel*4]"
+
+
+d1 $ slowspread ($) [density 2, id, rev, slow 2, striate 3, (|+| speed "0.8")] $ sound "[bd*2 [~ bd]] [sn future]*2 cp jvbass*4"
+
+
+cps 0.6
+
+d1 $ slow 2 . chop 2 $ (spread' slow "1%4 2 1 3" $ spread (striate) [2,3,4,1] $ sound "sid:2 future perc")
+  |+| speed "[1 2 1 1]/2"
+
+
+
+d1 $ slow (4%3) $ sound "ho ho:2 ho:3 hc"
+
+
+
+d1 $ spread slow [2,4%3] $ sound "ho ho:2 ho:3 hc"
+
+
+
+
+d1 $ echo (1/4) $ within (0.5, 0.666) (chop 2) $ density 2 $ stack[sound "hc ~ ~ ~", striate 2 $ sound "~ db !? !?", chop 4 $ sound "~ ~ db/2 ~"]
+ |+| crush "4"
+
+d2 $ every 3 (retrig) $ echo (1/4) $ every 2 (chop 2 . revArc(0,0.25)) . chop 2 $ stack[sound "gabba:1 ~ gabba:1*2 !?", striate 2 $ sound "~ uxay:1 uxay ~", sound "~ ~ ~ d*2?", chop 4 $ sound "~ ~ visco:2/2 ~"]
+ |+| crush "5"
+
+d2 $ 
+
+d3 $ 
+
+
+
+
+solo $ d1 $ stack[
+echo (1/4) $ within (0.5, 0.666) (chop 2) $ density 2 $ stack[sound "hc ~ ~ ~", striate 2 $ sound "~ db !? !?", chop 4 $ sound "~ ~ db/2 ~"]
+ |+| crush "4",
+juxcut rev . echo (7/4) $ within (0.5, 0.666) (chop 2)  $ stack[sound "gabba:1*2", slow 4 . brak . chop 32 $ sound "~ ~ unix/2 ~"]
+ |+| crush "4"
+ |+| shape "0.6",
+every 3 (stut 4 0.5 (-0.1)) . spread' density (iter 4 "2 4 4 2") . slowspread ($) [brak, id, rev, striate 8] $ sound "deepsky:5"
+ |+| crush (iter 4 "4 4 2 3")
+ |+| shape "0.6"
+]
+
+
+
+
+solo $ d1 $ stack[
+echo (1/4) $ within (0.5, 0.666) (chop 2) $ density 2 $ stack[sound "hc ~ ~ ~", striate 2 $ sound "~ db !? !?", chop 4 $ sound "~ ~ db/2 ~"]
+ |+| crush "4"
+ |+| gain "0",
+juxcut rev . echo (7/4) $ within (0.5, 0.666) (chop 2)  $ stack[sound "gabba:1*2", slow 4 . brak . chop 32 $ sound "~ ~ unix/2 ~"]
+ |+| crush "4"
+ |+| shape "0.6"
+ |+| gain "0",
+every 3 (stut 4 0.5 (-0.1)) . spread' density (iter 4 "2 4 4 2") . slowspread ($) [brak, id, rev, striate 8] $ sound "deepsky:5"
+ |+| crush (iter 4 "4 4 2 3")
+ |+| shape "0.6"
+ |+| gain "0",
+slowspread ($) [slow 4, slow 8] . chop 128 $ sound "amenfixed:7"
+ |+| cut "1"
+]
+
+
+cps 0.6
+
+d1 $ every 2 (every 4 (within (0.26, 0.4) (|+| accelerate "-1")) . every 8 (within (0,0.5) (|+| crush "4") ) . within (0, 0.25) (smash 2 [1..2]) ) . chop 8 $ sound "amen"
+ |+| cut "1"
+
+
+d1 $ slowspread ($) [striate' 32 0.8, striate' 64 0.8, striate' 64 0.5] $ sound "amen"
+ |+| cut "1"
+ |+| speed "0.2"
+
+
+d1 $ every 2 (density 2) . every 4 (echo (1/4)) . spread' density "4 8 12 16" . chop 128 $ sound "deepbass"
+ |+| cut "1"
+ |+| speed (every 5 ((0.1-) <$>) $ every 2 ((*1.2) <$>) $ every 3 ((*2) <$>) $ every 4 ((*2.3) <$>) $ scale 2 2.5 $ sine1)
+ |+| vowel (iter 4 "a t a r i")
+ |+| gain (((*1.2) <$>)sine1)
+
+
+-- d2 $ smash 2 [1..2] $ sound (samples "atari visco:5*2" (iter 8 (run 8)))
+--  |+| gain "1.2"
+
+d3 $ within (0, 0.25) (rev) . density 2 $ chop 2 $ stack[sound "{[gabba gabba]/2} ~", density 2 $ sound "~ glitch*2", sound "db dr:2 db:2*2 !?"]
+ |+| gain "1.2"
+ |+| crush "3 4 4"
+
+ |+| accelerate "-1"
+
+
+hush

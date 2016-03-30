@@ -1,0 +1,73 @@
+cps 1
+
+-- marimbas
+m1 $ stack[
+note $ toMIDI "c2 f4 c3 b4"
+,
+every 4 (zoom(0.5,0.99) . density 4 . sometimes (chop 2)) $ slow 8 $ note $ toMIDI "~ ~ c7 c7"
+--,every 4 (zoom(0.5,0.99) . density 4 . sometimes (chop 2)) $ note $ toMIDI "~ ~ d8 d8"
+]
+|+| dur "0.75"
+|+| vel (scale 0.25 0.5 sine1)
+
+-- celesta
+m2 $ every 8 (chop 2 . density 2) . sometimes rev $ slowcat[
+slow 2 $ note $ toMIDI "c4 c3 b4 f3",
+slow 4 $ note $ toMIDI "c4 d3 b4 g3"
+]
+|+| dur "0.5"
+|+| vel "0.75"
+
+--moog
+m3 $ sometimes (slow 2) $ stack[
+note $ toMIDI "c4 f3 b4 g3"
+]
+|+| vel "0.666"
+|+| dur (scale 0.1 0.2 sine1)
+
+-- pizzi
+m4 $ sometimes (iter 4 . chop 2) $ slowcat[
+note $ toMIDI "c5 f4 b5 g4",
+note $ toMIDI "c5 f5 b5 g5"
+]
+|+| vel (scale 0 0.666 sine1)
+
+
+---
+m3 silence
+
+m3 $ degrade . sometimes rev $ slowcat[
+  note $ toMIDI "c4 c4 c4 c4"
+  ,
+  note $ toMIDI "c4 c5 c5 c5"
+  ,
+  note $ toMIDI "c4 c4 c6 c4"
+]
+|+| dur "0.5"
+|+| sustainpedal (scale 0 0.65 sine1)
+
+m4 $ degrade . sometimes rev $ slowcat[
+  note $ toMIDI "c5 c5 c5 c5"
+  ,
+  note $ toMIDI "c5 c6 c6 c6"
+  ,
+  note $ toMIDI "c5 c5 c7 c5"
+]
+|+| dur "0.9"
+|+| sustainpedal (scale 0 0.65 sine1)
+
+-- marimbas
+m1 $ slowcat[
+note $ toMIDI "c3 f4 c3 f4"
+--,note $ toMIDI "c5 f4 c5 f4"
+]
+|+| dur "0.75"
+|+| sustainpedal (scale 0 0.65 sine1)
+
+m5 $ stack[
+degrade . iter 4 $ note $ toMIDI "c4 ~ [b3*2]? c3"
+]
+
+hush
+
+m5 silence

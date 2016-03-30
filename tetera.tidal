@@ -1,0 +1,40 @@
+
+cps 0.5
+
+let pi = [iter 4 $ note $ toMIDI "g4 f5?"]
+let sometimesW f = every 2 (sometimes (within (0, 0.33) f)) . foldEvery [3,5,7](sometimes (within(0.5, 0.75) f))
+
+m1 silence
+
+m1 $ slow 4 $ stack[
+  note $ toMIDI "c4 ~"
+  ,
+  slowcat[
+  note $ toMIDI "~ f4",
+  note $ toMIDI "~",
+  note $ toMIDI "~ e4"
+         ]
+  ,
+  slowcat[slowcat pi, cat pi]
+]
+|+| dur "0.5"
+|+| sustainpedal (scale 0 0.666 sine1)
+|+| vel "0.4"
+
+m2 $ sometimesW(chop 2) $ stack[
+  iter 2 $ note $ toMIDI "c4 e4 ~ f4",
+  iter 2 $ note $ toMIDI "c3 e3 ~ f4"
+]
+|+| dur "0.5"
+|+| sustainpedal (scale 0 0.6 sine1)
+|+| vel (scale 0.3 0.8 rand)
+
+
+m3 $ density 1.2 $ stack[
+  iter 2 $ note $ toMIDI "c3 e3 ~ f4"
+]
+|+| dur "0.5"
+|+| sustainpedal (scale 0 0.666 sine1)
+|+| vel "0.35"
+
+hush

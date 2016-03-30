@@ -1,0 +1,65 @@
+
+
+cps 0.666
+
+
+let w = within (0, 0.15) (gap 2)
+
+d1 $ retrig $ stack[
+stack[
+sound "rolandlofi:11(3,8)"
+,
+slowcat[
+sound "rolandlofi:1 ~ {rolandlofi:2 rolandlofi:22}%1 [rolandlofi:6 rolandlofi:3]"
+,
+sound "~ rolandlofi:1 rolandlofi:20 rolandlofi:3"
+]
+--
+,sound "rolandlofi:6(1,4)" |+| shape "0.25" |+| pan "[0.25 0.75]/3"
+,
+every 4 ((|+| end rand) . (|+| speed "-1") . slow 4) $ spread' density "4 8 2 4 8" $ (sound $ samples "rolandlofi(2,8)" $ iter 5 "15 12 16 17 12")
+|+| end "0.1"
+]
+|+| speed (scale 0.9 1.1 $ sine1)
+,
+every 8 (within (0, 0.123) (striate 128)) $ sound "wobble(3,8)"
+|+| speed (every 5 ((1.0-) <$>) $ "2.3")
+|+| shape "0.3"
+]
+
+
+
+d3 $ stack[
+sound "rolandlofi:11(3,8)"
+,
+fadeOut 4 $ slowcat[
+sound "rolandlofi:1 ~ {rolandlofi:2 rolandlofi:22}%1 [rolandlofi:6 rolandlofi:3]"
+,
+sound "~ rolandlofi:1 rolandlofi:20*2 rolandlofi:3"
+]
+,sound "rolandlofi:6(4,4)" |+| shape "0.25" |+| pan "[0.25 0.75]/3"
+,
+every 4 ((|+| end rand) . (|+| speed "-1") . slow 4) $ spread' density "4 8 2 4 8" $ (sound $ samples "rolandlofi(2,8)" $ iter 5 "15 12 16 17 12")
+|+| end "0.1"
+]
+|+| speed (scale 0.9 1.1 $ sine1)
+
+d4 $ spread' (striate' 8) "0.5 0.8" $ slow 8 $ sound "padlong"
+|+| speed "0.666"
+|+| cut "1"
+|+| gain "0.1"
+|+| coarse "[23 2 7 12]/4"
+|+| vowel "[x q o a ]/4"
+
+d5 $ fadeOut 8 $ every 8 (within (0, 0.123) (striate 128)) $ sound "wobble(3,8)"
+|+| speed (every 5 ((1.0-) <$>) $ "2.3")
+|+| shape "0.3"
+
+
+d3 $ stack[
+sound "rolandlofi:11(3,8)"
+,sound "rolandlofi:6(4,4)" |+| shape "0.25" |+| pan "[0.25 0.75]/3"
+]
+|+| speed (scale 0.9 1.1 $ sine1)
+
+hush

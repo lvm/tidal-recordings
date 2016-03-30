@@ -1,0 +1,141 @@
+cps 1
+
+b $ stack[
+drum "[ch ch, ~ oh ~ ~]",
+slowcat[drum "[[bd ~](3,5)]/2", drum "bd ~ bd ~"],
+every 2 (# drum "~ ~") $ density 2 $ drum "[~ ch] !",
+drum "~ [cp [~ cp/2]]"
+]
+
+q $ stack[
+chrot [48,48,42,36] "[1 1, ~ 1 ~ ~]" [0,3,7],
+chrot [48,48,42,36] "[1 1, ~ 1 ~ 1]" [0,3,7]
+] # dur "0.15" # decay "1"
+
+m5 $ chop 4 $ slow 4 $ stack[
+chrot [54] "[1 1, ~ 1 ~ ~]" [0]
+] # dur "0.05" # vel "0.15"
+
+m5 $ stack[
+--chrot [48,48,42,36] "[1 1, ~ 1 ~ ~]" [0,3,7],
+chrot [48,48,42,36] "[1 1, ~ 1 ~ 1]" [0,3,7]
+] # dur "0.15" # decay "1"
+
+
+-- 
+
+q $ slow 4 $ stack[
+rev $ note $ tom "d5(3,8) e4(5,8) f4(3,8) g4(5,8)"
+] # dur "1" # decay "1"
+
+
+b $ stack[
+slowspread slow [1..1.5] $ drum "[ht ht ht, ch oh]",
+drum "~ [~ ch] !?",
+drum "~ ~ ~ [~ oh]"
+] # stt (scale 0 1 rand) # std "0.1"
+
+hush
+
+
+
+
+b $ stack[
+drum "[bd ~ ~ bd]  ~ ~ ~ bd*2 ~ ~ ~ ",
+drum "cp [~ ch] !?",
+drum "~ ~ ~ [~ oh]",
+drum "[[~ cl, cp] cr*2]",
+drum "sn([3 5 3 3]/4,8,[2 3 1 0]/4)"
+]
+
+hush
+
+
+
+
+
+b $ stack[
+drum "[~ bd ~ ~] [~ ~ bd ~] [~ bd ~ ~] [bd ~ ~ ~]",
+drum "[~ ~ ~ ch] [~ ch ~ ~] [ch ~ ~ ~] [~ ~ ~ ch]"
+]
+
+
+b $ density 1.2 . slow 2 $ stack[
+--drum "ch([3 4]/2,4) ! ! !",
+--drum "[oh(1,4)] ! ! !",
+--drum "[cl(2,4)] [cl(3,4)] [cl(2,4)] [cl(4,4)]",
+--drum "[cr(6,8)] [~ ~ oh ~]",
+stack[drum "[cr(6,8)]", drum "[[ch*3, ag?] oh] ! ! !"],
+drum "[bd bd ~ ~] [~ ~ bd ~] [bd ~ ~ ~] [~ bd ~ bd]",
+drum "[~ ~ sn ~] [~ ~ ~ ~] [~ ~ sn ~] [~ ~ ~ [~ sn/3 ~]]"
+] # dt "1" # hg "1" # dch "0.01" # doh "0.01" # scr "0.65" # sag "1"
+
+q $ density 1.2 . slow 2 $ slowspread (stut 2 0) [0.25] $ sometimes (# cutoffegint (scale 0.25 0.75 rand)) $ stack[
+--chrot [48,42,36,] "[~ ~ 1 ~] [~ ~ 1 ~] [~ 1 ~ ~] [~ ~ 1 ~]" [0],
+(note $ tom "[~ ~ d3 ~] [~ ~ e4 ~] [~ f5 ~ ~] [~ ~ g4 ~]") # dur "0.01"
+--,(note $ tom "[~ ~ e4 ~] [~ ~ e5 ~] [~ f4 ~ ~] [~ ~ g5 ~]") # dur "0.5"
+] # lfoint "0.5" #lforate "0.25"
+
+hush
+
+
+
+
+b $ stack[
+drum "[ch(4,4), oh(2,4)]"
+]
+
+
+m5 $ slow 2 $ stack[
+--iter 4 $ note $ tom "[e5 d4 f4 g4] !",
+note $ tom $ preplace (1,1) "x(3,8,[0 2]/2)" "d3 e3"
+] # dur "0.75" # vel "0.75"
+
+-- m4 $ slow 2 $ stack[
+-- iter 4 $ note $ tom "[[e5 d4 f4 g4]([3 2 4]/3,4), a5(1,4,[0 1 2 3]/4)] !?"
+-- --,note $ tom "d3(3,8)"
+-- ] # dur "0.01" # vel "0.75"
+
+
+m4 $ stack[
+iter 4 $ note $ tom "[[g5 e4 c4 d4]([3 2 4]/3,4)] !?"
+--,note $ tom "d3(3,8)"
+] # dur "0.01" # vel "0.75"
+
+b $ stack[
+drum "bd [cp [~ cp/2]]",
+density 2 $ drum "ch*2 oh",
+density 2 $ drum "[~ ch] !",
+drum "cl(3,5)"
+] # dch "0.01"
+
+
+hush
+
+
+solo $ m4 $ stack[
+palindrome . sometimes rev $ note $ tom "g4 e4 c4 d4"
+] # dur "0.015" # vel "0.75"
+
+m5 $ slow 2 $ stack[
+--iter 4 $ note $ tom "[e5 d4 f4 g4] !",
+note $ tom "[d4(3,8), c4/2]"
+] # dur "1" # vel "0.75" # sustainpedal (scale 0 0.65 sine1)
+
+
+cps 0.5
+
+b $ stack[
+drum "bd bd bd bd",
+drum "~ oh/2 ~ cr",
+drum "ch*4 ! ch*2 ch*3",
+drum "[~ cl] ! [cl cl] [~ cl]"
+] # dch "0.01" # scr "0.5"
+
+q $ sometimes (stut 2 0 0.75 . (# dur "0.05")) $ slowcat[
+note $ tom "d5 ! ! !",
+note $ tom "e5 ! ! !",
+note $ tom "f5 ! ! !"
+] # dur "0.5"
+
+hush

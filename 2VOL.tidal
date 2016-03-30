@@ -1,0 +1,346 @@
+cps 0.5 
+
+hush
+----
+
+cps 0.25
+
+q $ slow 8 . striate' 8 (0.25) $ stack[
+  chop 2 $ slowcat[
+    note "[70 77 70 75] ! ! !"
+    ,
+    note "[72 77 80 76] ! ! !"
+    ]
+  ,
+  slowcat[
+  sometimes (chop 2) $ note "[~ ~ 100 ~ ] ! ! !"
+  ,
+  note "[~ ~ [110,80] ~ ] ! ! !"
+  ]
+  ,
+  note "[~ 40 ~ 40] [~ 40 ~ 40] [~ 40 ~ 40] [~ 40 ~ 40]"
+  ]
+|+| cutoffegint (scale 0 0.9 $ slow 4 $ sine1)
+|+| decay (scale 0.5 0.9 $ sine1)
+|+| pitch3 (scale 0 0.5 $ density 2 $ squarewave1)
+|+| gate "0.9"
+|+| Q.expression "0.95"
+|+| lforate (scale 0.5 0.7 $ sine1)
+|+| lfoint (scale 0.2 0.5 $ sine1)
+|+| attack "0"
+
+
+--
+
+    cps 0.1
+
+let ionian = [0,2,4,5,7,9,11]
+    runUpTwoOctaves = run $ 2 * length ionian
+    runUpAndDown = append runUpTwoOctaves $ (+1) <$> rev runUpTwoOctaves
+    sc s n = scaleOctave s n + scaleElt s n
+
+    d1 $ up $. sc ionian <$> runUpAndDown |+| sound "psr"
+
+
+cps 1
+
+let c3 n = within (0, n) (chop 3)
+
+q $ stack[
+  note "[70 40 38 ~] [38 ~ 42 60]"
+  ]
+|+| cutoffegint (scale 0 0.9 $ sine1)
+|+| delay "0.5"
+|+| gate "0.5"
+|+| expression "0.95"
+|+| lforate (scale 0.5 0.7 $ sine1)
+|+| lfoint (scale 0.2 0.5 $ sine1)
+|+| attack (scale 0 0.1 $ slow 2 $ sine1)
+|+| pitch1 (scale 0 0.25 $ sine1)
+
+
+hush
+
+
+
+----
+
+
+cps 1
+
+q $ stack[
+   note "[62, 69] [~ 64] [~ 64] [~ 65]"
+  ]
+|+| dur "0.26"
+
+q $ note "40 [32 34] 36*2 42*3" 
+
+q $ note "[[32 34], [36 38]]"
+
+q $ every 3 (density 2) $ every 4 (palindrome) $ note "{50 52 54}%8"
+
+
+cps 0.5
+
+q $ density 2 $ slowcat[
+  note "49*2 50 48 51 47*2 52"
+]
+|+| cutoffegint (scale 0 0.9 $ slow 2 $ sine1)
+|+| delay "0.9"
+|+| gate "0.5"
+|+| S.expression "0.95"
+|+| lforate (scale 0.5 0.7 $ sine1)
+|+| lfoint (scale 0.2 0.5 $ sine1)
+|+| pitch1 (scale 0 0.25 $ slow 4 $ sine1)
+
+
+
+let scramble p = within (0.25, 0.5) (0.25 <~) $ within (0.5,1) (1.25 ~>) $ within (0, 0.5) (0.5 ~>) $ within (0.25, 0.75) (0.75 <~) $ p
+    mel' scale runSize f p = note (preplace(1,1) p (f $ sc scale <$> run runSize))
+    mel scale runSize p = mel' scale runSize (scramble) p
+
+So then I can generate a melody like this:
+
+k1 $ (|+| note "50") $ mel locrian 13 "[0 0*2 [~ 0] 0*2]"
+
+k1 $ (|+| note "50") $mel' locrian 13 (foldEvery [2,3,4] (5.25 ~>)) "[0 0*2
+[~ 0] 0*2]"
+
+
+---
+
+
+import Data.Maybe
+
+let noteLookup s = elemIndex s $ take 128 [(n ++ show o) | o <- [0 .. 10], n <- ["c","cs","d","ds","e","f","fs","g","gs","a","as","b"]]
+let toMIDI p = fromJust <$> (filterValues (isJust) (noteLookup <$> p))
+
+cps 1
+
+cps 2
+
+q $ every 3 (slow 2 . chop 2) . density 1.25 . smash 2 [3] . every 2 rev . iter 4 $ stack[
+  note (toMIDI "[f5 ~ f4 fs5] [f3 f4 d5 f6]")
+  ,
+  spin 4 $ note (toMIDI "b2 b4 d2 b8")
+  ]
+|+| cutoffegint (scale 0 0.9 $ slow 4 $ sine1)
+|+| delay (scale 0.5 0.9 $ sine1)
+|+| pitch3 (scale 0 0.5 $ density 2 $ squarewave1)
+|+| gate "0.9"
+|+| Q.expression "0.95"
+|+| lforate (scale 0.5 0.7 $ sine1)
+|+| lfoint (scale 0.2 0.5 $ sine1)
+|+| attack "0"
+
+
+---
+
+-- mario
+
+cps 2
+
+q $ density 2 $ slowcat[
+note "[ 76  ~  76  ]",
+note "[ ~  20  ~  ]",
+note "[ 76  ~  20  ]",
+note "[ ~  72  ~  ]",
+note "[ 76  ~  20  ]",
+note "[ ~  79  ~  ]",
+note "[ 20  36  67  ]",
+note "[ ~  20  36  ]",
+note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",
+note "[ 72  ~  20  ]",
+note "[ 24  67  ~  ]",
+note "[ 20  24  64  ]",
+note "[ ~  20  24  ]",
+note "[ 69  ~  20  ]",
+note "[ ~  71  ~  ]",
+note "[ 20  ~  70  ]",
+note "[ ~  69  ~  ]",
+note "[ 20  ~  67  ]",
+note "[ ~  76  ~  ]",
+note "[ 79  ~  81  ]",
+note "[ ~  20  ~  ]",
+note "[ 77  ~  79  ]",
+note "[ ~  20  ~  ]",
+note "[ 76  ~  20  ]",
+note "[ ~  72  ~  ]",
+note "[ 74  ~  71  ]",
+note "[ ~  20  24  ]",
+note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",
+note "[ 48  ~  20  ]",
+note "[ ~  79  ~  ]",
+note "[ 78  ~  77  ]",
+note "[ ~  75  ~  ]",
+note "[ 60  ~  76  ]",
+note "[ ~  53  ~  ]",
+note "[ 68  ~  69  ]",
+note "[ ~  72  ~  ]",
+note "[ 60  ~  69  ]",
+note "[ ~  72  ~  ]",
+note "[ 74  ~  48  ]",
+note "[ ~  20  ~  ]",
+note "[ 79  ~  78  ]",
+note "[ ~  77  ~  ]",
+note "[ 75  ~  55  ]",
+note "[ ~  76  ~  ]",
+note "[ 20  ~  84  ]",
+note "[ ~  20  ~  ]",
+note "[ 84  ~  84  ]",
+note "[ ~  ~ ~   ]",
+note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",
+note "[ 55  ~  20  ]",
+note "[ ~  48  ~  ]",
+note "[ 20  ~  79  ]",
+note "[ ~  78  ~  ]",
+note "[ 77  ~  75  ]",
+note "[ ~  60  ~  ]",
+note "[ 76  ~  53  ]",
+note "[ ~  68  ~  ]",
+note "[ 69  ~  72  ]",
+note "[ ~  60  ~  ]",
+note "[ 69  ~  72  ]",
+note "[ ~  74  ~  ]",
+note "[ 48  ~  20  ]",
+note "[ ~  75  24  ]",
+note "[ 20  ~  74  ]",
+note "[ 24  20  ~  ]",
+note "[ 72  24  20  ]",
+note "[ ~  55  ~  ]",
+note "[ 55  ~  20  ]",
+note "[ ~  48  ~  ]",
+note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",
+note "[ 72  ~  72  ]",
+note "[ ~  20  ~  ]",
+note "[ 72  ~  20  ]",
+note "[ ~  72  ~  ]",
+note "[ 74  ~  20  ]",
+note "[ ~  76  ~  ]",
+note "[ 72  ~  20  ]",
+note "[ ~  69  ~  ]",
+note "[ 67  ~  20  ]",
+note "[ ~  43  ~  ]",
+note "[ 20  ~  72  ]",
+note "[ ~  72  ~  ]",
+note "[ 20  ~  72  ]",
+note "[ ~  20  ~  ]",
+note "[ 72  ~  74  ]",
+note "[ ~  76  ~  ]",
+note "[ 55  ~  20  ]",
+note "[ 24  48  ~  ]",
+note "[ 20  24  43  ]",
+note "[ ~  20  ~  ]",
+note "[ 72  ~  72  ]",
+note "[ ~  20  ~  ]",
+note "[ 72  ~  20  ]",
+note "[ ~  72  ~  ]",
+note "[ 74  ~  20  ]",
+note "[ ~  76  ~  ]",
+note "[ 72  ~  20  ]",
+note "[ ~  69  ~  ]",
+note "[ 67  ~  20  ]",
+note "[ ~  43  ~  ]",
+note "[ 20  ~  76  ]",
+note "[ ~  76  ~  ]",
+note "[ 20  ~  76  ]",
+note "[ ~  20  ~  ]",
+note "[ 72  ~  76  ]",
+note "[ ~  20  ~  ]",
+note "[ 79  ~  20  ]",
+note "[ 36  67  ~  ]",
+note "[ 20  36  ~  ]",
+note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",
+note "[ 76  ~  72  ]",
+note "[ ~  20  ~  ]",
+note "[ 67  ~  55  ]",
+note "[ ~  20  ~  ]",
+note "[ 68  ~  20  ]",
+note "[ ~  69  ~  ]",
+note "[ 77  ~  53  ]",
+note "[ ~  77  ~  ]",
+note "[ 69  ~  60  ]",
+note "[ ~  53  ~  ]",
+note "[ 20  ~  71  ]",
+note "[ ~  81  ~  ]",
+note "[ 81  ~  81  ]",
+note "[ ~  79  ~  ]",
+note "[ 77  ~  76  ]",
+note "[ ~  72  ~  ]",
+note "[ 55  ~  69  ]",
+note "[ ~  67  ~  ]",
+note "[ 60  ~  55  ]",
+note "[ ~  20  ~  ]",
+note "[ 76  ~  72  ]",
+note "[ ~  20  ~  ]",
+note "[ 67  ~  55  ]",
+note "[ ~  20  ~  ]",
+note "[ 68  ~  20  ]",
+note "[ ~  69  ~  ]",
+note "[ 77  ~  53  ]",
+note "[ ~  77  ~  ]",
+note "[ 69  ~  60  ]",
+note "[ ~  53  ~  ]",
+note "[ 20  ~  71  ]",
+note "[ ~  77  ~  ]",
+note "[ 20  ~  77  ]",
+note "[ ~  77  ~  ]",
+note "[ 76  ~  74  ]",
+note "[ ~  72  ~  ]",
+note "[ 64  ~  55  ]",
+note "[ ~  64  ~  ]",
+note "[ 60  ~  20  ]",
+note "[ 36  ~   ~   ]",
+note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",
+note "[ 72  ~  20  ]",
+note "[ 24  67  ~  ]",
+note "[ 20  24  64  ]",
+note "[ 24  69  ~  ]",
+note "[ 71  ~  69  ]",
+note "[ ~  68  24  ]",
+note "[ 70  24  68  ]",
+note "[ 24  67  ~  ]",
+note "[ 65  ~  67  ]",
+note "[ 48  ~  ~ ]",
+note "[~ ~ ~ ~]",note "[~ ~ ~ ~]",note "[~ ~ ~ ~]"
+  ]
+|+| cutoffegint (scale 0 0.9 $ slow 4 $ sine1)
+|+| pitch1 (scale 0 0.5 $ density 2 $ squarewave1)
+|+| lforate (scale 0.5 0.7 $ sine1)
+|+| lfoint (scale 0.2 0.5 $ sine1)
+|+| attack "0"
+
+hush
+
+
+cps 1
+
+q $ stack[
+  note "[~ 40 ~ ~] [~ ~ ~ ~] [~ 48 40 ~] [~ ~ ~ ~]"
+  ,
+  note "[~ ~ ~ ~] [~ 50 ~ ~] [~ ~ ~ ~] [~ 58 ~ ~]"
+       ]
+|+| lfoint (scale 0 0.9 $ slow 2 $ rand)
+|+| cutoffegint (scale 0 0.9 $ sine1)
+|+| decay (scale 0 0.9 $ sine1)
+
+
+
+---
+cps 0.5
+
+q $ density 3 . sometimes (within (0, 0.25) ( (# note "100") . stut 2 0.1 0.5 ) ) . smash 2 [3] $ sometimes (# pitch1 "0.9") $ stack[
+  note $ toMIDI "[~ c5 ~ ~] [~ ~ ~ ~] [~ d5? c6 ~] [~ f8? ~ ~]"
+  ,
+  note $ toMIDI  "[~ c3 ~ ~] [~ c3 ~ ~] [~ cs7 ~ ~] [~ c5 c3 ~]"
+         ]
+|+| lforate "0"
+|+| lfoint (scale 0 0.9 $ slow 2 $ rand)
+|+| cutoffegint (scale 0 0.9 $ sine1)
+|+| decay (scale 0.25 0.5 $ sine1)
+|+| pitch1 (scale 0 0.5 $ density 2 $ sine1)
+|+| pitch2 (scale 0.5 0.9 $ density 2 $ sine1)
+|+| Q.expression "0.9"
+---
+
+hush

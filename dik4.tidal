@@ -1,0 +1,283 @@
+let cs2 = chop 2 . slow 2
+
+let magik = every 2 (within (0.75, 0.9) (brak)) . density 1.2 . smash 2 [3]
+
+let magika = density 1.2 . smash 2 [3]
+
+cps 0.5
+
+--- CLOSED - OPEN HAT
+
+b $ magik $ 
+   stack[
+   slowcat[
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ch ch ~] [ch ch ch ~] [ch ch ch ~] [ch ch ch ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ~ ch ~] [ch ~ ch ~] [ch ~ ch ~] [ch ~ ch ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ]
+   ,
+   slowcat[
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~]"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ oh oh ~] [~ ~ oh ~]"
+   ]
+   |+| dhg (scale 0.25 0.5 $ density 4 $ sine1)
+   |+| dch "0.5"
+   |+| doh "0.75"
+   |+| lch "0.5"
+   |+| loh "0.75"
+   ]
+
+--
+-- BASSDRUM SNARE
+
+b $ magik $ stack[
+   slowcat[
+   stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~] [~ bd ~ bd] [~ bd ~ ~]"
+   ,
+   drum "[~ ~ ~ ~] [sn ~ sn ~] [~ ~ sn ~] [~ ~ sn ~]"
+   ]
+   ,
+   stack[
+   drum "[bd ~ bd ~] [~ ~ bd ~] [~ ~ bd ~] [~ ~ ~ ~]"
+   ,
+   drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ sn ~]"
+   ]
+   ,
+   stack[
+   drum "[bd ~ ~ ~] [~ ~ bd ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+   ,
+   drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ ~ ~]"
+   ]
+   ]
+   |+| lbd "0.666"
+   |+| lsn "1.0"
+   ]
+
+---
+
+bps (120/130)
+
+
+b $ magika $ stack[
+  slowcat[
+   stack[
+   drum "[bd ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ bd ~ ~ ~ bd?]"
+   ,
+   drum "[~ ~ ~ ~ sn ~ ~ sn ~ sn ~ ~ sn ~ ~ ~]"
+   ],
+   stack[
+   drum "[bd ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ bd ~ bd ~ ~]"
+   ,
+   drum "[~ ~ ~ ~ sn ~ ~ sn sn sn ~ ~ sn ~ ~ ~]"
+   ]
+   |+| lbd "0.666"
+   |+| lsn "1.0"
+   ]
+   ,
+  stack[
+   slowcat[
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ch ch ~] [ch ch ch ~] [ch ch ch ~] [ch ch ch ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ~ ch ~] [ch ~ ch ~] [ch ~ ch ~] [ch ~ ch ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ]
+   ,
+   slowcat[
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~]"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ oh oh ~] [~ ~ oh ~]"
+   ]
+   |+| dhg (scale 0.25 0.5 $ density 4 $ sine1)
+   |+| dch "0.15"
+   |+| doh "0.75"
+   |+| lch "0.5"
+   |+| loh "0.75"
+   ]
+]
+
+
+   ,
+   stack[
+   drum "[bd ~ ~ ~] [~ ~ bd ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+   ,
+   drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ ~ ~]"
+   ]
+
+---
+
+---
+-- ALL THEM INSTRU
+---
+
+bps (120/125)
+
+b $ every 7 (within (0, 0.25) (chop 2)) . magik $ stack[
+   slowcat[
+   stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~] [~ bd ~ bd] [~ bd ~ ~]"
+   ,
+   drum "[~ ~ ~ ~] [sn ~ sn ~] [~ ~ sn ~] [~ ~ sn ~]"
+   ]
+   ,
+   stack[
+   drum "[bd ~ bd ~] [~ ~ bd ~] [~ ~ bd ~] [~ ~ ~ ~]"
+   ,
+   drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ sn ~]"
+   ]
+   ]
+   |+| lbd "0.666"
+   |+| lsn "1.0"
+   ,
+   stack[
+   slowcat[
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ch ch ~] [ch ch ch ~] [ch ch ch ~] [ch ch ch ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ~ ch ~] [ch ~ ch ~] [ch ~ ch ~] [ch ~ ch ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ]
+   ,
+   slowcat[
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~]"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ oh oh ~] [~ ~ oh ~]"
+   ]
+   |+| dhg (scale 0.25 0.5 $ density 4 $ sine1)
+   |+| dch "0.5"
+   |+| doh "0.75"
+   |+| lch "0.25"
+   |+| loh "0.5"
+   ]
+  ]
+
+
+
+---
+
+
+bps (120/150)
+
+
+b $ sometimes (foldEvery [3,5,7] (cs2) . chop 2) . within (0, 0.25)(gap 2) . magika $ stack[
+  slowcat[
+   stack[
+   drum "[bd ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ bd ~ ~ ~ bd?]"
+   ,
+   drum "[~ ~ ~ ~ sn ~ ~ sn ~ sn ~ ~ sn ~ ~ ~]"
+   ],
+   stack[
+   drum "[bd ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ bd ~ bd ~ ~]"
+   ,
+   drum "[~ ~ ~ ~ sn ~ ~ sn sn sn ~ ~ sn ~ ~ ~]"
+   ]
+   |+| lbd "0.666"
+   |+| lsn "1.0"
+   ]
+   ,
+  stack[
+   slowcat[
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ch ch ~] [ch ch ch ~] [ch ch ch ~] [ch ch ch ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ~ ch ~] [ch ~ ch ~] [ch ~ ch ~] [ch ~ ch ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ]
+   ,
+   slowcat[
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~]"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ oh oh ~] [~ ~ oh ~]"
+   ]
+   |+| dhg (scale 0.25 0.5 $ density 4 $ sine1)
+   |+| dch "0.15"
+   |+| doh "0.75"
+   |+| lch "0.5"
+   |+| loh "0.75"
+   ]
+]
+
+---
+
+
+
+bps (120/150)
+
+
+b $ sometimes (foldEvery [3,5,7] (cs2) . chop 2) . within (0, 0.25)(gap 2) . magika $ stack[
+  slowcat[
+   stack[
+   drum "[cr ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ cr ~ ~ ~ cr?]"
+   ,
+   drum "[~ ~ ~ ~ cl ~ ~ cl ~ cl ~ ~ cl ~ ~ ~]"
+   ],
+   stack[
+   drum "[cr ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ cr ~ cr ~ ~]"
+   ,
+   drum "[~ ~ ~ ~ cl ~ ~ cl cl cl ~ ~ cl ~ ~ ~]"
+   ]
+   |+| scl "0.99"
+   |+| lcl "0.9"
+   |+| sag "0.9"
+   |+| lag "0.5"
+   ]
+   ,
+  stack[
+   slowcat[
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ch ch ~] [ch ch ch ~] [ch ch ch ~] [ch ch ch ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ,
+   drum "[ch ~ ch ~] [ch ~ ch ~] [ch ~ ch ~] [ch ~ ch ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch?]"
+   ]
+   ,
+   slowcat[
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~]"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ oh oh ~] [~ ~ oh ~]"
+   ]
+   |+| dhg (scale 0.15 0.25 $ density 4 $ sine1)
+   |+| dch "0.15"
+   |+| doh "0.75"
+   |+| lch "0.5"
+   |+| loh "0.75"
+   ]
+]
+
+b1 silence
+
+

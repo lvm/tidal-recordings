@@ -1,0 +1,39 @@
+cps 0.8
+
+import System.Cmd
+
+-- lazy helpers
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    cho n pat chord = preplace(1,1) pat $ ch n chord
+    slowcho nlist pat chord = slowcat[note (cho n pat chord) | n <- nlist]
+    rotate :: Int -> [a] -> [a]
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+    chrot nlist pat chord = slowcat[slowcho nlist pat (rotate i chord) | i <- [0..((length chord)-1)]]
+    whisper' m v a p s = system $ "espeak -v " ++ v ++ "+whisper -a " ++ a ++ " -p " ++ p ++ " -s " ++ s ++ " \"" ++ m ++ "\""
+    whisper m = whisper' m "en" "30" "50" "145"
+
+-- bass
+q $ foldEvery [7,11,23] (slowspread (stut 2 0) [0.25, 0, 0.25]) . whenmod 21 9 (within(0,0.33)(# decay (scale 0.5 1 $ palindrome $ squarewave1))) $ stack[
+chrot [48] "1([3 3 3 5 8 5 3 5]/8, 8)" [0, 3, 5, 7, 5, 3]
+] # dur "0.025" # lforate "0.8" # lfoint "0.25" # cutoffegint "0.5" # decay (scale 0.666 0.75 $ slow 16 . iter 4 . palindrome $ squarewave1)
+
+-- beat
+b $  every 18 (within(0, 0.33) (chop 2)) . foldEvery [21, 23] (# stt "0.23") . foldEvery [13,15,17] (sw(# std "0.1")) $ stack[
+drum "[bd([5 3]/2,8), [sn(3,8,2)]]",
+drum "~ [cp/3 cp/2]",
+slowcat[
+      every 3 (sw(slow 2)) . every 16 (chop 4 . slow 2 . iter 2) $ drum "[ch(9,16)]/2",
+      every 3 (sw(slow 2)) . every 16 (chop 4 . slow 2 . iter 2) $ drum "[ch([5 8]/2,8)]/2"
+],
+drum "~ ~ oh/8 ~"
+] # dch "0.01" # scp "0.6" # stt "0" # std "0"
+
+-- fluidsynth: synth strings 1
+m1 $ e 3 8 $ chrot [48] "1" [0,0,3,3,3,7] # dur "0.2" # vel "0.45"
+
+whisper "`cat ~/baku/livecode/tidal/self.tidal`"
+
+hush

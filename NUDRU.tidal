@@ -1,0 +1,22 @@
+bps $ 55/60
+
+d1 $ density 8 $ striate 32 $ (sound $ samples "wurlitzer*2" $ iter 10 $ run 10)
+ |+| speed "2"
+ |+| speed (((0.9+) <$>) sinewave1)
+
+d2 $ every 4 (|+| speed "0.9") $ sound "house:2 !? {wurlitzer:4 !?} wurlitzer:2*2?"
+ |+| speed (((0.5+) <$>) sine1)
+
+d3 $ echo (7/4) $ palindrome $ jux (brak . slow 2 . rev) $ density 2 $ sound "house house/2 house/3 house"
+ |+| speed (((0.5+) <$>) sine1)
+ |+| gain "0.8"
+
+
+d4 $ slow 4 $ echo (7/4) $ jux (brak . slow 4 . rev) $ degradeBy 0.2 $ stut 20 0.1 2.5 $ sound "daytone:8? !! !?"
+ |+| speed ((*0.1) <$> "5.5")
+
+d5 $ echo (7/4) $ every 3 (spin 8) $ every 4 (slow 2) $ density 8 $ (sound $ samples "jvbass ~" $ iter 10 $ run 10)
+ |+| speed "5.5"
+ 
+hush
+---------------------------------------------

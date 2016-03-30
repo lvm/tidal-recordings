@@ -1,0 +1,336 @@
+cps 0.6
+
+
+
+d1 $ sound "kawai:10(3,8) ~"
+ |+| crush "4"
+
+
+d1 $ sound "sid:2(3,8) ~"
+
+d2 $ every 2 (rev) . density 2 $ sound "{bd8:2 sd8:8 lt8 lt}%4"
+
+d3 $ every 4 (rev) . stut 4 0.5 0.5 . chop 8 $ sound "ch cy:4/4"
+
+d4 $ density 2 $ sound "ma8(2,1) alien ma8:2"
+
+
+-----
+
+hush
+
+-----
+
+cps 0.666
+
+d5 $ every 4 (chop 2 . slow 2) . striate 8 $ sound "alien tink:1/4"
+ |+| speed (every 2 ((*0.5) <$>) $ sine1)
+ |+| bandq "0.25"
+ |+| bandf "0.2"
+ |+| hresonance "0.5"
+ |+| resonance "0.5"
+
+d4 $ echo (1/4) $ stut 2 0.9 (-0.5) $ stack[sound "{bd8:1*2 sid:2 ~ sid:2}%3", sound "minipops:3 minipops:4?"]
+ |+| shape "0.666"
+
+d3 $ within (0.5, 0.75) (chop 2 . rev) . slowspread ($) [density 2, rev] $ sound "ch cy/4 [ch:1*2]?"
+
+d2 $ (sound $ samples "hc8 d:0*2 d:0" $ density 2 $ iter 2 ("0 1"))
+ |+| crush "4 9"
+ |+| speed "0.5 1"
+
+---
+
+d2 $ stack[
+sound "kawai:10 kawai:12"
+|+| speed (scale 0.5 0.9 $ sine1),
+within (0.5, 0.75) (chop 2 . rev) $ sound "gabba:1(2,4) gabba:1?",
+within (0.5, 0.75) (chop 2 . rev) . slowspread ($) [density 2, rev] $ sound "ch cy/4 [ch:1*2]?"
+]
+
+
+---
+
+cps 0.666
+
+d2 $ within (0, 0.25) (rev . every 2 (chop 2) . every 5 (slow 2)) . slow 2 . chop 8 $ sound "breaks125"
+ |+| cut "1"
+ |+| speed (every 23 ((0.1-) <$>) $ "1")
+
+d2 $ within (0, 0.25) (rev . every 2 (chop 2) . every 5 (slow 2)) . chop 8 $ sound "breaks165"
+ |+| cut "1"
+ |+| speed (every 23 ((0.1-) <$>) $ "1")
+
+
+
+d2 $ fadeOut 4 $ echo (1/4) . chop 2 . within (0, 0.25) (rev . every 2 (chop 2) . every 5 (slow 2)) . chop 16 $ sound "amenfixed:7"
+ |+| cut "1"
+ |+| speed (every 23 ((0.1-) <$>) $ "1")
+ |+| gain "0"
+
+d3 $ juxcut (|+| chpo (iter 4 "6 8 6 6")) . every 3 (within (0, 0.25) (smash 4 [1..4])) . every 2 (rev) . slow 4 . chop 128 $ sound "bev"
+ |+| speed "0.4"
+ |+| vowel "a"
+
+
+
+d3 $ juxcut rev . every 3 (within (0, 0.25) (smash 4 [1..4])) . every 2 (rev) . slow 4 . chop 128 $ sound "bev"
+ |+| speed "0.9"
+
+hush
+
+
+
+d3 $ juxcut rev . every 3 (within (0, 0.25) (smash 4 [1..4])) . every 2 (rev) . slow 8 . chop 64 $ sound "bjork"
+
+
+d3 $ slow  6. chop 128 $ sound "bjork"
+ |+| cut "1"
+
+d3 silence
+
+
+d2 $ chop 4 $ sound "amen"
+ |+| cut "1"
+ |+| speed (every 23 ((0.1-) <$>) $ "1")
+ |+| gain "0.777"
+
+
+hush
+
+
+
+cps 0.666
+
+d2 $ every 7 ((0.1<~)) . slow 16 . striate 128 $ sound "nana"
+ |+| cut "1"
+ |+| speed (every 2((0.1-) <$>) "1")
+
+
+
+
+
+
+
+
+
+
+
+d1 $ stack[
+spin 8 $ sound "bd8:1 ~ ~"
+ |+| crush "4"
+ |+| shape "0.666",
+sound "minipops:6(2,2) ! !",
+stut 2 0.9 (-0.5) $ striate 2 . density 2 $ sound "minipops:3*2 minipops:4"
+]
+
+
+
+cps 0.666
+
+let del = (|+| delay "0.3") . (|+| delayfeedback "0.3") . (|+| delaytime "0.3")
+
+
+d1 $ within (0.5, 0.8) (del) . slowspread ($) [density 2, id, brak] $ within (0, 0.5) (echo (1/4) . every 3 (rev)) $ superimpose (|+| crush "6") . chop 4 . rev $ stack[
+sound "bd8:1 unix ~ ~" |+| speed "0.666" |+| shape "0.666",
+sound "~ ~ unix gabba:1" |+| speed "0.5",
+sound "[~ minipops:3 ~ minipops:4] !?"
+]
+ |+| speed (every 2 ((/2) <$>) $ scale 0.8 1 $ sine1)
+ |+| shape "0.4"
+ |+| bandf "0.5"
+ |+| resonance "0.9"
+
+
+d1 $ every 4 ( within (0, 0.25) ( |+| sound "cy:4" ) ) $ within (0, 0.5) (echo (1/4) . every 3 (rev)) $ superimpose (|+| crush "6") . chop 4 . rev $ stack[
+sound "bd:8 lt",
+sound "[~ minipops:3 ~ minipops:4] !?"
+]
+ |+| shape "0.5"
+ |+| vowel (iter 3 "l o l")
+
+d2 $ spin 32 $ striate 2 . stut 2 0.5 0.5 $ sound "{{auto !}%2 amenkit:3 amenkit:4}%2"
+
+d3 $ stack[
+sound "~ ~ ~ cp*2"
+ |+| end rand
+,
+every 2 (rev) . within (0, 0.5) (striate 8) $ sound "[seqdru seqdru:2] seqdru:5"
+]
+
+d4 $ slow 32 . chop 128 $ sound "nana"
+ |+| cut "1"
+
+d4 $ slow 8 . chop 64 $ sound "hidden:2 ~"
+ |+| cut "1"
+
+d5 $ smash 4 [1..4] . every 2 (rev) .  slow 8 . chop 256 $ sound "bjork:1"
+ |+| cut "1"
+
+
+hush
+
+
+
+
+d1 $ every 4 ( within (0, 0.25) ( |+| sound "cy:4" ) . (chop 2 . rev) ) $ within (0, 0.5) (echo (1/4) . every 3 (rev)) $ superimpose (|+| crush "6") . chop 4 . rev $ stack[
+sound "bd:8 lt",
+sound "[~ minipops:3 ~ minipops:4] !?"
+]
+ |+| shape "0.5"
+ |+| vowel (iter 3 "l o l")
+
+
+
+d1 $ superimpose (|+| vowel "a") . every 4 (slow 2) $ every 3 (echo (1/4)) . within (0.25, 0.5) (rev) $ sound "bd8:1(3,8)"
+ |+| crush "4"
+ |+| shape "0.4"
+ |+| gain "0.8"
+ |+| end rand
+
+d1 $ every 4 (slow 2) $ every 3 (echo (1/4)) . within (0.25, 0.5) (rev) $ sound "deepsky(3,8)"
+ |+| crush "4"
+ |+| shape "0.4"
+ |+| gain "0.8"
+ |+| end rand
+
+d2 $ stut 2 0.5 (-0.1) . every 4 (|+| gain "0") . superimpose (|+| crush "4") . every 2 (rev) . every 5 (within (0, 0.25) (slow 2)) . density 2 $ sound "cy cy:3 cy:5 cy:4"
+ |+| end "0.1 0.1 0.5 0.1"
+ |+| shape "0 0 [0.5 0]/2 0"
+ |+| gain "1"
+
+
+
+d2 $ rev . stut 2 0.5 (-0.1) . every 4 (|+| gain "0") . superimpose (|+| crush "4") . every 2 (rev) . every 5 (within (0, 0.25) (slow 2)) $ sound "cy cy:3 cy:5 cy:4"
+ |+| end "0.1 0.1 0.5 0.1"
+ |+| shape "0 0 [0.5 0]/2 0"
+ |+| gain "1"
+
+
+d2 $ density 2 $ stack[sound "[~ ch(2,1)]", sound "db db db*2? db"]
+ |+| end "0.1"
+ |+| shape "[0.5 0]/2"
+
+cps 0.5
+
+d1 $ every 4 (echo (2/4)) $ every 3 (del) $ sound "{bd:8*2 lt mt*2 sn}%5"
+ |+| shape "0 0 [0.5 0]/2 0"
+ |+| speed "[0.5 2.666]/2"
+
+
+
+d1 $ stut 2 0.9 0.1 $ stack[
+sound "lsdj:2*2 unix",
+sound "~ ~ ~ unix:4",
+sound "perc:1 unix:3 unix:3 d",
+sound "~ ~ ~ ~ ~ ~ glitch:2*2",
+density 2 $ sound "orchestral:2"
+]
+
+d3 $ sound "akai akai"
+
+d1 $ echo (3/4) $ sound "akai:4 [akai:2*5? ~ ~] akai:7*2" |+| speed "[0.5 1.666]/2"
+
+d2 $ sound "e e e e e e e e e"
+
+
+d6 $ revArc(0, 0.25) . slow 2 . every 2 ((|+| accelerate "0.1 0.5 0.4") . (|+| shape "0.9") . rev . (|+| speed "4.6")) $ jux (rev) $ interlace (every 2 (rev . (|+| delay "1") . (|+| delaytime "5")) $ sound "jazz off:1 pluck:1*3 jazz pluck*3") (jux ((|+| accelerate "0 2.2 0.5 1") . brak . (|+| vowel "o")) $ sound (pick <$> "bass3 bass3:1/2 bass:2 bass3:2" <*> (brak) "4 3 1"))
+ |+| cut "1"
+ |+| bandf "0.5"
+ |+| bandq "0.23"
+ |+| resonance "0.9"
+
+
+d6 $ slow 4 . striate' 8 (0.5) . within (0, 0.5) (slow 1.5) . stut 4 0.9 0.1 . chop 2 $ stack[
+echo (3/4) $ sound "akai:4 [akai:2*5? ~ ~] akai:7*2" |+| speed "[0.5 1.666]/2"
+]
+ |+| cut "1"
+ |+| bandf "0.5"
+ |+| bandq "0.23"
+ |+| resonance "0.9"
+ |+| crush "4"
+ |+| end "0.1 0.1 0.5 0.1"
+ |+| shape "0 0 [0.5 0]/2 0"
+ |+| vowel (iter 3 "l o l")
+
+
+hush
+
+
+
+d6 $ every 23 (retrig) $ every 11 (stut 2 0.6 0.5) . superimpose (every 3 (within (0.5, 0.7)(chop 32)) . (|+| crush "4") . (|+| vowel (iter 6 "t o p l e l"))) $ stack[
+sound "lsdj:2*2 unix",
+sound "ch odx bottle/2 bottle:1*3 gabba:1/2 bd/4"
+  |+| delay "0.1",
+every 2 (rev) $ sound "~ odx*8/4 bd co bd8*2 bd/4",
+sound "~ ~ ~ ~ ~ ~ glitch:2",
+juxcut (iter 4 . slow 1.5) . revArc(0, 0.5) . striate' 4 (0.5) $ sound "bottle/2 !? !? !?" |+| end rand
+]
+ |+| crush (iter 4 "9 9 4 6")
+ |+| speed (every 3 ((/1.1) <$>) $ "1")
+ |+| bandf "0.23"
+ |+| bandq "0.23"
+ |+| resonance "0.5"
+
+
+hush
+
+d3 $ every 4 (|+| crush "5") $ density 2 $ sound (pick <$> "minipops daytone:6 minipops:3 minipops:5" <*> (every 2 (rev) "7 5 1 5 3 0 4"))
+
+d3 $ every 4 (|+| crush "5") $ density 2 $ sound (pick <$> "minipops daytone:6 minipops:3 minipops:4" <*> (every 2 (rev) "7 5 1 5 3 0 4"))
+
+
+d3 $ every 4 (|+| crush "5") $ density 2 $ sound (pick <$> "minipops:1 daytone:6 minipops:3 minipops:4" <*> (every 2 (rev) "7 5 1 5 3 0 4"))
+
+
+
+d4 $ chop 8 . every 2 (stut 4 0.5 0.5) . spread' spin "1 1 1 8" $ sound "drum:0 drum daytone:6 drum?"
+ |+| speed ((+0.5) <$> sine1)
+
+
+d5 $ every 8 (rev . density 2 . chop 8) $ sound (samples "minipops minipops*2? drum:0 minipops" $ slow 0.5 "7 5 1 5 3 0 4")
+
+
+
+d5 $ stack[
+every 8 (rev . density 2 . chop 8) $ sound (samples "minipops minipops*2? drum:0 minipops" $ slow 0.5 "7 5 1 5 3 0 4")
+]
+
+
+
+-- d5 $ every 5 (within (0, 0.25) (rev)) . echo (8/5) $ stack[
+-- sound (samples "minipops minipops*2? drum:0 minipops" $ slow 0.5 "7 5 1 5 3 0 4")
+-- ]
+--  |+| crush "6"
+
+
+-- d5 $ stack[
+-- every 8 (rev . density 2 . chop 8) $ sound (samples "minipops minipops*2? drum:0 minipops" $ slow 0.5 "7 5 1 5 3 0 4"),
+-- every 4 (|+| crush "5") $ density 2 $ sound (pick <$> "minipops:1 daytone:6 minipops:3 minipops:4" <*> (every 2 (rev) "7 5 1 5 3 0 4"))
+-- ]
+
+
+
+
+d5 $ every 5 (within (0, 0.25) (rev)) . echo (8/5) $ stack[
+sound (samples "minipops minipops*2? auto:5 minipops" $ slow 0.5 "7 5 1 5 3 0 4"),
+density 2 $ degradeBy 0.666 $ sound "~ ~ minipops:3 ~"
+]
+ |+| shape "0.666"
+
+d4 $ echo (8/5) $ slow 2 . chop 8 $ sound "cy:5"
+
+
+
+
+d8 $ superimpose (|+| sound "auto:5") $ stack[sound "auto auto:2 auto:5 ~" , sound "~ cy:5/2 ~" |+| speed (((0.1-) <$>) "1"), every 2 (chop 2) $ sound "~ odx:5", sound "~ ~ ~ glitch:2"]
+
+
+
+d9 $ density 3 $ stack[
+sound "[auto auto:5 !?]"
+]
+ |+| shape "0.666"
+
+
+hush

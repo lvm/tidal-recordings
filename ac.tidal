@@ -1,0 +1,73 @@
+cps 1
+
+-- lazy helpers
+let sw f = sometimes(within(0, 0.5) f)
+    sw' d h f = sometimes(within (d, h) f)
+    ---
+    ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    --- q $ note (cho 48 "1 [~ 1] 1 1 " [0, 3, 7, 5])
+    cho n pat chord = preplace(1,1) pat $ listToPat [ch + n | ch <- chord]
+    --- q $ note (cho' 48 3 "1 [~ 1] 1 1 " [0, 3, 7, 5])
+    cho' n off pat chord = cho (n+off) pat chord
+    --- q $ slowcho [47, 45, 42] "[1 !] 1 1 1" [0, 3, 0, 3]
+    slowcho nlist pat chord = slowcat[note (cho n pat chord) | n <- nlist]
+    --- q $ slowcho' [47, 45, 42] 3 "[1 !] 1 1 1" [0, 3, 0, 3]
+    slowcho' nlist off pat chord = slowcat[note (cho' n off pat chord) | n <- nlist]
+    --  q $ slowcat[note (cho 60 "1 1 1" (rotate i [0,3,7,10])) | i <- [0..3]]
+    rotate :: Int -> [a] -> [a]
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+    -- q $ chrot [51, 48] "1 1 1 1" [0, 3, 5, 7] 3
+    chrot nlist pat chord = slowcat[slowcho nlist pat (rotate i chord) | i <- [0..((length chord)-1)]]
+
+
+-- volca bass + volca beats
+
+b $ density 2 $ stack[
+drum "bd ~",
+drum "ch*2 oh",
+--slowcat[drum "~ ~", 
+--drum "[~ ch] !"
+--]
+slowcat[drum $ preplace (1,1) "[x(9,16)]/8" "cp", degrade $ drum "[ag [~ ag/2]]"]
+]
+
+--  "~ [cp cp/2]"
+
+q $ every 3 (sometimes(within(0,0.25)(#cutoffegint "1"))) $ density 2 $ slowcat[
+chrot [48] "[1]*2 [1]*2" [0,4,7,11,7]
+,chrot [48] "[1]*2 [1]*2" [0,3,7,14,3]
+] # vel "0.35" # cutoffegint (scale 0.23 0.666 sine1) # lforate "[0.75 0.85 0.666]/3" # lfoint "0.25" # pitch1 "0" # pitch3 "1"
+
+hush
+
+
+
+b $ density 2 $ stack[
+ drum "bd ~",
+ drum "ch*2 oh",
+ slowcat[drum "~ ~", drum "[~ ch] !"],
+ slowcat[drum $ preplace (1,1) "[x(9,16)]/8" "cp", drum "ag [~ ag/2]"]
+] # std "0" # stt "0" # scp "0.6" # sag "0.6"
+
+q $ sometimes (#cutoffegint "0.666") $ stack[
+  chrot [48] "1(5,8)" [0,4,7,11,7],
+  chrot [48] "1(3,8,2)" [0,3,7,14,3]
+ ] # dur "0.05" # vel "0.25" # cutoffegint "0.23"
+
+
+
+m1 $ stack[
+  chrot [48] "1(5,8)" [0,4,7,11,7],
+  chrot [48] "1(3,8,2)" [0,3,7,14,3]
+ ] # dur "0.05" # vel "0.5" # cutoffegint "0.23"
+
+hush
+
+-- sometimes (# cutoffegint "0.666") $ 
+
+-- pitch3 is on
+
+-- vcf <<<<
+
+--,every 2 (stut 2 0 0.75) $ chrot [48] "1 1" [0,4,7,11,7]

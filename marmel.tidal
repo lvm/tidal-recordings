@@ -1,0 +1,97 @@
+
+cps 0.666
+
+cps 0.5
+
+let rc = (|+| resonance "[0.8 0.666 1.28]/3") . (|+| cutoff "[0.25 0.05 0.25 0.18]/5")
+
+let rc = (|+| shape "0.12")
+
+-- orig
+d2 $ slow 1.5 . every 8 (within (0, 0.25) (rev)) . foldEvery [5,17] (gap 2 . chop 2) $ spread' density "1 2 1 1 1 1 1 2 1 1 2 1 1 2 4 1 1" $ stack[(sound $ samples "td td:2 td:9*2 td:9*4" $ iter 8 "2 1")|+| gain "0.9", sound "td! !! !! !!" |+| shape "0.5"]
+|+| speed "1.2"
+
+-- toplaywit
+d2 $ echo (7/4) . slow 1.5 . spread' density "1 2 [2 1]/2 [4 1 2]/3 1 1 1 2 1 1 2 1 1 2 4 1 1" $ stack[(sound $ samples "td td:9 td:2 td:9" $ iter 8 "2 1")|+| gain "0.9", sound "td! !! !! !!" |+| shape "0.5"]
+|+| speed "1.2"
+
+-- density 2
+d2 $ slow 1.5 . spread' density "2 4 1 2" $ stack[(sound $ samples "td td:2 td:9 td:9*2" $ iter 8 "2 1")|+| gain "0.9", sound "td! !! !! !!" |+| shape "0.5"]
+|+| speed "1.2"
+
+-- density 2
+d2 $ slow 1.5 . spread density [2,1,1] $ stack[(sound $ samples "td td:2 td:9 td:9*2" $ iter 3 "1 2")|+| gain "0.9", sound "td! !! !! !!" |+| shape "0.5"]
+|+| speed "1.2"
+
+-- short patt
+d2 $ slow 1.5 . spread' density "1 2 2 2" $ stack[(sound $ samples "td td:9" $ iter 8 "2 1")|+| gain "0.9", sound "td! !! !! !!" |+| shape "0.5"]
+|+| speed "1.2"
+
+d3 $ every 30 (within (0, 0.5) (density 8) . within (0.5, 1.0) (|+| gain "0.0")) $ spread' density "1 2 4 1 1 1 8" $ sound "db(2,8)"
+|+| speed "[1.5 1.8]/2"
+|+| gain (scale 0.8 0.85 $ sine1)
+
+
+
+
+
+
+-- toplaywit
+d2 $ stack[spread' density "1 [2, 1, 2, 1, 2, 4]/6 1 [1,2,1,2,1,2]/6" $ (sound $ samples "[td(5,8)]/2 td:9 td:2 td:9" $ iter 8 "3 4")|+| gain "0.9", sound "td! !?td !!? !!" |+| speed (scale 0.5 0.8 $ sine1)]
+|+| speed "1.2"
+
+--spread' density "1 [2, 1, 2, 1, 2, 4]/6 1 [1,2,1,2,1,2]/6" $ 
+
+d2 $ density 1.75 . every 2 (stut 2 0.25 0.5) . foldEvery [5,7] (stut 2 0.25 0.25) . slowspread (chop) [2..4] . slowspread (slow) [1,1,1,1.25] . spread' gap (iter 4 "1 4 2 2") $ (sound $ samples "[td(5,8)]/2 td:9 td:2 td:9" $ iter 8 "3 4")
+|+| gain "0.9"
+|+| speed "1.2"
+
+
+d2 $ every 2 (stut 2 0.25 0.5) . foldEvery [3, 5, 7] (stut 2 0.25 0.25) . chop 2 . rarely (chop 2) . slowspread (slow) [1,1,1,1.25] . spread' gap (iter 4 "1 4 2 2") $ (sound $ samples "[td(5,8)]/2 td:9 td:2 td:9" $ iter 8 "3 4")
+|+| gain "0.9"
+|+| speed "1.2"
+
+
+
+
+d2 $ retrig $ almostNever (spread zoom [(0, 0.25), (0.25, 0.5), (0.5, 0.75), (0.75, 1.0)] . echo (7/4)) $ sometimes (every 2 (stut 2 0.25 0.4) . foldEvery [3, 5, 7] (stut 2 0.25 0.25) . chop 3 . slowspread (slow) [1,1,1,1.25] . spread' gap (iter 4 "1 2 2 2")) $ (sound $ samples "[td(5,8)]/2 td:9 td:2 td:9" $ iter 8 "3 4")
+|+| gain "0.9"
+|+| end "0.25"
+|+| coarse "2"
+
+d3 $ retrig $ almostNever (spread zoom [(0, 0.25), (0.25, 0.5), (0.5, 0.75), (0.75, 1.0)] . echo (7/4)) $ sometimes (every 2 (stut 2 0.25 0.4) . foldEvery [3, 5, 7] (stut 2 0.25 0.25) . chop 3 . slowspread (slow) [1,1,1,1.25] . spread' gap (iter 4 "1 2 2 2")) $ sound "[td(5,8)]/2 td td td"
+|+| gain "0.9"
+|+| end "0.25"
+|+| speed "1.23"
+
+d3 $ sometimes (slow 2) $ sound "td! !?td !!? !!"
+|+| speed "1.23"
+
+d3 $ sometimes (slow 2) $ sound "td! !?td !! !!"
+|+| speed "1.23"
+
+d3 $ sound "td! !! !! !!"
+|+| speed "1.23"
+
+d4 $ slow 8 $ sound "spoken:1" |+| pan "0.75"
+d4 $ slow 2 $ sound "spoken" |+| pan "0.25"
+d4 silence
+
+d5 $ retrig $ striate' 8 (0.8) . slow 4 $ sound "kos:5"
+|+| speed "0.566"
+|+| cut "1"
+|+| resonance "0.01"
+|+| cutoff "0.05"
+|+| bandq "0.01"
+|+| gain "1.1"
+
+
+cps 0.5
+
+hush
+
+d5 silence
+
+--cps 0.666
+
+--cps 1

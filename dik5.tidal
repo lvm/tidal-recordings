@@ -1,0 +1,57 @@
+bps (120/100)
+
+
+cps 0.5
+
+cps 0.75
+
+let st0 = (|+| stt "0") . (|+| std "0")
+
+b1 $ st0 . every 23 ((|+| stt "0.01") . (|+| std (scale 0.0 1.0 $ slow 16 $ rand))) . smash 2 [3] $ stack[
+  slowcat[
+   drum "[bd ~ ~ bd] [~ ~ bd ~] [~ bd ~ ~] [~ ~ bd ~]"
+   ,
+   drum "[bd ~ ~ bd] [~ bd bd ~] [~ bd ~ ~] [~ bd bd ~]"
+   ]
+   ,
+  slowcat[
+  drum "[ sn ~ sn ~ ] [ ~ ~ ~ ~ ] [sn ~ sn ~] [~ ~ ~ ~]"
+  ,
+  drum "[ sn ~ sn ~ ] [ ~ ~ ~ ~ ] [sn ~ sn ~] [~ ~ ~ ~]"
+  ,
+  drum "[ sn ~ sn ~ ] [ ~ ~ ~ ~ ] [sn ~ sn ~] [~ ~ ~ ~]"
+  ,
+  drum "[ sn ~ sn ~ ] [ ~ ~ ~ ~ ] [sn ~ sn ~] [~ ~ ~ ~]"
+  ,
+  drum "[ sn ~ sn ~ ] [ ~ sn sn sn ] [sn ~ sn ~] [~ ~ ~ ~]"
+  ]
+   ,
+   foldEvery [3,5,7] (|+| dhg "0.1") $ stack[
+     slow 2 . chop 2 $ drum "ch(16,16)"
+     |+| dch (scale 0.01 0.9 $ sine1)
+     ,
+     drum "[~ ~ ~ oh] [~ ~ ~ oh] [~ oh ~ ~] [~ oh ~ ~]"
+     |+| doh (scale 0.01 0.9 $ sine1)
+   ]
+   |+| dhg (scale 0.01 0.1 $ sine1)
+   ,
+   slowspread ($) [slow 2, slow 2, slow 2, slow 2, within (0, 0.5) (slow 0.5) . within (0.5, 0.9) (slow 1 . rev)] . chop 2 $ slowcat[
+     drum "cl(9,16)"
+     ,
+     drum $ preplace (1,1.5) "x(7,16)" "cl"
+    ]
+   |+| scl (scale 0.001 0.009 $ squarewave1)
+   |+| scl (scale 0.9 0.99 $ squarewave1)
+   |+| lcl "0.9"
+   ,
+   drum "[cr(5,8)]/2"
+   |+| scr "0.9"
+]
+
+
+b1 silence
+--
+
+
+
+

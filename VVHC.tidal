@@ -1,0 +1,64 @@
+cps 1
+
+cps 0.666
+
+d1 $ jux rev . echo (7/4) $ spread' slow "2 2 2 4 2 2" . chop 8 $ sound "sea"
+ |+| speed (slow 2 $ scale 2.23 0.5 $ sine1)
+ |+| end "0.4"
+ |+| cut "1"
+
+d5 $ echo (7/4) $ spread' density "2 1 1 2" $ sound "visco:4 bd:8(1,4)"
+ |+| speed (scale 2.23 2.5 $ sine1)
+ |+| shape ("0.5")
+
+d2 $ echo (7/4) $ spread' chop (every 4 (rev) "1 2 1 4") . density 2 $ sound "moog(2,1) ~"
+ |+| speed (scale 1.23 2.5 $ sine1)
+ |+| cut "1"
+
+d3 $ echo (7/4) $ spread' chop (every 4 (rev) "1 2 1 4") . every 3 (slow 2) . spread' density "2 1 1 2" $ sound "[glitch:2(1,1) sf:4(1,1)] rapman:17(1,1)"
+ |+| speed (scale 2.23 2.5 $ sine1)
+ |+| shape "0.5 0.1 0.1"
+
+d4 $ density 2 $ sound "house(3,8)"
+ |+| shape "0.5 0.1 0.1"
+
+cps 0.35
+
+cps 1.25
+
+hush
+
+
+
+
+cps 0.25
+
+cps 0.15
+
+d2 $ echo (7/4) $ density 2 . spread' chop (every 4 (rev) "1 2 1 2") $ sound "visco:5(3,1) peri:3(2,1)"
+
+ |+| speed (every 4 (scale 0.23 (-0.1)) $ scale 0.23 1.5 $ sine1)
+
+d3 $ echo (7/4) $ spread' chop (every 4 (rev) "1 2 1 4") . every 3 (slow 2) . spread' density "2 1 1 2" $ sound "[glitch:2(1,1) ~] unix(3,1)"
+ |+| speed (scale 0.23 0.5 $ sine1)
+
+
+
+
+
+d3 $ echo (7/4) $ spread' chop (every 4 (rev) "1 2 1 4") . every 3 (slow 2) . spread' density "2 1 1 2" $ sound "[glitch:2(1,1) sf:4(1,1)] rapman:17(1,1)"
+ |+| speed (scale 2.23 2.5 $ sine1)
+ |+| shape "0.5 0.1 0.1"
+
+d4 $ density 2 $ sound "house(3,8) visco:5(3,8)"
+ |+| shape "0.5 0.1 0.1"
+ |+| speed (scale 4.23 5.5 $ sine1)
+
+d2 $ echo (7/8) $ striate 2 . spread' chop (every 4 (rev) "1 2 1 4") . every 5 (rev) . spread' density "2 2 4 2" $ sound "mouth(2,1) e"
+ |+| speed (scale 0.23 1.5 $ sine1)
+ |+| cut "1"
+
+
+cps 0.35
+
+hush

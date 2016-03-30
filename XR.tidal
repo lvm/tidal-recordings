@@ -1,0 +1,79 @@
+cps 0.666
+
+let fill n q = within (q, q+0.25) (density n)
+
+let cill n q = within (q, q+0.25) (chop n)
+
+let ch q w e = chop q . slow (w+2) . striate (e*2)
+
+let db x y = x*2 + y*x
+
+let rcbb q w e r =  (|+| resonance q) . (|+| cutoff w) . (|+| bandf e) .(|+| bandq r)
+
+let ddd d = (|+| delay d) . (|+| delaytime d) . (|+| delayfeedback d)
+
+let tt t = echo (2/t)
+
+let t t = echo (7/t)
+
+let js = juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5"))
+
+let irand i = (floor . (*i)) <$> rand
+
+
+cps 0.8
+
+d2 $ juxBy 0 (js) . superimpose (|+| coarse "[16 23 8 4 32]/5") . stut 2 0.5 0.5 . t 4 $ slow 2 $ cat[
+sound "~ [bass3*2 bass]"
+|+| vowel "[o a e x x x]/6"
+,
+striate' 2 (0.2) . gap 2 . stut 4 0.5 0.5 $ sound "[~ house:5, ~ ~ glitch]"
+]
+
+|+| gain "0.666"
+
+hush
+
+cps 0.666
+
+d1 $ juxBy 0 (jux (rev . gap 2) . (|+| speed "[1 2]/2")) . echo (2/3) $ stack[
+stack[
+slowspread (density) [3, 1, 3, 6] $ sound "amencutup"
+,
+every 2 rev . stut 2 0.5 0.5 $ sound "~ [amencutup:2 amencutup:3 ] ~"
+]
+|+| coarse "[6 12 18]/3"
+]
+
+cps 1
+
+d1 $ every 7 (within (0, 0.25) (|+| speed (((0.1-) <$>) $ "1"))) . every 4 (slow 2 . every 8 (chop 2) . within (0.85, 1) (0.1<~)) . slow 2 . chop 16 $ sound "amen"
+|+| cut "1"
+|+| speed "1.2"
+
+cps 0.666
+
+d1 $ every 4 (slow 2 . every 8 (chop 2)) . slow 2 . slowspread (chop) [8, 8, 8, 4, 16] $ sound "amenfixed"
+|+| cut "1"
+
+d1 $ gap 2 . chop 2 $ every 2 (within (0, 0.25) (|+| speed (((0.1-) <$>) $ "1"))) . every 4 (slow 2 . every 8 (chop 2)) . slow 2 . slowspread (chop) [8, 8, 8, 4, 16] $ sound "amenfixed"
+|+| cut "1"
+
+d1 $ cat[
+density 8 . chop 32 $ every 2 (within (0, 0.25) (|+| speed (((0.1-) <$>) $ "1"))) . every 4 (slow 2 . every 8 (chop 2)) . slow 2 . slowspread (chop) [8, 8, 8, 4, 16] $ sound "amenfixed"
+|+| cut "1"
+,
+slow 8 $ sound "rave:2"
+]
+
+hush
+
+d1 $ every 7 (within (0, 0.25) (|+| speed (((0.1-) <$>) $ "1"))) . every 4 (slow 2 . every 8 (chop 2)) . slow 2 . slowspread (chop) [8, 8, 8, 4, 16] $ (sound $ samples "amenfixed" $ iter 14 $ run 7)
+|+| cut "1"
+
+
+d1 $ weave' 2 (every 7 (within (0, 0.25) (|+| speed (((0.1-) <$>) $ "1"))) . every 4 (slow 2 . every 8 (chop 2)) . slowspread (chop) [8, 8, 8, 4, 16] $ (sound $ samples "amenfixed" $ iter 14 $ run 7)) [slow 2, (0.25<~), (|+| coarse "6")]
+|+| cut "1"
+
+
+hush

@@ -1,0 +1,62 @@
+cps 0.666
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+    sk n scale = listToPat [sc + n | sc <- scale]
+    st2 d = stut 2 0 d
+
+b $ stack[
+drum "bd ~",
+drum "~ cp",
+density 2 $ drum "[ch !?] oh",
+every 4 (wf0 0.5 (density 2)) $ drum "[ag ag, ag ag ag !?]",
+drum ""
+] # sag (scale 0.05 0.1 sine1)
+
+q $ slow 2 $ slowcat[
+nm "[c2 ~ c2 ~] [c2 c3 ~ c2] [~ d3 ~ d2] [~ g2 ~ ~]",
+nm "[c3 ~ c3 ~] [c3 c4 ~ c3] [~ d4 ~ d3] [~ g3 ~ ~]"
+] # decay (scale 0.9 0.99 squarewave1) # cutoffegint (scale 0 1 rand)
+
+hush
+
+b $ stack[
+sw (chop 2) $ drum "~ bd ~ bd",
+slowspread (stut 2 0) [0.75, 0.25] $ drum "~ cp",
+drum "~ ~ [ht !?] ~",
+every 4 (sw(chop 2)) $ density 2 $ drum "[ch !?] oh",
+drum "cl([3 2]/2,4)"
+         ] # stt "0" # std "0.25" # scp (scale 0.1 0.23 rand) # hg "0.75" # scl "[0.05 1]/2"
+
+q $ slow 2 $ slowcat[
+nm "[c2 ~ c2 ~] [c2 c3 ~ c2] [~ d3 ~ d2] [~ g2 ~ ~]",
+nm "[c3 ~ c3 ~] [c3 c4 ~ c3] [~ d4 ~ d3] [~ g3 ~ ~]"
+]
+
+m1 $ density 1.5 $ slowcat[
+nm "[~ g5 ~ b5]",
+nm "[~ ~ d5 ~]",
+nm "[~ g5 ~ b5]",
+nm "[~ ~ f5 ~]",
+nm "[~ f5 ~ a5]",
+nm "[~ ~ f5 ~]",
+nm "[~ g5 ~ b5]",
+nm "[~ ~ d5 ~]"
+] # vel "0.25" # dur "0.6" # sustainpedal (scale 0 0.65 sine1)
+
+
+b $ foldEvery [3,5,7](sw' 0 0.25 (# std "0.1")) . sw(# dch "0.1") $ stack[
+drum "[bd ~ ~] [bd ~ ~]",
+every 4 (within (0, 0.5) (chop 2)) $ drum "[ch ch ~] [ch ch ~]",
+drum "[~ [~ oh] ~] [~ [~ oh] ~]",
+every 5 (stut 2 0 0.25) $ drum "[~ ~ ~] [cp ~ ~]"
+] # stt "0" # std "0" # dch "0.25"
+
+
+cps 1

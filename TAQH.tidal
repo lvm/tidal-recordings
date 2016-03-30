@@ -1,0 +1,59 @@
+cps 0.666
+
+let chop2 = chop 2 . stut 2 0.5 0.5 . slow 2 
+
+d3 $ every 2 (|+| pan "1") . every 21 (|+| shape "0.2") . echo (7/4) $ chop2 . chop2 . every 3 (rev) $ sound "ade:9 ~ ade:8"
+ |+| end rand
+ |+| speed (every 3 ((0.1-) <$>) "1")
+ |+| gain (scale 0.2 0.3 $ sine1)
+ |+| cut "1"
+ |+| pan "0"
+ |+| shape "0.23"
+
+d3 $ every 21 (|+| shape "0.2") . echo (7/4) $ chop2 . every 3 (rev) $ sound "sf:9"
+ |+| end rand
+ |+| speed (every 3 ((0.1-) <$>) "1")
+ |+| gain (scale 0.2 0.3 $ sine1)
+ |+| cut "1"
+ |+| shape "0.23"
+
+every 2 (|+| pan "1") . 
+ |+| pan "0"
+
+hush
+
+
+d7 $ every 2 (rev) $ sound "{~ bend:3, ~ ~ e:2, ul:1 ~}%1"
+ |+| speed (((/2) <$>) $ ((0.1-) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5")
+ |+| shape "0.33"
+
+d4 $ echo (7/4) $ retrig $ every 7 (iter 3) $ sound "sf:1 ~ ~ sf:5 sf:3"
+ |+| speed (((/2) <$>) $ iter 4 "0.5 1 0.7 0.5")
+ |+| shape "0.23"
+
+ |+| end "0.9 0.1 0.9 0.1"
+
+
+hush
+
+
+bps 1
+
+
+d5 $ retrig $ every 3 (iter 3) . every 2 (rev . density 2) . echo (5/3) $ sound "~ ~ visco:5 ! ~ orchestral:2"
+ |+| speed (((/2) <$>) $ iter 4 "0.5 1 0.7 0.5")
+ |+| shape "0.666"
+
+
+
+
+
+d5 $ density 2 . echo (7/4) $ sound "~ akai:5 ~ visco:5 !? ~"
+ |+| speed (((/2) <$>) $ every 3 ((*1.5) <$>) $ iter 4 "0.5 1 0.7 0.5")
+ |+| shape "0.666"
+
+d4 $ echo (7/4) $ every 7 (iter 3) $ sound "sf:1 ~ ~ sf:5 sf:3"
+ |+| speed (((/2) <$>) $ iter 4 "0.5 1 0.7 0.5")
+ |+| shape "0.23"
+
+hush

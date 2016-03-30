@@ -1,0 +1,398 @@
+bps 5
+
+hush
+
+d5 $ jux rev $ every 4 ((|+| shape "0.5") . rev . brak) $ sound "e sn hc bd"
+ |+| vowel "u i o"
+ |+| speed "1.9"
+ |+| shape "0.9"
+
+
+d4 $ jux rev $ sound "sn bd"
+ |+| shape triwave1
+ |+| shape "0.1"
+
+d3 $ jux rev $ sound "cp ~"
+ |+| shape triwave1
+
+d2 $ juxcut rev $ striate 4 $ sound "v v:3 sundance/2"
+ |+| shape triwave1
+ |+| vowel "u i o"
+
+
+hush
+
+----------------------------------------------------------------------------------------------------
+
+bps 1.5
+
+
+d1 $ smash 4 [4, 2, 8] $ every 4 ((|+| speed "2")) $ every 2 ((|+| speed "2.5") . rev) $ every 3 (brak . (|+| speed "1")) $ spread slow [8, 2, 8, 3, 2] $ interlace (striate 4 $ slow 2 $ sound "flick ~ flick ~ flick ~") (sound "~ house ~ gabba")
+  |+| speed "2.5"
+  |+| slow 2 (vowel (pick <$> "a o e" <*> run 3))
+  |+| shape "0.1"
+  |+| pan "0.1 0 0.5"
+
+
+d2 $ jux rev $ every 3 ((slow 2) . (|+| shape "0.9")) $ every 2 ((|+| shape "0.5") . (slow 8))  $ striate' 32 (1.5) $ interlace (sound "bass0 sn") (sound (pick <$> "~ cp" <*> run 2)
+  |+| speed "2 2"
+  |+| pan "0.1 0 0.5"
+  |+| shape "0.1"
+  |+| slow 1 (vowel (pick <$> "a o e" <*> run 3))
+
+
+
+---------------------------------------------------------
+
+
+d1 $ juxcut rev $ every 2 ((|+| speed "0.5 0.7 0.8 1.2") . brak) $ every 3 ((|+| speed "0.1 0.2 0.4 0.4")) $ every 4 ((|+| speed "0.9 0.8 0.9 0.8")) $ sound "flick ~ flick ~ flick ~ east ~" 
+  |+| slow 2 (vowel (pick <$> "a u o i e" <*> run 5))
+  |+| shape "0.1"
+
+d2 $ density 2 $ sound "sn/2 ~ sn sn/4"
+
+bps 3.5
+
+----------------------------------------------------------------------------------------------------
+
+
+d2 $ sound "~ house [~, gabba] ~"
+  |+| speed "2 3 5"
+  |+| slow 4 (vowel (pick <$> "u o i" <*> run 3))
+  |+| shape "0.1"
+
+
+hush
+
+--------------------------------------------------------------------------------------------------
+
+
+d5 $ every 2 ((|+| speed "0.9") . (|+| shape "0.2") . rev . brak) $ sound "pluck sn pluck:3/2 bd*4/3"
+ |+| vowel "a o"
+ |+| speed "0.5"
+ |+| shape "0.1"
+ |+| slow 8 (vowel "a e")
+
+d5 silence
+
+
+--smash 8 [2, 3, 1] $ 
+
+hush
+
+d3 $ (0.5 ~>) $ every 6 ((striate 2)) $ every 5 ((density 8)) $ every 4 ((|+| shape triwave1) . (density 3) . (rev)) $ every 2 ((|+| speed "0.9") . brak . (slow 2)) $ every 3 ((|+| speed "0.5") . rev . (|+| shape "0.9")) $ interlace (sound "~ glitch*8 ~ glitch*16 ~ glitch:1*8 ~ glitch:1*8 ~") (sound "~")
+ |+| shape triwave1 --"0.9"
+ |+| speed "1.2"
+
+
+ |+| being rand
+ |+| end rand
+
+--------------------------------------------------------------------------------------
+
+d6 $ interlace (every 3 ((|+| speed "2") . rev) $ every 2 ((|+| speed "4%3")) $ every 4 ((|+| speed "2%3")) $ sound "~ ~ ~ co") (every 2 (rev . (|+| shape "0.9") . brak) $ sound "arpy:3/4 arpy:2 ~ ~")
+ |+| vowel "u a"
+ |+| shape triwave1
+
+d6 silence
+-- |+| speed "3 5 9 2"
+
+
+
+d5 $ interlace (every 2 ((|+| shape triwave1)) $ sound "~ sn house ~") (every 2 ( (|+| speed "0.5")) $ sound "jazz db")
+ |+| slow 2 (vowel "e o a i")
+ |+| shape "0.1"
+ |+| speed "0.1"
+
+d5 silence
+
+hush
+
+d3 $ (0.25 ~>) $ sound "~ jvbass*8/2"
+ |+| speed "0.5"
+
+
+d2 $ (0.25 <~) $ interlace (sound "glitch*8/2") (sound "~")
+
+d4 $ juxcut brak $ interlace (sound (pick <$> "~ psr:3/4 ~ psr*2 psr:4/8 ~" <*> run 2)) (sound (pick <$> "~ psr:3/4 ~ psr*2 psr:2/4 ~" <*> run 2))
+ |+| shape "0.1"
+
+d1 $ sound "house"
+ |+| shape "0.9"
+
+d1 silence
+
+--------------------------------------------------------------------------------------
+
+hush
+
+----------------------------------------------------------------------------------------------
+
+
+bps 4.666
+hush
+
+--------------------------------------------------
+
+
+d2 $ slow 32 $ striate' 31 (0.5) $ density 64 $ interlace (every 2 (brak . (|+| shape "0.1")) $ sound "~ house*16/2 ~") (every 3 (rev) $ sound "~ ~ sn/4 jvbass")
+  |+| shape "0.9"
+  |+| begin "0.3"
+  |+| pan (slow 32 sinewave1)
+
+
+d3 $ every 2 ((|+| shape "0.5")) $ sound "~ [glitch e]/2 ~ house pluck:3/4"
+ |+| shape "0.9"
+
+-- |+| pan (slow 2 triwave1)
+-- |+| speed "1.5 1 1 0.9"
+
+
+
+-------------------------------------------
+
+
+d4 $ every 2 (brak) $ every 4 ((density 4) . rev . (|+| shape "0.5")) $ smash 2 [4..7] $ interlace (sound "east bd e [sn, e, bd*2]/3 ~ sn east:7") (sound "~ ~ ~")
+ |+| speed "1.5"
+ |+| slow 2 (vowel "a u o a e")
+ |+| pan (slow 8 squarewave1)
+ |+| speed "0.1"
+
+hush
+
+
+
+
+
+d1 $ (0.5 <~) $ every 3 (|+| shape sinewave1) $ every 2 (|+| shape triwave1) $ spread' density "4 1 32 2" $ interlace (sound "~ ~") (sound "~ jvbass*8/2")
+ |+| slow 2 (vowel "u")
+ |+| pan (slow 2 triwave1)
+ |+| gain "0.87"
+
+d2 $ jux rev $ every 4 (0.5 <~) $ every 2 (|+| accelerate "2 3 4") $ every 3 (|+| accelerate "43 3 4") $ density 2 $ sound "gabba gabba/2"
+ |+| pan (slow 2 triwave1)
+ |+| gain "1.5"
+
+d3 $ echo (7/4) $ sound "bass0"
+ |+| gain "0.1"
+ |+| slow 8 (vowel "a e i")
+
+d4 $ echo (1/2) $ every 3 (|+| speed "2") $ every 2 ((|+| speed "1.5"). brak) $ density 8 $ striate 32 $ sound "sn ~ ~ ht"
+ |+| gain "1.5"
+ |+| speed "1"
+ |+| slow 8 (vowel "a e i")
+
+
+
+hush
+
+d2 $ sound "cp ~"
+ |+| gain "1"
+
+d3 $ sound "~ bass0 [~, cp] [~, cp*2]"
+ |+| gain "1"
+
+
+
+bps 3
+
+---------------------------------------------------------------------------------
+
+
+--let sinerat1 = fmap toRational sinewave1 in stack [smash 4 [1..16] $ (jux (spread' (<~) (slow 64 $ sinerat1)) $ sound $ samples "[bd bd*4, jvbass*8]" (slow 4 $ run 8)), sound "future/1"]
+
+d1 silence
+
+d1 $ every 3 (rev) $ every 2 (density 2) $ interlace (sound "sn sn bd bd") (sound "~ jvbass")
+ |+| slow 8 (vowel (pick <$> "a e i" <*> run 3))
+ |+| pan (slow 8 triwave1)
+
+d2 $ every 4 ((|+| speed "1.5")) $ every 2 ((|+| speed "0.5") . (jux rev)) $ superimpose ((|+| vowel "u o") . (striate' 3 (0.5)) . (density 28)) $ interlace (sound "clak e") (echo (1/4) $ sound "~ flick:2 ~")
+ |+| pan (slow 32 triwave1)
+ |+| slow 2 (vowel (pick <$> "a e i" <*> run 3))
+ |+| shape "0.1"
+ |+| speed "0.5 2 8"
+
+d3 $ interlace (sound "~ feel:5/8 ~") (sound "feel*2 ~ ~")
+ |+| shape triwave1
+ |+| pan (slow 32 triwave1)
+
+d4 $ every 2 (brak . (|+| speed "8")) $ superimpose ((|+| vowel "a e") . rev) $ sound "~ ~ newnotes:2*16 ~ newnotes:3/4 newnotes:4*8"
+ |+| shape "0.1"
+ |+| speed "5"
+
+bps (180/60)
+
+---------------------------------------------------------------------------------
+
+bps (280/60)
+
+hush
+
+
+
+
+
+---------------------------------------------------------------------------------
+
+------------- bass warfare
+
+bps (140/60)
+
+bps 1
+
+d1 $ (0.5 <~ ) $ interlace (sound "~ ~") (sound "~ jvbass*8/2")
+ |+| pan (slow 8 triwave1)
+
+d2 $ every 3 (rev) $ every 2 (density 2) $ interlace (sound "sn ~ sn bd") (sound "~ jvbass")
+ |+| slow 8 (vowel (pick <$> "a e i" <*> run 3))
+ |+| pan (slow 8 triwave1)
+
+d3 $ echo (1/2) $ interlace (spread slow [4, 8] $ sound "e msg:1/4 ~") (every 3 ((density 8) . (|+| speed "1.2")) $ every 2 ((slow 2) . (|+| speed "1.1")) $ sound "house ~ ~")
+ |+| shape triwave1
+-- |+| pan (slow 32 triwave1)
+
+d4 $ sound "[east, east:1*4/8] east"
+ |+| slow 2 (vowel "a o u")
+ |+| speed "0.1"
+ |+| vowel "a"
+
+d5 $ jux (rev) $ every 2 ((|+| speed "0.9")) $ every 3 ((|+| speed "39")) $ sound "~ e e e"
+ |+| density 8 (vowel "a o u")
+ |+| shape triwave1
+ |+| speed "0.1"
+
+
+-----------------------------------------------------------------------------------
+
+hush
+
+d1 $ echo (1/2) $ every 2 ((|+| speed "0.1")) $ every 9 ((density 32)) $ every 3 ((density 1)) $ sound "gab:3*2 ~"
+ |+| shape triwave1
+ |+| slow 2 (vowel "u o")
+ |+| accelerate "1.5 2 3"
+ |+| speed "0.1"
+
+d2 $ echo (1/2) $ every 2 ((|+| speed "0.1")) $ interlace (sound "~ gabba:4") (sound "~ jvbass*8/2")
+ |+| speed "5"
+ |+| shape triwave1
+ |+| slow 2 (vowel "o i")
+
+d3 $ echo (1/4) $ every 3 ((slow 4) . brak) $ density 2 $ every 2 ((density 4) . rev) $ striate' 32 (0.1) $ interlace (sound "cp ~") (sound "~ cp*8/4")
+ |+| slow 32 (vowel "o i o")
+
+d4 $ echo (1/2) $ density 3 $ interlace (sound "~ ~") (sound " ~ jvbass*8/2")
+ |+| pan (slow 2 triwave1)
+
+d5 $ echo (1/2) $ interlace (sound "gab:4 ~") (sound "~ gab:3")
+ |+| shape "0.9"
+ |+| slow 3 (vowel "o i")
+
+
+bps (140/60)
+
+-------------------------------------------------------
+
+hush
+bps (180/60)
+
+d1 $ echo (1/4) $ every 5 (striate' 32 (0.1)) $ every 4 ((striate 32) . (density 4) . rev) $ interlace (sound "~ gab:3") (sound "~ ~")
+ |+| shape triwave1
+ |+| pan (slow 32 triwave1)
+
+d2 $ every 2 (density 8) $ interlace (sound "gab:4/2 ~") (every 2 ( (0.25 <~) . rev) $ every 3 (rev) $ sound "~ cp/2")
+ |+| shape triwave1
+
+d3 $ echo (1/2) $ every 3 ((slow 2) . rev) $ every 2 ((0.25 <~). (striate 32) . rev) $ every 3 (rev) $ interlace (sound "cp ~") (sound "gab:3 ~")
+ |+| shape triwave1
+
+
+
+
+d2 silence
+
+
+
+
+
+
+
+
+d3 silence
+
+d3 $ every 2 ((density 2) . rev) $ interlace (sound "~ house") (sound "~ cp")
+
+
+
+
+
+
+
+
+
+
+
+
+
+d3 silence
+
+d3 $ every 2 ((|+| speed "0.9")) $ every 3 ((|+| speed "39")) $ sound "~ e e e"
+ |+| density 2 (vowel "a i o u")
+ |+| shape triwave1
+ |+| speed "5"
+
+d4 $ every 2 (density 4) $ interlace (sound "~ feel:5/2 ~") (sound "feel*2 ~")
+ |+| shape triwave1
+ |+| speed "0.1"
+
+
+
+hush
+
+
+
+hush
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------
+
+
+
+--striate' 16 (0.5) $ density 2 $ 
+d1 $ jux (rev) $ every 3 ((0.5 <~) . (|+| speed "1.5")) $ interlace (sound "house ~") (sound "~ house*2/4")
+ |+| speed "2"
+ |+| shape triwave1 --"0.2"
+ |+| pan "0.1"
+-- |+| slow 32 (vowel "a i o u")
+
+--striate' 32 (0.1) $ 
+
+
+d2 silence
+
+d2 $ jux (rev) $ every 2 (brak . (|+| speed "0.9")) $ every 3 ((|+| speed "39")) $ sound "~ e e e"
+ |+| slow 2 (vowel "i a i o u")
+ |+| shape triwave1
+ |+| speed "0.1"
+
+
+hush
+d3 silence
+
+d3 $ every 2 ((|+| speed "0.9") ) $ spread' slow "[4, 2]"  $ sound "cp ~ ~"
+ |+| speed "0.1"
+ |+| shape triwave1
+
+d4 silence
+
+d4 $ sound "[east, east:1*4/8] east"
+ |+| speed "0.1"
+ |+| vowel "a"
+
+hush

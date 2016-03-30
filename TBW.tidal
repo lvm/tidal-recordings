@@ -1,0 +1,77 @@
+bps $ 140/60
+
+-----------------------------------------------------------------------------------------
+bass
+-----------------------------------------------------------------------------------------
+
+d1 $ jux rev $ slow 4 $ stack[(density 4 $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "3")) $ every 5 ((|+| speed "5")) $ sound $ samples "tok bass3" $ iter 4 $ run 4) |+| vowel "a o"]
+ |+| slow 32 (vowel "o i a")
+
+d1 $ jux rev $ slow 2 $ stack[(density 4 $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "3")) $ every 5 ((|+| speed "5")) $ sound $ samples "tok bass3" $ iter 4 $ run 4) |+| vowel "a o"]
+ |+| slow 32 (vowel "o i a")
+
+d1 $ jux rev $ stack[(density 4 $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "3")) $ every 5 ((|+| speed "5")) $ sound $ samples "tok bass3" $ iter 4 $ run 4) |+| vowel "a o"]
+ |+| slow 32 (vowel "o i a")
+
+-----------------------------------------------------------------------------------------
+drum
+-----------------------------------------------------------------------------------------
+
+d2 $ slow 2 $ every 2 (brak) $ (every 4 (slow 2) $ (
+spread' (striate' 2) (((+0.5) . (*0.5)) <$> sinewave1) $ every 8 (density 2) $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "3")) $ every 5 ((|+| speed "5")) $ sound "bass0 bass2"
+ |+| vowel "o i u"
+ |+| speed ((0.9+) <$> saw1)
+))
+
+
+d2 $ every 2 (brak) $ (every 4 (slow 2) $ (
+spread' (striate' 2) (((+0.5) . (*0.5)) <$> sinewave1) $ every 8 (density 2) $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "3")) $ every 5 ((|+| speed "5")) $ sound "bass0 bass2"
+ |+| vowel "o i u"
+ |+| speed ((0.9+) <$> saw1)
+))
+
+
+d2 $ density 2 $ (
+every 2 (brak) $ (every 4 (slow 2) $ (
+every 8 (density 2) $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "3")) $ every 5 ((|+| speed "5")) $ sound "bass0 bass2"
+ |+| vowel "o i u"
+ |+| speed ((0.9+) <$> saw1)
+)))
+
+
+d2 $ density 2 $ (
+every 2 (brak) $ (every 4 (slow 2) $ (
+every 8 (density 2) $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "3")) $ every 5 ((|+| speed "5")) $ sound "{bass0 gab:4/2} {bass2 gab:3/4}"
+ |+| vowel "o i u"
+ |+| speed ((0.9+) <$> saw1)
+)))
+
+ |+| gain (slow 16 "0.9 0.6 0.3 0.1")
+
+-----------------------------------------------------------------------------------------
+snare
+-----------------------------------------------------------------------------------------
+
+d3 $ echo (7/4) $ slow 4 $ stack[sound "dr/4 dr dr/8 dr", sound "dr2/8 ~ dr2/2 ~"]
+ |+| gain "0.7"
+
+d3 $ echo (7/4) $ stack[sound "dr/4 dr dr/8 dr", sound "dr2/8 ~ dr2/2 ~"]
+ |+| gain "0.7"
+
+d3 $ echo (7/4) $ every 8 (spread' (striate' 2) (((+0.1) . (*0.2)) <$> slow 32 sinewave1)) $ density 2 $ stack[sound "dr/4 dr dr/8 dr", sound "dr2/8 ~ dr2/2 ~"]
+ |+| gain "0.7"
+
+hush
+
+-----------------------------------------------------------------------------------------
+etc
+-----------------------------------------------------------------------------------------
+
+d5 silence
+
+d4 $ striate 4 $ (every 2 (density 2) $ density 2 $ sound $ samples "~ ab tbw10/2 ~" $ iter 10 $ run 10)
+ |+| speed "0.9"
+ |+| gain "0.7"
+ |+| vowel "a i"
+
+hush

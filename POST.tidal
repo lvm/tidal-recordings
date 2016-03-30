@@ -1,0 +1,41 @@
+cps 0.6
+
+-- d1 $ slow 2 . striate 2 . density 1.5 . every 2 (echo (7/4)) $ stack[
+-- every 3 (|+| shape "0.5") $ sound "sid:2 ~ visco:6 bd:8"
+-- |+| coarse "11 6 66"
+-- |+| speed "[1 1.1 0.9 1.2 0.8]/4"
+-- ,
+-- sound " ~ click*2 click*2 ~"
+-- ,
+-- striate 2 . stut 2 0.4 (-0.1) $ sound "ma8 ~ ma8? ma8"
+-- ,
+-- every 2 (rev) $ sound "~ ~ ~ cp:2"
+-- ]
+
+
+cps 0.25
+
+d1 $ within (0, 0.25) (superimpose ((|+| coarse "32") . (|+| vowel "a")) ) . every 2 ((0.25<~)) . echo (7/4) $ density 1.5 $ stack[
+every 3 (|+| shape "0.5") $ sound "sid:2 ~ visco:6 bd:8"
+|+| coarse "11 6 66"
+|+| speed "[1 1.1 0.9 1.2 0.8]/4"
+,
+sound " ~ click*2 [click*2 click*2] ~"
+,
+striate 2 . stut 2 0.4 (-0.1) $ sound "ma8 ~ ma8? ma8"
+,
+every 2 (rev) $ sound "~ ~ ~ cp:2"
+,
+slow 2 . chop 2 . juxcut rev $ sound "dr:6*2 dr dr:2 dr"
+]
+
+d2 $ density 1.25 . density 3 $ (sound $ samples "amencutup*2" $ iter 6 $ run 6)
+|+| gain "1.2"
+
+d3 $ slow 8 . chop 16 $ sound "choir"
+|+| cut "1"
+|+| speed "[1 1.1 0.9 1.2 0.8]/4"
+|+| gain "0.6"
+
+
+hush

@@ -1,0 +1,31 @@
+
+cps 0.5
+
+d1 $ within (0.25, 0.5) ( revArc(0, 0.25) ) $ within (0.5, 0.75) ( slow 2 ) $ within (0.75, 1) ( chop 2 ) $ chop 8 $ sound "loops"
+ |+| cut "1"
+ |+| speed (scale 1.5 1 $ sine1)
+
+d2 $ spread' (stut 4 0.5) "0.5 0.4" . iter 3 $ sound "blip:2(3,2) sid:2(1,1) blip:1(4,4)"
+ |+| cut "1"
+ |+| speed (iter 8 "0.52 0.2 0.5 0.3")
+
+d3 $ spread' (stut 4 0.5) "0.5 0.4" . iter 3 $ sound "sid:2(1,1) bd:1(4,4)"
+ |+| cut "1"
+ |+| speed (iter 8 "0.52 0.2 0.5 0.3")
+
+d4 $ within (0.25, 0.5) ( revArc(0, 0.25) ) $ spread' density "2 1 4 1 2" . striate' 3 (1/23) $ sound "sn:3(2,1)"
+ |+| cut "1"
+ |+| speed (iter 8 "0.52 0.2 0.5 0.3")
+
+cps 1
+
+hush
+
+
+
+d1 $ every 4 (within (0, 0.5) (chop 2)) $ chop 4 $ sound "drumtraks drumtraks"
+
+d2 $ sound "drumtraks:6 ~ drumtraks:6"
+
+d3 $ within (0.25, 0.5) (density 2) $ sound "drum(3,8) ~ drumtraks:6"
+ |+| speed (iter 8 "0.52 0.2 0.5 0.3")

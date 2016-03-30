@@ -1,0 +1,110 @@
+cps 1
+
+
+d1 $ every 4 (rev) . every 8 (striate 2) $ stack[sound "{perc:4 ~ perc:5}%3", sound "peri visco:5*2/3 peri:10", sound "perc:4 perc:5/2", sound "perc:4 perc:5 perc"]
+
+d1 $ stut 3 0.5 0.5 . chop 2 . every 3 (striate 2) $ stack[sound "{perc:4 ~ perc:5}%3", sound "peri visco:5*2/3 peri:10", sound "perc:4 perc:5/2", sound "perc:4 perc:5 perc"]
+
+d7 $ chop 2 . iter 3 . every 3 (striate 2) $ stack[sound "{perc:4 ~ perc:5}%3", sound "peri visco:5*2/3 peri:10", sound "perc:4 perc:5/2", sound "perc:4 perc:5 perc"]
+
+hush
+
+d4 $ iter 2 . density 3 . chop 2 $ every 2 (iter 2 . rev) $ stack[sound "[{db, ~, ~}%2, hardcore !?]", sound "psr:1/3"]
+ |+| end "0.1"
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+
+
+cps 0.5
+
+d7 $ every 2 (|+| gain "1") . every 4 (striate 2) $ stut 3 0.5 0.5 . striate 2 . chop 2 $ sound "e:1 bd:8 peri:10"
+
+d8 $ every 3 (chop 2) . chop 2 $ sound "db:2 db lsdj:2 lsdj:2"
+
+d1 $ iter 3 . every 3 (striate 2) $ stack[sound "{perc:4 ~ perc:5}%3", degradeBy 0.7 $ sound "peri visco:5*2/3 peri:10*2?", sound "perc:4 perc:5/2", sound "perc:4 perc:5 perc"]
+
+
+hush
+
+
+cps 1
+
+let chop2 = chop 2 . stut 2 0.5 0.5
+
+d1 $ every 2 (|+| pan "0") $ chop2 . every 6 (iter 3) $ sound "watford:4 watford:4 watford:4 watford:4"
+ |+| end "0.1"
+ |+| speed (((*0.2) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| gain (scale 0.2 0.2 $ sine1)
+ |+| pan "1"
+
+d2 $ density 2 . every 6 (iter 3) $ sound "{wurlitzer:2 drum*2 {lsdj:2 visco:5}}%3"
+ |+| end rand
+ |+| speed (every 7 ((0.1-) <$>) $ ((*0.2) <$>) $ iter 4 "1 0.5 1 0.8")
+
+d4 $ chop 2 . every 2 (iter 2) . every 3 (rev) $ stack[sound "[db visco:5, hardcore !?]", sound "psr:1/3"]
+ |+| end rand
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| shape "0.666"
+
+
+cps 0.666
+
+hush
+
+
+
+d4 $ every 3(jux rev) . retrig $ seqP[(0, 128, iter 2 . density 3 . chop 2 $ every 2 (iter 2) . every 3 (rev) $ sound "[db lsdj:2, hardcore !?]")]
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| shape "0.666"
+
+
+cps 0.5
+
+let chop2 = chop 2 . stut 2 0.5 0.5
+
+bps 2
+
+cps 0.666
+
+
+d1 $ every 2 (rev) . stut 3 0.5 0.5 . every 5 (retrig) $ chop2 . every 6 (iter 3) $ sound "sf:9/2"
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| cut "1"
+
+d2 $ every 5 (retrig) $ chop2 . every 2 (spin 2) . every 6 (iter 3) $ sound "{wurlitzer:2 drum}%3 lsdj:2"
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| shape "0.666"
+
+d4 silence
+
+d4 $ every 3 (retrig . every 5 (chop 2)) $ iter 2 . density 3 . chop 2 $ every 2 (iter 2) . every 3 (rev) $ sound "mattel:2 hardcore db:7"
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| shape "0.666"
+ |+| gain "0.8"
+ |+| cut "1"
+ 
+d3 $ every 21 (|+| shape "0.2") . echo (7/4) $ chop2 . chop2 . every 3 (rev) $ sound "sf:3 mattel:5 sf:5"
+ |+| end rand
+ |+| speed (every 3 ((0.1-) <$>) "1")
+ |+| gain (scale 0.2 0.3 $ sine1)
+ |+| cut "1"
+
+
+
+hush
+
+d3 $ every 2 (|+| pan "1") . every 21 (|+| shape "0.2") . every 7 (|+| vowel "i") . echo (7/4) $ chop2 . chop2 . every 3 (rev) $ sound "sf:3 sf:5"
+ |+| end rand
+ |+| speed (every 3 ((0.1-) <$>) "1")
+ |+| gain (scale 0.2 0.3 $ sine1)
+ |+| cut "1"
+ |+| pan "0"
+
+
+d3 $ every 2 (|+| pan "1") . every 21 (|+| shape "0.2") . every 7 (|+| vowel "i") . echo (7/4) $ chop2 . chop2 . every 3 (rev) $ sound "ade:5"
+ |+| end rand
+ |+| speed (every 3 ((0.1-) <$>) "1")
+ |+| gain (scale 0.2 0.3 $ sine1)
+ |+| cut "1"
+ |+| pan "0"
+
+hush

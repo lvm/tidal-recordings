@@ -1,0 +1,200 @@
+bps 1.5
+
+d1 $ every 3 (|+| vowel "u") $ every 2 (rev) . spread' striate "2 4" . density 2 $ sound "~ rhodes ~"
+ |+| speed (((*0.8) <$>) $ every 4 ((*2) <$>) $ every 8 ((*2.9) <$>) $ iter 4 "2 1.5")
+ |+| gain "1.5"
+
+d2 $ every 4 (striate 2) . spread' striate "4 2 1" $ sound "~ odx:2 odx:2*2 ~"
+ |+| speed "1.2"
+ |+| gain (((0.5+) <$>) triwave1)
+
+d3 $ jux rev . every 8 (slow 2) $ stut 4 0.9 0.5 $ every 2 (spread' striate "4 2 1") $ stack[sound "rolandlofi:2 ~", every 4 (striate 4) $ sound "~ rhodes:19"  |+| speed (((*0.25) <$>) $ every 2 ((0.5-) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")]
+ |+| gain sinewave1
+
+d4 $ spread' striate "8 4 1" $ every 2 (striate 4) $ sound "~ rhodes:19"
+  |+| speed (((*2) <$>) $ every 2 ((0.5-) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+
+
+
+hush
+
+
+
+---------------------------
+
+bps (140/60)
+
+d1 $ slow 1.2 $ stack[spread' striate "2 2 4" $ sound "deepsky:3", striate 4 $ sound "deepsky:3" |+| vowel "a"]
+ |+| gain "1.2"
+
+ |+| speed (((*0.8) <$>) $ every 4 ((*2) <$>) $ every 8 ((*2.9) <$>) $ slow 8 "2 1.666 1.5 1.3 1 1.4 1.5 1.6 1.8")
+ |+| speed (((*0.8) <$>) $ every 4 ((*2) <$>) $ every 8 ((*2.9) <$>) $ slow 8 "2")
+
+d2 $ slow 1.2 $ every 9 (striate 4) $ sound "wurlitzer:4 wurlitzer:2/2"
+ |+| speed (every 8 ((0.01-) <$>) "1")
+
+-- d2 $ slow 1.2 $ every 9 (striate 4) . spread' striate "2 4 8" $ sound "wurlitzer:4 wurlitzer:2/2"
+--  |+| speed (every 8 ((0.01-) <$>) $ iter 4 "1 0.5")
+
+d3 $ slow 1.2 $ every 16 (striate 2) . spread' striate (every 3 (rev) "4 2 2") $ sound "watford:2 watford:3/2"
+ |+| speed (every 8 ((0.1-) <$>) $ every 13 ((0.5-) <$>) "1")
+
+-- d3 $ slow 1.2 $ every 8 (striate 2) . every 16 (|+| vowel "a") . spread' striate (every 3 (rev) "4 2 2") $ sound "watford:2 watford:3/2"
+--  |+| speed (every 8 ((0.1-) <$>) $ iter 4 "1 1.25 1.3")
+
+hush
+
+
+
+---------------------------
+
+bps (80/60)
+
+
+
+d5 $ echo (3/4) $ every 2 (striate 4) . every 3 (iter 2) . every 4 (stut 2 0.5 0.5) . every 8 (slow 2) $ sound "loops:1"
+ |+| speed (((*1.2) <$>) $ every 2 ((*1.5) <$>) $ every 3 ((*1.2) <$>) $ every 5 ((*1.2) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+ |+| gain (slow 8 "0.8 0.9 1 0.8 0.9")
+
+
+
+
+d5 $ echo (4/3) $ every 2 (striate 4) . every 3 (iter 2) . every 4 (stut 2 0.5 0.5) . every 8 (slow 2) $ sound "loops:1"
+ |+| speed (((*0.5) <$>) $ every 2 ((*1.5) <$>) $ every 3 ((*1.2) <$>) $ every 5 ((*1.2) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+ |+| gain "1"
+
+
+
+
+
+
+
+d1 $ density 3 . every 3 (|+| gain "0") $ sound "rolandlofi:7"
+ |+| speed (every 3 ((0.1-) <$>) $ ((/2) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+ |+| end "0.2"
+ |+| pan "0"
+
+d2 $ stut 4 0.9 0.5 $ every 2 (spread' striate "4 2 1") $ stack[sound "rolandlofi:2 ~", every 4 (striate 4) $ sound "~ rhodes:19"  |+| speed (((*0.5) <$>) $ every 2 ((*1.5) <$>) $ every 3 ((*1.2) <$>) $ every 5 ((*1.2) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")]
+
+d3 $ stack[every 5 (slow 2) $ sound "rhodes:4 ~" |+| speed (every 9 ((0.01-) <$>) "1"), sound "rhodes:12 rhodes:19/6 rhodes:5/2"]
+
+d4 $ echo (3/3) $ palindrome . density 3 . every 5 (slow 8) . striate' 32 (0.25) $ sound "cbass"
+ |+| speed (((*0.9) <$>) $ every 4 ((0.2-) <$>) $ every 8 ((*1.5) <$>) $ slow 8 "2 1.6 1.5 1.3 1 1.4 1.5 1.6")
+ |+| gain "0.8"
+ |+| pan "1"
+
+
+
+
+hush
+
+bps 1.5
+
+
+d3 $ every 8 (slow 2) . stut 4 0.9 0.5 $ every 2 (spread' striate "4 2 1") $ every 4 (striate 4) $ sound "~ rhodes:7"
+ |+| speed (((*0.25) <$>) $ every 2 ((0.5-) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+ |+| gain sinewave1
+
+
+bps 1.25
+
+d3 $ slow 0.74 . every 8 (slow 2) . stut 4 0.9 0.55 $ every 2 (spread' striate "4 2 1") $ every 4 (striate 4) $ sound "~ rhodes:7"
+ |+| speed (((*0.25) <$>) $ every 2 ((0.5-) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+ |+| gain sinewave1
+
+
+hush
+
+
+bps 1.25
+
+d2 $ stut 2 0.8 0.2 $ slow 1.25 $ sound "rhodes/2 rhodes/2 ~ rhodes/4"
+  |+| speed (every 16 ((0.1-) <$>) "1 1 0 1.25")
+
+d3 $ slow 0.74 . every 8 (slow 2) . stut 4 0.9 0.55 $ every 2 (spread' striate "4 2 1") $ every 4 (striate 4) $ sound "~ rhodes:7"
+ |+| speed (((*0.25) <$>) $ every 2 ((0.5-) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+ |+| gain sinewave1
+
+d4 $ juxcut rev . spread' striate "8 4 1" $ sound "~ univox:7"
+  |+| speed (every 2 ((0.5-) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+
+d5 $ every 25 (iter 4) . every 3 (rev) . every 2 (slow 2) . stut 4 0.9 0.5 $ every 3 (spread' striate "4 2 1") $ sound "rolandlofi:2 ~"
+ |+| gain "0.333"
+ |+| end "0.1"
+
+
+
+hush
+
+
+
+
+
+
+
+
+d3 $ juxcut rev . every 8 (slow 2) $ stut 4 0.9 0.5 $ every 2 (spread' striate "4 2 1") $ every 4 (striate 4) $ sound "~ rhodes:19"
+ |+| speed (((*0.25) <$>) $ every 2 ((0.5-) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+ |+| gain sinewave1
+
+d3 $ jux rev . every 8 (slow 2) $ stut 4 0.9 0.5 $ every 2 (spread' striate "4 2 1") $ every 4 (striate 4) $ sound "~ rhodes:19"
+ |+| speed (((*0.25) <$>) $ every 2 ((0.5-) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+ |+| gain sinewave1
+
+
+hush
+
+d2 $ stack[stut 2 0.4 (-0.2) . striate 4 $ sound "rhodes:12 gab:3/4 ~", whenmod 3 3 (|+| gain "0") $ every 5 (|+| gain "0") $ sound "gab:1*2"]
+d2 $ stack[stut 2 0.4 (-0.2) . striate 4 $ sound "rhodes:12 gab:3/4 ~", sound "{[gab:1*2]/2 [[gab:1*2]/7, [gab:1*2]/9] [gab:1*2]/5}"]
+
+
+d5 $ density 3 . every 3 (|+| gain "0") $ sound "rolandlofi:7"
+ |+| speed (every 3 ((0.1-) <$>) $ ((/2) <$>) $ iter 4 "1 1.9 1.8 1.9 1.8 1.9 1 2 1.1 1.2 1.1 1 1.9")
+ |+| end "0.2"
+
+hush
+
+
+
+d2 $ stut 2 0.8 0.2 . slow 1.25 $ sound "gab:1*3" |+| speed (every 8 ((0.1-) <$>) "1")
+
+
+
+
+
+
+hush
+
+
+
+bps 1.5
+
+d1 $ stut 2 0.8 0.2 . slow 1.25 $ sound "gab:1*3"
+ |+| speed (every 8 ((0.1-) <$>) "1")
+ |+| pan "0.5"
+ |+| gain sinewave1
+
+d2 $ every 16 (|+| vowel "o") $ every 4 (striate' 8 (0.2)) . stut 2 0.8 0.2 . slow 1.25 $ sound "gab:1*3"
+  |+| speed (every 8 ((0.1-) <$>) $ iter 4 "1 0.5 1.5 2")
+
+
+
+
+
+-- cray base
+
+solo $ d1 $ slow 1.7 $ every 5 (brak) . stut 2 0.5 0.2 $ sound "univox"
+ |+| speed "0.5" --(every 16 ((0.1-) <$>) $ "0.5")
+
+
+
+
+solo $ d2 $ slow 1.7 $ every 5 (brak) . stut 2 0.5 0.2 $ sound "univox:1"
+ |+| speed "0.5" --(every 16 ((0.1-) <$>) $ "0.5")
+
+
+
+-- cray bass line
+d6 $ density 3 $ sound "pluck:3 ~"
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ iter 2 "1 2 1.5")
+ |+| end "0.2"

@@ -1,0 +1,374 @@
+cps 1
+
+bps (120/120)
+
+b $ stack[
+drum "[bd ~ bd ~]",
+drum "[~ sn ~ [sn [~ sn]]]",
+drum "[~ ~ [~ cp] ~]",
+drum "[ch*4 ch] [ch*4 [oh oh/2]]",
+density 2 $ drum "[cl(5,8)]"
+]
+
+q $ slow 2 . stut 2 0 0.75 $ stack[
+chrot [36,34] "[[~ 1] ~ [~ 1] 1] !" [0],
+chrot [48] "[1? [~ 1]? 1 [~ 1]?] !" [0]
+] # dur "0.01"
+
+
+hush
+
+
+b $ stack[
+every 2 (stut 2 0 0.75) $ drum "[~ bd ~ [bd [~ bd]]]",
+drum "[[~ sn] ~ [~ sn] ~]",
+drum "ch(6,8)",
+drum "[~ ~ ~ oh/2] [~ ~ oh ~]"
+]
+
+b $ stack[
+drum "[bd ~ bd bd]",
+randcat[drum "[[~ sn] [~ sn] ~ sn]",drum "[[~ sn] [sn*2 ch] ~ sn]"],
+drum "[ch*4 ch] [ch*4 [oh oh/2]]",
+density 2 $ drum "[cl(5,8)]"
+]
+
+
+hush
+
+---
+
+
+
+bps (260/120)
+
+cps 1
+
+let fitFit n = cat[cat[drum $ fit n (words "ch oh ht lt") p | p <- ["[2 0, 1 3 3]"]], cat[drum $ fit n (words "ch oh lt ht") p | p <- ["[0 1 1, 2 3]"]]]
+
+
+let fitFit n = cat[cat[drum $ fit n (words "ch oh cp bd") p | p <- ["[2 0, 1 3 3]"]], cat[drum $ fit n (words "ch oh bd cp") p | p <- ["[0 1 1, 2 3]"]]]
+
+
+let fitFit n = cat[drum $ fit n (words "ch oh cp bd sn") p | p <- ["[[3 3] 2, 0 0 1]", "[0 1 1, 2 3]"]]
+
+b $ stut 2 0 0.75 $ drum
+
+
+
+let fitFit n = slowcat[drum $ fit n (words "ch oh cp bd sn") p | p <- ["[[[3 [2? 4], 2? 4], [0 0] [0 [0 2?]]], [0*2 0*2, ~ 1] [0 [1!!!]/6 ]]"]]
+
+let fitFit n = slowcat[drum $ fit n (words "ch oh cp bd sn") p | p <- ["[[[3 [2? 4], 2? 4], [0 0] [0 [0 2?]]], [{0*2}%2, ~ 1] [0 1]]"]]
+
+b $ slowcat[fitFit n | n <- [1..3]] # stt "0" # std "0" # lch "0.5" # loh "0.5" # dch "0.01" # doh "0.001"
+
+
+let ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    cho n pat chord = preplace(1,1) pat $ listToPat [ch + n | ch <- chord]
+    slowcho nlist pat chord = slowcat[note (cho n pat chord) | n <- nlist]
+
+
+
+q $ stut 2 0 0.75 $ note $ fit 5 [42,37,38,35,30] "[[[3 [2? 4], 2? 4], [0 0] [0 [0 2?]]], [0*2 0*2, ~ 1] [0 1]]"
+
+
+hush
+
+---
+
+cps 1
+
+b $ density 0.9 $ stack[drum "[cp bd, ch*2 ~, oh [ch ~ ch], ag(6,8)]", slowcat[drum "[~ ~, ~ cp/2, ~ ~, ~ ~]",drum "[~ ~, ~ ~ cp/2, ~ ~, ~ ~]"]] # dch "0.15"
+
+q $ density 0.9 $ note $ toMIDI "[c4(3,8), [d3(6,8,2)]/2 f4([4 2]/2,8)]"
+
+
+bps (180/120)
+
+b $ stack[drum "[cp bd, ch*2 ~, oh [ch ~ ch], ag(6,8)]", slowcat[drum "[~ ~, ~ cp/2, ~ ~, ~ ~]",drum "[~ ~, ~ ~ cp/2, ~ ~, ~ ~]"]] # dch "0.15"
+
+q $ note $ toMIDI "[c4(3,8), [d3(6,8,2)]/2 f4([5 2]/2,8)]"
+
+
+
+
+hush
+
+
+
+
+
+
+
+
+
+
+
+cps 1
+
+let fitN n = slowcat[sound $ fit n (words "tink:2 glitch:4 glitch") p | p <- ["2 2 2, 1 ~", listToPat[1..4], "[~ 1 2 1, 0 0]", "[1 1 2 1, ~ 0]", "[2 2 2 1, 0 0]"]]
+
+d1 $ density 2 . jux(sometimes (# accelerate "-2")) $ slowcat[fitN n | n <- [1..3]] # coarse (floor <$> scale 3 8 rand) # cut "1" # gain "1.5" # bandq "0.8"
+
+
+                                          0  1  2  3
+
+let fitN n = slowcat[slowcat[drum $ fit n (words "ch oh ht lt") p | p <- ["[0(3,8,2), 1(6,8,1), 2(5,8), 3(3,8)]"]]
+
+let fitN n = slowcat[drum $ fit n (words "ch oh ht lt") p | p <- ["[0 1, 2, 3]"]]
+
+
+let fitFit n = slowcat[slowcat[drum $ fit n (words "ch oh ht lt") p | p <- ["[0(3,8,2), 1(6,8,1), 2(5,8), 3(3,8)]"]], e 3 8 $ smash 2 [3] $ slowcat[drum $ fit n (words "ch oh ht lt") p | p <- ["[0 1, 2, 3]"]]]
+
+b $ stack[drum "[cl(9,16)]/2", slowcat[fitFit n | n <- [1..3]] # dch "0.01" # doh "0.001"]
+
+
+b $ drum "[ch*2 oh, bd bd, ~ cp]"
+
+
+b $ drum "[oh oh cp ch, bd ch]"
+
+b $ drum "[bd [ch ch] oh ch, bd cp]"
+
+b $ drum "[bd cp oh ~, cp ch]"
+
+
+  # coarse (floor <$> scale 3 8 rand) # cut "1" # gain "1.5" # bandq "0.8"
+
+
+
+
+
+cps 1
+
+b $ density 2 $ stack[
+drum "ht ! ~",
+sometimes rev $ drum "~ lt !"
+]
+
+hush
+
+
+cps 0.25
+
+b $ sometimes ((#dch (scale 0.01 0.5 rand))) $stack[drum "lt(13,24,5)", drum "ht(11,24,14)"] # dt "1" # scl "1" # dch "0.01"
+
+m5 $ stack[degrade $ note "48(13,24,5)", note "52(11,24,14)"] # dur "0.5"
+
+m5 $ stack[degrade $ note "48(13,24,5)"] # dur "1"
+
+
+
+b $ density 4.5 . sometimes(brak).foldEvery[8,13](iter 4).every 7(gap 2.within(0,0.25)(slow 2)).gap 2.every 2(slowspread(stut 2 0)[0.25..0.75]) $
+
+b $ density 4.5 . sometimes(brak) . foldEvery[8,13](iter 4) $ drum "[[[bd ~] [~ bd]] [[sn ~] cp]]"
+
+
+b $ every 3 (# drum "cp cp cp cp" ) $ density 5 . every 4 ( # dch "0.01" ) . foldEvery [3, 7, 5, 13] (sometimes (# std (scale 0 1 rand))) $ stack[
+--slowcat[drum "bd ~", append' (drum "bd ~") ()],
+--drum "[~ bd] [[~ bd] !]",
+drum "bd/4 bd/3 bd/2 bd",
+drum "sn(6,8)",
+every 5 (0.25<~) . every 8 ( chop 2 ) $ drum "cp(1,8,4)",
+drum "ch(5,8)",
+drum "oh([2 1]/2,8,5)"
+] # scl (scale 0.95 1 sine1) # dch "0.25"
+
+
+
+
+--
+
+let pat = slow 2 $ "x x x"
+
+b $ drum $ prr 0 (2,1) "x x x" "bd sn"
+
+protate len rot p rotates pattern p by rot beats to the left. len: length of the pattern, in cycles. Example: d1 $ every 4 (protate 2 (-1)) $ slow 2 $ sound "bd hh hh hh"
+
+cps 1
+
+solo $ b $ stack
+
+  spread' (protate 4) (floor <$> scale (-1) 2 rand) $ drum "ch*2 oh"
+
+cps 0.25
+
+d1 $ stack[
+  sound "[td:4(3,8,5), sn(7,8)]"
+] # gain "2"
+
+b $ stack[
+  drum "[bd([6 3 3 3 5 3 3 3]/8,8,3), ch(7,8)]"
+] # gain "2"
+
+hush
+
+cps 0.25
+
+let pre6 nlist = slowcat[drum $ preplace (n,1) "[x ~] [~ x/2 ~ x/13]" "bd" | n <- nlist]
+
+let preL nlist = cat[sound $ preplace (n,1) "[x x, x]" "jvbass*2 glitch jvbass:4 glitch:4" | n <- nlist]
+
+let bag plist = listToPat[plist]
+
+cps 1
+
+d1 $ stack[
+  density 2 $ slowcat[sound $ preplace (n,1) "[~ x] x x" "jvbass glitch jvbass:3" | n <- [1]]
+  ] # cut "1" # delay "0.15" # coarse "2"
+
+let fit0 plist = slowcat[sound $ fit 3 (rotate 4 $ words "glitch click mouth mouth:2") p | p <- plist]
+
+d1 $ smash 2 [3] . density 2 $ sometimes (gap 2) $ fit0 [sometimes (within(0.25,0.5)(iter 2)) $ listToPat[0..5]] # gain "1.2" # hcutoff "0.29" # resonance "0.1" # bandf "0.5" # bandq "0.18"
+
+d1 $ smash 2 [3] . density 2 $ sometimes (gap 2) $ density 1.2 $ fit0 ["[~ 1 2 1, 0 0]", "[1 1 2 1, ~ 0]", "[2 4 4 1, 0 0]"]  # gain "1.2" # hcutoff "0.1" # resonance "0.1" # bandf "0.15" # bandq "0.1" # cut "1"
+
+
+let fit0 plist =
+
+d1 $ stut 2 0.5 0.25 . density 1.2 $ slowcat[sound $ fit 3 (rotate 4 $ words "glitch click cp mouth:2") p | p <- ["[~ 1 2 1, 0 0]", "[1 1 2 1, ~ 0]", "[2 4 4 1, 0 0]"]]
+
+"[~ 1 2 1, 0 0]", "[1 1 2 1, ~ 0]", "[2 4 4 1, 0 0]", 
+
+
+  (scale 0.23 0.666 $ slow 4 $ rand) # bandq "0.5" 
+
+
+d1 ( sound "uxay:1 ul:6 glitch !")
+
+# gain "1.2" 
+
+  # end rand
+
+
+cat[sound $ preplace (n,1) "[~ x] x x" "jvbass glitch jvbass:3" | n <- [1]]
+
+d1 $ sound $ fit 3 (words "bd sn cp") "0 1 2"
+
+d1 $ stack[
+  density 2 $ slowcat[sound $ preplace (n,1) "[~ x] x x" "jvbass glitch jvbass:3" | n <- [1]]
+  ] # cut "1" # delay "0.15" # coarse "2"
+
+
+    
+    listToPat [ch + n | ch <- chord]
+cps 1
+
+solo $ d1 $ (sound $ preplace (1,1) "x(3,8)" "cp sn") # gain "2"
+
+d1 $ sound $ "x(3,8)" ~ "bd sn"
+
+d1 $ sound "[jvbass jvbass:5]*3" |+| (shape $ "1 1 1 1 1" ~ "0.2 0.9") 
+
+b $ density 3.5 . whenmod 19 8 (sometimes (chop 2)) . every 13 (# (drum $ preplace (1,1) "x !!!" "cr cp")) $ stack[
+drum "~ [cp cp]",
+pre6 [1,2], --preplace (1,6) "[x ~] [~ x/2 ~ ~]" "bd",
+every 4 (const $ density 2 $ drum "ch*2 ~") $ sometimes (chop 2) $ drum "ch*2 oh",
+every 2 (chop 2) $ drum $ preplace (3,4) "[~ x] !" "cr oh"
+] # scl (scale 0.75 1 sine1) # sag (scale 0.75 1 sine1) # std "0.1"
+
+-- 8 - 0:makeawish
+m5 $ foldEvery [10..15] (# dur "0.05") $ slowcat[
+   chrot [52] "1(13,24,5)" [0,2,3],
+   chrot [52] "1(13,24,5)" [0,2,3],
+   chrot [52] "1(13,24,5)" [0,2,3],
+   chrot [52] "1(13,24,5)" [0,5,7],
+   chrot [52] "1(13,24,5)" [0,3,7]
+] # dur "0.5" # vel "0.25"
+
+
+
+
+hush
+
+---
+
+
+
+cps 1
+
+
+b $ density 3 $ stack[
+stut 2 0 0.25 $ drum "[ch(8,8), [cp oh]]",
+every 2 (const $ drum "cr(1,4,2)") $ drum "cr(1,4)",
+stut 2 0 0.75 $ drum "bd/4 bd/3 bd/2 bd"
+] # scl "0.01" # dch "0.1" # scr "0.75"
+
+
+--drum "cp/4 cp/3 cp/2 cp",
+
+b $ density 5 $ every 13 (# drum "cr !!!") $ stack[
+drum "~ [cp cp]",
+drum "bd [~ bd]",
+every 4 (const $ density 2 $ drum "ch*2 ~") $ sometimes (chop 2) $ drum "ch*2 oh",
+every 2 (chop 2) $ drum $ preplace (3,4) "[~ x] !" "cr oh",
+stut 2 0 0.75 $ drum "ag(5,8)"
+] # scl (scale 0.75 1 sine1) # sag (scale 0.75 1 sine1)
+
+q $ stut 2 0 0.75 $ stack[
+every 3 (stut 2 0 0.75) $ chrot [48,42,60] "~ 1 ~ ~" [0,0,3,7],
+chrot' [36, 38] 0 "1 ~ 1 1" [0,0,3,7]
+] # lforate "0.85" # lfoint (scale 0.15 0.25 rand) # dur "0.1" # decay "0.01" # cutoffegint "0.25"
+
+hush
+
+---
+cps 1
+
+b $ density 5 . every 8 (iter 2) $ sometimes rev $ stack[
+stut 2 0 0.75 $ drum $ fit 2 (words "bd ch bd ht bd cp") "[0 ~] [1 [~ 1]]",
+drum "[[ag*2 ag*2] !, cr/3 cr/2]"
+] # dt "0.05" # doh "0.5" # dch "1"
+
+
+
+b $ density 5.2 . sometimes (brak) . every 8 (iter 4) . every 7 (gap 2 . within(0, 0.25) (slow 2)) . gap 2 . every 2 (slowspread (stut 2 0.5) [0.25..0.75]) $ stack[
+drum "[[[bd ~] [~ bd]] [~ cr]]",
+drum "ch*2 oh",
+drum "[~ ch] !"
+]  # dch "0.05" # doh "0.05" 
+
+
+
+b $ stack[
+drum "bd [~ bd] ~ cr",
+drum "~ cp",
+every 4 (const (drum "ch(3,8,2)")) $ drum "ch(3,8)",
+every 3 (const (drum "cl cl cl*3 ~" )) $ drum "cl(5,8)"
+] # dch "0.01" # doh "0.01" # scl "1"
+
+
+d1 $ do n <- scale 0.05 0.15 sine1
+   slow 4 $ striate' 8 n $ sound "rim8"
+
+d1 $ slow 4 $ unwrap $ (\x -> striate' 8 x $ sound "breaks152") <$> (scale 0.05 0.1 $ slow 4 $ sine1)
+
+d1 $ stack[
+  jux (iter 2) . spread' (striate' 64) (scale 0.1 0.5 sine1) $ slow 8 $ sound "bev" # up (scale 0.5 1 sine1) # gain (scale 0.75 0.8 $ palindrome $ sine1)  # resonance "0.8" # bandq "0.1" # bandf "0.2"
+]
+
+
+cps 1
+
+d1 $ stack[superimpose ( (# pan "0.25") . (# speed "1") ) . slow 64 . spread' (striate' 256) (scale 0.05 0.1 $ rev $ sine1) $ sound "bev" # hresonance "0.001" # bandq "0.8" # bandf "0.8" # coarse (floor <$> scale 1 3 sine1) # vowel "a" # speed "-1" # pan "0.75" # gain "1", jux ((# bandf "1")) $ density 1.2 . sometimes ((# bandf "0.05") . brak) . every 8 (iter 4) . every 7 (gap 2 . within(0, 0.25) (slow 2)) . gap 2 . every 2 (slowspread (stut 2 0.5) [0.25..0.75]) $ sound "[[[glitch ~] [amencutup:3 ~]] [amencutup:4 glitch]]" # resonance "0.01" # bandq "0.5" # bandf "0.15" # cut "0.5" # gain "0.9"] # coarse "[1 4 2 8]/4" # delay "0.1" # delayfeedback "0.5" # delaytime "0.6"
+
+
+
+d1 $ jux ((# bandf "1")) $ density 1.2 . sometimes ((# bandf "0.05") . brak) . every 8 (iter 4) . every 7 (gap 2 . within(0, 0.25) (slow 2)) . gap 2 . every 2 (slowspread (stut 2 0.5) [0.25..0.75]) $ sound "[[[glitch ~] [amencutup:3 ~]] [amencutup:4 glitch]]" # resonance "0.01" # bandq "0.5" # bandf "0.15" # cut "0.5" # gain "0.9"
+
+d1 $ density 1.2 . sometimes brak . every 8 (iter 4) . foldEvery [5,7] (gap 2 . within(0, 0.25) (slow 2)) . gap 2 . every 2 (slowspread (stut 2 0.5) [0.25..0.75]) $ sound "[[[glitch [glitch/2 glitch]/2] [[amencutup:5 amencutup:3/2] !?]] [amencutup:2 [amencutup:0]]]" # resonance "1" # bandq "0.5" # bandf "0.1" # cut "0.5"
+
+
+
+hush
+
+
+d1 $ every 4 (within(0,0.5) brak) . sometimes (superimpose (# coarse (floor <$> scale 1 16 rand))) . jux (iter 4) $ foldEvery [3,4] (revArc(0,0.25)) $ stack[sound "amencutup:4(6,8,3)", sound "amencutup:3([6 3 3]/3,8,3)", sound "amencutup:0([4 2]/2,8,2)"] # cut "1" # accelerate (every 2 ((*(-0.5)) <$>) "1")
+
+
+--   density 2.5 $ (sound $ samples "[amencutup:3(2,8), amencutup:0(1,8,2), amencutup:4 [amencutup:4/2 amencutup:4/4]]" $ iter 1 $ run 1) # cut "1"
+
+hush
+
+
+hush

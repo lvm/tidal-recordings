@@ -1,0 +1,143 @@
+bbps 1
+
+cps 0.456
+
+d1 $ palindrome . every 2 (chop 2) . striate 2 $  sound "psr:6 e d d"
+ |+| shape "0.6"
+ |+| speed (((*2) <$>) $ scale 0.5 0.666 $ sine1)
+ |+| end rand
+
+d2 $ spread' density "1 1 1 2" . every 2 (iter 2) . chop 2 $ sound "visco:5*2 [psr:6 psr:6? !!] visco:5 unix:2"
+ |+| shape "0.6"
+ |+| speed (((*1.2) <$>) $ scale 0.5 0.666 $ sine1)
+ |+| end rand
+
+d3 $ stut 2 0.2 0.5 . every 3 (rev) $ sound "dr d dr*2 db"
+ |+| speed (((0.5+) <$>) $ every 3 ((2.5+) <$>) $ every 13 ((/2) <$>) "4")
+ |+| shape (every 4 ((0.2+) <$>) $ "0.666")
+ |+| end rand
+
+
+
+
+
+
+
+
+hush
+
+
+
+d1 $ every 13 (revArc(0.1, 0.2) . chop 2) . every 15 (chop 3 . rev) $ every 14 (chop 3 . density 2) $ every 14 (density 4) $ every 21 (|+| accelerate "-10") . every 17 (rev . (0.1 <~)) . every 8 (rev) . chop 8 $ sound "breaks165"
+ |+| shape (scale 0.2 0.5 $ sine1)
+ |+| cut "1"
+ |+| speed (((*1.2) <$>) $ scale 0.5 0.666 $ sine1)
+ |+| gain "1.2"
+
+ |+| vowel "i"
+
+
+
+d1 $ every 13 (revArc(0.1, 0.2) . chop 2) . every 15 (chop 3 . rev) $ every 14 (chop 3 . density 2) $ every 14 (density 4) $ every 21 (|+| accelerate "-10") . every 17 (rev . (0.1 <~)) . every 8 (rev) . chop 8 $ sound "breaks165"
+ |+| shape (scale 0.2 0.5 $ sine1)
+ |+| cut "1"
+ |+| speed (((*1.2) <$>) $ scale 0.5 0.666 $ sine1)
+ |+| gain "1.2"
+
+
+
+d1 $ every 5 (|+| speed "2.9") . spread' density (iter 4 "1.3 1.5 1.2 1.4") . every 2 (stut 2 0.5 0.5) . chop 8 $ sound "breaks165"
+ |+| shape (scale 0.4 0.9 $ sine1)
+ |+| cut "1"
+ |+| speed "3"
+
+
+d1 $ revArc(0.1, 0.25) . every 2 (|+| cut "0") . every 5 (|+| speed "2.9") . density 2 . stut 2 0.6 (-0.5) . chop 8 $ sound "breaks125"
+ |+| shape "0.666" --(scale 0.4 0.9 $ sine1)
+ |+| cut "1"
+ |+| speed (every 2 ((0.1-) <$>) "3")
+
+d1 $ revArc(0.1, 0.25) . every 2 (|+| cut "0") . every 5 (|+| speed "2.9") . density 2 . stut 2 0.6 (-0.5) . chop 8 $ sound "breaks165"
+ |+| shape (scale 0.4 0.9 $ sine1)
+ |+| cut "1"
+ |+| speed (every 2 ((0.1-) <$>) "3")
+
+d1 $ slow 2 . chop 8 $ sound "303:2"
+ |+| cut "1"
+ |+| speed "0.5"
+ |+| end rand
+
+ |+| shape (scale 0.4 0.9 $ sine1)
+ |+| speed (every 2 ((0.1-) <$>) "3")
+
+hush
+
+
+cps 0.5
+
+d1 $ juxcut rev . striate' 2 (0.5) . stut 2 0.9 (-0.5) . density 2 $ every 2 (slow 2) $ chop 2 $ sound "sundance:6"
+ |+| speed (every 9 ((*2) <$>) $ every 2 ((0.1-) <$>) $ iter 7 "3 2 1 0.8 3 2")
+ |+| gain (scale 0.5 0.7 $ sine1)
+ |+| cut "1"
+
+ |+| shape (scale 0.4 0.9 $ sine1)
+
+
+d1 $ striate' 2 (0.5) . stut 2 0.9 (-0.5) . density 4 $ every 2 (slow 2) $ every 3 (slow 4 . rev . chop 4) $ chop 2 $ sound "sundance"
+ |+| speed (every 9 ((*2) <$>) $ every 2 ((0.1-) <$>) $ iter 7 "3 2 1 0.8 3 2")
+ |+| shape (scale 0.4 0.9 $ sine1)
+ |+| gain (scale 0.5 0.7 $ sine1)
+ |+| cut "1"
+
+hush
+
+cps 0.5
+
+d2 $ echo (7/4) $ spread' density "2 1 3 1 2" $ striate' 2 (0.5) $ sound "d lsdj:2"
+ |+| speed (every 9 ((*2) <$>) $ every 2 ((0.1-) <$>) $ scale 0.5 0.8 $ sine1)
+
+d3 $ every 5 (stut 3 0.5 (-0.5)) . stut 2 0.5 (-0.5) . iter 3 . chop 3 $ every 2 (slow 2 . rev) . striate' 2 (0.5) $ sound "glitch:1"
+ |+| speed (every 3 ((0.1-) <$>) $ scale 0.5 0.99 $ "1")
+ |+| shape (scale 0.2 0.5 $ sine1)
+
+d4 $ iter 3 . slow 2 . stut 3 0.5 (-0.5) . iter 3 . chop 3 . striate' 2 (0.5) $ sound "e glitch:1 glitch v:3"
+ |+| speed (every 2 ((*2) <$>) $ scale 0.5 0.99 $ sine1)
+ |+| shape (scale 0.2 0.5 $ sine1)
+
+d5 $ juxcut rev . every 3 (retrig) $ jux ((|+| vowel "u") . every 3 (|+| vowel "a") . rev) $ sound "ade:3"
+ |+| speed (every 3 ((0.1-) <$>) $ scale 0.2 0.5 $ sine1)
+ |+| gain (scale 0.4 0.5 $ sine1)
+
+
+hush
+
+d4 $ iter 3 . slow 2 . stut 3 0.5 (-0.5) . iter 3 . chop 3 . striate' 2 (0.5) $ sound "e visco:5 visco:4 v:3"
+ |+| speed (every 2 ((*2) <$>) $ scale 0.5 0.99 $ sine1)
+ |+| shape (scale 0.2 0.5 $ sine1)
+
+d4 $ iter 3 . every 2 (slow 2 . stut 3 0.5 (-0.5) . iter 3 . chop 3 . striate' 2 (0.5)) $ sound "sn visco:5 visco:4 v:3"
+ |+| speed (every 2 ((*2) <$>) $ every 3 ((0.1-) <$>) $ scale 0.5 0.99 $ sine1)
+
+
+
+hush
+
+-- d3 $ every 2 (spin 8) . stut 2 0.5 0.1 . chop 2 . striate' 2 (0.1) $ (sound (pick <$> "lsdj:2 d:0 bin visco:5" <*> (density 2 . iter 4) "2 3"))
+--  |+| speed (every 4 () $ scale 0.5 0.7 $ sine1)
+
+d3 $ stut 2 0.5 0.1 . chop 2 . striate' 2 (0.1) $ sound "lsdj:2 d:0 house visco:5"
+ |+| speed (every 4 ((0.1-) <$>) $ scale 0.5 0.7 $ sine1)
+
+d4 $ slow 2 . stut 2 0.5 (-0.5) . chop 2 . striate' 2 (0.5) $ sound "e e v:4 v:3"
+ |+| speed (scale 0.5 0.7 $ sine1)
+
+d4 $ iter 3 . every 2 (slow 2 . stut 3 0.5 (-0.5) . iter 3 . chop 3 . striate' 2 (0.5)) $ sound "sn visco:5 visco:4 v:3"
+ |+| speed (every 2 ((*2) <$>) $ every 3 ((0.1-) <$>) $ scale 0.5 0.99 $ sine1)
+
+d5 $ every 3 (chop 2) . slow 2 . stut 2 0.5 (-0.5) . chop 2 . striate' 2 (0.5) $ sound "house house house*2 house"
+ |+| speed (((*2) <$>) $ scale 0.5 0.7 $ sine1)
+
+d6 $ stut 2 0.5 (-0.5) . every 2 (chop 2) . chop 2 . striate' 2 (0.5) $ sound "db hardcore db db"
+ |+| speed (((*2) <$>) $ every 9 ((0.1-) <$>) $ scale 0.5 0.7 $ sine1)
+ |+| shape (scale 0.4 0.9 $ sine1)
+ |+| gain (scale 0.4 0.5 $ sine1)

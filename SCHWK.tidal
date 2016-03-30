@@ -1,0 +1,39 @@
+bps 1
+
+-- d1 $ echo (7/4) $ density 2 $ every 4 (striate 32) $ sound "[house, house] {sn [~ sn*6]/5}"
+
+-- d2 $ stack[interlace (density 2 $ sound "jvbass*2 jvbass*2") (sound "[e mouth*4] mouth*8/5"), every 4 (|+| gain "1.0") $ density 2 $ striate 32 $ sound "jvbass*32" |+| gain "0.0"]
+--  |+| gain (slow 2 "0.5 0.3 0.1")
+
+-- d5 $ stack[sound "{[lsdj:5*4]/4 lsdj:2} mattel:5/4 lsdj:1/8 hh*2", sound "{lsdj:5*4 ~, lsdj:2*2} mattel:5*2 lsdj:1/4 hh*2" |+| slow 32 (vowel "o i e a")]
+--  |+| gain (slow 2 "0.5 0.3 0.1")
+
+-- d6 $ every 2 (rev) $ stack[density 2 $ sound "bass0 bass1 bass0 bass3", (slow 2 $ sound $ samples "kurt spoken:0 ~ ~" $ run 4) |+| end "0.2" |+| speed "0.5"]
+--  |+| accelerate "1 -5 1"
+--  |+| gain (slow 2 "0.5 0.3 0.1")
+
+
+-- d3 $ echo (7/4) $ stack[density 2 $ every 4 (striate 2) $ sound "dr*2 dr dr*2 dr", sound "dr2/8 ~ cp/7 ~", density 2 $ striate' 4 (0.1) $ sound "dr/4 dr/3 dr/2 dr"]
+--  |+| pan (slow 2 "0 1")
+--  |+| speed ((0.1+) <$> sine1)
+--  |+| gain (slow 2 "0.5 0.3 0.1")
+
+
+d4 $ every 7 ((|+| speed "1.2") . rev) $ every 16 (|+| speed ((2+) <$> triwave1)) $ every 2 (|+| speed ((0.5+) <$> sine1)) $ density 8 $ sound "arpy ~"
+ |+| speed ((0.1+) <$> sine1)
+ |+| gain (slow 2 "0.5 0.3 0.1")
+
+
+ |+| speed ((0.9+) <$> sine1)
+ |+| gain (slow 2 "0.8 1 0.9")
+
+
+d7 $ echo (3/3) $ every 2 (|+| speed ((0.5+) <$> sine1)) $ every 3 (|+| speed ((0.1+) <$> sine1)) $ density 2 $ sound "bass0 bass1 bass0 bass3"
+ |+| speed ((0.1+) <$> sine1)
+
+ |+| gain (slow 2 "0.5 0.3 0.1")
+
+d7 silence
+
+
+hush    

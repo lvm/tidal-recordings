@@ -1,0 +1,93 @@
+cps 0.666
+cps 1
+
+
+d1 $ within (0, 0.25) (chop 8) . brak . every 4 (chop 8) . every 2 rev $ sound "[sn [sn:3 sn:3], sf:3 sf:3]"
+ |+| speed (((*2) <$>) $ every 2 ((*0.6) <$>) $ "0.5")
+
+d2 $ every 4 (within (0, 0.25) (density 2)) $ sound "gabba:1(4,8)"
+ |+| speed "0.5"
+
+d3 $ echo (1/4) $ sound "visco:5(3,8) sid:2/4"
+ |+| speed (((*2) <$>) $ every 2 ((*0.6) <$>) $ "0.5")
+
+
+hush
+
+
+d4 $ slow 4 . rev $ (sound $ samples "atari ~" $ iter 8 $ run 8)
+ |+| cut "1"
+
+d5 $ jux (smash 2 [1..5]) . stut 2 0.5 (-0.5) . slow 2 . chop 8 $ sound "breaks125"
+ |+| cut "1"
+
+d5 $ smash 2 [1..5] . stut 2 0.5 (-0.5) . slow 2 . chop 8 $ sound "breaks125"
+ |+| cut "1"
+
+d5 $ slow 2 . chop 8 $ sound "breaks125"
+ |+| cut "1"
+
+d5 $ every 4 ( |+| speed (((*2) <$>) $ every 2 ((*0.6) <$>) $ "0.5") ) $ smash 4 [1..2] . chop 8 $ sound "amen"
+ |+| cut "1"
+
+
+d5 $ spread' slow "1 2" . every 2 (rev) . every 8 (smash 4 [1..4]) . chop 8 $ sound "amen"
+ |+| cut "1"
+
+d6 $ echo (1/4) $ chop 4 . smash 2 [1..4] $ (sound $ samples "alphabet" $ iter 27 $ run 27)
+
+
+d7 $ within (0, 0.25) (slow 2 . rev) . chop 2 . smash 2 [1..2] . chop 8 $ sound "amenfixed:3"
+ |+| cut "1"
+
+ |+| speed (((*2) <$>) $ every 2 ((*0.6) <$>) $ "0.767")
+
+d7 $ slow 2 . every 2 (rev) . retrig $ chop 8 $ sound "amenfixed"
+ |+| cut "1"
+
+ |+| speed (scale 0.25 0.4 $ sine1)
+ |+| slow 4 (vowel "t e t a")
+
+
+d5 $ juxcut rev . slow 8 . chop 16 $ sound "idmel"
+ |+| cut "1"
+ |+| speed (every 2 ((*1.2) <$>) $ every 9 ((0.1-) <$>) "1")
+ |+| gain (scale 0.8 0.8 $ sine1)
+ |+| vowel "c a c a"
+ |+| slow 8 (pan "1 0")
+
+
+d5 silence
+
+d8 $ every 2 (echo (7/4) . slow 2) $ stack[every 2 (density 2) $ sound "cp/4 sn:3", sound "visco:5(1,8) !? ~ cp"]
+
+
+d8 $ smash 4 [1..4] . chop 4 $ sound "rave:1"
+ |+| cut "1"
+
+d8 silence
+
+d7 $ every 4 (rev . slow 4 . iter 4 . chop 2) $ chop 8 $ (sound $ samples "amenfixed" $ iter 8 $ run 8)
+ |+| cut "1"
+
+d5 $ within (0, 0.25) (slow 2 . rev) . chop 2 . smash 2 [1..2] . chop 8 $ sound "amenfixed:7"
+ |+| cut "1"
+
+d7 $ slow 2 . chop 32 $ sound "amen"
+ |+| cut "1"
+
+d3 $ echo (7/4)  $ sound "visco:5(3,8) sid:2"
+ |+| gain "1"
+ 
+d1 $ sound "sid:2 [db:7 sid:2?] ~ db"
+
+d2 $ echo (7/4) $ sound "~ bd:8 sid:2(1,8) ~"
+ |+| shape (scale 0.5 0.5666 $ sinewave1)
+
+hush
+
+cps 0.666
+
+cps 1
+
+cps 1.2

@@ -1,0 +1,71 @@
+cps 1
+
+m1 $ stack[
+note $ toMIDI "~ ~ ~ c5",
+iter 4 $ slowcat[
+note $ toMIDI "[b4,e4] e4 b4 c4",
+note $ toMIDI "[c4,f4] [g4,d4] [a4,d4] b4"
+]
+]
+|+| dur "0.5"
+|+| vel "0.9"
+|+| sustainpedal (scale 0 0.65 sine1)
+
+hush
+
+b $ every 8 (sometimes (chop 2)) . every 5 (revArc(0, 0.5)) $ slowcat[
+  stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ oh ~] [~ oh ~ ~]"
+  ]
+  ,
+  stack[
+   drum "[bd ~ ~ bd] [~ ~ bd/2 ~]"
+   ,
+   drum "[~ sn ~ ~] [~ sn ~ sn]"
+   ,
+   drum "[ch ch*2 ch ch] [ch ch*2 ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ]
+|+| hg "0.75"
+|+| doh "0.2"
+|+| dch "0.2"
+|+| stt "0"
+|+| std "0.25"
+
+
+q $ every 8 (sometimes (chop 2)) . every 5 (revArc(0, 0.5)) $ slowcat[
+  stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ oh ~] [~ oh ~ ~]"
+  ]
+  ,
+  stack[
+   drum "[bd ~ ~ bd] [~ ~ bd/2 ~]"
+   ,
+   drum "[~ sn ~ ~] [~ sn ~ sn]"
+   ,
+   drum "[ch ch*2 ch ch] [ch ch*2 ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ]
+|+| cutoffegint (scale 0 0.9 sine1)
+
+hush
+
+
+q $ note $ toMIDI "c4 c5 c4"
+

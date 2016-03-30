@@ -1,0 +1,86 @@
+
+cps 0.7
+
+cps 0.666
+
+cps 0.5
+
+b $ retrig $ every 4 (revArc(0, 0.5)) $ stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   every 3 (within (0.5, 0.99) (chop 2)) $ drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ oh ~] [~ ~ oh ~]"
+  ]
+
+
+b $ retrig $ every 4 (revArc(0, 0.5)) $ stack[
+   drum "[bd ~ ~ ~] [~ bd bd bd]"
+   ,
+   every 3 (within (0.5, 0.99) (chop 2)) $ drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ oh ~] [~ ~ oh ~]"
+  ]
+
+
+b1 $ every 4 (revArc(0, 0.5)) $ stack[
+  rev $ slowcat[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   drum "[bd lt ~ ~] [~ bd lt ~]"
+   ,
+   drum "[bd ~ ~ ~] [~ lt bd ~]"
+   ,
+   drum "[bd lt ~ ~] [~ bd lt bd]"
+   ]
+   ,
+   every 3 (within (0.5, 0.99) (chop 2)) $ drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch [ch, ch] ch ~] [ch ~ ~ ch]"
+   ,
+   drum "[~ ~ oh/2 ~] [~ ~ oh cr/4]"
+   |+| scr "0.95"
+  ]
+
+
+b $ every 3 (within (0, 0.5) (chop 2)) . every 4 (revArc(0, 0.5)) $ slowcat[
+  stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ oh ~] [~ oh ~ ~]"
+  ]
+  ,
+  stack[
+   drum "[bd ~ ~ bd] [~ ~ ~ ~]"
+   ,
+   drum "[~ sn ~ ~] [~ sn ~ sn]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ,
+  stack[
+   drum "[~ bd ~ ~] [bd ~ ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ sn [~ sn]/2 [~ sn]/2]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ]
+  |+| dhg "0.75"
+  |+| doh "0.2"
+  |+| dch "0.2"
+
+
+hush

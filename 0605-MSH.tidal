@@ -1,0 +1,18 @@
+cps 1
+
+d1 $ slow 4 $ sound "click*4" |+| speed (slow 2 $ (scale 0.5 2 rand)) |+| end "0.1"
+
+d2 $ slow 2 $ every 4 ((|+| accelerate "-1") . slow 2) $ sound "[bd:8*2, ~ [~ glitch:4*2] ~ ~]"
+|+| pan (slow 2 sinewave1)
+
+let lpf c r = (|+| cutoff c) . (|+| resonance r)
+
+d3 $ lpf "0.05" "0.9" $ slow 8 $ striate 64 $ sound "hidden"
+|+| speed "0.5"
+|+| gain "0.7"
+
+d4 $ lpf "0.05" "0.9" $ every 4 (striate 2) $ every 8 (juxcut rev . density 1.5) $ sound (samples "unix*4" (run 8)) |+| end "0.1"
+
+d5 $ sound "ae:2 ae:7"
+
+hush

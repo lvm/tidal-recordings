@@ -1,0 +1,24 @@
+cps 3
+
+d1 $ striate' 2 (0.5) . slow 12 . chop 2 . stut 2 0.5 0.5 . every 2 (rev) $ palindrome $ sound "~ lsdj:2 visco:5 !?"
+ |+| shape "0.7"
+ |+| begin rand
+ |+| speed (((0.1-) <$>)"1")
+
+d1 $ every 2 ((0.1 <~)) . every 6 (rev . slow 2 . density 3) . slow 12 . iter 3 . chop 8 . every 2 palindrome $ spread' (striate' 6) (((+0.1) . (*0.2)) <$> slow 32 sinewave1) $ sound "lsdj:2 ~ visco:5 !?"
+ |+| shape "0.9"
+ |+| speed (((0.1-) <$>)"1")
+
+d2 $ striate' 32 (0.1) $ every 2 ((0.1 <~) . (|+| speed "2")) $ every 3 ((|+| speed "1")) $ every 4 ((|+| speed "1")) $ smash 3 [2..4] $ sound "bd jvbass !! visco:5"
+ |+| speed (every 2 ((0.1-) <$>)"0.5")
+ |+| pan (slow 4 triwave1)
+ |+| shape "0.9 0.5"
+ |+| end rand
+
+d6 $ iter 3 . chop 2 . brak $ every 2 (rev) $ sound "[{rapman:1, visco:5 tok:4}%2, mattel:2/2 [~, lsdj:2 !?]?]"
+ |+| end rand --"0.2 0.1 0.2"
+ |+| speed (every 3 ((0.1-) <$>) $ every 2 ((+0.2) <$>) $ "1 0.9 1")
+ |+| shape "0.666"
+
+
+hush

@@ -1,0 +1,155 @@
+cps 1
+
+b $ stack[
+--slowcat[drum "bd ~", append' (drum "bd ~") (drum "[bd bd] [[~ bd] !]")],
+drum "[bd bd] [[~ bd] !]",
+density 2 $ stack[drum "ch ch ~ ~", append' (drum "~ ~ ch ch") (slowcat[drum "~ ~ oh ch",drum "~ ~ oh ch*2",drum "~ ~ oh oh"])],
+chop 2 . density 2 $ drum "oh(1,4)",
+slowcat[drum "~ cp", drum "~ [cp [~ cp]]"]
+--,drum "[cl(5,8)]/2"
+]
+|+| scl "0.025" # scp "0.6"
+
+
+---
+
+hush
+
+cps 1
+
+let sw f = sometimes(within (0, 0.5) f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+
+let pbd = [drum "[~ bd ~ bd] [~ ~ ~ ~]", drum "[~ bd ~ ~] [~ bd ~ ~]"]
+    psn = [drum "[~ ~ ~ ~] [sn ~ ~ sn]", drum "[~ ~ ~ ~] [~ ~ sn ~]"]
+    poh = [drum "[ ~ ~ ] [oh ~]", drum "[ ~ ~ ] [~ oh]"]
+
+b $ every 4 (sw' 0 0.25 (slow 2)) $ sw' 0 0.33 ((#std "0.25")) . sw ( every 8 (chop 2) . (# dch "0.1")) $ stack[
+slowcat[slowcat pbd, drum "bd(5,8)"]
+,
+slowcat[drum "sn(7,8)", slowcat psn]
+,
+drum "[ch(2,2) !] !", cat poh, drum "[~ ~ ~ ~] [~ cp ~ [cp]/3]"
+]
+|+| hg "0.75"
+|+| dch "0.1"
+|+| stt "0"
+|+| std "0"
+
+hush
+
+
+-- synth strings 2
+m5 $ stack[
+chop 4 . iter 2 $ slowcat[
+note $ toMIDI "c4",
+note $ toMIDI "d4",
+note $ toMIDI "f4",
+note $ toMIDI "g4"
+       ]
+]
+|+| vel (scale 0.15 0.2 sine1)
+|+| dur "0.9"
+|+| modwheel (scale 0 0.666 sine1)
+
+-- synth brass 1
+
+hush
+
+m4 $ slow 4 $ sometimes rev $ slowcat[
+iter 8 $ note $ toMIDI "f4 d5 d5 e4 e4 f5 d5 a5"
+]
+|+| dur "0.5"
+|+| vel (scale 0.12 0.23 $ slow 2 $ sine1)
+|+| sustainpedal (scale 0 0.95 sine1)
+|+| modwheel (scale 0 0.666 sine1)
+
+
+
+-- sin slowcat
+m2 $ slow 4 . every 2 rev $ slowcat[
+iter 8 $ note $ toMIDI "f4 d5 d5 e4 e4 f5 d5 a5"
+,
+slowcat[
+note $ toMIDI "f4*2 d4"
+,
+note $ toMIDI "d4*2 e3"
+,
+note $ toMIDI "e3*2 f4"
+,
+note $ toMIDI "d4*2 a4"
+]
+]
+|+| dur "0.5"
+|+| vel (scale 0.12 0.23 $ slow 2 $ sine1)
+|+| sustainpedal (scale 0 0.95 sine1)
+|+| modwheel (scale 0 0.666 sine1)
+
+
+
+
+
+hush
+
+m2 silence
+
+
+
+-- m2 $ slow 4 . every 2 rev $ slowcat[
+-- iter 8 $ note $ toMIDI "f4 d4 d4 e4 e4 f5 d5 a5"
+-- ,
+-- slowcat[
+-- note $ toMIDI "f3*2 d3"
+-- ,
+-- note $ toMIDI "d3*2 e3"
+-- ,
+-- note $ toMIDI "e3*2 f4"
+-- ,
+-- note $ toMIDI "d4*2 a4"
+-- ]
+-- ]
+
+-- synth bass 1
+m2 $ sometimes (#sustainpedal "0") $ stack[
+  slowcat[
+        stack[slow 8 $ slowcat[notem "~ ~ ~ d5",notem "~ ~ ~ e5"],notem "c4 ~ f4 ~"], notem "~ c4 ~ d4"
+  ],
+  slowcat[
+  notem "~ c5/2 ~ ~", notem "d5/2 ~ ~ ~"
+  ]
+]
+|+| dur "0.9"
+|+| vel "0.23"
+|+| sustainpedal (scale 0 0.95 sine1)
+
+
+
+
+
+
+
+-- fretless bass
+m2 $ slowspread iter [4,2] $ stack[
+  slowcat[
+  note $ toMIDI "c4 ~ b4 ~",
+  note $ toMIDI "~ c3 ~ f3",
+  note $ toMIDI "~ c3 b4 f3",
+  note $ toMIDI "c4 ~ b4 f3",
+  note $ toMIDI "c4 c3 ~ f3",
+  note $ toMIDI "c4 c3 b4 ~",
+  note $ toMIDI "c4 ~ b4 ~",
+  note $ toMIDI "~ d3 ~ g3",
+  note $ toMIDI "c4 d3 b4 ~",
+  note $ toMIDI "c4 d3 ~ g3",
+  note $ toMIDI "c4 ~ b4 g3",
+  note $ toMIDI "~ d3 b4 g3"
+]
+]
+|+| dur "0.9"
+|+| vel "0.3"
+|+| sustainpedal (scale 0 0.95 sine1)
+
+
+
+hush

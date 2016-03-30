@@ -1,0 +1,20 @@
+bps 1
+
+d1 $ slow 5 . every 7 ((0.25 <~) . slow 2) $ every 5 (density 2) $ rev . striate 2 . density 2 $ sound "bass3 bass3 !?"
+ |+| speed (every 2 ( (*4) <$> ) $ every 3 ( (*3) <$> )  $ every 4 ( (*2) <$> ) $ iter 4 "0.5 2 0.888 1")
+ |+| vowel "a"
+ |+| gain sinewave1
+
+--d2 $ every 9 (echo (7/4)) $ every 8 (rev) $ every 4 (density 2) $ sound "akai akai:1 akai:2" --sound "akai akai:1 {akai:2 !?}"
+
+d2 $ every 8 (rev) $ every 3 (striate 2) $ sound "akai akai:1*2? akai:2"
+ |+| gain (slow 2 "0.9 0.7 0.5 0.3 0.2")
+
+ |+| accelerate "-5"
+
+d3 $ slow 8 $ stack[every 4 (striate 4) $ striate 2 . density 2 $ sound "dr", sound "dr2/4", sound "dr dr:2/9"]
+ |+| accelerate "-5"
+
+d1 silence
+
+hush

@@ -1,0 +1,7 @@
+bps (64/60)
+
+--http://365tidalpatterns.tumblr.com/post/82839853952/pattern-130
+
+d1 $ stack [slowspread ($) [(|+| speed "0.8"), slow 1, striate 2, jux (iter 8)] $ stack [ every 2 (density 2) $ every 3 (density 2) $ every 4 (density 2) $ sound "house*4 less:2", sound (samples "peri*16" (run 55))], every 4 (density 2) $ every 3 (density 2) $ slow 3 $ sound "~ gab:4*2" |+| cut "1"]
+
+hush

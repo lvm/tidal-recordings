@@ -1,0 +1,44 @@
+bps (69/60)
+
+bps (140/60)
+
+d1 $ slow 4 $ every 3 ((density 2) . (striate' 64 (0.1)) . (|+| delay "0.5") . (|+| delayfeedback "0.5") . (|+| delaytime "0.5")) $ stack[sound "~ malescream:7", every 2 (density 2) $ echo (7/4) $ sound "~ ~ malescream:6"]
+ |+| speed "2"
+
+d2 $ echo (7/4) $ every 5 (slow 8) $ every 4 (density 2) $ density 8 $ striate' 32 (0.5) $ smash 4 [4..8] $ slowspread ($) [(|+| speed "5.8"), slow 16, striate 2, jux (iter 8)] $ sound (samples "mattel" (iter 5 "0 1 2 3"))
+ |+| gain "1"
+
+
+hush
+
+d3 $ echo (7/4) $ every 4 (brak . (|+| speed "1.5") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev . (striate' 32 (0.1))) $ slowspread ($) [(|+| speed "0.8"), slow 2, striate 2, jux (iter 2)] $ stack[sound "ifdrums*2 fat909:3 fat909:5 dr2*4", sound "hand*8/4 ~", sound "~ malescream:6/2 ~", interlace (every 5 (|+| slow 2 (vowel "i a")) $ sound "sn ~ malescream:9 bd") (sound (samples "jvbass ~ ~" (iter 3 "0 2 3")))]
+ |+| speed "1.5"
+
+
+bps (140/60)
+
+-- http://freesound.org/people/plagasul/packs/3/
+$
+
+d3 $ echo (7/4) $ every 32 (echo (1/2)) $ every 6 ((slow 4) . (|+| speed "0.9")) $ every 24 (brak . (|+| speed "1.2") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev . (striate' 32 (0.1))) $ slowspread ($) [(|+| speed "0.8"), slow 2, striate 2, jux (iter 2)] $ stack[sound "ifdrums*2 fat909:3 fat909:5 dr2*4", sound "hand*8/4 ~", sound "~ malescream:6/2 ~", interlace (every 5 (|+| slow 2 (vowel "i a")) $ sound "sn ~ malescream:9 bd") (sound (samples "jvbass ~ ~" (iter 3 "0 2 3"))), (every 4 (rev) $ slowspread ($) [(|+| speed "5.8"), slow 16, striate 2, jux (iter 8)] $ sound "dr2:1 ~ [dr2*8/2]/2 dr2"), (every 16 (echo (7/8)) $ density 2 $ sound (samples "jvbass ~" (iter 3 "0 2 4 5")))]
+ |+| speed "1.5"
+
+
+d2 $ echo (7/4) $ every 16 (echo (7/8)) $ density 2 $ sound (samples "jvbass ~" (iter 3 "0 2 4 5"))
+ |+| gain "1.1"
+
+---
+hush
+---
+
+
+every 3 (|+| slow 2 (vowel "u o")) $ 
+
+
+
+d4 $ 
+ |+| speed "1.5"
+ |+| end (slow 2 "0.1 0.3")
+
+
+hush

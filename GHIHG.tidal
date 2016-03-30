@@ -1,0 +1,55 @@
+cps 0.5
+
+
+-- d1 $ fadeOut 4 $ every 2 (rev) . density 3 $ sound "tabla:2 !? tabla:3*2? tabla:4"
+--  |+| cut "1"
+--  |+| speed (every 2 ((/2) <$>) $ iter 4 "1 0.5 1 0.666 0.5")
+
+-- d2 $ fadeOut 4 $ echo (7/4) $ chop 6 . every 2 (slow 2) . density 2 $ sound "drum:1 !? drum:1 !?"
+--  |+| end rand
+
+-- d3 $ chop 4 . density 6 $ sound "{rhodes:7*2 ~ rhodes:9/4}%2"
+--  |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 7 ((*0.5) <$>) $ every 14 ((*0.5) <$>) $ every 2 ((/2) <$>) $ every 4 ((*0.2) <$>) $ iter 4 "1 0.5 1 0.666 0.5 2")
+--  |+| end rand
+
+ |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 7 ((*0.5) <$>) $ every 14 ((*0.5) <$>) $ every 2 ((/2) <$>) $ every 4 ((*0.2) <$>) $ iter 4 "1 0.5 1 0.666 0.5 2")
+
+-- d3 $ every 3 (rev) . density 3 $ sound "rhodes:2 ~ ~ visco:5*2"
+--  |+| end rand
+
+
+
+-- d4 $ fadeOut 3 $ chop 4 . every 2 (chop 2) . density 3 $ stack[sound "stab stab:2", chop 4 $ sound "stab:3*2" |+| cut "1"]
+--  |+| speed (scale 0.5 1 $ sine1)
+--  |+| end rand
+--  |+| gain sine1
+
+
+
+cps 0.666
+
+d1 $ fadeOut 4 $ chop 2 $ sound "sn:1"
+ |+| cut "1"
+
+d2 $ fadeOut 4 $ every 3 (rev) . chop 2 . density 2 $ stack[sound "~ e*2 visco:5/2 e",
+                                                palindrome . whenmod 6 4 (chop 2) $ sound "visco:3 visco:2/2"
+                                                 |+| speed (((*1.4) <$>) $ every 2 ((*1.2) <$>) $ every 4 ((*1.23) <$>) $ iter 4 "1 0.5 1 0.666 0.5 2")
+]
+
+-- d3 $ fadeOut 2 $ every 3 (rev) . density 3 $ sound "rhodes:2 ~ ~ ~"
+
+d4 $ fadeOut 4 $ chop 8 . every 5 (slow 2) . stut 2 0.5 0.5 . density 3 $ stack[sound "~ glitch:2 ~ ~", sound "~ ~ glitch2:5/2 ~", sound "~ ~ ~ mattel:2"]
+ |+| end rand
+
+
+
+-- d5 $ fadeOut 4 $ echo (2/4) $ slow 2 . every 3 (|+| vowel "a") . striate' 8 (0.5) $ sound "~ print ~ ~"
+--  |+| end rand
+--  |+| vowel "u"
+
+d5 silence
+
+hush
+
+
+

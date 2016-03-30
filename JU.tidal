@@ -1,0 +1,124 @@
+cps 0.666
+
+d1 $ stack[
+sound "bd:8 bd8:1 ~ bd:9"
+|+| coarse "11 16"
+,
+within (0, 0.5) (striate 2) . every 2 (striate 2) . striate 2 $ sound "ma8 ~ ma8 ~"
+,
+within (0, 0.5) (striate 2) . every 2 (striate 2) . striate 2 $ sound "cy/5 ~"
+,
+slow 2 . striate 2 $ sound "~ ~ jvbass bass*2"
+|+| speed (iter 4 . scale 0.5 0.9 $ "1")
+]
+|+| speed (iter 4 . scale 0.5 0.9 $ "0.5")
+
+---
+
+d1 $ stack[
+sound "bd:8 bd8:1 ~ bd:9"
+|+| coarse "11 16"
+,
+within (0, 0.5) (striate 2) . every 2 (striate 2) . striate 2 $ sound "ma8 ~ ma8 ~"
+,
+within (0, 0.5) (striate 2) . every 2 (striate 2) . striate 2 $ sound "cy/5 ~"
+,
+slow 2 . striate 2 $ sound "~ ~ jvbass bass*2"
+|+| speed (iter 4 . scale 0.5 0.9 $ "1")
+]
+|+| speed (iter 4 . scale 0.5 0.9 $ "0.5")
+
+d1 silence
+
+d2 $ stack[
+every 2 (rev) . density 3 . chop 2 $ (sound $ samples "amencutup*2" $ iter 6 $ run 6)
+|+| coarse "[16 1]/2"
+|+| gain "[0 1]/2"
+,
+every 4 (rev) . density 3 . chop 2 $ (sound $ samples "amencutup*2" $ iter 6 $ scan 6)
+|+| coarse "[1 16]/2"
+|+| gain "[1 0]/2"
+]
+
+
+
+d2 $ every 2 (rev) . density 3 . chop 2 $ (sound $ samples "amencutup*2" $ iter 6 $ run 6)
+|+| coarse "[2 1]/2"
+
+d2 $ every 4 (rev) . density 3 . chop 2 $ (sound $ samples "amencutup*2" $ iter 6 $ scan 6)
+|+| coarse "[1 2]/2"
+
+
+
+d2 $ every 2 (rev) . density 4 . chop 2 $ (sound $ samples "amencutup*2" $ iter 6 $ run 6)
+|+| coarse "11 [2 1]/2"
+|+| speed (((*2)<$>)$ scale 0.5 0.9 $ "0.5")
+
+d3 $ sound "~ gab:4 gab:7 !"
+|+| coarse "11"
+|+| speed (((*2)<$>)$ scale 0.5 0.9 $ "0.5")
+|+| gain "0.7"
+
+d3 silence
+
+cps 0.5
+
+d4 $ every 2 (rev) $ stack[
+ every 2 (density 2) . slowspread (striate) [2,4] . stut 2 0.5 0.1 $ sound "~ db*2 d sn:3"
+|+| coarse "11"
+,
+ddd $ sound "~ bd8:1 ~ unix ~ unix"
+|+| coarse "~ 16 ~ 1  11"
+,
+juxcut rev . density 2 $ sound "deepbass"
+|+| coarse "[16 1 42 11]/4"
+|+| gain "0.3"
+|+| speed "[1 2 3 4]/4"
+]
+
+
+hush
+
+
+
+let ddd = (|+| delay "0.3")  . (|+| delaytime "0.3") . (|+| delayfeedback "0.3") 
+
+
+
+d2 $ stack[
+slowspread (slow) [2, 4] . chop 16 $ sound "ursu:3"
+|+| cut "1"
+|+| speed (every 2 ((/2) <$>) "1")
+|+| coarse "11"
+|+| crush "4"
+|+| gain "[1 0]/2"
+,
+fadeOut 32 $ slowspread (density) [2,4,2] . stut 2 0.9 (-0.1) . every 5 (ddd) . within (0, 0.5) (chop 2 . rev) . chop 2 $ (sound $ samples "amencutup*2" $ iter 8 $ run 8)
+,
+sound "gab:8*2?"
+|+| coarse "11"
+]
+
+
+d2 $ stack[
+slowspread (density) [2,4,2] . stut 2 0.9 (-0.1) . within (0, 0.5) (chop 2 . rev) . chop 2 $ (sound $ samples "amencutup*2" $ iter 8 $ run 8)
+]
+
+hush
+
+
+d2 $ stack[
+sound "gabba:1 visco:5"
+|+| coarse "11"
+|+| gain "0.666 1"
+,
+chop 2 . every 2 (rev) . striate 2 . slowspread (density) [2,3,2] $ sound "~ ~ akai:3? akai:5"
+|+| coarse "4"
+,
+every 2 (rev) . striate 2 . slowspread (density) [2,3,2] $ sound "~ glitch:2 ~"
+|+| coarse "11"
+]
+
+
+hush
+

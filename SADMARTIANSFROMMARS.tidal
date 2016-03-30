@@ -1,0 +1,50 @@
+bps (69/60)
+
+bps 0.3
+
+d1 $ every 16 ((jux (iter 8)) . (|+| vowel "i") . (0.5 ~>)) $ every 2 (rev) $ stack [sound "house house", every 3 (rev . (0.25 <~)) $ every 4 (0.25 <~) $ smash 8 [4..8] $ striate' 32 (0.1) (sound "jvbass [jvbass*16, [~, jvbass*8]/2]/4")]
+  |+| delay "0.9"
+  |+| delayfeedback "0.5"
+  |+| delaytime "0.9"
+  |+| slow 32 (vowel (pick <$> "a i o i e i u" <*> run 6))
+  |+| gain "1.1"
+
+d2 $ every 3 (echo (5/4)) $ density 2 $ every 2 (jux (iter 8)) $ every 4 (rev) $ stack [sound "house house ~ [{ht, house, casio/2, house*8/2}]/4", every 3 (rev . (0.25 <~)) $ every 4 (0.25 <~) $ (sound "house:3/2 ~ ifdrums:1*2/8 e/6")]
+  |+| shape triwave1
+  |+| gain "1.1"
+
+d3 $ echo (7/4) $ whenmod 8 4 (echo (7/8)) $ jux rev $ every 5 ((density 2) . (striate' 2 (2.5))) $ density 2 $ every 2 (jux (iter 8)) $ every 4 (rev) $ stack [sound "house house ~ [{ht, house, casio/2, house*8/2}]/4", every 3 (rev . (0.25 <~)) $ every 4 (0.25 <~) $ (sound "house:3/2 ~ ifdrums:1*2/8 e/6")]
+  |+| shape triwave1
+  |+| gain (slow 2 "0.6 0.7")
+
+d4 $ every 5 ((|+| gain "0.5") . (|+| speed ((10+) <$> sine1))) $ interlace (every 2 (jux (rev)) $ stack [sound "speech ~", every 3 (rev . (0.25 <~)) $ every 4 (0.25 <~) $ smash 8 [4..8] $ striate' 32 (0.1) (sound "jvbass [jvbass*16, [~, jvbass*8]/2]/4"), sound (samples "moog/4" (iter 3 $ run 3))]) (every 2 (rev) $ stack [sound "house house", every 3 (rev . (0.25 <~)) $ every 4 (0.25 <~) $ smash 8 [4..8] $ striate' 24 (0.1) (sound "bass [bass*16, [~, bass*8]/2]/4")])
+  |+| delay "0.5"
+  |+| delayfeedback "0.5"
+  |+| delaytime "0.9"
+  |+| vowel "a"
+  |+| gain "0.8"
+
+
+------------------------------------------------
+
+--bps (64/60)
+
+d1 $ every 2 (rev) $ stack [sound "house house", every 3 (rev . (0.25 <~)) $ every 4 (0.25 <~) $ smash 8 [4..8] $ striate' 32 (0.1) (sound "bass [bass*16, [~, bass*8]/2]/4")]
+
+  |+| slow 32 (vowel (pick <$> "a i o i e i u" <*> run 6))
+
+d2 $ density 2 $ every 2 (jux (iter 8)) $ every 4 (rev) $ stack [sound "house house ~ [{ht, house, casio/2, house*8/2}]/4", every 3 (rev . (0.25 <~)) $ every 4 (0.25 <~) $ (sound "house:3/2 ~ ifdrums:1*2/8 e/6"), sound "hand*4 fat909:4*8/8"  |+| slow 32 (vowel (pick <$> "a i o i e i u" <*> run 6)) |+| speed (slow 2 "0.5 1") |+| gain "0.5"]
+  |+| shape triwave1
+
+d3 $ stack[sound "house ~ [{ht, house, casio/2, house*8/2}]/4 house:7 ~ house", (echo (7/4) $ slow 3 $ striate' 64 (0.1) $ sound "pad:4/3" |+| speed rand |+| begin rand |+| gain "0.5")]
+
+-- d4 $ jux (iter 2) $ every 2 ((0.25 <~)) $ slowspread ($) [(|+| speed "2 5 0.9"), rev, (density 2), (|+| begin rand)] $ interlace (sound "house house:5 ~ jvbass") (sound "~ house:7")
+--   |+| speed "0.7"
+--   |+| shape triwave1
+--   |+| delay "0.1"
+--   |+| delayfeedback "0.5"
+--   |+| delaytime "0.1"
+
+
+
+hush

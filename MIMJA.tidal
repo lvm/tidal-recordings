@@ -1,0 +1,72 @@
+cps 0.3
+
+
+d4 $ echo (7/8) $ every 2 (echo (7/4)) $ density 3 . stut 2 0.9 (-0.5) $ sound "unix ~ unix:1 ~"
+ |+| speed (every 4 ((*2) <$>) $ every 10 ((0.1-) <$>) $ iter 4 "0.7 0.92 0.93")
+
+d2 $ echo (7/8) $ every 2 (echo (7/4)) $ density 3 . stut 2 0.9 (-0.5) $ sound "bass3"
+ |+| speed (every 4 ((*2) <$>) $ every 10 ((0.1-) <$>) $ iter 4 "0.7 0.92 0.93")
+
+-----------------------------------
+
+
+hush
+
+d3 $ echo (7/8) $ every 2 (echo (7/4)) $ density 3 . stut 2 0.9 (-0.5) $ sound "pianog:5"
+ |+| speed (every 4 ((*2) <$>) $ every 10 ((0.1-) <$>) $ iter 4 "0.7 0.92 0.93")
+ |+| begin "0.3"
+ |+| end "0.4"
+
+
+
+d3 $ echo (7/8) $ every 2 (echo (7/4)) $ density 3 . stut 2 0.9 (-0.5) $ sound "pianog:5"
+ |+| speed (((*0.8) <$>) $ every 4 ((*1.2) <$>) $ every 2 ((*1.3) <$>) $ iter 4 "0.7 0.92 0.93")
+ |+| speed (((*0.8) <$>) $ every 4 ((*1.2) <$>) $ every 2 ((*1.3) <$>) $ sinewave1)
+ |+| begin "0.3"
+ |+| end "0.4"
+
+
+d3 $ echo (7/8) $ every 2 (echo (7/4)) $ density 3 . stut 2 0.9 (-0.5) $ sound "pianof:7"
+ |+| speed (((*0.8) <$>) $ every 4 ((*1.2) <$>) $ every 2 ((*1.3) <$>) $ iter 4 "0.7 0.92 0.93")
+ |+| speed (((*0.8) <$>) $ every 4 ((*1.2) <$>) $ every 2 ((*1.3) <$>) $ sinewave1)
+ |+| begin "0.3"
+ |+| end "0.4"
+
+
+hush
+------
+
+
+cps 0.3
+
+d2 $ every 4 (rev) $ stack [sound "house house ~ [{ht, house, unix:3, house*8/2}]/4", every 3 (rev . (0.25 <~)) $ every 4 (0.25 <~) $ (sound "house:3/2 ~ ifdrums:1*2/8 e/6"), sound "hand*4 fat909:4*8/8"  |+| slow 32 (vowel (pick <$> "a i o i e i u" <*> run 6)) |+| speed (slow 2 "0.5 1") |+| gain "0.5"]
+  |+| shape "0.5"
+
+d3 $ stack[sound "house ~ [{ht, house, ~, house*8/2}]/4 house:7 ~ house", (echo (7/4) $ spread' striate "2 8 2" $ sound "pad:4/3" |+| speed "0.2" |+| begin rand |+| gain "0.5")]
+ |+| shape "0.5"
+
+d4 $ echo (7/8) $ every 3 (echo (7/4)) $ every 4 (rev) $ sound "pianoa"
+ |+| speed (((*2) <$>) $ every 4 ((*1.2) <$>) $ every 2 ((*1.3) <$>) $ sinewave1)
+ |+| gain "0.8"
+ |+| cut "0.9"
+
+d5 $ striate 8 $ sound "koy"
+ |+| speed ((((*2) . (0.1-)) <$>) $ every 4 ((*1.2) <$>) $ every 2 ((*1.3) <$>) $ sinewave1)
+
+d6 $ spread' density "2 1 4 1 2" . spread' striate "4 2 4 8 4 2" $ sound "unix:2"
+
+
+hush
+
+
+
+
+
+d4 $ echo (7/8) $ sound "pianoa"
+ |+| speed (((0.1-) <$>) $ ((*2) <$>) $ every 4 ((*1.2) <$>) $ every 2 ((*1.3) <$>) $ sinewave1)
+ |+| gain "0.8"
+
+
+
+
+hush

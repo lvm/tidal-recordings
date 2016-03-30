@@ -1,0 +1,98 @@
+
+cps 0.5
+
+b1 $ slow 2 $ stack[
+   rev $ chop 2 $ drum "[ch ~ ch ~] [~ ~ ch ~] [~ ~ ch ~] [~ ch ~ ~]"
+   |+| dch  "0.1"
+   |+| dhg "0.1"
+   ,
+   every 2 (within (0, 0.5) (slow 8)) . every 5 (within (0, 0.5) (slow 4)) . gap 2 . chop 2 $ chop 4 $ drum "cl(16,16)"
+   |+| scl (((0.7-) <$>) $ ((0.5-) <$>) $ iter 4 $ sometimes rev . density 2 $ scale 0.01 0.2 $ sine1)
+   |+| lcl (scale 0.15 0.25 $ sine1)
+   ,
+   drum "[~ ~ ch ~] [~ ~ ch ~] [~ ~ ch ~] [~ ~ ch ~]"
+   |+| dhg "0.5"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ oh ~ ~]"
+   ,
+   every 4 (within (0.15, 0.45) (chop 2)) $ drum "[~ bd bd? ~] [~ bd ~ ~] [~ ~ bd bd] [~ bd ~ ~]"
+   ,
+   sometimes (zoom (0.25, 0.5)) $ drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ ~] [~ ~ sn ~]"
+   ]
+
+--
+
+
+b1 $ retrig $ slow 2 $ stack[
+   rev $ chop 2 $ drum "[ch ~ ch ~] [~ ~ ch ~] [~ ~ ch ~] [~ ch ~ ~]"
+   |+| dch  "0.1"
+   |+| dhg "0.1"
+   ,
+   drum "[~ ~ ch ~] [~ ~ ch ~] [~ ~ ch ~] [~ ~ ch ~]"
+   |+| dhg "0.5"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ oh ~ ~]"
+   ,
+   drum "[~ bd bd? ~] [~ bd ~ ~] [~ ~ bd bd] [~ bd ~ ~]"
+   |+| lbd "0.4"
+   ,
+   sometimes (zoom (0.25, 0.5)) $ drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ ~] [~ ~ sn ~]"
+   |+| lsn "0.9"
+   ]
+
+--
+
+b1 $ fadeOut 4 $ slow 2 $ stack[
+   rev $ chop 2 $ drum "[ch ~ ch ~] [~ ~ ch ~] [~ ~ ch ~] [~ ch ~ ~]"
+   |+| dch  "0.1"
+   |+| dhg "0.1"
+   ,
+   drum "[~ ~ ch ~] [~ ~ ch ~] [~ ~ ch ~] [~ ~ ch ~]"
+   |+| dhg "0.5"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ oh ~ ~]"
+   ,
+   every 9 (within (0.25, 0.75) (density 2)) . every 4 (within (0.15, 0.45) (chop 2)) $ drum "[~ bd bd? ~] [~ bd ~ ~] [~ ~ bd bd] [~ bd ~ ~]"
+   |+| lbd "0.4"
+   ,
+   sometimes (zoom (0.25, 0.5)) $ drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ ~] [~ ~ sn ~]"
+   |+| lsn "0.9"
+   ,
+   foldEvery [9, 11] (within (0, 0.5)(chop 2)) $ every 4 (# lcr "0") $ drum "cr(16,16)"
+   |+| scr (sometimes rev $ scale 0.1 0.3 $ squarewave1)
+   |+| lcr "0.25"
+   |+| std "0.25"
+   |+| stt "0.1"
+   ]
+
+--
+
+
+-- b1 $ slow 2 $ stack[
+--    rev $ chop 2 $ drum "[ch ~ ch ~] [~ ~ ch ~] [~ ~ ch ~] [~ ch ~ ~]"
+--    |+| dch  "0.1"
+--    |+| dhg "0.1"
+--    ,
+--    drum "[~ ~ ch ~] [~ ~ ch ~] [~ ~ ch ~] [~ ~ ch ~]"
+--    |+| dhg "0.5"
+--    ,
+--    drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ oh ~ ~]"
+--    ,
+--    every 9 (within (0.25, 0.75) (density 2)) . every 4 (within (0.15, 0.45) (chop 2)) $ drum "[~ bd bd? ~] [~ bd ~ ~] [~ ~ bd bd] [~ bd ~ ~]"
+--    |+| lbd "0.4"
+--    ,
+--    sometimes (zoom (0.25, 0.5)) $ drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ ~] [~ ~ sn ~]"
+--    |+| lsn "0.9"
+--    ,
+--    foldEvery [9, 11] (within (0, 0.5)(chop 2)) $ every 4 (# lcr "0") $ drum "cr(16,16)"
+--    |+| scr (sometimes rev $ scale 0.1 0.3 $ squarewave1)
+--    |+| lcr "0.25"
+--    |+| std "0.25"
+--    |+| stt "0.1"
+--    ,
+--    foldEvery [5,7, 9] (# lcl "0") $ every 2 (within (0, 0.5) (slow 8)) . every 5 (within (0, 0.5) (slow 4)) . gap 2 . chop 2 $ chop 4 $ drum "cl(16,16)"
+--    |+| scl (((0.7-) <$>) $ ((0.5-) <$>) $ iter 4 $ sometimes rev . density 2 $ scale 0.01 0.2 $ sine1)
+--    |+| lcl (scale 0.05 0.1 $ sine1)
+--    ]
+
+b1 silence

@@ -1,0 +1,55 @@
+bps 0.5
+
+
+
+d1 $ spread' density "2 1 2" . stut 2 0.9 (-0.5) . every 5 (rev) $ stack[sound "~ unix deepsky ~ ", striate 2 $ sound "dr dr dr dr" |+| speed "0.5"]
+
+hush
+
+
+cps 0.666
+
+
+b $ slowspread (stut 2 0) [0.75, (-0.75)] $ stack[drum "~ bd oh ~", drum "ch ch ch ch"]
+
+
+
+d1 $ density 3 . slowspread ($) [iter 2, iter 4, rev] . every 4 (chop 2) $ (sound $ samples  $ iter 8 $ run 8)
+|+| speed "0.5"
+|+| resonance "2.8"
+|+| cutoff "0.1"
+|+| bandf "0.1"
+|+| bandq "[0.5 0.2 0.8]/3"
+|+| bandq "0.8"
+|+| gain "0.8"
+
+cps 0.5
+
+b $ stack[
+  drum "[[[~ bd] [~ bd]?] [~ cp*2] [~ cp*2] cr*2,[[[ch !] ! ! cr]*2, bd [ag [~ ag], cl ag*4]]]"
+  ] # scp "1" # lag "0" # sag (scale 0 1 rand) # stt (scale 0 1 rand) # std (scale 0 1 rand)
+
+q $ stack[
+  note "[48(4,8)]"
+]
+
+q silence
+
+--
+
+
+b $ smash 2 [3] $ stack[
+  drum "[[[~ ~] [~ ~]?] [~ cp*2] [~ cp*2] cr*2,[[[~ !] ! ! cr]*2, ~ [ag [~ ag], cl ag*4]]]",
+  drum "[bd(3,4)]",
+  drum "[ch(9,16)]/2",
+  drum "oh(2,8,7)",
+  drum "sn(9,16)"
+  ] # scp "1" # lag "1" # sag (scale 0 1 rand) # stt (scale 0 1 rand) # std (scale 0 1 rand)
+
+cps 1
+
+b $ stack[
+drum "bd!",
+density 2 $ drum "ch*2 oh",
+drum "~ [cp [~ cp]]"
+] # scp "0.5"

@@ -1,0 +1,98 @@
+cps 1
+
+d1 $ juxcut (|+| coarse "23") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . echo (7/2) . stut 2 0.25 0.5 $ append (sound "[amencutup:3 amencutup:3, [amencutup:2 amencutup:6], [amencutup:2, amencutup:7]]") (sound "[am:2(2,1) am, amenkit:5]")
+|+| coarse "3"
+|+| cut "1"
+
+d1 $ density 1.25 . juxcut (|+| coarse "23") . echo (7/4) $ sound "[amencutup amencutup:2 amencutup:3, amencutup ch]"
+|+| coarse "3"
+|+| cut "1"
+
+
+d1 $ juxcut (|+| coarse "23") . density 1.25 . chop 2 . density 2 $ (sound  $ samples "amencutup*2" $ iter 6 $ run 6)
+|+| coarse "3"
+|+| cut "1"
+|+| gain "1.5"
+
+
+d1 $ every 2 rev . gap 2 . chop 2 $ sound "amen"
+|+| cut "1"
+
+
+d1 $ gap 2 . density 2 $ (sound  $ samples "amencutup*2" $ iter 3 $ run 2)
+|+| cut "1"
+
+
+
+cps 0.666
+
+
+d1 $ stut 4 0.5 0.5 . chop 4 . echo (7/8) $ sound "amenkit:10 amenkit:25 ~ amenkit:27 amenkit:10 ~ ~ ~ "
+
+
+
+
+d1 $ stut 2 0.25 0.5 . chop 4 . echo (7/8) $ sound "[amenkit:10 amenkit:25, ~ amenkit:27*4, amenkit:10*2 ~ amenkit ~ ]"
+
+d1 $ stut 8 0.5 0.5 . chop 4 . echo (7/8) $ sound "[amenkit:10 amenkit:25, ~ amenkit:27*4, amenkit:10*2 ~ amenkit ~ ]"
+
+hush
+
+d1 $ stut 2 0.5 0.5 . spread' density "4 4 3" $ sound "amenkit:10"
+ |+| speed (((0.1-) <$>) "1")
+
+d1 $ rev . stut 2 0.5 0.5 . spread' density "4 4 3" $ sound "amenkit:77 amenkit:10"
+
+
+d1 $ every 4 (rev) . iter 4 . chop 32 . slow 4 $ sound "amenfixed"
+
+d1 $ every 4 (rev) . iter 4 . chop 32 . slow 4 $ sound "amenfixed:1"
+
+d1 $ every 4 (rev) . iter 4 . chop 16 . slow 4 $ sound "amenfixed:3"
+
+d1 $ every 3 (within (0.23, 0.5) (|+| accelerate "-1") ) $ every 4 (rev) . chop 16 . slow 4 $ sound "amenfixed:8"
+
+
+d1 $ chop 16 . slow 4 $ sound "amenfixed:12"
+
+d1 $ chop 16 . slow 4 $ sound "amenfixed:10"
+
+
+hush
+
+cps 0.666
+
+let sc = (|+| speed (scale 0.9 1.2 $ sine1)) . (|+| cut "1")
+let s = (|+| speed (scale 0.9 1.2 $ sine1))
+
+--d1 $ chop 16 . slow 4 $ sound "amenfixed:11"
+
+d1 $ chop 16 . slow 4 $ sc $ sound "amenfixed:12"
+
+d1 $ chop 16 . slow 2 $ sc $ sound "amenfixed:12"
+
+d1 $ chop 8 $ sc $ sound "amenfixed:12"
+
+d1 $ chop 16 . slow 4 $ sc $ sound "amenfixed:12"
+
+d1 $ stut 16 0.25 0.5 . chop 16 . slow 4 $ s $ sound "amenfixed:12"
+
+d1 $ chop 16 . slow 4 $ sc $ slowcat[sound "amenfixed:12", sound "amenfixed:11"]
+
+d1 $ every 7 (within (0, 0.15) (|+| speed "-1")) $ chop 16 . slow 4 $ sc $ slowcat[sound "amenfixed:12", sound "amenfixed:3", sound "amenfixed:11"]
+
+d1 $ every 7 (within (0, 0.15) (|+| speed "-1")) $ chop 16 . slow 4 $ sc $ slowcat[sound "amenfixed:12", sound "amenfixed:11"]
+
+d1 $ every 21 (chop 4) . foldEvery [3, 7] (density 2) . chop 16 . slow 4 $ sc $ slowcat[sound "amenfixed:12", sound "amenfixed:11"]
+
+d1 $ every 21 (chop 2) . foldEvery [3, 7] (density 2) . chop 16 . slow 4 $ sc $ slowcat[sound "amenfixed:12", sound "amenfixed:3", sound "amenfixed:11"]
+
+hush
+
+d1 $ every 21 (chop 2) . foldEvery [3, 7] (density 2) . chop 16 . slow 4 $ slowcat[sound "amenfixed:12", sound "amenfixed:3", sound "amenfixed:11"]
+|+| speed (every 7 ((0.1-) <$>) $ scale 0.9 1.2 $ sine1)
+|+| cutoff "[0.25 0.25 0.7 0.05]/4"
+|+| resonance "[0.5 0.8 0.9]/3"
+
+
+hush

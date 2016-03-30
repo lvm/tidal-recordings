@@ -1,0 +1,22 @@
+
+
+d1 $ every 23 (# accelerate "-1") $ foldEvery [3,5,7] (sometimes (within (0, 0.33) (gap 2)) . (# up (scale 1 5 sine1))) $ every 2 (sometimes(within(0, 0.5) (# coarse "[2 8 16 1]/4"))) $ stack[
+-- sound "bd5:4 !" # speed "0.5" # gain "1.2",
+-- every 3 (# sound "~ cp8") $ sound "~ cp" # gain "1.23",
+every 5 (gap 2) $ density 2 $ stack[sound "ch5:4*2 oh5", sound "[~ ch5:4] !"] --,
+-- sound "shaker5:1*4 [shaker5([8 5]/2,8)]/2" # speed (scale 1 2 squarewave1),
+-- slowspread density [2,1, 2, 1, 2, 0.5, 2, 1] $ sound "rim8*2 !",
+-- degrade . foldEvery [7, 13] (slowspread striate [2..4]) $ sound "ride5*2 !"
+] # coarse "1" # gain "1.23"
+
+d2 $ fadeOut 23 $ slowspread (stut 2 1) [0, 0.75, 0.5] .  every 9 (sometimes(within(0, 0.5)(density 2))) . every 3 (sometimes(within(0, 0.5)(density 2))) . sometimes(slowspread (striate' 2) [0.25, 0.5, 1]) . spin 4 . slow 4 $ slowcat[
+sound $ samples "arpy:0 ~ [arpy*2 !?] ~" $ irand 4,
+sound $ samples "arpy:0 ~ arpy ~" $ iter 4 "4 2 2 2"
+] # up (every 2 ((*4) <$>) $ scale 0.5 2 sine1) # coarse "[6 7 16 8 9]/5" # gain "1.23"
+
+d3 $ fadeOut 4 $ every 23 (# accelerate "-1") . foldEvery [3,5,7] (jux (# up (scale 0.5 0.75 sine1))) . every 2 (spin 2) $ stack[
+striate 2 $ foldEvery [3,5,7] (slowspread gap [4,2,8,1]) $ (sound $ samples "alphabet" $ irand 23) # pan "0.25" # gain "1",
+striate 4 $ every 2 (slowspread gap [4,2,1]) $ sometimes(within(0, 0.5) (iter 2)) $ (sound $ samples "numbers" $ irand 9) # pan "0.75" # end rand  # gain "1.23"
+] 
+
+hush -- o0o0o0!!

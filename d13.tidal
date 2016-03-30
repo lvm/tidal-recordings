@@ -1,0 +1,33 @@
+cps 1
+
+bps (140/120)
+
+b $ stack[
+slowcat[drum "bd ~", append' (drum "bd ~") (drum "[bd bd] [[~ bd] !]")],
+--slowcat[ slowcat[drum "bd ~", append' (drum "bd ~") (drum "[bd bd] [[~ bd] !]")], drum "[bd bd] [[~ bd] !]"],
+density 2 $ stack[drum "ch ch ~ ~", append' (drum "~ ~ ch ch") (slowcat[drum "~ ~ oh ch",drum "~ ~ oh ch*2",drum "~ ~ oh oh"])],
+chop 2 . density 2 $ drum "oh(1,4)",
+slowcat[drum "~ cp", drum "~ [cp!]"]
+,drum "[cl(5,8)]/2"
+] # scl "1" # dch "0.01"
+
+-- amsynth 13 - 0: equals
+m5 $ slow 2 . every 2 rev $ slowcat[
+iter 8 $ note $ toMIDI "f4 d5 d5 e4 e4 f5 d5 a5"
+,
+slowcat[
+note $ toMIDI "f4*2 d4"
+,
+note $ toMIDI "d4*2 e3"
+,
+note $ toMIDI "e3*2 f4"
+,
+note $ toMIDI "d4*2 a4"
+]
+] # dur "0.05" # vel "0.5" # sustainpedal "0"
+
+q $ slow 2 $ stack[
+iter 8 $ note $ toMIDI "f4 d5 d5 e4 e4 f5 d5 a5"
+] # dur "0.35"
+
+hush

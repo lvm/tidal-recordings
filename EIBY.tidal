@@ -1,0 +1,23 @@
+bps 1.666
+
+solo $ d1 $ density 8 $ stack[every 2 (|+| speed ((0.5+) <$> triwave1)) $ sound "lsdj:1 ~", (density 32 $ sound (samples "lsdj*8" (iter 5 $ run 5)) |+| end "0.9"), every 4 (density 8) $ sound "~ lsdj:5*8"]
+ |+| gain "0.0"
+
+hush
+
+
+d2 $ density 8 $ every 2 (striate 8) $ every 5 (density 8) $ every 3 (echo (7/4)) $ every 4 (slow 4) $ smash 2 [1..5] $ striate' 16 (0.1) $ sound (samples "jvbass" (iter 2 $ run 5))
+ |+| speed (every 2 (rev) "15 2 3 21 5")
+ |+| gain "1.3 0.9 1"
+
+d3 $ every 2 (|+| speed "5") $ density 2 $ smash 2 [1..3] $ striate 2 $ sound "gab:4*8 ~ "
+ |+| gain "1"
+ |+| speed ((1+) <$> triwave1)
+ |+| accelerate "1 -5 1"
+
+
+
+
+d1  $ sound "bd!!! dr"
+
+d1  $ sound "bd bd bd dr"

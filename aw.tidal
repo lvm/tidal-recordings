@@ -1,0 +1,22 @@
+cps 0.4
+
+cps 1
+
+d1 $ smash 2 [1..4] $ stack[whenmod 6 4 ( |+| speed (((0.1-) <$>) "1") ) $ sound "drum drum drum drum",
+           whenmod 6 4 ( |+| speed (((0.1-) <$>) "1") ) . every 3 (chop 2) . chop 2 $ sound "~ drum:1 ~ drum:1",
+           whenmod 6 4 ( |+| speed (((0.1-) <$>) "1") ) . every 5 (chop 2) . chop 2 $ sound "drum:3 ~ drum:3 ~",
+           sound "rhodes:3"
+          ]
+ |+| speed (((*2) <$>) $ iter 4 "0.51 0.7 0.5 0.61 0.7")
+ |+| shape (scale 0.5 0.8 $ "0.8")
+
+d3 $ slow 16 . chop 4 . striate' 8 (0.5) $ sound (pick <$> "diphone kurt" <*> (run 40))
+ |+| speed (((*2) <$>) $ iter 4 "0.51 0.7 0.5 0.61 0.7")
+ |+| shape "0.5"
+ |+| cut "1"
+ |+| vowel "u"
+
+
+
+
+hush

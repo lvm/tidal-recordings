@@ -1,0 +1,62 @@
+bps (100/120)
+
+cps 1
+
+
+d1 $ stack[
+  echo (3/2) $ stack[
+  sound "[~ glitch [~ glitch/3] [~ glitch/4]]" # gain "1.2",
+  sound "[~ ~ glitch:5 ~]" # up (scale 1 4 $ iter 4 . slow 8 $ sine1)
+  ],
+  sound "hh:2(5,8)"
+]
+
+
+stack[
+sound "[hc(5,8)]",
+sound "[hc(3,8)]"
+] # up "4" # coarse "6" # gain "0.8"
+
+
+stut 2 0.5 0.75 $ sound "[hh:8*2 ~, [~ click:2*2] !?]" # end rand # coarse (floor <$> scale 4 8 rand)
+
+
+
+d1 $ stack[
+  echo (3/2) $ stack[
+  sound "[glitch [~ glitch/5] ~ glitch/5]" # gain "1.35",
+  sound "[~ ~ glitch:5 ~]" # up (scale 2 4 $ iter 4 . slow 8 $ sine1) # vowel "a"
+  ],
+  sometimes (gap 2 . brak) $ stack[
+  sound "hh:8(8,8)" # pan "0.25",
+  sound "hh:8(8,8)" # pan "0.75"
+  ] # coarse "2" # gain "1",
+  jux rev $ stack[
+  sound "[hh27(3,8), hh27(5,8)]"
+  ]
+] # coarse (floor <$> scale 1 16 rand) # end rand # gain "1.25"
+
+
+
+---
+
+
+m5 $ every 4 (# (note $ tom "g5(3,8)")) $ sometimes (# dur "0.1") . slow 4 $ stack[
+note $ tom $ preplace (1,1) "[x(2,8) x(3,4)]" "d4 f4 e e5 d5 f5"
+] # vel "0.05" # dur "1"
+
+
+d1 $ foldEvery [7..9] (sometimes(brak) . gap 2) $ stack[
+superimpose (every 2 (rev)) . every 3 (sometimes (# accelerate "-1")) $ stack[
+  stack[
+  sound "[jazz [~ jazz/5] ~ jazz/5]" # gain "1.35",
+  sound "[~ ~ [sn:2 !?] [~ sn:2]]"
+  ],
+  stack[
+  sound "[hh27(3,8), hh27(5,8)]"
+  ]
+  ] # coarse (floor <$> scale 1 16 rand) # end rand # gain "1.25",
+  degrade $ sound "[~ [cr!?] cr/4 cr/3]" # end "0.1" # speed "2"
+]
+
+hush

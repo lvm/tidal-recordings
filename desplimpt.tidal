@@ -1,0 +1,179 @@
+cps 0.35
+
+
+d1 $ stut 2 0.25 0.5 $ stack[
+  every 10 ((|+| speed "2") . within (0.25, 0.75) (slow 2) . slowspread density [2, 4] . every 5 (zoom (0.25, 0.75))) $ sound "[click(2,4)]/2 [sn(3,8)]/2 [click:1(4,4)]/3"
+  ]
+  |+| coarse "8"
+  |+| speed "4"
+  |+| end "0.05"
+
+
+let r t = (t <~)
+    rrr = (scale 0.1  0.25 $  rand)
+
+
+let t t = echo (t/3)
+    o t = echo (t/8)
+    c n = echo (n/4)
+
+d1 $ within (0, 0.5) (every 2 rev) . slow 2 . slowspread o [4, 7, 8, 16] . stut 2 0.25 0.5 . every 2 (slowspread r [0.1, 0.25, 0.15]) $ stack[
+  palindrome $ slowcat[
+  (sound $ samples "k(3, 8) k(4,8)" $ iter 2 $ "0 5")
+  ,
+  (sound $ samples "k(4, 16)" $ iter 2 $ "0 5")
+  ,
+  (sound $ samples "k(1, 8) k(6,8)" $ iter 2 $ "0 5")
+  ,
+  juxBy 0 (|+| pan "[0.25 0.75]/2") . slow 2 $ (sound $ samples "k(2, 5) k(7,4) k(7,8) ~" $ iter 2 $ "0 5")
+  ]
+  ]
+  |+| coarse "8"
+  |+| speed "0.5"
+  |+| end "0.1"
+  |+| speed (scale 0.2 0.5 $ density 4 $ iter 16 $ rand)
+  |+| delay (scale 0.1 0.15 $ sine1)
+  |+| vowel "[o a]/2"
+
+
+
+----
+
+d1 $ sometimesBy 0.25 (within (0, 0.25) (|+| vowel "o") . brak) . sometimes (slowspread c [7, 4]) $ stack[
+  slow 2 $ sound "[bd8:1 [unix(5,8)]/2] unix:3"
+  |+| coarse "1 8"
+  ,
+  every 4 (stut 2 0.5 0.5) $ (sound $ samples "[k ! ! !] ! ! !" $ iter 4 $ run 4)
+  |+| gain "0.5"
+  |+| end "0.1"
+  |+| speed (scale 0.25 0.6 $ density 4 $ iter 16 $ rand)
+  ,
+  slowspread slow [8, 16, 32] . slowspread chop [64, 256, 128] . striate' 8 (0.25) . stut 4 0.25 0.5  $ sound "kaini"
+  |+| gain "0.5"
+  |+| speed (((0.1-) <$>) $ scale 0.5 1.1 $ sine1)
+  ,
+  slowspread slow [8, 16, 32] . slowspread striate [64, 256, 128] . gap 8 . stut 4 0.25 0.5  $ sound "sine"
+  |+| gain "0.1"
+  |+| speed (scale 0.1 0.5 $ density 4 $ sine1)
+]
+|+| pan "[0.25 0.5 0.75]/3"
+
+
+d1 silence
+
+d1 $ palindrome . brak $ slowcat[
+  slowspread chop [4, 2, 3] . slowspread gap [4, 3, 2] . density 4 $ sound "unix:3 [unix:2(3,5)]"
+|+| coarse ((floor <$>) $ scale 1 9 $ iter 4 $ density 4 $ rand)
+|+| speed (scale 0.6 0.5 $ density 4 $ sine1)
+|+| gain "0.5"
+,
+slow 2 . slowspread chop [4, 2, 3] . slowspread gap [4, 3, 2] . density 4 $ sound "click(2,8) [unix:2(3,5)]"
+|+| coarse ((floor <$>) $ scale 1 9 $ iter 4 $ density 4 $ rand)
+|+| speed (scale 0.6 0.5 $ density 4 $ sine1)
+|+| gain "0.5"
+]
+
+hush
+cps 1
+
+d1 $ sometimesBy 0.25 (|+| speed "0.25") . superimpose (sometimes (density 2)) $ slow 4  . (rev . (0.5<~)) $ stack[
+  stut 2 0.25 0.05 $ sound "arpy ~ ~ ~]"
+  ]
+  |+| speed (scale 0.9 0.5 $ sine1)
+
+
+let cor = (|+| coarse ((floor <$>) $ scale 1 9 $ iter 4 $ density 4 $ rand))
+
+
+|+| speed (scale 0.6 0.5 $ density 4 $ sine1)
+
+
+
+cps 1
+
+d1 $ every 23 (|+| speed "0.666") $ whenmod 16 8 (|+| accelerate "[-5 5]/2") . foldEvery [3, 7] (superimpose (|+| vowel "a")) . foldEvery [5, 11] (slow 1.25 . sometimesBy 0.25 (within (0, 0.25) (striate 128)) . rev) . sometimes cor . gap 4 . slow 1.25 $ slowcat[
+  sound "[sid:2(3,4)] sid:1(1,4) sid:8 sid:1(1,4)"
+  ,
+  sound "[sid:2(3,4)]/2 sid:1(2,4) ! sid:8"
+  ,
+  sound "[sid:2(2,4)] sid:1(3,4) sid:8 sid:1(2,3)"
+  ]
+
+every 23 (|+| speed "0.666") $ whenmod 16 8 (|+| accelerate "[-5 5]/2") . foldEvery [3, 7] (superimpose (|+| vowel "a")) . foldEvery [5, 11] (slow 1.25 . sometimesBy 0.25 (within (0, 0.25) (striate 128)) . rev) . sometimes cor . gap 4 . slow 1.25 $ 
+
+d1 $ slowcat[
+  sound "[sid:2(3,4)] sid:1(1,4) sid:8 sid:1(1,4)"
+  ,
+  sound "[sid:2(3,4)]/2 sid:1(2,4) ! sid:8"
+  ,
+  sound "[sid:2(2,4)] sid:1(3,4) sid:8 sid:1(2,3)"
+  ]
+
+
+d1 silence
+
+
+d1 $ slow 2.75 . every 23 (|+| speed "0.666") $ whenmod 16 8 (|+| accelerate "[-5 5]/2") . foldEvery [3, 7] (superimpose (|+| vowel "a")) . foldEvery [5, 11] (slow 1.25 . sometimesBy 0.25 (within (0, 0.25) (striate 128)) . rev) . sometimes cor . gap 4 . slow 1.25 $ slowcat[
+  sound "[casio:3(3,4)] lsdj:2(1,4) mattel:5 lsdj:2(1,4)"
+  ,
+  density 2 $ sound "[casio:3(3,4)]/2 lsdj:2(2,4) ! mattel:5"
+  ,
+  density 1.25 . brak $ sound "[casio:3(2,4)] lsdj:2(3,4) mattel:5 lsdj:2(2,3)"
+  ]
+
+
+
+
+
+
+d1 $ density 1.2 . every 3 (# end rand) $ stack[
+  sound "[sid:2(2,4), sid:11 ! ! !]",
+  sound "[sid:8 !!!] !",
+  sound "~ [sid:7 sid:7/4]",
+  sound "sid:1([6 6 6 8]/4,8)" # up (scale 1 2 sine1)
+  ]
+
+t1 anticipate $ stack[
+  sound "[sid:2(2,4), ~ [sid:11 ~]]",
+  sound "[sid:8 !!!] !?",
+  sound "~ [sid:7 sid:7/4]",
+  sound "sid:1([6 6 6 8]/4,8)" # up (scale 1 2 sine1)
+  ] # end rand
+
+d1 $ density 1.2 $ stack[
+  sound "[sid:2(2,4), sid:11 [~ sid:11]]",
+  sound "sid:1([6 6 6 8]/4,8)" # up (scale 1 2 sine1),
+  sometimes (slow 2) . spin 8 . slow 2 . striate 2 $ sound "[sid:11(16,16)]/2" # end rand # up "4" # gain "1" # up (scale 1 2 sine1) # coarse (floor <$> scale 8 16 sine1) # cutoff "0.001" # bandq "0.5" # bandf "0.9" # pan rand # speed "0.25" # vowel "[a u i o e]/5"
+  ]
+
+
+hush
+
+sound "[sid:2(3,8), sid:8(6,8)]"
+
+d1 $ stack[sound "cp:2(2,8)", sound "sid:8(6,8)" # speed "0.666"]
+
+
+
+solo $ b $ stack[
+  degrade $ drum "[cp(2,8), ch(6,8), cl(3,8)]" # scl (iter 3 $ density 2 $ "0.001 0.005 0.009"),
+  slowcat[
+        drum "[bd bd, sn cr [~ sn] [sn sn/2]]",
+        drum "[bd ~, [sn ch cr oh]]"
+         ]
+  ]
+
+b $ stack[drum "bd [cp, bd]", density 2 $ drum "ch*4", drum "~ oh"]
+
+hush
+
+q $ stack[
+  chrot [42] "1(6,8)" [0,4,7]
+]
+
+
+,
+  sound "[sid:2(3,4)]/2 sid:1(2,4) ! sid:8"
+  ,
+  sound "[sid:2(2,4)] sid:1(3,4) sid:8 sid:1(2,3)"
+  

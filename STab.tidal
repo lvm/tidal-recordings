@@ -1,0 +1,31 @@
+cps 0.5
+
+d1 $ every 3 (rev) . every 2 (slow 2) . density 3 . stut 2 0.5 0.1 $ sound "metal metal:4 metal:3"
+ |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 2 ((*0.2) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+ |+| gain "0.5"
+
+d4 $ echo (7/4) $ every 3 (density 2) . every 2 (echo (5/3)) $ sound "~ ~ psr:1"
+ |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 2 ((*0.2) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+ |+| shape "0.5"
+
+
+
+hush
+
+
+
+
+
+
+d1 $ every 3 (rev) . density 3 $ sound "tabla:2 !? tabla:3 tabla:4"
+ |+| speed (every 2 ((/2) <$>) $ iter 4 "1 0.5 1 0.7 0.5")
+ |+| cut "1"
+ |+| shape "0.5"
+
+d2 $ every 2 (chop 2) . density 3 $ sound (pick <$> "drum drum" <*> "0 1")
+ |+| end rand
+
+d3 $ chop 2 . density 3 $ sound "rhodes:7*2"
+ |+| end rand
+ |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 2 ((*0.2) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+

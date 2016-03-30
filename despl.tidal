@@ -1,0 +1,172 @@
+cps 1
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+    st2' d = stut 2 0 d
+    st2 = st2' 0.25
+    ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    -- cho :: Pattern -> Int -> [Int] -> Pattern Int;
+    -- q $ note (cho 60 "1 1 1" [0, 3, 7])
+    cho n pat chord = preplace(1,1) pat $ listToPat [ch + n | ch <- chord]
+    cho' n off pat chord = cho (n+off) pat chord
+    n48 sc = note $ ch 48 sc
+    n n off sc = note $ ch (n+off) sc
+    nn off sc = n 48 off sc
+    --  m1 $ slowcat[note (skp 60 "1 1 1" (rotate i [0,3,7,10])) | i <- [0..3]]
+    rotate :: Int -> [a] -> [a]
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+    -- chords
+    minor = [0,3,7]
+    major = [0,4,7]
+    nine = [0,4,7,10,14]
+    ninesus4 = [0,5,7,10,14]
+    add9 = [0,4,7,14]
+    madd9 = [0,3,7,14]
+    maj9 = [0,4,7,11,14]
+    m9 = [0,3,7,10,14]
+    sus2 = [0,2,7]
+    sus4 = [0,5,7]
+    seven = [0,4,7,10]
+    m7 = [0,3,7,10]
+    eleven = [0,4,7,10,14,17]
+    m11 = [0,3,7,10,14,17]
+    thirteen = [0,4,7,10,14,21]
+    m13 = [0,3,7,10,14,21]
+
+
+b $ foldEvery [3,5] (sometimes(slow 2 . stut 2 0 0.75)) . every 7 (brak) $ stack[
+slowspread (stut 2 0) [0.5, 0.75] $ drum "[~ ~ ~ ~] [~ ~ sn ~]",
+drum "cl cl/2",
+drum "[ag(5,8)]/2",
+slowcat[drum "~ ~ [cl(3,4)]/2 ~", drum "[~ ~ ~ ~] [~ cp ~ cp]"]
+] # stt "0" # std "0.1" # scl "0.05" # sag "1"
+
+b $ stack[drum "~ cp", spread' density "2 1 [2 4 1]/3 2" $ drum "ch ! ! !" # dch "0.25 0.5 0.75 1"]
+
+b $ foldEvery [7,9] (sw' 0 0.33 (# std "1")) $ drum "[[bd ~, [[~ bd/2] !] [cr!!?!,[cp!!?!]/2]], [[{ch*2}%2 [~]/2], oh/2]]" # dch "0.25 0.5 0.75 1" # lbd "0.65" # lch "0.5" # scl "1"  # stt "1" # std "0"
+
+hush
+
+
+hush
+
+q $ palindrome $ slowcat[note (cho 36 "1 1 1 1 1" (rotate i [0,3,7,10,14,21])) | i <- [0..5]] # decay "1"
+
+hush
+
+
+ # dur "0.05" #decay "1" # lforate "0.75" #lfoint "0.1" # cutoffegint (scale 0 0.15 squarewave1) # decay "0.99" # pitch3 "0.666"
+
+---
+
+let superSw a b c f ff = (sw' a b f . sw' b c f . sw' c 0.75 f) . (sw' 0.75 1 ff)
+
+
+b $ every 8 (superSw 0 0.25 0.5 (# std "0.5") (# std "[0 1]/2")) $ stack[
+-- basd
+drum "[bd/2 bd/3 bd/4 ~] [~ ~ ~ ~]",
+--snar
+slowcat[
+--stack[drum "[~ ~ ~ ~] [~ sn/2 ~ sn/4]", drum "[~ ~ ~ ~] [~ [~ sn/8] ~ ~]"],
+slowspread (stut 2 0) [0.5, 0.75, 0.75] $ drum "[~ ~ ~ ~] [~ ~ sn ~]"
+],
+-- crrr
+slowcat[
+every 9 (slow 2) . foldEvery [3,5,7] (sw(chop 4)) $ drum "[cl(5,8)]",
+sw(stut 2 0 0.5) $ drum "[cp*2 ~]/4 [{cl*3}%2 ~]"
+]
+,
+-- somb
+slowcat[drum "[~ ~ ~ {ch*2}%2] [ch/4 ~ ~ ~]",drum "[~ ~ ~ ch*2] [ch/4 ~ ~ ~]"],
+drum "[~ ~ ~ ~] [~ ~ oh ~]",
+-- lag
+degrade $ drum "[{ag*4}%2]",
+drum "[ ~ ~ ~ ~] [~ ~ cr/8 ~]"
+] # stt "0" # std "0.1" # lcl "0.6" # dch "0.1" # hg "0.1" # lag "0.75" # sag (scale 0 1 squarewave1) # scr "0.75"
+
+b $ slowspread slow [1..2] . every 13 (sometimes (within (0, 0.33)(chop 2))) . every 5 (sw(# scl "1")) $ stack[
+every 8 (within (0.5, 1) (stut 4 0 0.5)) $ slowcat[drum "[~ bd ~ ~] [~ ~ ~ ~]",drum "[~ bd ~ bd] [~ ~ bd ~]"],
+every 4 (stut 2 0 0.5) $ drum "[~ ~ cp/4 ~] [~ cp ~ ~]",
+slowcat[drum "[~ ~ ~ {ch*2}%2] [ch/4 ~ ~ ~]",drum "[~ ~ ~ ch*2] [ch/4 ~ ~ ~]"],
+drum "[cl([3 4]/2,4)] !"
+] # stt "0" # std "0.1" # scl "[0.01 0.05]/2" # lcl "1"
+
+
+b $ whenmod 16 8 (iter 2) . foldEvery [11, 13, 23] (sw(# std "1")) . every 13 (sw' 0 0.25 (chop 2)) . sw(# lsn "0") $ stack[
+every 3(stut 2 0 0.5) $ drum "[~ ~, ~ cp]",
+drum "{sn*2}%4",
+drum "ch*2 oh",
+density 2 $ drum "[~ ch] ~"
+] # stt "0" # std "0.1" # lsn "1" # dt "1" # dch "0.1" # doh "0.1" # hg "[0.05 0.1]/2"
+
+b $ sw(# lsn"0") $ slowcat[
+drum "{sn*2}%4",
+drum "[sn(5,8)]/2"
+         ] # lsn "1"
+
+
+b $ every 3 (sometimes (# std "[0.1 1]/2")) . sw (# sag "0.1") $ stack[
+every 7 (sw' 0 0.25 (slow 2)) . every 5 (wf0 0.5 (chop 2) ) $ every 4 ( sw (# std "0.1") ) $ drum "[{[ch ch/4, ~ cp/2],[~ bd, ~ sn ~ sn/2]}%2]"
+,
+every 11 (sw(# drum "{ch*2}%2")) $ slowcat[
+degrade $ drum "{oh*2}%4",
+drum "[sn(5,8)]/2"
+]
+] # stt "0" # std "0" # sag (scale 0.5 0.75 sine1)
+
+--- unix, e, ae, click, glitch, minipops
+
+
+
+
+q $ sw(# decay "0.7") $ slowcat[
+slowcat[note (cho 48 "[~ 1 1 ~ ] [1 ~ [1 !] ~]" (rotate i [0,3,7,5])) | i <- [0..3]]
+] # decay "0.5" # lforate "0.75" # lfoint "0.15" # dur "[0.1 0.05 0.1 0.01]/4"
+
+
+hush
+
+b $ randcat[
+slowspread slow [1..2] . every 13 (sometimes (within (0, 0.33)(chop 2))) . every 5 (sw(# scl "1")) $ stack[
+every 8 (within (0.5, 1) (stut 4 0 0.5)) $ slowcat[drum "[~ bd ~ ~] [~ ~ ~ ~]",drum "[~ bd ~ bd] [~ ~ bd ~]"],
+every 4 (stut 2 0 0.5) $ drum "[~ ~ cp/4 ~] [~ cp ~ ~]",
+slowcat[drum "[~ ~ ~ {ch*2}%2] [ch/4 ~ ~ ~]",drum "[~ ~ ~ ch*2] [ch/4 ~ ~ ~]"],
+drum "[cl([3 4]/2,4)] !"
+] # stt "0" # std "0.1" # scl "[0.01 0.05]/2" # lcl "1"
+,
+whenmod 16 8 (iter 2) . foldEvery [11, 13, 23] (sw(# std "1")) . every 13 (sw' 0 0.25 (chop 2)) . sw(# lsn "0") $ stack[
+every 3(stut 2 0 0.5) $ drum "[~ ~, ~ cp]",
+drum "{sn*2}%4",
+drum "ch*2 oh",
+density 2 $ drum "[~ ch] ~"
+] # stt "0" # std "0.1" # lsn "1" # dt "1" # dch "0.1" # doh "0.1" # hg "[0.05 0.1]/2"
+,
+sw(# lsn"0") $ slowcat[
+drum "{sn*2}%4",
+drum "[sn(5,8)]/2"
+         ] # lsn "1"
+]
+
+--
+
+b $ spread' density "1 8 4" $ drum "[{[ag !]}%2, ~ {[cl !]}% !]" # stt "0" # std "0.1"
+
+
+b $ spread' density "1 2 4 8 16" $ slowcat[drum "{ag*2 !}%4",drum "ag*32",drum "ag*64",drum "ag*128"] # stt "0" # std "0.1"
+
+q $ slow 1.2 $ slowcat[
+  note (cho 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [3, 0 , 0, 3]),
+  note (cho 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [3, 0 , 0, 3]),
+  note (cho 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [5, 7 , 10, 3]),
+  note (cho 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [5, 7 , 14, 2]),
+  note (cho 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [5, 7 , 21, 3])
+] # dur "0.05" # lforate "0.85" # lfoint "0.25" # decay "1"
+
+hush

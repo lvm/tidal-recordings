@@ -1,0 +1,14 @@
+cps 0.35
+
+cps 1
+
+
+d2 $ sound "bd:8(3, 8)"
+ |+| speed ("0.23")
+
+d3 $ stut 2 0.9 (-0.5) . rev $ sound "db:6(4, 8) db(3,8)"
+ |+| speed ("0.666")
+
+d4 $ every 4 (rev) $ sound "bd:8 db:7 db:6(2, 1) bd:8(1,1)"
+ |+| speed ("0.666")
+

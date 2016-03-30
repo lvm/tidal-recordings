@@ -1,0 +1,43 @@
+cps 0.5
+
+let sometimesW f = every 2 (sometimes (within (0, 0.33) f)) . foldEvery [3,5,7](sometimes (within(0.5, 0.75) f))
+
+b $ sometimesW (chop 2) $ stack[
+drum "[~ ~ ~ ~] [~ ~ bd ~] [~ ~ bd/2 bd?] [~ ~ ~ ~]"
+,drum "[~ ~ sn ~] [~ ~ ~ ~] [~ ~ ~ ~] [sn ~ ~ ~]"
+,drum "[~ ~ ~ cp] [~ ~ ~ ~] [~ ~ ~ ~] [~ cp ~ ~]"
+,drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ oh ~ ~] [~ ~ oh ~]"
+,drum "[ch ~ ~ ~] [ch ~ ~ ~] [~ ~ ch/2 ~] [~ ~ ~ ch/2]"
+,drum "cl(9,16)"
+]
+|+| scl "0.99"
+
+|+| stt "0"
+|+| std "0.23"
+
+
+q $ every 4 (sometimesW (chop 2)) $ stack[
+--drum "[~ ~ ~ ~] [~ ~ bd ~] [~ ~ bd/2 bd?] [~ ~ ~ ~]"
+drum "[~ ~ sn ~] [~ ~ ~ ~] [~ ~ ~ ~] [sn ~ ~ ~]"
+,drum "[~ ~ ~ cp] [~ ~ ~ ~] [~ ~ ~ ~] [~ cp ~ ~]"
+,drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ oh ~ ~] [~ ~ oh ~]"
+,drum "[ch ~ ~ ~] [ch ~ ~ ~] [~ ~ ch/2 ~] [~ ~ ~ ch/2]"
+,drum "cl(9,16)"
+]
+
+
+q $ iter 4 $ stack[
+bnote $ toMIDI "[~ c4 ~ c3] [~ c5 ~ c3] [~ c4 ~ c3] [~ g5 ~ c4]"
+,bnote $ toMIDI "[~ c4 ~ c3] [~ c5 ~ c7] [~ c5 ~ c3] [~ g5 ~ c4]"
+,bnote $ toMIDI "[~ c4 ~ c3] [~ c7 ~ c3] [~ c7 ~ c3] [~ g5 ~ c4]"
+]
+|+| dur "0.1"
+|+| decay (scale 0.5 0.9 rand)
+|+| lforate "0.85"
+|+| lfoint "0.45"
+
+|+| cutoffegint (scale 0.23 0.75 sine1)
+
+
+hush
+

@@ -1,0 +1,16 @@
+hush
+
+
+bps (170/60)
+
+bps (90/60)
+
+d1 $ echo (1/4) $ every 5 (striate' 32 (0.1)) $ every 4 ((striate 8) . (density 4) . rev) $ interlace (sound "~ gab:3") (sound "~ ~")
+ |+| shape triwave1
+ |+| pan (slow 32 triwave1)
+
+d2 $ every 2 (density 8) $ interlace (sound "gab:4/2 ~") (every 2 ( (0.25 <~) . rev) $ every 3 (rev) $ sound "~ cp/2")
+ |+| shape triwave1
+
+d3 $ echo (1/2) $ every 3 ((slow 2) . rev) $ every 2 ((0.25 <~). (striate 32) . rev) $ every 3 (rev) $ interlace (sound "cp ~") (sound "gab:3 ~")
+ |+| shape triwave1

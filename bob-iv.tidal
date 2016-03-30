@@ -1,0 +1,27 @@
+bps (200/120)
+
+-- 16 - 6 renoir
+m4 $ slow 2 $ stack[
+note $ tom $ preplace (1,1) "x(2,8)" "d3 d4 d3 e4 e3 e4 f4 f3 f4"
+] # dur "1" # vel "0.15"
+
+-- 14 - 117 principio
+m5 $ stack[
+slow 2 $ note $ tom $ preplace (1,1) "x(2,8,2)" "f5 g5",
+note $ tom $ preplace (1,1) "x(5,8)" "d3 d4 d3 e4 e3 e4 f4 f3 f4"
+] # vel "0.25" # dur (scale 0.1 0.5 $ palindrome $ sine1)
+
+
+b $ fadeOut 8 . foldEvery [10..12] (sometimes (# dch (scale 0 1 rand))) . every 4 (sometimes (echo (7/4))) $ stack[
+every 7 (chop 2) $ stack[
+drum "[bd [~ bd] ~ bd/3]",
+drum "~ [sn [~ cp/2]]",
+density 2 $ drum "[ch*2 oh]"
+,sometimes degrade . density 2 $ drum "[~ ch] !"
+]
+] # dch "0.01" # scr "0.5"
+
+
+
+
+hush

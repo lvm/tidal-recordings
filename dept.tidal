@@ -1,0 +1,82 @@
+cps 1
+
+-- moog / synth strings 1 / taiko drum
+m1 $ stack[
+  slow 4 $ slowcat[
+  note $ toMIDI "f5",
+  note $ toMIDI "a4",
+  note $ toMIDI "g5",
+  note $ toMIDI "d5",
+  note $ toMIDI "b5",
+  note $ toMIDI "e4"
+  ],
+  density 2 $ slowcat[
+  note $ toMIDI "c4",
+  note $ toMIDI "f4",
+  note $ toMIDI "d4",
+  note $ toMIDI "d4",
+  note $ toMIDI "c4",
+  note $ toMIDI "f4",
+  note $ toMIDI "a3",
+  note $ toMIDI "g4",
+  note $ toMIDI "d4",
+  note $ toMIDI "b4",
+  note $ toMIDI "e3"
+  ]
+  ]
+|+| dur "0.9"
+|+| sustainpedal (scale 0 0.65 sine1)
+|+| vel (scale 0.25 0.85 sine1)
+
+-- celesta
+m2 $ chop 2 $ stack[
+  slowspread slow [8,4,1,2] . every 8 (within (0, 0.33) (chop 2)) . whenmod 16 8 (sometimes (chop 2)) . foldEvery [3, 13] (density 2) $ slowcat[
+  note $ toMIDI "f6",
+  note $ toMIDI "a7",
+  note $ toMIDI "g6",
+  note $ toMIDI "d7",
+  note $ toMIDI "b6",
+  note $ toMIDI "e7"
+  ],
+  density 2 . iter 4 $ slowcat[
+  note $ toMIDI "c4",
+  note $ toMIDI "f4",
+  note $ toMIDI "d4",
+  note $ toMIDI "d4",
+  note $ toMIDI "c4"
+  ]
+  ]
+|+| dur "0.9"
+|+| sustainpedal (scale 0 0.65 sine1)
+|+| vel "0.5"
+
+-- tubular bells
+m3 $ slowspread slow [8,8,8,4] $ stack[
+  slowcat[
+  note $ toMIDI "c4",
+  note $ toMIDI "f4",
+  note $ toMIDI "d4",
+  note $ toMIDI "d4",
+  note $ toMIDI "c4"
+  ]
+  ]
+|+| dur "0.9"
+|+| sustainpedal (scale 0 0.65 sine1)
+|+| vel "0.9"
+
+-- synth bass 201 / moog
+m4 $ every 4 (sometimes (chop 2)) . chop 2 . sometimes rev . every 2 (# sustainpedal "0") $ slowcat[
+  note $ toMIDI "c4",
+  note $ toMIDI "f4",
+  note $ toMIDI "b4",
+  note $ toMIDI "g4",
+  note $ toMIDI "d4",
+  note $ toMIDI "d4",
+  note $ toMIDI "c4"
+  ]
+|+| dur "0.9"
+|+| sustainpedal (scale 0.5 0.95 sine1)
+|+| vel "0.5"
+
+
+hush

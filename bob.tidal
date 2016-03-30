@@ -1,0 +1,69 @@
+bps (100/120)
+
+b $ stack[
+drum "bd bd bd bd",
+drum "~ ~ ~ cr",
+drum "ch*4 ! ch*2 ch*3",
+drum "[~ cl] ! [cl cl] [~ cl]"
+] # dch "0.01" # scr "0.5"
+
+q $ density 2 $ slowcat[
+note $ tom "d3 ! ! !",
+note $ tom "e3 ! ! !",
+note $ tom "f3 ! ! !"
+] # dur "0.05"
+
+m5 $ slow 2 $ slowcat[
+note $ tom "d4 ! ! !",
+note $ tom "e4 ! ! !",
+note $ tom "f4 ! ! !"
+] # dur "1"
+
+
+hush
+
+cps 1
+
+b $ stack[
+drum "bd bd/2 bd/4 bd/3",
+drum "~ ~ [~ cp/2] ~",
+sometimes (stut 2 0 0.75) $ append' (drum "ch*2 oh") (drum "~ cr cr*2 [~ cr]"),
+drum "~ ~ [sn [~ sn/2]] [~ sn]"
+] # dch "0.01" # scr "0.5" # scr "0.75"
+
+
+---
+
+hush
+
+bps (210/100)
+
+b $ stack[
+--drum "bd ~ ",
+--drum "ch*2 ~",
+drum "cl ~",
+drum "ch*2 !!!",
+drum "[oh ~] [~ oh]",
+drum "cr/2 cr cr/4 [cr cr]/3"
+--drum "~ oh ~ oh"
+--degrade $ drum "~ cr [~ cr] ~",
+--drum $ preplace (1,1) "x(5,8)" "ag cl"
+] # dch "0.01 0.1" # doh "0.01" # scr "0.75" # scl "0.95" # sag "0.9" # scr "1"
+
+
+m5 $ stack[
+slowcat[
+stack[
+note $ tom "[d4(3,8,2), ~]",
+note $ tom "[~ ,e4(5,8)]"
+],
+stack[
+note $ tom "[f4(3,8,2), ~]",
+note $ tom "[~ ,g5(5,8)]"
+]
+],
+note $ tom "[[a(2,8,2), ~]]",
+note $ tom "[[~ ,c(5,8)]]"
+] # dur "0.01"
+
+hush

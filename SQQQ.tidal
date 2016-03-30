@@ -1,0 +1,42 @@
+cps 0.6
+
+d1 $ stack[ juxcut rev $ palindrome $ (sound $ samples "arp" $ iter 4 $ run 4) |+| speed (((*0.9) <$>) $ every 6 ((*1.3) <$>) $ every 8 ((*1.5) <$>) $ every 9 ((*1.8) <$>) $ every 7 ((*1.2) <$>) $ "0.2")  |+| gain (((*(-1)) . (*1.5)) <$> sinewave1),
+ (slow 2 $ every 4 (brak) $ palindrome $ density 8 $ (sound $ samples "arp" $ iter 4 $ run 4)  |+| speed (((*1.6) <$>) $ every 6 ((*1.3) <$>) $ every 8 ((*1.5) <$>) $ every 9 ((*1.8) <$>) $ every 7 ((*1.2) <$>) $ iter 2 "0.95 0.89 0.99") |+| slow 32 (vowel "u i") |+| gain (((*(-1)) . (*1)) <$> sinewave1)) ]
+ |+| vowel "a"
+ |+| gain (scale 0.5 0.7 $ sine1)
+ |+| coarse "[1 11 6]/3"
+
+hush
+
+d3 $ every 3 (rev) . every 2 (|+| shape "0.23") . stut 3 0.5 0.5 $ sound "rhodes:2 rhodes:3 rhodes:5 sid:2"
+
+d4 $ palindrome . every 3 (iter 3) . chop 2 . density 3 $ every 2 (slow 3 . iter 2 . rev) $ stack[sound "[{db, ~, ~}%2, hardcore !?]", sound "psr:1/3"]
+ |+| end "0.1"
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| shape (every 4 ((0.2+) <$>) $ "0.666")
+ |+| vowel "u"
+ |+| gain (scale 0.7 1 $ sinewave1)
+
+d5 $ palindrome . iter 3 . chop 2 . density 3 $ every 2 (slow 2 . rev) $ sound "[{rapman:1, ~ tok:4}%2, visco:5 !?]"
+ |+| end rand --"0.2 0.1 0.2"
+ |+| speed (every 2 ((+0.2) <$>) $ "1 0.9 1")
+ |+| shape "0.9"
+
+d5 $ palindrome . iter 3 . chop 2 . density 3 $ every 2 (slow 2 . rev) $ sound "[{rapman:1, lsdj:2 tok:3}%2, visco:5 !?]"
+ |+| end rand --"0.2 0.1 0.2"
+ |+| speed (every 2 ((+0.2) <$>) $ "1 0.9 1")
+ |+| shape "0.9"
+
+d5 $ palindrome . iter 3 . chop 2 . density 3 $ every 2 (slow 2 . rev) $ sound "[{rapman:1, lsdj:2 tok:4}%2, visco:5 [~, visco:5 !?]?]"
+ |+| end rand --"0.2 0.1 0.2"
+ |+| speed (every 2 ((+0.2) <$>) $ "1 0.9 1")
+ |+| shape "0.9"
+
+d5 $ palindrome . iter 3 . chop 2 . density 3 $ every 2 (slow 2 . rev) $ sound "[{rapman:1, {lsdj:2 visco:5} tok:4}%2]"
+ |+| end "0.2 0.1"
+ |+| speed (every 2 ((+0.2) <$>) $ "1 0.9 1")
+ |+| shape "0.9"
+
+
+
+hush

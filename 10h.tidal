@@ -1,0 +1,58 @@
+cps 1
+
+let sometimesW f = every 2 (sometimes (within (0, 0.33) f)) . foldEvery [3,5,7](sometimes (within(0.5, 0.75) f))
+
+hush
+cps 1
+
+-- glockenspiel
+m2 $ sometimesW(chop 2) $ stack[
+slowcat[note $ toMIDI "b4 ~", every 2 (chop 2)  $ note $ toMIDI "a4 ~"],
+note $ toMIDI "~ c4",
+sometimesW(slow 2) . iter 4 $ note $ toMIDI "c7 g7 f7 d7"
+]
+|+| vel "0.666"
+
+-- voice ah
+m2 $ slowcat[
+note $ toMIDI "g4",
+within (0, 0.5) (density 2 . chop 2) $ note $ toMIDI "g5",
+slowcat[note $ toMIDI "c5 f5",note $ toMIDI "c6 g5"]
+]
+|+| vel "0.5"
+|+| dur (scale 0.25 0.5 sine1)
+
+-- synth string 2
+m3 $ sometimes (# sustainpedal "0") $ slowcat[
+--note $ toMIDI "c5 c6 f5 f7",
+note $ toMIDI "c3 c4 f3 f4"
+]
+|+| vel "0.8"
+|+| sustainpedal (scale 0 0.65 rand)
+
+hush
+
+-- pizzi
+m4 $ slowcat[
+note $ toMIDI "c5 c6 f5 f7"
+]
+|+| vel "0.7"
+
+-- bells
+m5 $ slow 2 $ slowcat[
+slow 2 . iter 4 $ note $ toMIDI "c4 c3 c5 b4"
+]
+|+| vel "0.8"
+
+
+m5 silence
+
+hush
+
+
+
+
+
+----
+
+

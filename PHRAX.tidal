@@ -1,0 +1,42 @@
+cps 0.35
+
+d1 $ every 8 (density 2) . echo (3/2) . every 2 rev . stut 2 0.25 0.5 $ stack[
+ sound "hardcore:4 ! !",
+ slowcat[
+ slow 2 . gap 2 $ sound "[dr:8 dr:6] ! !"
+ ,
+ slow 2 . gap 4 $ sound "dr:6 ! !"
+ ]
+|+| speed (scale 0.7 1.2 $ triwave),
+ sound "hardcore ! !"
+]
+
+|+| crush "7"
+
+d2 $ juxBy 0 (|+| crush "4") . every 2 (stut 2 0.25 0.5) . echo (5/8) $ sound "visco:5 ! !"
+|+| speed "0.5"
+
+d3 $ gap 2 . chop 2 . striate 2 $ (sound $ samples "thib" $ slow 0.25 ("0 3 1 4"))
+|+| cut "1"
+|+| coarse ((floor . (*1) <$>) $ scale 1 13 $ rand)
+|+| vowel "i"
+|+| pan "[0 0.5 0.75]/3"
+
+d3 silence
+-- d3 $ slow 2 . gap 2 . chop 2 . striate 2 $ (sound $ samples "moog" $ slow 0.5 ("0 3 1 4"))
+-- |+| cut "1"
+-- |+| coarse ((floor . (*1) <$>) $ scale 1 13 $ rand)
+-- |+| gain "0.666"
+-- |+| vowel "i"
+-- |+| pan "[0 0.5 0.75]/3"
+
+
+
+hush
+
+cps 1
+
+d3 $ slow 8 $ sound "mintek:11"
+|+| cut "1"
+
+|+| coarse ((floor . (*1) <$>) $ scale 1 13 $ rand)

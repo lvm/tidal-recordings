@@ -1,0 +1,13 @@
+cps 0.5
+
+cps 1
+
+b $ stack[
+drum "bd bd"
+,
+drum "~ sn"
+,
+density 4 $ drum "ch*2 oh"
+]
+
+

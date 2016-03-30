@@ -1,0 +1,6 @@
+
+cps 0.7
+
+d1 $ every 4 (rev) . spread' density "2 1 2 4" . stut 4 0.2 0.3 $ stack[sound "pluck", rev $ sound "pluck:2*2?" |+| speed "0.3" |+| end "0.1", sound "pluck:3/3", striate 4 $ sound $ samples "pluck" $ iter 4 $ run 4]
+ |+| speed ( every 2 ((*1.3) <$>) $ every 3 ((*0.9) <$>) $ every 4 ((*1.2) <$>) $ every 7 ( (*1.7) <$>) $ "0.5") --iter 2 "1.5 1 1.4")
+ |+| cut "0.9"

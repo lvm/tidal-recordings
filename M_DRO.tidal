@@ -1,0 +1,27 @@
+cps 1
+
+let fill n q = within (q, q+0.25) (density n)
+
+let ch q w e = chop q . slow (w+2) . striate (e*2)
+
+let db x y = x*2 + y*x
+
+let rcbb q w e r =  (|+| resonance q) . (|+| cutoff w) . (|+| bandf e) .(|+| bandq r)
+
+
+d1 $ rcbb "0.8" "0.2" "[0.25 0.03 0.05]/3" "0.5". every 2 (within (0, 0.25) ((|+| vowel "[a o x i q i]/6") . (|+| coarse "[11 23 6]/3"))) . ch 2 1.25 2 . every 3 (stut 2 0.5 0.1) . fill 0.25 0.25 . every 2 rev . density 8 . slowspread (slow) [2, 8, 4] . chop (db 8 4) $ stack[
+sound "sine2:1 ~"
+,
+every 2 (density 4) $ sound "~ sine2:2"
+|+| coarse "23"
+|+| end "0.123"
+]
+|+| cut "1"
+|+| end rand
+|+| coarse "[2 5 3]/3"
+
+cps 0.5
+-- !!!
+
+
+hush

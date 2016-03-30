@@ -1,0 +1,308 @@
+hush
+
+
+
+
+cps 0.666
+
+let del = (|+| delay "0.3") . (|+| delayfeedback "0.3") . (|+| delaytime "0.3")
+
+
+solo $ d7 $ superimpose (|+| crush "6") . density 1.25 . within (0.5, 0.75) (slow 1.25) $ stack[
+slow 2 . stut 3 0.9 0.1 $ sound "glitch:2 e ch/2 e:1 e:3"
+ |+| speed (((0.1-) <$>) $ "[3 3.5 3.2]/6"),
+every 2 (density 2) $ sound "glitch"
+ |+| crush "4"
+ |+| speed (every 2 ((0.1-) <$>) "1"),
+density 1.25 $ sound "gabba:1 ~ ~",
+sound "~ wurlitzer:3/2 watford:2/4"
+]
+ |+| shape "[0.666 0.5 0.4 0.8]/4"
+
+
+
+
+
+
+d7 $ slow 4 . chop 256 $ stack[
+every 2 (del) . stut 2 0.9 0.1 . within (0, 0.8) (chop 2)  $ density 2 $ sound "gabba:1 auto",
+sound "~ ~ auto:3/8",
+density 2 $ striate 2 . every 2 (rev) $ sound "{amenkit:2 amenkit:3 amenkit:5}%4"
+]
+
+d7 $ slow 2 . chop 16 $ sound "amen"
+ |+| shape "[0.666 0.5 0.4 0.8]/4"
+
+hush
+
+
+-----
+
+d7 $ juxcut del . slow 2 $ stack[
+every 2 (del) . stut 2 0.9 0.1 . within (0, 0.8) (chop 2)  $ density 2 $ sound "gabba:1 auto",
+sound "~ ~ auto:3/8",
+density 2 $ striate 2 . every 2 (rev) $ sound "{amenkit:2 amenkit:3 amenkit:5}%4"
+]
+
+
+d3 $ every 3 (rev . slow 2) . density 2.5 . stut 2 0.1 (-0.1) . juxcut (rev . (|+| shape "0.9")) $ iter 64 $ (sound (pick <$> "bass3:2 bass3:1 bass3:2" <*> rev "2 3 1"))
+ |+| bandf "[0.8 0.9 0.6]/3"
+ |+| bandq "0.2"
+ |+| resonance "[0.9 0.5 0.6]/3"
+ |+| speed (((/2) <$>) $ every 2 ((*1.2) <$>) $ every 4 ((*2.2) <$>) $ "[2 1.666 1.5]/3")
+ |+| vowel "a"
+ |+| gain "0.5"
+
+
+
+--------- PROTOZONG
+
+d4 $ every 4 (stut 4 0.5 0.5) . slow 2 . superimpose (density 2) . chop 8 $ sound "{db ch cy:5}%8"
+ |+| speed (((/2) <$>) $ every 2 ((*1.2) <$>) $ every 4 ((*2.2) <$>) $ "[2 1.666 1.5]/3")
+ |+| end "0.1"
+
+d3 $ echo (1/4) $ every 7 (within (0, 0.5) (density 2)) . every 2 (rev) . every 8 (stut 8 0.5 0.5) $ sound "{bd:2 amenkit:4/4 auto:5 bottle:2}%8"
+ |+| speed (every 2 ((*1.2) <$>) $ every 4 ((*2.2) <$>) $ "0.666")
+
+
+
+---- proto song
+
+d3 $ slow 1.25 . stut 2 0.1 (-0.1) . within (0, 0.5) (stut 2 0.5 0.3) . every 8 (rev) $ stack[
+sound "{bd8:1 ~ ~ auto:5 ~ bottle:2}%8",
+sound "{~ ~ ~ ~ auto:5}%8",
+density 8 $ sound "gabba:1"
+ |+| crush "6"
+ |+| end rand
+]
+
+d4 $ every 4 (echo (1/4)) . chop 8 . stut 4 0.2 0.1 . slow 1.25 $ sound "{cy:5 cy:5*2? cy:5? cy:5}%8"
+ |+| speed (every 5 ((0.1-) <$>) $ "[1 0.97]/2")
+ |+| shape "0 0.23"
+ |+| end rand
+
+---- EO proto song
+
+
+
+
+d2 $ juxcut rev . every 3 (within (0, 0.23) (smash 2 [1..4])) $ spread' density "4 2 2 4" $ (sound $ samples "syll sylloh:0 ~" $ iter 8 $ run 8)
+ |+| speed "0.2"
+
+
+d1 $ del . density 2 . stut 4 0.1 (-0.1) . slow 2  . chop 8 $ stack[
+sound "syllnon:5 ~ syllnon:4 ~ sylloh ~",
+sound "{d e}%1"
+]
+ |+| shape "0.25"
+
+d2 $ slow 8 $ stack[
+sound "db(4,4)",
+chop 2 . stut 2 0.1 (-0.1) $ sound "{bd:2 ~ ~ {auto:5 !?}%1 bottle:2}%8",
+sound "~ ~ ~ ~ ~ bottle:1/4"
+]
+ |+| speed "[1 1.1 1.12 0.987]/4"
+
+
+
+
+
+d2 $ stack[
+sound "db(4,4)",
+sound "{wurlitzer:7 ~ ~ wurlitzer:10 bottle:2}%8",
+sound "minipops:6 wurlitzer:4 wurlitzer:5 ~ ~ bottle:1/4",
+sound "{minipops:6 !?}%1 ~ minipops:7 gabba:1 ~ gabba:1"
+ |+| speed (every 4 ((0.1-) <$>) "1"),
+sound "auto:5/4 ~ ~ auto:3/8",
+within (0.34, 0.7) (rev) . every 2 (density 2) . stut 2 0.6 0.2 . chop 8 $ sound "~ auto:7/2 !? ~"
+ |+| shape (((/2) <$>) "[1 1.1 1.12 0.987]/4" )
+]
+ |+| speed"[1 1.1 1.12 0.987]/4"
+
+d1 silence
+
+
+d3 $ rev $ stack[
+revArc(0.3,0.666) . chop 4 $ sound "hardcore(7,4)",
+sound "{mt:4 [mt:7 mt:8] ~ [mt:3 mt:4]}%5"
+]
+
+hush
+
+
+
+d2 $ echo (7/4) . density 1.5 $ sound "{deepsky deepsky:1 deepsky:11 peri:2*2}%4"
+ |+| speed "1 1 1.23 1"
+ |+| accelerate "1 1 [1 -1]/2 1"
+
+
+
+
+solo $ d3 $ slow 1.5 . stut 2 0.2 (-0.1) . spread' density (slow 0.5 "1.5 1.2 2") . rev $ stack[
+every 3 (rev) $ sound "sn:3 dr:1 sn"
+ |+| crush "4"
+,
+echo (7/4) . density 1.5 $ sound "{deepsky deepsky:1 deepsky:11 peri:2*2}%4"
+ |+| speed "1 1 1.23 1"
+ |+| accelerate "1 1 [1 -1]/2 1"
+,
+sound "db hardcore ~  wurlitzer:4"
+ |+| speed "1 1 ~ 0.23"
+]
+
+
+--d4 $ fadeOut 4 . echo (7/4) . rev  $ sound "kawai:11 kawai:1 {kawai:10 kawai:8*2? kawai:9}%2"
+
+
+let cr = chop 32 . rev
+
+cps 0.3666
+
+d5 $ chop 8 $ sound "ade:3"
+ |+| cut "1"
+ |+| gain "0.6"
+
+
+hush
+
+
+
+let del = (|+| delay "0.3") . (|+| delayfeedback "0.3") . (|+| delaytime "0.3")
+
+
+d2 $ slow 1.25 $ stack[
+sound "gabba:1 ~ [gabba:1 gabba:1/2]"
+ |+| vowel "u a"
+ |+| speed "0.55"
+,
+chop 8 . every 2 (del) $ stut 4 0.6 0.5 $ sound "bd:2 ~ ~ ~"
+ |+| speed "0.55"
+ |+| crush "3"
+]
+
+d2 $ slow 1.25 $ stack[
+sound "gabba:1 ~ [gabba:1 gabba:1/2]"
+ |+| vowel "u a"
+ |+| speed "0.55"
+,
+chop 8 . every 2 (del) $ stut 4 0.6 0.5 $ sound "bd:2 ~ ~ ~"
+ |+| speed "0.55"
+ |+| crush "3"
+,
+every 4 (within (0, 0.25) (striate 2 . chop 8)) $ sound "~ [ma8 !?] sd8:6 [sn:3 sn/2]"
+ |+| speed "0.55"
+ |+| crush "3"
+]
+
+
+
+d1 $ superimpose (within (0, 0.1) (chop 2)) $ stack[
+echo (7/5) $ density 2 . every 2 (rev) $ sound "{~ kawaixd:7 kawaixd:15}%2"
+,
+density 1.25  $ sound "~ [ma8 !?] sd8:6 [amenkit:3 watford/2]"
+]
+ |+| speed "[1 0.9 0.95]/3"
+
+
+
+
+solo $ d1 $ stack[
+superimpose (within (0, 0.1) (chop 2)) $  density 1.25  $ sound "~ [ma8 !?] sd8:6 [amenkit:3 watford/2]",
+echo (7/5) $ every 2 (rev) $ sound "[kawaixd:7 !?]",
+sound "~ bottle:2"
+]
+
+
+
+-------
+
+
+d1 $ every 4 (echo (7/4)) $ density 1.2 $ stack[
+superimpose (within (0, 0.1) (chop 2)) $  density 1.25  $ sound "~ [ma8 !?] sd8:6 [amenkit:3 watford/2]"
+|+| speed "[1 0.98]/2"
+,
+echo (7/5) $ every 2 (rev) $ sound "[kawaixd:7 !?]"
+ |+| speed "1.5"
+,
+sound "bd bottle:2"
+|+| speed "[0.666 0.5 1]/3 0.5"
+]
+
+d2 $ every 9 (|+| accelerate "-1") . stut 4 0.2 0.1 . slow 2 $ sound "amenkit:3 [amenkit:5 amenkit:4]"
+ |+| speed "1 [1 0.8]"
+
+d3 $ slow 16 . every 4 (striate 2) . chop 32 $sound "nicepad"
+ |+| cut "1"
+ |+| begin "0.2"
+ |+| end "0.5"
+ |+| gain sine1
+ |+| speed "[0.666 0.8]/2"
+
+
+
+
+
+-----
+
+
+d2 $ slow 8 $ sound "angels"
+ |+| end "0.9"
+
+d2 silence
+
+d1 $ sound "electro1:5 ~ linndrum:4(2,1)"
+
+d3 $ juxcut rev . slow 2 . every 4 (striate 2) . chop 4 $sound "fantom57"
+ |+| cut "1"
+ |+| end "0.5"
+ |+| gain sine1
+ |+| speed "[0.666 0.8]/2"
+
+----
+
+hush
+
+
+
+
+
+d8 $ stack[
+striate' 4 (0.5) $ sound "sf:3 ul:1 sf:3",
+every 3 (rev) . within (0.5, 0.7) (density 2) . echo (7/4) $ sound "[linndrum:5 linndrum:6] tech linndrum:4/2",
+sound "sd8:1 sf:2 sd8:5"
+]
+
+
+hush
+
+
+
+
+d8 $ stack[
+striate' 4 (0.5) $ sound "sf:3 ul:1 sf:3",
+every 3 (rev) . within (0.5, 0.7) (density 2) . echo (7/4) $ sound "[linndrum:5 linndrum:6] tech linndrum:4/2",
+sound "sd8:1 sf:2 sd8:5"
+]
+
+d7 $ every 2 (slow 1.5) . every 4 (rev) . density 1.5 $ sound "rapman ~ rapman:3 [sd8:6 ma8]"
+
+hush
+
+
+
+
+------
+
+
+
+let del = (|+| delay "0.3") . (|+| delayfeedback "0.3") . (|+| delaytime "0.3")
+
+
+d2 $ stack[
+stut 2 0.6 0.5 . del $ sound "[voodoo(2,1)]/2 linndrum:4 ~",
+sound "glitch:2"
+]
+
+
+
+

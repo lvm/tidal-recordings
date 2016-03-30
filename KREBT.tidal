@@ -1,0 +1,105 @@
+cps 0.8
+
+let fill n q = within (q, q+0.25) (density n)
+
+let cill n q = within (q, q+0.25) (chop n)
+
+let ch q w e = chop q . slow (w+2) . striate (e*2)
+
+let db x y = x*2 + y*x
+
+let rcbb q w e r =  (|+| resonance q) . (|+| cutoff w) . (|+| bandf e) .(|+| bandq r)
+
+let ddd d = (|+| delay d) . (|+| delaytime d) . (|+| delayfeedback d)
+
+let tt t = echo (2/t)
+
+let t t = echo (7/t)
+
+
+-- d1 $ slow 1.25 . juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . spread' tt "2 3" . stut 2 0.5 0.5 . every 2 rev $ sound "[amencutup:3 amencutup [amencutup:2 amencutup:6], amencutup:2*2 amencutup:7]"
+
+hush
+
+cps 0.8
+
+cps 0.666
+
+-- dob
+
+d1 $ fadeOut 8 $ iter 4 . juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . t 4 . stut 2 0.5 0.5 . every 2 rev $ (sound $ samples "[amencutup:3 amencutup [amencutup:2 amencutup:6], amencutup:2 amencutup:7]" $ iter 6 $ run 6)
+|+| coarse "11"
+|+| cut "1"
+
+d1 $ juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . t 4 . stut 2 0.5 0.5 . every 2 rev $ sound "[amencutup:3 amencutup:7 [amencutup:2 amencutup:6], amencutup:2 amencutup:7]"
+|+| coarse "11"
+|+| cut "1"
+
+
+-- reg
+
+d1 $ slow 1.25 . juxcut (|+| coarse "3") . superimpose (iter 4 . (|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . t 4 . stut 2 0.5 0.5 . every 2 rev $ sound "[amencutup:3 amencutup:7 [amencutup:2 amencutup:6], amencutup:2 amencutup:7]"
+|+| coarse "11"
+|+| cut "1"
+
+d1 $ slow 1.25 . juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . t 4 . stut 2 0.5 0.5 . every 2 rev $ sound "[amencutup:3 amencutup:7 [amencutup:2 amencutup:6], amencutup:2 amencutup:7]"
+|+| coarse "11"
+|+| cut "1"
+
+-- slo
+
+d1 $ slow 1.25 . juxcut (|+| coarse "[5 3]/2") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . t 4 . stut 2 0.5 0.5 . every 2 rev $ sound "[amencutup:3 amencutup:7 [amencutup:2 amencutup:6], amencutup:3 amencutup:7]"
+|+| coarse "11"
+|+| cut "1"
+
+-- r slo
+
+d1 $ slow 1.25 . juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . t 2 . stut 2 0.5 0.5 . every 2 rev $ sound "[amencutup:3 amencutup:2 [amencutup:2 amencutup:6], amencutup:2 amencutup:7]"
+|+| coarse "11"
+|+| cut "1"
+
+-- rr slo
+
+d1 $ slow 2.5 . juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . spread' t "8" . stut 2 0.5 0.5 . every 2 rev $ sound "[amencutup:3 amencutup:3 [amencutup:2 amencutup:6], amencutup:2 amencutup:7]"
+|+| coarse "11"
+|+| cut "1"
+
+--- rrr slo
+
+-- d1 $ slow 2.5 . juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . spread' t "4 8" . stut 4 0.666 0.666 . every 2 rev $ sound "[amencutup:2 amencutup:2 [amencutup:2 amencutup:6], amencutup:3 amencutup:7]"
+-- |+| coarse "11"
+-- |+| cut "1"
+
+d1 $ slow 2.5 . juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . spread' t "4 8" . stut 4 0.666 0.666 . every 2 rev $ sound "[amencutup:2 ~ [amencutup:4*4 amencutup:6], ~ amencutup:3]"
+|+| coarse "11"
+|+| cut "1"
+
+d1 $ slow 2.5 . juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . spread' t "4 8" . stut 4 0.666 0.666 . every 2 rev $ sound "[~ ~ [amencutup:4*4 amencutup:6], ~ ~]"
+|+| coarse "11"
+|+| cut "1"
+
+-- rrrr slo
+
+d1 $ slow 2.5 . juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5")) . slow 2 . spread' t "4 8" . stut 4 0.666 0.666 . every 2 rev $ sound "[amencutup:3 amencutup:7 [amencutup:2 amencutup:6], amencutup:2 amencutup:7]"
+|+| coarse "11"
+|+| cut "1"
+
+--- bg
+
+d3 $ jux ((|+| speed "0.25") . (|+| vowel "[a q o x ]/4") . slow 2) . slowspread (slow) [2, 4] . slowspread (density) [1, 1.25, 2] . rcbb "1.8" "0.8" "[0.2 0.5 0.3 0.25]/5" "0.8" . striate' 512 (1/100) $ sound "sine sine2:1 sine"
+|+| cut "1"
+|+| end rand
+|+| speed (every 2 ((*4) <$>) $ "[0.36 0.25 0.45 0.37]/4")
+|+| speed (((*2) <$>) $ "[0.36 0.25 0.45 0.37]/4")
+|+| coarse "4"
+|+| gain "0.666"
+
+d3 $ fadeOut 2 $ jux ((|+| speed "0.25") . (|+| vowel "[a q o x ]/4") . slow 2) . slowspread (slow) [2, 4, 8] . slowspread (density) [1, 1.25, 2] . rcbb "1.8" "0.8" "[0.2 0.5 0.3 0.25]/5" "0.8" . striate' 512 (1/100) $ sound "sine sine2:1 sine"
+|+| cut "1"
+|+| end rand
+|+| speed (every 2 ((*4) <$>) $ "[0.36 0.25 0.45 0.37]/4")
+|+| speed (((*2) <$>) $ "[0.36 0.25 0.45 0.37]/4")
+|+| coarse "4"
+|+| gain "0.666"
+
+hush

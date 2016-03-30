@@ -1,0 +1,251 @@
+cps 1
+
+cps 0.666
+
+let eco n = echo (n/4)
+
+q $ sometimes ((# dur "1") . slow 2) . slow 2 . chop 2 . slow 2 $ stack[
+  --chrot [48] "[1(8,8)]" [0,3,7,10,14]
+  chrot [48] "[1(8,8)]" [0,3,7],
+  chrot [48] "[1(8,8)]" [0,3,7,10,14],
+  chrot [48] "[1(8,8)]" [0,4,7,10],
+  chrot [48] "[1(8,8)]" [0,3,7,10]
+ ] # dur "0.25" # vel "0.5" # decay "1"
+
+b $ every 21 (within (0, 0.33) (chop 2)) $stack[
+  every 11 (within (0, 0.5) rev) . every 7 (sometimes (#dch "0.5")) . foldEvery [3,5] (sometimes(#dch "0.25")) . density 2 $ drum "[[[bd bd/2], sn*2 sn], [[ch !?] [cp/2 cp/3], cr/2 ch*2]]]"
+  ]  # dch "0.1" # scl "0.5" # sag "0.9" # stt "0" # std "0"
+
+m2 $ stack[
+  chrot [48] "[1(8,8)]" [0]
+ ] # dur "0.6" # vel "0.57"
+
+hush
+
+
+
+
+b $ every 8 (slow 4) . every 4 (chop 2) $ stack[
+  every 11 (within (0, 0.5) rev) . every 7 (sometimes (#dch "0.5")) . foldEvery [3,5] (sometimes(#dch "0.25")) . density 2 $ drum "[[[bd bd/2], sn*2 sn], [[ch !?] oh, cp/2 ch*2]]]"
+  ]  # dch "0.1" # scl "0.5" # sag "0.9" # stt "0" # std "0"
+
+b $ every 4 (sometimes(chop 2)) $ stack[
+  every 11 (within (0, 0.5) rev) . every 7 (sometimes (#dch "0.5")) . foldEvery [3,5] (sometimes(#dch "0.25")) . density 2 $ drum "[[[bd bd/2], sn*2 sn], [[ch !?] oh, cp/2 ch*2]]]"
+  ,degrade $ drum "[cl(9,16)]/2"
+  ]  # dch "0.1" # scl "0.5" # sag "0.9"
+
+b $ every 4 (sometimes(chop 2)) $ stack[
+  every 11 (within (0, 0.5) rev) . every 7 (sometimes (#dch "0.5")) . foldEvery [3,5] (sometimes(#dch "0.25")) . density 2 $ drum "[[[bd bd/2], sn*2 sn], [[ch !?] oh, cp/2 ch*2]]]"
+  ,
+  sometimes degrade $ drum $ preplace (1,1) "[x(9,16)]/2" "cl ag"
+  ]  # dch "0.1" # scl "0.5" # sag "0.9"
+
+hush
+
+
+b silence
+
+hush
+
+q $ slow 2 . chop 2 $ stack[
+  chrot [48] "[[~ 1 1 1] [~ 1 ~ 1], [~ 1 ~ ~] [1 ~ ~ 1]]" [0,4,7]
+  ,chrot [60] "[1([5 3 7]/3,8)]" [0,4,7]
+ ] # dur "0.05" # vel "1"
+
+
+
+
+q $ sometimes (within(0, 0.33) (# decay "1")) $ every 2 (# cutoffegint "0.1") $ foldEvery [3,5,7] (stut 2 0 0.75) . chop 2 . slow 2 $ stack[
+  chrot [48] "[1(5,8)]" [0,4,7,11,7]
+  ,chrot [60] "[1(3,8,2)]" [0,4,7]
+ ]  # decay "0.01" -- (scale 0.1 0.9 $ density 16 $ squarewave1)
+
+
+hush
+
+  -- (scale 0 1 $ density 32 $ sine1) -- (scale 0.1 0.9 $ density 16 $ squarewave1)
+
+-- every 3 (sometimes(within(0,0.5)(# decay "[1 0.666]/2"))) . 
+ 
+hush
+
+
+q $ sometimes(slow 2) $ slow 2 . chop 2 . slow 2 $ stack[
+  chrot [48] "[1(8,8)]" [0,4,7,11,7]
+  ,chrot [60] "[1(3,8,2)]" [0,4,7]
+ ] # decay "1" -- (scale 0 1 $ density 32 $ sine1) -- (scale 0.1 0.9 $ density 16 $ squarewave1)
+
+hush
+
+m2 $ stack[
+chrot [48] "[[1(5,8)]/2, ~]" [0,0,0,4,7,11],
+chrot [41] "[~, [1(3,8)]]" [0,0,0,4,7,11]
+] # dur ("0.2 [0.25 0.5 0.75 1]/4 0.1 [0.5 1]/2 0.25") # vel (scale 0.25 0.3 $ palindrome $ sine1)
+
+m1 $ foldEvery [3] (sometimes(within(0,0.5)(# decay "1"))) . foldEvery [3,5,7] (stut 2 0 0.75) . chop 2 . slow 2 $ stack[
+  chrot [48] "[1(5,8)]" [0,0,0,4,7,11],
+  chrot [60] "[1(3,8,2)]" [0,0,0,4,7,11]
+ ] # decay (scale 0 1 $ density 16 $ sine1) # dur "0.01" # vel "0.35"
+
+
+---
+
+
+cps 0.666
+
+b $ every 4 (sometimes(# stt"0.23")) $ stack[
+  drum "[bd([3 5]/2,8), sn(3,8,2)]",
+  drum "~ oh",
+  every 2 (density 2) . foldEvery [4,5] (chop 2) $ drum "ch*2 ~"
+  ,drum "[cp(9,16)]/4"
+] # stt "0" # std "[0 0.1]/2"
+
+m2 $ stack[
+chrot [48] "[[1(5,8)]/2, ~]" [0,0,0,4,7,11],
+chrot [41] "[~, [1(3,8)]]" [0,0,0,4,7,11]
+] # dur ("0.2 [0.25 0.5 0.75 1]/4 0.1 [0.5 1]/2 0.25") # vel (scale 0.25 0.3 $ palindrome $ sine1)
+
+m1 $ sometimes rev . slow 2 $ slowcat[
+--chrot [60] "[[1(7,8)]/4,[1(5,8)]/2,1(3,8)]" [0,4,7,11]
+-- chrot [60] "1(7,8)" [0,4,7,11],
+-- chrot [60] "1(2,8)" [0,4,7,11],
+-- chrot [60] "1(3,8)" [0,4,7,11],
+-- chrot [60] "1(1,8)" [0,4,7,11],
+-- chrot [60] "1(5,8)" [0,4,7,11],
+-- chrot [60] "1(1,8)" [0,4,7,11],
+chrot [48] "1(8,8)" [0,4,7,11,0,3,7,14,21]
+--,chrot [60] "[1(3,8,5),1(5,8)]/2" [0,4,7,11]
+] # vel (scale 0 0.35 rand) # dur (scale 0.9 1 sine1)
+
+
+hush
+
+b $ sometimes(spread' chop "4 1 2") . stut 2 0.5 0.75 $ drum "[[bd, sn sn], [ch oh, cp/4 ch]]]"
+
+
+b $ slowspread (spread' chop) ["3 5 7", "2 4 6"] $ drum "[[bd, sn sn], [ch oh, cp/4 ch]]]"
+
+b $ stack[density 4 . sometimes (slow 2) $ stack[drum "bd ~", drum "[sn(5,8)]/2"], drum "~ [cp/2 cp]", stack[density 3 $ drum "ch*2 oh", drum "[~ ch] !"]]
+
+
+
+b $ density 3 $ stack[
+drum "bd ~",
+spread' (flip every (slowspread ($) [density 2, rev])) "2 3 4" $ drum "~ cp",
+drum "ch*2 oh"
+]
+
+
+q $ stack[
+chrot [48] "[[1(5,8)]/2, ~]" [0,0,0,4,7,11]
+--chrot [41] "[~, [1(3,8)]]" [0,0,0,4,7,11]
+] # dur ("0.2 [0.25 0.5 0.75 1]/4 0.1 [0.5 1]/2 0.25") # vel (scale 0.25 0.3 $ palindrome $ sine1)
+
+
+
+b $ density 3 $ stack[drum "bd ~", drum "~ [cp/3 cp/2]", drum "ch*2 oh"] # std "0.1" # stt "[0.5 0.23]/2"
+
+
+
+
+ . 
+ 
+ . 
+
+
+hush
+
+
+
+
+
+
+m1 $ spin 2 . chop 2 $ stack[
+chrot [60,72] "[1(3,8,5),1(5,8)]/2" [0,0,0,4,7,11]
+] # vel "0.35" # dur "0.01"
+
+
+m1 $ stack[
+spin 2 . chop 2 $ stack[
+chrot [60,72] "[1(3,8,5),1(5,8)]/2" [0,0,0,4,7,11]
+] # vel "0.3" # dur "0.01"
+,slow 2 $ stack[
+chrot [60] "[1(3,8,5),1(5,8)]/2" [0,0,0,4,7,11]
+] # vel "0.3" # dur "1"
+]
+
+
+
+--
+hush
+
+
+
+cps 0.666
+
+cps (80/120)
+
+b $ every 4 (sometimes(# stt"0.23")) $ stack[
+  drum "[bd([3 5]/2,8), sn(3,8,2)]",
+  drum "~ oh",
+  every 2 (density 2) . foldEvery [4,5] (chop 2) $ drum "ch*2 ~"
+  ,drum "[cp(9,16)]/2"
+] # stt "0" # std "[0 0.1]/2"
+
+
+
+
+
+
+cps 1
+
+b $ stack[
+slowcat[
+drum "bd([2 1 4]/3,2) [cp ~ [~ cp/2]]",
+drum "bd([2 1 4]/3,2) [cp cp/2]"],
+density 2 $ drum "ch*2 oh",
+drum "[~ ch*2] !"
+] # scp "0.5" # stt "0" # std "0"
+
+m1 $ degradeBy 0.25 $ stack[
+chrot [60] "[~, ~, [1(2,8)]]/2" [0,0,0,4,7,11],
+chrot [48] "[[1(3,8)]/1, ~, ~]" [0,0,0,4,7,11],
+chrot [41] "[~, [1([5 3]/2,8)], ~]" [0,0,0,4,7,11]
+] # dur "1" # vel "0.5"
+
+
+-- ("0.2 [0.25 0.5 0.75 1]/4 0.1 [0.5 1]/2 0.25")
+
+hush
+
+m2 $ stack[
+--chrot [60] "[~, ~ , [1(2,8)]/2]" [0,0,0,4,7,11],
+chrot [60] "[[1(3,8)]/1, ~, ~]" [0,0,0,4,7,11],
+chrot [53] "[~, [1([5 3]/2,8)]/2, ~]" [0,0,0,4,7,11]
+] # dur ("0.2 [0.25 0.5 0.75 1]/4 0.1 [0.5 1]/2 0.25")
+
+m1 $ slow 2 . stut 2 0 0.25 $ stack[
+chrot [48] "[[1(3,8)]/1, ~, ~]" [0,0,0,4,7,11],
+chrot [41] "[~, [1([5 3]/2,8)]/2, ~]" [0,0,0,4,7,11]
+] # dur ("0.2 [0.25 0.5 0.75 1]/4 0.1 [0.5 1]/2 0.25") # vel "0.25"
+
+hush
+
+
+
+m2 $ stack[
+chrot [60] "[~, ~ , 1(2,8)]/2" [0,0,0,4,7,11]
+] # dur ("0.2 [0.25 0.5 0.75 1]/4 0.1 [0.5 1]/2 0.25")
+
+
+
+---
+
+hush
+
+m3 silence
+
+
+m3 $ stack[
+chrot [60] "[1(1,16,6)]" [0,0,0,4,7]
+] # vel "0.35" # dur "0.25"

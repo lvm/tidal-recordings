@@ -1,0 +1,166 @@
+cps 1
+
+d1 $ fadeOut 32 $ within (0.25, 0.6) (slow 2) $ stack[within(0.5, 0.9) (chop 4 . every 2(density 2) ) $ sound "sn:3", every 4 (striate 2) $ sound "dr:2(4,8)"]
+
+-- d2 $ every 2 (chop 32 . iter 3) $ sound "visco:5(2,4) ~ [~ visco:5(1,1) ~ ~]"
+--  |+| speed (scale 0.25 0.3 $ sine1)
+--  |+| shape "0.666"
+
+d2 $ fadeOut 32 $ every 2 (chop 32 . iter 3) $ sound "sid:2(2,4) ~ [~ lsdj:5(1,1) ~ ~]"
+
+-- d3 $ spread' density "4 1 1 1 2 1 2" . revArc(0, 0.25) . every 3 (rev) . stut 32 0.5 0.2 $ striate' 2 (0.5) $ sound "sf(2,1)"
+--  |+| speed (every 2 ((/2) <$>) $ scale 0.5 2 $ "1 2 1")
+
+
+d3 $ fadeOut 32 $ revArc(0, 0.25) . every 3 (rev) . stut 4 0.5 0.2 $ striate' 2 (0.5) $ sound "sn(3,8)"
+ |+| speed (every 2 ((/2) <$>) $ scale 0.5 2 $ "1 2 1")
+
+d4 $ fadeOut 32 $ stack[echo (7/4) $ sound "db(4,8)" |+| speed (every 2 ((/2) <$>) $ "0.1"), sound "koy"]
+
+d5 $ within (0.25, 0.5) (slow 2) $ slow 2 . every 3 (rev) . chop 16 $ sound "amen"
+ |+| cut "1"
+
+d5 $ chop 2 . every 3 (slow 2 . brak) . slow 8 . striate' 32 (0.5) $ sound "amen"
+ |+| cut "1"
+ |+| speed (every 3 ((*2) <$>) $ scale 0.6 0.3 $ sine1)
+
+
+
+d5 $ spread' (stut 2 0.5) "0.4 0.5 0.2" . revArc(0,0.25) . spread' density (iter 2 "2 4 2 8 2") $ sound "amen"
+ |+| cut "1"
+ |+| end rand
+
+ |+| speed (every 8 ((0.1-) <$>) "1")
+
+
+
+d5 $ revArc(0.25, 0.6) . within (0.6, 0.9) (every 2 (rev) . density 2) . chop 8 . slow 2 $ sound "amen"
+ |+| cut "1"
+ |+| speed (scale 2.9 0.1 $ sine1)
+
+d6 $ every 4 (density 3) . chop 32 . slow 1.5 . spread' density "2 1 2"  $ sound "drumtraks:7(3,1) ~"
+ |+| cut "1"
+ |+| speed (scale 1 0.1 $ sine1)
+
+d6 $ every 4 (density 3) . chop 32 . slow 1.5 . spread' density "2 1 2"  $ sound "drumtraks:7(3,1) ~"
+ |+| cut "1"
+ |+| speed (every 2 ((*5) <$>) $ scale 1 0.1 $ sine1)
+
+d6 $ every 4 (density 3) . spread' density "2 1 2"  $ sound "drumtraks:7(3,1) ~"
+ |+| cut "1"
+ |+| end rand
+ |+| speed (every 2 ((*5) <$>) $ scale 1 0.1 $ sine1)
+
+d7 $ spread' density "2 1 2"  $ sound "db(3,8) ~"
+ |+| cut "1"
+
+d8 $ rev . slow 4 . chop 8 $ sound "kurt"
+
+d8 silence
+
+d6 silence
+
+d7 silence
+
+d9 $ stack[revArc(0.25, 0.5) . spread' density (every 4 ((*4) <$>) "1 2 1") $ sound "~ bd:3(3,8)", within (0.25, 0.5) (chop 2) . every 4 (density 2) . chop 2 $ sound "~ sn:3/2 ~" |+| speed ((0.1-) <$> "1") |+| accelerate "[5 12 -10]/2", sound "e ~"]
+
+
+hush
+
+
+
+
+
+hush
+
+cps 1
+
+d1 $ within (0.6, 0.9) (echo (7/4)) $ every 2 (slow 2) . every 4 (rev . brak) $ sound "[sn(3,4) [bd bd:8(2,2)]]/2 hardcore:5(3,1)"
+ |+| speed (every 5 ((*2) <$>) $ every 2 ((/2) <$>) $ scale 0.5 2 $ iter 2 $ "1 2 1")
+
+d2 $ slow 2 . chop 4 $ sound "sea"
+ |+| cut "1"
+
+d3 $ every 4 (chop 4) $ every 3 (striate' 2 (0.5)) $ sound "glitch ~ ~ less:1"
+ |+| cut "1"
+
+
+hush
+
+
+
+d1 $ within (0.25, 0.5) (|+| gain "0") $ spread' density "2 4 2 8 2" . every 2 (|+| vowel "a") $ every 3 (|+| vowel "e") $ every 5 (|+| vowel "u") $ every 7 (|+| vowel "i") $ every 11 (|+| vowel "o") $ sound "f"
+ |+| speed (every 2 ((/2) <$>) $ "[0.25 0.3 0.5 0.23]/2")
+ |+| cut "1"
+ |+| gain "0.666"
+
+d2 $ stack[every 4 (density 2) $ sound "{mattel:2(2,1) !?}%1", slow 2 $ sound "cp(2,1)" |+| end (scale 0.1 0.25 $ rand)]
+ |+| speed (every 9 ((0.1-) <$>) "1")
+
+d2 silence
+
+d3 $ fadeOut 4 $ stut 2 0.5 0.5 . striate' 32 (0.5) $ slow 2 $ (sound $ samples "numbers:6" $ iter 10 $ run 10)
+ |+| cut "1"
+
+
+hush
+
+
+
+d1 $ slow 2.55 . echo (7/4) $ every 4 (stut 2 0.5 (-0.5)) . within (0.5, 0.8) ( revArc(0.25, 0.5) ) $ every 3 (chop 2) $ sound "{{bd:8 !?}%1 {hardcore:5(1,1) !?}%1 visco:5*2}%3"
+ |+| shape "0.666"
+
+d2 $ slow 2 . chop 8 $ sound "sea"
+ |+| cut "1"
+ |+| speed (scale 0.9 1.2 $ sine1)
+
+d3 $ slow 1.25 . every 2 (spin 4) . every 4 (density 2) . spread' density "1 1 1 2 1 1 2" $ sound "db:2(3,1)"
+
+
+
+
+
+hush
+
+
+
+d1 $ within (0,0.5) (striate 4 . slow 2) $ spread'  density "2 4 1 2 1 2" . stut 64 0.2 (-0.5) $ sound "orchestral:3 ~"
+ |+| cut "1"
+ |+| speed (slow 2 $ "2 5.3 2.5")
+
+-- d2 $ fadeOut 8 $ sound "sid:4(4,1) ~ ~ {casio(1,3) !? !?}%1"
+
+-- d3 $ fadeOut 8 $ echo (7/4) $ slow 2 . within (0.5, 0.7) (|+| speed (scale 0.666 0.9 $ triwave1)) . revArc(0, 0.25) . chop 2 . spread' density "2 1 1 2 1 1 4" $ sound "gab:8 gab:7(3,1)"
+d2 silence
+
+
+d4 $ sound "bass0 ~ [bass2 bass2:1]"
+ |+| speed "10 10.1"
+
+
+
+
+
+
+
+-=-----
+
+
+d7 $ spread' density "2 1 2"  $ sound "db(3,8) ~"
+ |+| cut "1"
+ |+| speed (scale 1 0.1 $ sine1)
+ |+| vowel "a"
+
+
+d7 $ within (0, 0.25) (stut 2 0.5 0.4) . within (0.5, 0.75) (stut 4 0.5 0.4) . spread' density "2 1 2"  $ sound "db(3,8) ~"
+ |+| cut "1"
+
+d6 $ rev . iter 8 . echo (7/2) $ every 4 (echo (7/4)) $ stack[sound "{~ bd:3(2,1) sid:2 [bd bd]}%3", every 4 (density 2) $ sound "house(3,1)?"]
+ |+| cut "1"
+ |+| speed "5 0.9 1"
+
+d5 $ stut 2 0.5 0.5 $ sound "sf:3(2,1) sn:3"
+ |+| speed ("0.5 1")
+ |+| gain sine1
+
+hush

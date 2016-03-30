@@ -1,0 +1,195 @@
+cps 0.45
+
+ drum "[~ bd lt ~] [~ bd ~ ~] [~ bd lt ~] [lt bd bd/4 ~]"
+
+b1 $ stack[
+ drum "[~ bd lt ~] [~ bd ~ ~] [~ bd bd ~] [lt bd bd/4 ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~]"
+ |+| dhg "[0.9 0.5]/2"
+ ,
+ drum "ch(8, 16) oh"
+ |+| dch "0.95"
+ |+| dhg "0.75"
+ |+| lch "0.33"
+]
+
+ drum "[~ ~ sn ~] [sn ~ ~ ~] [~ ~ ~ sn] [sn ~ ~ ~ ~ sn ~]"
+ ,
+
+cps 0.5
+
+let dz = density 2 . zoom (0, 0.5)
+
+let dz2 = density 2 . zoom (0.5, 0.9)
+
+let stdt = (# std "0.45") . (# stt "0.25")
+
+every 3 (within (0.5, 0.8) stdt) $
+every 11 (within (0, 0.2) (brak)) $ 
+every 7 (within (0, 0.5) (density 2 . dz)) .
+
+b1 $ stack[
+ slowcat[
+ drum "[~ bd ~ ~] [~ ~ ~ ~] [~ ~ bd ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ ~ ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ ~ ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ bd ~ ~] [~ ~ ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [bd ~ ~ ~]"
+ ]
+ ,
+ sometimes ((# dt "0.5")) $ drum "[ht ~ ~] [~ ~ ~ ~] [~ lt ~ ~] [~ ~ ~ lt]"
+ |+| dt "0.9"
+ ,
+ drum "[~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~] [~ cp ~ cp?]"
+ |+| scp "0.6"
+ ,
+ foldEvery [3,5] dz . every 2 dz $ stack[
+ drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ~ oh ~]"
+ ,
+ drum "[cl ~ cl ~] [cl ~ cl ~] [cl ~ cl ~] [cl ~ cl ~]"
+ |+| lcl "0.9"
+ |+| scl (scale 0.8 0.95 $ every 3 (sometimes rev) $ superimpose (density 2) $ sine1)
+ ]
+ |+| dch "0.5"
+ |+| dhg "0.75"
+ |+| lch "0.33"
+ ]
+ |+| std "0"
+ |+| stt "0"
+
+
+
+b1 silence
+
+cps 0.52
+
+smash 2 [3] $ 
+
+let rlcl = (# lcl "0.99")
+drum "[lt lt lt ~] [~ lt lt/3 ~] [~ ~ lt ~] [~ lt ~ ~]"
+
+b1 $ stack[
+ slowcat[
+ drum "[lt lt lt ~] [~ lt lt/3 ~] [~ ~ lt ~] [~ lt ~ ~]"
+ ]
+ |+| dt (scale 0.5 0.75 $ density 2 $ squarewave1)
+ ,
+ randcat[
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~] [~ ~ ~ ~]"
+ |+| dhg "0.75"
+ ]
+ ,
+ drum "ch(9, 16)"
+ |+| dch "0.95"
+ |+| dhg "0.5"
+ |+| lch "0.33"
+]
+
+b1 silence
+
+
+b1 $ stack[
+ drum "[bd/2 lt ~ ag ~ ~] [ag lt ~] [~ ~ lt ~] [~ lt ~ ~]"
+ |+| sag "[0.01 0.02]/2"
+ |+| lag "0.3"
+ |+| lbd "0.5"
+ |+| dt "0.5"
+ ,
+ randcat[
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~] [~ ~ ~ ~]"
+ |+| dhg "0.75"
+ ]
+ ,
+ foldEvery [5, 9] (sometimes (within (0, 0.22) (spin 3))) $ drum "ch(9, 16)"
+ |+| dch "0.95"
+ |+| dhg "0.5"
+ |+| lch "0.25"
+]
+
+
+
+--
+
+
+b1 $ smash 2 [3] $ stack[
+ slowcat[
+ drum "[lt lt lt ~] [~ lt lt/3 ~] [~ ~ lt ~] [~ lt ~ ~]"
+ ]
+ |+| dt (scale 0.5 0.75 $ density 2 $ squarewave1)
+ ,
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~]"
+ |+| dhg "0.75"
+ ,
+ drum "ch(9, 16)"
+ |+| dch "0.95"
+ |+| dhg "0.5"
+ |+| lch "0.33"
+]
+
+
+b1 $ smash 2 [3] $ stack[
+ slowcat[
+ drum "[lt lt lt ~] [~ lt lt/3 ~] [~ ~ lt ~] [~ lt ~ ~]"
+ ]
+ |+| dt (scale 0.5 0.75 $ density 2 $ squarewave1)
+ ,
+ randcat[
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~]"
+ ]
+ |+| dhg "0.75"
+ ,
+ drum "ch(9, 16)"
+ |+| dch "0.95"
+ |+| dhg "0.5"
+ |+| lch "0.33"
+]
+
+
+-- b1 $ smash 2 [3] $ stack[
+--  drum "[bd/2 lt ~ ag ~ ~] [ag lt ~] [~ ~ lt ~] [~ lt ~ ~]"
+--  |+| sag "[0.01 0.02]/2"
+--  |+| lag "0.3"
+--  |+| lbd "0.5"
+--  |+| dt "0.5"
+--  ,
+--  randcat[
+--  drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~]"
+--  ,
+--  drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ oh]"
+--  |+| dhg "0.75"
+--  ]
+--  ,
+--  drum "ch(9, 16)"
+--  |+| dch "0.95"
+--  |+| dhg "0.5"
+--  |+| lch "0.25"
+-- ]
+
+b1 silence

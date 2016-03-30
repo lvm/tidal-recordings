@@ -1,0 +1,106 @@
+cps 0.5
+
+
+d1 $ stack[
+slow 2 . chop 16 $ sound "humming"
+|+| cut "1"
+|+| speed "[1 1.1 1 0.9 0.8 0.96 1 1.05]/8"
+,
+sound "",
+sound ""
+]
+
+
+
+
+d1 $ stack[
+slow 2 . chop 16 $ sound "humming"
+|+| cut "1"
+|+| speed "[1 1.1 1 0.9 0.8 0.96 1 1.05]/8"
+,
+stut 2 0.5 0.1 $ sound "bd bd:2 [~ sn:1] bd:8"
+|+| coarse "11 12 5 8 9"
+,
+sound "~ bd8:1 bd8:1 ~"
+,
+sound "~ ch ae? ~"
+|+| speed "0.5"
+,
+striate 8 . slow 2 . stut 4 0.5 0.1 $ sound "glitch:2 ~ ~ ~"
+|+| coarse "[42 1 50]/2"
+]
+
+hush
+
+--
+
+cps 0.5 
+
+let ddd = (|+| delay "0.3")  . (|+| delaytime "0.3") . (|+| delayfeedback "0.3") 
+
+d1 $ density 1.5 $ stack[
+juxcut rev . slow 4 . slow 1.5 . chop 12 $ sound "kathakak:2"
+|+| cut "1"
+|+| speed (every 4 ((0.1-) <$>) "[1 1.1 1 0.9 0.8 0.96 1 1.05]/8")
+|+| gain "[0.6 0.7]/2"
+,
+slowspread ($) [density 2, density 1.5, density 3 . rev, density 2] $ sound "kawaixd:10*2? glitch ~ ~ "
+|+| coarse "[6 11 16]/3"
+|+| crush "[6 11 16]/3"
+,
+echo (7/4) $ sound "~ ~ ~ bd:2"
+|+| coarse "[6 11 16]/3"
+,
+sound "~ ae bd8:1 ~"
+|+| coarse "[6 11 16]/3"
+]
+
+
+
+d1 $ density 1.25 $ stack[
+slowspread ($) [density 2, density 1.5, density 3 . rev, density 2] $ sound "kawaixd:10*2? glitch ~ ~ "
+|+| coarse "[6 11 16]/3"
+|+| crush "[6 11 16]/3"
+,
+echo (7/4) $ sound "~ ~ ~ bd:2"
+|+| coarse "[6 11 16]/3"
+,
+sound "~ ae bd8:1 ~"
+,
+juxcut rev $ sound "~ ~ deepbass ~"
+|+| coarse "[6 11 16]/3"
+|+| gain "[0.5 0.3 0.25 0.6]/4"
+]
+
+
+---
+,
+slow 4 . chop 8 $ sound "kids"
+|+| speed "[1 1.1 1 0.9 0.8 0.96 1 1.05]/8"
+|+| gain "[0.5 0.3 0.25 0.6]/4"
+
+
+----
+
+
+d1 $ stack[
+juxcut rev . slow 4 . chop 12 $ sound "kathakak:2"
+|+| cut "1"
+|+| speed (every 4 ((0.1-) <$>) "[1 1.1 1 0.9 0.8 0.96 1 1.05]/8")
+|+| gain "[0.6 0.8]/2"
+,
+every 4 (echo (1/4)) $ density 1.5 $ sound "kawaixd:10*2? glitch ~ ~ "
+|+| coarse "[6 11 16]/3"
+|+| crush "[6 11 16]/3"
+,
+echo (7/4) $ sound "~ ~ ~ bd8:1"
+|+| coarse "[6 11 16]/3"
+,
+sound "~ ~ bd8:1? ~"
+|+| coarse "[6 11 16]/3"
+]
+
+
+
+
+hush

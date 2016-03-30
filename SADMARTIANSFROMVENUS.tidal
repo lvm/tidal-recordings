@@ -1,0 +1,31 @@
+bps (69/60)
+bps 0.6
+
+
+d1 $ echo (7/8) $ every 2 (jux (iter 8)) $ stack [sound "house:3 sn", every 2 (rev) $ every 4 (brak) $ (sound "bd ~ house")]
+ |+| shape triwave1
+ |+| pan (slow 2 triwave1)
+
+
+d2 $ every 3 (echo (7/8)) $ whenmod 8 4 (echo (5/4)) $ every 2 ((|+| speed "0.5 1.2")) $ stack [sound "psr:4 ~", every 2 (rev) $ smash 8 [8..10] $ density 8 $ striate' 12 (0.1) $ (sound "~ psr:3")]
+ |+| shape triwave1
+
+
+d3 $ every 2 (density 2) $ every 3 (spread' striate "8") $ every 4 (rev . slow 2) $ stack [spread' slow "2 8 4" $ sound "hand ~ mt", every 2 (rev) $ smash 2 [5..7] $ density 8 $ every 4 (brak) $ (sound "peri*8 mouth*8")]
+ |+| shape triwave1
+
+
+d4 $ every 3 (echo (5/4)) $ whenmod 8 4 (echo (7/8)) $ every 2 ((|+| speed "0.5 1.2")) $ stack [sound "feelfx ~", every 2 (rev) $ smash 8 [8..10] $ density 8 $ striate' 12 (0.1) $ (sound "~ speech")]
+ |+| shape triwave1
+ |+| gain "0.7 0.5 0.2 0.5"
+
+
+--- striate 32
+--- striate 52
+--- striate 42
+-- d4 $ echo (7/4) $ density 4 $ striate 52 $ every 2 ((|+| speed "0.4")) $ every 3 ((|+| speed "0.3")) $ every 4 ((|+| speed "0.8")) $ every 5 ((|+| speed "0.6")) $ sound (pick <$> "bass" <*> "0 2 1 3 0")
+--   |+| speed "0.5"
+--   |+| gain "1"
+--   |+| slow 2 (vowel "i o i u o")
+
+hush

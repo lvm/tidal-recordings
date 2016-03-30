@@ -1,0 +1,84 @@
+cps 1
+
+-- 12 - 28 dreamypad01
+m5 $ slow 4 $ stack[
+--note $ tom $ preplace (1,1) "x(3,5)" "d d d e e4 f f4",
+note $ tom $ preplace (1,1) "x(3,8)" "e4 f4"
+] # dur "1" # vel (scale 0.25 0.666 $ palindrome $ sine1)
+
+-- 16 - 60 hesitation
+m4 $ every 23 (# (note $ tom $ preplace (1,1) "x(3,5)" "a5 g5")) $ slow 4 $ stack[
+sometimes rev $ note $ tom $ preplace (1,1) "x(5,8)" "d d4 d4 e4 e4 f4 f4"
+] # dur "1" # vel "0.25"
+
+b $ stack[
+--drum "[bd [~ bd/3] ~ bd/3]",
+drum "[sn [~ sn/3] ~ sn/3]",
+drum "[~ ~ oh ~]",
+randcat[drum "ch(8,4)",drum "ch(8,4) oh"], --drum "[~ ch ~ [~ ch]]", 
+--drum "ch(8,4)",
+drum "[~ cp/2 ~ [~ cp/8]]",
+every 4 (# drum "[bd([2 3 2 5 3 7]/6,8)]") $ drum "bd([2 3]/2,8)"
+] # dch "0.01"
+
+hush
+
+
+
+
+
+
+cps 1
+
+bps (160/120)
+
+
+---
+
+-- 16 - 60 hesitation
+m4 $ slow 4 $ stack[
+note $ tom $ preplace (1,1) "x(5,8)" "d3 d4 d3 e4 e3 e4 f4 f3 f4"
+] # dur "1" # vel "1"
+
+-- 16 - 60 hesitation
+m5 $ slow 2 $ stack[
+slow 2 $ note $ tom $ preplace (1,1) "x(2,8,2)" "f5 g5",
+note $ tom $ preplace (1,1) "x(5,8)" "d3 d4 d3 e4 e3 e4 f4 f3 f4"
+] # vel "0.5" # dur (scale 0.1 0.5 $ palindrome $ sine1)
+
+-- 16 - 60 hesitation
+m4 $ e 3 8 . slow 2 $ stack[
+slow 2 $ note $ tom $ preplace (1,1) "x(2,8,2)" "f5 g5",
+note $ tom $ preplace (1,1) "x(5,8)" "d3 d4 d3 e4 e3 e4 f4 f3 f4"
+] # vel "0.15" # dur (scale 0.1 0.5 $ palindrome $ sine1)
+
+b $ every 4 (sometimes (echo (7/4))) $ stack[
+drum "[bd [~ bd] ~ bd/3]",
+drum "~ [sn [~ cp/2]]",
+density 2 $ drum "[ch*4, oh]"
+]
+
+
+
+
+
+q $ every 3 (stut 2 0 0.75) $ every 4 (stut 2 0 0.25) $ stack[
+chrot [36] "[1 ~ 1 ~] [~ ~ 1 ~]" [0]
+]
+
+
+hush
+
+
+
+
+
+b $ stack[
+  echo (3/2) $ stack[
+  drum "[bd [~ bd/5] ~ bd/5]",
+  drum "[~ ~ oh ~]",
+  --slowcat[drum "[~ sn ~ [~ sn]]", drum "[~ ~ sn [~ sn]]"],
+  every 4 (sometimes (stut 2 0 0.75)) $ drum "[~ sn/2 ~ ~]"
+  ],
+  sometimes (brak) $ drum "ch(8,8)"
+] # dch "0.01" # sag "1" # scl "[0.5 1]/2" # stt "0" # std "0" -- .1"

@@ -1,0 +1,92 @@
+cps 2
+
+cps 0.666
+
+
+d1 $ every 3 (rev) . every 2 (slow 2) . density 3 . stut 2 0.5 0.1 $ sound "metal metal:4 metal:3"
+ |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 2 ((*0.2) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+ |+| gain sine1
+
+d2 $ echo (7/4) $ every 4 (echo (5/3))  . every 2 (rev . every 4 (slow 2) . every 6 ((0.1 <~))) $ chop 2 $ sound "~ lsdj:2 lsdj:2/2"
+ |+| shape "0.2"
+
+d3 $ stack[spread' density "2 1 2 1" . every 2 (rev) $ sound "rhodes:2*2 ~ rhodes:2", every 2 (chop 4) . every 4 (chop 2) . every 8 (chop 2) $ sound "bubble:3 bubble:5 ~", every 2 (rev) $ sound "lsdj:2*2? lsdj:2"]
+
+d4 $ every 2 (echo (5/3)) $ stack[sound "psr:11/2  bubble:3 glitch:2", every 3 (slow 2) . density 2 $ sound "visco:5*2 ~ psr:1"]
+ |+| speed "2"
+ |+| cut "1"
+
+
+
+
+hush
+
+
+
+
+
+
+cps 0.666
+
+d1 $ fadeOut 4 $ jux rev . rev . slow 8 . chop 64 $ sound "audience"
+ |+| speed (iter 4 "0.9 1")
+ |+| gain "0.9"
+ |+| cut "1"
+
+d2 $ fadeOut 2 $ echo (7/4) $ every 9 (slow 2 . striate' 8 (0.1)) . every 4 (echo (5/3))  . every 2 (rev . every 4 (slow 2) . every 6 ((0.1 <~))) $ chop 2 $ sound "~ lsdj:2 lsdj:2/2"
+ |+| shape "0.2"
+ |+| speed (every 8 ((*0.666) <$>) $ every 2 ((*0.666) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+
+d3 $ fadeOut 4 $ every 3 (|+| shape "0.5") $ stack[spread' density "2 1 2 1" . every 2 (rev) $ sound "rhodes:2*2 ~ rhodes:2", every 2 (chop 4) . every 4 (chop 2) . every 8 (chop 2) $ sound "bubble:3 bubble:5 ~", every 2 (rev) $ sound "lsdj:2*2? lsdj:2"]
+
+d4 $ iter 3 . every 2 (echo (5/3)) $ stack[sound "psr:11/2  bubble:3 glitch:2", every 3 (slow 2) . density 2 $ sound "visco:5*2 ~ psr:1"]
+ |+| speed "2"
+ |+| cut "1"
+ |+| gain "0.2"
+
+
+hush
+
+
+d2 silence
+
+
+
+
+
+
+
+
+
+
+
+
+
+cps 0.64
+
+cps 0.9
+
+d1 $ slow 2 $ sound "[wurlitzer*2? wurlitzer? wurlitzer/2 wurlitzer/3] !? !?"
+ |+| gain "0.75"
+ |+| shape "0.666"
+ |+| speed "2"
+
+d2 $ iter 4 . every 3 (0.2 <~) . every 2 (rev) . chop 2 . density 3 $ sound "psr:11 ~"
+
+d3 $ iter 6 . every 2 (|+| shape "0.2") $ stack[spread' density "2 1 2 1" . every 2 (rev) $ every 15 (|+| vowel "u") $ sound "rhodes:2*2 ~ rhodes:2", every 2 (chop 4) . every 4 (chop 2) $ sound "bubble:3 bubble:5 ~", every 2 (rev) $ sound "lsdj:2*2? lsdj:2"]
+
+d4 $ iter 3 . every 2 (echo (5/3)) $ stack[sound "{psr:11/2 bubble:3 glitch:2? glitch:2}%3", every 3 (slow 2) . density 2 $ sound "visco:5*2 ~ psr:1"]
+ |+| speed "2"
+ |+| cut "1"
+
+d5 $ echo (7/4) . iter 3 . every 2 (echo (5/3)) $ density 2 $ sound "minipops:5*2?"
+ |+| speed "1.9"
+ |+| cut "1"
+ |+| shape "0.666"
+
+hush
+
+
+
+
+hush

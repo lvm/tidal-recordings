@@ -1,0 +1,28 @@
+bps (160/60)
+
+d1 $ density 2 $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "3")) $ every 5 ((|+| speed "5") . rev) $ striate' 16 (0.5) $ sound "ho hc*4"
+ |+| slow 2 (vowel "o i a u")
+
+d2 $ density 2 $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "3")) $ every 5 ((|+| speed "5")) $ sound "bass1 bass3"
+ |+| vowel "o i u"
+
+d3 $ sound "sn ~ house/4 house [{dr, sn*2}]/8 hc/4"
+
+
+d3 $ density 2 $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "1.3")) $ every 5 ((slow 2) . (|+| speed "0.5") . rev) $ striate' 128 (0.1) $ stack[sound "~ ifdrums", interlace (every 3 ((slow 2) . (striate 3) . (|+| gain "0.5")) $ sound "jvbass") (sound "~")]
+ |+| slow 2 (vowel "o i a u")
+ |+| gain "0.5"
+
+d4 $ slow 3 $ every 2 (slow 4) $ stack[every 4 (rev . (|+| accelerate "3 13 4 8")) $ superimpose ((|+|vowel "i") . (|+| end rand) . iter 2) $ sound (samples "jvbass ifdrums:0*2 ~ [{ho:0, speechless:0, mouth*16/2, house:0*8/2}]/4" (iter 4 $ run 4)), echo (7/8) $ every 4 (density 16) $ striate' 32 (0.2) $ slowspread ($) [(|+| speed "0.9"), slow 32, striate 2, jux (iter 2)] $ sound "house*8/16 [{ho, dr*2}]/16 hc/16"]
+
+ |+| slow 2 (vowel "o i a u")
+
+d5 $ every 2 (jux(rev)) $ sound "dr*2/3 lsdj:2 dr*2 mattel:1/4"
+
+
+d5 $ every 2 (jux(rev)) $ sound "dr*2/3 lsdj:1 dr*2 mattel:1/4"
+ |+| delay "0.1"
+ |+| delayfeedback "0.3"
+ |+| delaytime "0.5"
+
+hush

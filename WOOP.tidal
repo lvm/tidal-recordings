@@ -1,0 +1,21 @@
+cps 0.8
+
+d5 $ echo (7/4) $ every 7 (slow 4 . rev) $ (0.2 <~) $ stut 2 0.1 0.5 $ (sound $ samples "deepsky:3*2? deepsky:2 [bd sn, {sn, bd}?] deepsky" $ iter 4 $ run 4)
+ |+| speed ((2+) <$> sinewave1)
+
+d5 $ echo (7/4) $ every 7 (slow 4 . rev) $ (0.2 <~) $ stut 2 0.1 0.5 $ (sound $ samples "deepsky:3*2? deepsky:2 [bd, ~ sn] {deepsky, lsdj:2*2?, wurlitzer:4?}" $ iter 4 $ run 4)
+ |+| speed ((2+) <$> sinewave1)
+
+d5 $ echo (7/4) $ every 7 (slow 4 . rev) $ (0.2 <~) $ stut 2 0.1 0.5 $ (sound $ samples "deepsky:3*2? deepsky:2 [bd, ~ sn] wurlitzer:4?" $ iter 4 $ run 4)
+ |+| speed ((2+) <$> sinewave1)
+
+
+
+hush
+
+
+
+d4 $ echo (7/4) $ every 4 (rev) $ (0.2 <~) $ (sound $ samples "deepsky:3*2? deepsky deepsky:2 deepsky:1/2" $ iter 4 $ run 4)
+ |+| speed ((1.5+) <$> sinewave1)
+
+

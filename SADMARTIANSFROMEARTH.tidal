@@ -1,0 +1,237 @@
+bps ((69/60)/2)
+
+d1 $ every 3 (echo (7/8)) $ whenmod 8 4 (echo (5/4)) $ every 2 ((|+| speed "0.5 1.2")) $ stack [sound "psr:4 ~", every 2 (rev) $ smash 8 [8..10] $ density 16 $ striate' 32 (0.1) $ (sound "~ gab:3")]
+ |+| shape triwave1
+ |+| gain "0.666"
+ |+| pan "0.666 0"
+
+
+d2 $ every 3 (echo (5/24)) $ whenmod 8 4 (echo (1/4)) $ every 2 ((|+| speed "1.5 1.2")) $ stack [(sound "~ erk"), every 2 (rev) $ smash 8 [8..10] $ density 16 $ striate' 12 (0.1) $ (sound "~ house house*8/16")]
+ |+| shape triwave1
+ |+| speed "0.9"
+ |+| gain "0.666"
+ |+| slow 2 (vowel "i o i u o")
+
+
+d3 $ whenmod 8 4 (echo (5/4)) $ every 3 (echo (7/8)) $ every 2 ((|+| speed "0.5 0.9")) $ stack [sound "~ psr:4*2", every 2 (rev) $ smash 8 [8..10] $ density 16 $ striate' 24 (0.1) $ (sound "~ house")]
+ |+| shape triwave1
+ |+| gain "0.666"
+ |+| pan "0 0.666"
+
+
+
+hush
+
+---------------------------------------------------------------------------------------
+-- take 2
+---------------------------------------------------------------------------------------
+bps (69/60)
+
+d1 $ whenmod 8 4 (echo (5/4)) $ every 3 (echo (7/8)) $ every 2 ((|+| speed "0.5 0.9")) $ stack [sound "space:2 e*2/4", every 2 (rev) $ smash 8 [8..10] $ density 16 $ striate' 32 (0.1) $ (sound "~ lsdj:5"), sound "psr:2 ~", every 2 (rev) $ smash 8 [8..10] $ slow 16 $ striate' 32 (0.1) $ (sound "~ odx" |+| gain "0.5")]
+ |+| shape triwave1
+ |+| gain "0.666"
+ |+| pan "0.666 0"
+
+d2 $ every 3 (echo (5/24)) $ whenmod 8 4 (echo (1/4)) $ every 2 ((|+| speed "1.5 1.2")) $ stack[(sound "~ erk" |+| end (slow 2 "0.5 0.6") |+| shape "0.9"), sound (samples "moog*2 ~" (iter 5 $ run 5))]
+ |+| shape triwave1
+ |+| end "0.3 0.5"
+ |+| speed "0.9"
+ |+| gain "0.666"
+ |+| slow 2 (vowel "i o i u o")
+
+d3 $ whenmod 8 4 (echo (5/4)) $ every 3 (echo (7/8)) $ every 2 ((|+| speed "0.5 0.9")) $ stack [sound "feelfx jvbass", every 2 (rev) $ smash 8 [8..10] $ density 16 $ striate' 24 (0.1) $ (sound "~ house"), sound "psr:4 ~", every 2 (rev) $ smash 8 [8..10] $ slow 16 $ striate' 32 (0.1) $ (sound "~ ifdrums" |+| gain "0.5")]
+ |+| shape triwave1
+ |+| gain "0.666"
+ |+| pan "0 0.666"
+
+d4 $ echo (7/4) $ whenmod 8 4 (echo (7/8)) $ every 2 ((|+| speed "1.5 1.2")) $ slowspread ($) [jux (rev), (|+| delay "0.9"), (|+| delayfeedback "0.5"), (|+| delaytime "0.9"), slow 2, (|+| speed "2.5"), striate 2] $ stack[every 3 (rev) $ sound (samples "bass:4 fat909 world*4 ~" (iter 4 $ run 4)), every 2 (striate 2) $ sound "drumtraks:4 ~", slowspread ($) [slow 5] $ sound (samples "pluck lsdj:5" (iter 3 $ run 3))]
+ |+| shape triwave1
+ |+| end "0.3 0.5"
+ |+| speed "0.9"
+ |+| gain "0.9"
+ |+| slow 2 (vowel "i o i u o")
+
+---------------------------------------------------------------------------------------
+-- end of take 2
+---------------------------------------------------------------------------------------
+
+hush
+
+---------------------------------------------------------------------------------------
+-- take 3
+---------------------------------------------------------------------------------------
+bps (69/60)
+
+bps 0.6
+
+bps 0.3
+
+-- vocals
+
+d1 $ whenmod 8 4 (echo (5/4)) $ every 3 (echo (7/8)) $ every 2 ((|+| speed "0.5 0.9")) $ stack [sound "space:2 e*2/4", every 2 (rev) $ smash 8 [8..10] $ density 16 $ striate' 32 (0.1) $ (sound "~ spoken ~"), sound "~ lsdj:5 ~", every 2 (rev) $ smash 8 [8..10] $ slow 16 $ striate' 32 (0.1) $ (sound "dr*2 odx" |+| gain "0.5")]
+ |+| shape triwave1
+ |+| gain "0.666"
+ |+| pan "0.666 0"
+
+-- bass
+
+d2 $ every 3 (echo (5/24)) $ whenmod 8 4 (echo (1/4)) $ every 2 ((|+| speed "1.5 1.2")) $ stack[(sound "~ erk" |+| end (slow 2 "0.5 0.6") |+| shape "0.9"), sound (samples "moog*2 moog/8" (iter 5 $ run 5)), sound "[moog*8]/16"]
+ |+| shape triwave1
+ |+| end "0.3 0.5"
+ |+| speed "0.9"
+ |+| gain "0.666 0.8"
+ |+| slow 2 (vowel "i o i u o")
+
+-- platillos
+
+d3 $ whenmod 8 4 (echo (5/4)) $ every 3 (echo (7/8)) $ every 2 ((|+| speed "0.5 0.9")) $ stack [sound "feelfx jvbass", every 2 (rev) $ smash 8 [8..10] $ density 16 $ striate' 24 (0.1) $ (sound "dr2/8 house"), sound "psr:4 [dr*8 lsdj:1/2]/4", every 2 (rev) $ smash 8 [8..10] $ slow 16 $ striate' 32 (0.1) $ (sound "lsdj:1/12 ifdrums" |+| gain "0.5")]
+ |+| shape triwave1
+ |+| gain "0.666"
+ |+| pan "0 0.666"
+
+-- drums
+
+d4 $ echo (7/4) $ whenmod 8 4 (echo (7/8)) $ every 2 ((|+| speed "1.5 1.2")) $ slowspread ($) [jux (rev), (|+| delay "0.9"), (|+| delayfeedback "0.5"), (|+| delaytime "0.9"), slow 2, (|+| speed "2.5"), striate 2] $ stack[every 3 (rev) $ sound (samples "bass:4 fat909 world*4 ~" (iter 4 $ run 4)), every 2 (striate 2) $ sound "drumtraks:4 dr", slowspread ($) [slow 5] $ sound (samples "pluck lsdj:5" (iter 3 $ run 3))]
+ |+| shape triwave1
+ |+| end "0.3 0.5"
+ |+| speed "0.9"
+ |+| gain "0.8 0.7"
+ |+| slow 2 (vowel "i o i u o")
+
+
+--- maybe 
+
+-- d5 $ jux ((|+| speed "1")) $ slow 2 $ striate 8 $ sound "~ kids"
+--  |+| begin "0.5"
+--  |+| end "0.8"
+--  |+| shape triwave1
+--  |+| gain "0.4"
+--  |+| speed ((0.5+) <$> triwave1)
+
+
+
+---------------------------------------------------------------------------------------
+-- end of take 3
+---------------------------------------------------------------------------------------
+
+hush
+
+
+
+
+solo $ d4 $ echo (7/4) $ every 3 (echo (5/24)) $ whenmod 8 4 (echo (1/4)) $ every 2 ((|+| speed "1.5 1.2")) $ slowspread ($) [slow 2, striate 3] $ smash 2 [5..7] $ density 2 $ stack[sound (samples "e world*2 ~" (iter 4 $ run 4)), every 2 (striate 2) $ sound "drumtraks:4*4 ~", interlace (sound "fat909:4") (sound "lsdj:1/4")]
+ |+| shape triwave1
+ |+| end "0.3 0.5"
+ |+| speed "0.9"
+ |+| gain "0.666"
+ |+| slow 2 (vowel "i o i u o")
+
+
+
+d4 $ stack[sound "[~ fat909:4*4]/2", 
+
+solo $ d4 $ echo (7/4) $ whenmod 8 4 (echo (7/8)) $ every 2 ((|+| speed "1.5 1.2")) $ slowspread ($) [(|+| delay "0.9"), (|+| delayfeedback "0.5"), (|+| delaytime "0.9"), slow 2, (|+| speed "2.5"), striate 2] $ stack[every 3 (rev) $ sound (samples "jvbass:4 fat909 world*4 ~" (iter 4 $ run 4)), every 2 (striate 2) $ sound "drumtraks:4*2 ~", slowspread ($) [slow 5] $ sound (samples "pluck lsdj:5*5" (iter 3 $ run 3))]
+ |+| shape triwave1
+ |+| end "0.3 0.5"
+ |+| speed "0.9"
+ |+| gain "0.666"
+ |+| slow 2 (vowel "i o i u o")
+
+
+
+
+
+hush
+
+---------------------------------------------------------------------------------------
+
+
+
+
+
+
+d2 silence
+d5 silence
+
+hush
+
+--d5 $ density 8 $ smash 8 [4..8] $ striate' 32 (0.1) $ sound (samples "notes" (iter 5 $ run 5))
+cps 0.5
+
+d4 $ echo (7/4) $ density 2 $ sound "koy"
+ |+| end "0.2"
+
+d5 $ echo (7/4) $ density 8 $ sound (samples "hmm ~" (iter 5 $ run 5))
+ |+| end "0.9"
+ |+| speed (slow 2 "0.9 1.1 1.5")
+
+d6 $ echo (7/4) $ density 8 $ smash 8 [12..23] $ striate' 12 (0.1) $ sound (samples "moog" (iter 5 $ run 5))
+ |+| end "0.1"
+ |+| speed "0.5"
+ |+| shape "0.5"
+
+d7 $ echo (7/4) $  striate' 8 (0.1) $ stack[interlace (sound "fat909:4 ~") (sound "ifdrums:4 ~") ]
+ |+| end "0.2"
+ |+| shape triwave1
+
+
+d8 $ sound "fat909:2"
+ |+| shape triwave1
+
+
+
+
+d2 silence
+
+-- koy*2/4
+--slowspread ($) [(|+| speed "0.5"), slow 2, striate 2]
+
+d2 $ every 3 (echo (5/24)) $ whenmod 8 4 (echo (1/4)) $ every 2 ((|+| speed "1.5 1.2")) $ stack[(sound "~ erk" |+| end (slow 2 "0.5 0.6") |+| shape "0.9")]
+ |+| shape triwave1
+ |+| speed "0.9"
+ |+| gain "0.777"
+ |+| slow 2 (vowel "i o i u o")
+
+d4 silence
+
+d4 $ slow 2 $ striate 32 $ sound "alphabet:20 alphabet:17 fuckable numbers:2 alphabet:2"
+  |+| end "1 1 0.50 1 1 1"
+  |+| begin "0 0 0.33 0 0 0.1"
+  |+| gain "5"
+  |+| shape "0.9"
+  |+| delay "0.5"
+  |+| delayfeedback "0.5"
+  |+| delaytime "0.5"
+
+
+
+d4 $ sound "alphabet:17 alphabet:20 rave"
+  |+| end "1 1 0.50"
+  |+| begin "0 0 0.1"
+  |+| speed "0.7 0.8 0.9"
+
+
+
+
+bps (140/60)
+
+cps 0.7
+
+d1 $ echo (7/4) $ every 3 (jux (rev)) $ sound "ifdrums fat909:3*2"
+
+d2 $ every 2 (rev) $ stack[sound "~ ~ cp/2 drumtraks", sound "hmm/9"]
+ |+| slow 2 (vowel "i a")
+
+d3 $ every 4 (density 2) $ density 4 $ sound (samples "jvbass" (iter 5 $ run 5))
+ |+| gain "1.1"
+ |+| slow 2 (vowel "i a")
+
+d4 $ echo (7/4) $ interlace (every 2 ((|+| shape "0.9")) $ sound "sn e*8/4") (every 2 (brak) $ sound "hand*2 hand*2/2")
+ |+| gain "1.1"
+
+d5 $ density 2 $ sound "glitch2:3*8/4"
+ |+| pan (slow 2 triwave1)
+
+hush
+
+

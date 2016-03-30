@@ -1,0 +1,25 @@
+bps (140/60)
+
+d1 $ slow 8 $ striate 64 $ sound "believe"
+ |+| speed (every 2 (rev) "1.1 2 1.7 1.2")
+ |+| gain "0.1"
+
+hush
+
+d2 $ every 4 (echo (7/4)) $ every 8 (echo (7/8)) $ every 2 (jux (rev)) $ sound "mattel*2 fat909:1*2/4"
+ |+| gain "0.0"
+
+d3 $ density 2 $ sound "~ mattel:3*4/3"
+ |+| gain "0.0"
+
+d4 $ density 2 $ smash 2 [1..3] $ stack[sound "dr2/2 dr*2", every 4 (density 4) $ sound "e*2 hand*3" |+| slow 3 (vowel "o i a") ]
+ |+| gain "0.0"
+
+d5 $ density 2 $ slow 4 $ every 2 (density 2) $ sound "jvbass ~"
+ |+| gain "0.0"
+
+
+d6 $ density 2 $ striate 8 $ sound "spoken:0/4 ~ ~ "
+ |+| accelerate "14 13 9"
+ |+| speed (every 2 (rev) $ "1.5 1.7 1.9")
+ |+| gain "0.0"

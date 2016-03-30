@@ -1,0 +1,20 @@
+cps 2
+
+cps 1
+
+d1 $ stack[
+density 4 $ sound (pick <$> "jvbass deepsky?" <*> iter 2 "0 3 2 1")
+]
+|+| gain sinewave1
+
+d2 $ stack[
+slowspread (density) [2, 4, 2, 3] $ striate' 4 (0.5) $ sound "[daytone:8*2 !? !?, sid:2 !?]"
+|+| gain sinewave1
+|+| speed "[5 6 3]/3"
+]
+
+d3 $ chop 2 . every 2 (rev) . slowspread (striate) [2, 4, 2, 4] . slow 2 $ sound "[seqdru:2 !, seqdru ! seqdru:1]"
+ |+| speed "[15 16 13]/3"
+ |+| coarse "11"
+
+hush

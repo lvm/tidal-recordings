@@ -1,0 +1,142 @@
+cps 0.666
+
+d1 $ every 19 (|+| speed "2") $ every 16 (|+| accelerate "-5") $ every 13 (density 2) $ palindrome $ every 11 (iter 2) $ sound "deepsky deepsky:2 deepsky*2 deepsky:4"
+ |+| speed (every 4 (rev) "1 0.8 0.5 0.1")
+ |+| gain "1.3"
+
+d3 $ every 2 (within(0,0.6) ( revArc(0,0.25) )) . every 2 ((|+| begin "0.1")) $ density 2 $ every 10 (rev . (striate' 8 (0.1)) . (|+| speed "2.5")) $ every 8 (density 2) $ sound "gabba:3 gabba:1"
+ |+| shape "0.7"
+ |+| begin rand
+
+
+hush
+
+
+
+
+d2 $ every 4 (slow 2) . density 2 . every 2 (striate 2) $ sound "minipops:5*2 ~"
+ |+| speed (every 5 ((0.1-) <$>) $ scale 0.5 0.3 $ sine1)
+ |+| pan (slow 8 triwave1)
+
+d4 $ stut 2 0.5 0.5 . density 2 . every 2 (rev . slow 2) $ spread' density "2 1 1 2" $ stack[sound "rapman:8 rapman*2", chop 2 $ sound "rapman:3 rapman:2*2"]
+ |+| shape "0.6"
+
+d4 $ stut 2 0.5 0.5 . density 2 . every 2 (rev . slow 2) $ spread' density "2 1 1 2" $ stack[sound "rapman:8 rapman*2", chop 2 $ sound "rapman:3 rapman:2*2"]
+ |+| shape "0.6"
+ |+| pan "0"
+ |+| gain (scale 0.2 0.3 $ sine1)
+
+d5 $ stut 2 0.5 0.5 . density 2 . every 2 (rev . slow 2) $ spread' density "2 1 1 2" $ stack[sound "rapman:9 rapman*2", chop 2 $ sound "rapman:3*2 rapman:2"]
+ |+| shape "0.6"
+ |+| pan "1"
+
+d6 $ juxcut rev . every 3 (retrig) $ sound "ade:3"
+ |+| speed (every 3 ((0.1-) <$>) $ scale 0.1 0.3 $ sine1)
+ |+| gain (scale 0.5 0.666 $ sine1)
+ |+| vowel "u"
+
+
+hush
+
+
+---------
+
+hush
+
+---------
+
+
+cps 1
+
+d4 $ every 15 (density 2) . every 9 (stut 3 0.5 0.5) . stut 2 0.5 0.5 . palindrome $ stack[sound "rapman:10 rapman", chop 2 $ sound "rapman:3 rapman:2 rapman"]
+ |+| shape (scale 0.666 0.8 $ sine1)
+
+d5 $ density 6 . striate' 32 (0.1) $ every 2 ((|+| speed "5")) $ every 3 ((|+| speed "2")) $ every 4 ((|+| speed "3")) $ sound "~ jvbass*8"
+ |+| speed "0.666"
+ |+| pan (slow 4 triwave1)
+ |+| speed (scale 0.5 0.9 $ sine1)
+
+
+---------
+
+d3 $ stut 2 0.5 0.5 $ sound "rapman rapman*2 rapman"
+
+---------
+
+d5 $ density 6 . striate' 32 (0.1) $ every 2 ((|+| speed "5")) $ every 3 ((|+| speed "2")) $ every 4 ((|+| speed "3")) $ sound "~ jvbass*8"
+ |+| speed "0.666"
+ |+| pan (slow 4 triwave1)
+
+d5 $ density 6 . striate' 32 (0.1) $ every 2 (rev) $ every 3 ((|+| speed "2")) $ every 5 ((|+| speed "1")) $ sound "~ jvbass*8"
+ |+| speed "0.666"
+ |+| pan (slow 4 triwave1)
+
+---------
+---------
+
+hush
+
+---------
+
+cps 0.666
+
+
+d1 $ every 2 (stut 2 0.4 0.5) . slowspread ($) [spread' density "4 1 1 1 2", brak] $ sound "rapman:10 glitch"
+ |+| shape "0.7"
+
+d2 $ jux (slow 2) . every 4 (rev) . spread' chop "16 8 32 16" $ sound "space"
+ |+| cut "1"
+ |+| speed (((*2) <$>) $ every 2 ((*2.5) <$>) $ every 4 ((/1.52) <$>) $ scale 0.2 0.7 $ sine1)
+ |+| shape (scale 0.666 0.8 $ sine1)
+
+d3 $ jux (slow 2) . every 4 (rev) . spread' chop "16 8 32 16" $ sound "space:1"
+ |+| cut "1"
+ |+| speed (((*2) <$>) $ every 2 ((*2.5) <$>) $ every 4 ((/1.52) <$>) $ scale 0.2 0.7 $ sine1)
+ |+| pan "0"
+ |+| shape (scale 0.666 0.8 $ sine1)
+
+d4 $ jux (slow 2) . every 4 (rev) . spread' chop "16 8 32 16" $ sound "space:2"
+ |+| cut "1"
+ |+| speed (((*2) <$>) $ every 2 ((*2.5) <$>) $ every 4 ((/1.52) <$>) $ scale 0.2 0.7 $ sine1)
+ |+| pan "1"
+ |+| shape (scale 0.666 0.8 $ sine1)
+
+
+
+-----
+
+hush
+
+d4 $ spread' density "3 1 1 2 1 1 3" $ sound "ht ht:1"
+ |+| shape (scale 0.666 0.8 $ sine1)
+
+-- d5 $ spread' density "3 1 1 6" . striate' 32 (0.1) $ every 3 ((|+| speed "2")) $ every 5 ((|+| speed "4")) $ sound "~ jvbass*8"
+--  |+| speed "0.666"
+--  |+| pan (slow 4 triwave1)
+
+d5 $ density 6 . striate' 32 (0.1) $ every 3 ((|+| speed "2")) $ every 5 ((|+| speed "4")) $ sound "~ jvbass*8"
+ |+| speed "0.666"
+ |+| pan (slow 4 triwave1)
+
+d6 $ every 3 (striate 2) . every 9 (rev) . every 5 (density 2) . spread' chop "3 1 1 2 1 1 3" $ sound "dr db db dr"
+ |+| shape (scale 0.666 0.8 $ sine1)
+
+hush
+
+------
+
+dd tt
+
+cps 0.666
+
+d4 $ every 3 (stut 2 0.5 0.5) . density 2 . every 2 (rev . slow 2) $ spread' density "2 1 1 2" $ stack[sound "rapman:8 rapman*2", chop 2 $ sound "rapman:3 rapman:2*2"]
+ |+| shape "0.6"
+
+
+hush
+
+
+d4 $ retrig $ stack[sound "rapman:8/4", seqP[(0, 16, sound "rapman rapman:9 rapman:2"), (16, 32, sound "rapman:9"), (0,32, sound "rapman !? !!")], every 2 (chop 2) $ sound "db db e db"]
+ |+| shape "0.6"
+
+

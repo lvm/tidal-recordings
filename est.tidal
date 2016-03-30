@@ -1,0 +1,43 @@
+cps 1
+
+-- d1 $ every 5 (gap 4) . smash 2 [3] . every 2 (sometimes(within(0,0.5)(# crush "5"))) . every 3 ( within(0,0.25) ( chop 2 ) ) $ stack[
+-- echo (3/2) $ stack[
+-- sound "[glitch ~ [~ glitch/3] ~]" # gain "1.25",
+-- degrade $ sound "[~ glitch:3*2 [~ glitch:5/2]]" # up (scale 2 4 $ iter 4 . slow 4 $ squarewave1)
+-- ],
+-- stack[
+--  every 4 (# sound "hh:1(1,8)") $ sound "hh:8(8,8)" # pan "0.25",
+--  sound "hh:8(8,8)" # pan "0.75"
+-- ] # up "2" # coarse "2",
+-- jux rev $ stack[
+-- sound "[hh27(5,8), hh27(3,8)]"
+-- ]
+-- ] # coarse (floor <$> scale 2 8 rand) # end rand # gain "1.25"
+
+-- stack[
+--  sound "hh:8(8,8)" # pan "0.25",
+--  sound "hh:8(8,8)" # pan "0.75"
+-- ] # up "2" # coarse "2",
+
+
+
+m5 $ every 4 (# (note $ tom $ preplace (1,1) "x(1,8)" "g5 c5")) $ sometimes(# dur (scale 0.1 0.5 rand)) . slow 4 $ stack[
+note $ tom $ preplace (1,1) "[x(2,8) x(3,4)]" "d4 e4 e5 e6 d5 f5"
+] # vel "0.02" # dur "1"
+
+let ec n = echo (n/4)
+
+d1 $ sometimes (within(0.5, 1) (jux rev . (# crush "7"))) . every 5 (gap 4) . every 2 (sometimes(within(0,0.5)(# crush "5"))) . every 3 ( within(0,0.25) ( chop 2 ) ) $ stack[
+every 7 (sometimes(# accelerate "-1")) $ stack[
+superimpose (sometimes rev) . spread' ec "7 3 3 7" $ stack[
+sound "[jazz ~ [~ jazz/3] jazz/5]" # gain "1.2" # end "0.01",
+sound "[~ [sn !?] ~ [~ sn/2]]"
+],
+every 2 (stut 2 0.5 0.75) $ jux rev $ stack[
+sound "[hh27(5,8), hh27(3,8)]"
+] # coarse (floor <$> scale 1 16 rand) # end rand
+],
+sound "[~ [cr!?] cr/4 cr/3]" # gain "0.9" # end "0.01" # speed (scale 4 8 rand)
+] # coarse (floor <$> scale 2 8 rand) # end rand # gain "1.25"
+
+hush

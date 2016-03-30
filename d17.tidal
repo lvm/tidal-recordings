@@ -1,0 +1,78 @@
+cps 0.5
+
+bps (120/120)
+
+b $ stack[
+  drum "[bd ~ ~ bd] [~ ~ bd ~]",
+  drum "[~ sn ~ ~] [~ sn [~ cp/2] ~]",
+  drum "[ch(2,4)] !",
+  degrade $ drum "[cl(16,8)]",
+  degrade $ drum "[~ ~ oh [~ oh]] [~ oh oh oh]"
+] # dch "0.5" # doh "0.1"
+
+-- 14 - 111 clockworks
+m5 $ stack[
+  chrot' [36,39,41,39] 0 "1(3,8)" [0,3,7],
+  stut 2 0 0.75 . slowspread degradeBy [0..0.75] $ chrot' [36,39,41,39] 12 "1(3,8,1)" [0,3,7]
+] # dur "0.05" # vel "1"
+
+-- 13 - 0 equals
+m4 $ stack[
+  chrot' [36,39,41,39] 12 "1(3,8)" [0,3,7]
+] # dur "0.5" # vel "0.85"
+
+q $ stack[
+  chrot' [36,39] 0 "[~ 1 ~ ~] [1 1 ~ 1]" [0,3,7]
+] # dur "0.05"
+
+
+hush
+
+
+
+
+
+
+
+
+b $ stack[
+  drum "[bd ~ ~ bd] [~ ~ bd ~]",
+  drum "[~ ~ sn ~] [[~ sn] ~ ~ sn]",
+  every 3 (stut 2 0 0.75) $ drum "[~ cp ~ ~] [~ cp ~ ~]",
+  drum "[ch(2,4)] !"
+]
+
+b $ stack[
+  drum "[bd ~ ~ bd] [~ ~ bd ~]",
+  every 3 (chop 2 . stut 2 0 0.75) $ stack[
+    drum "[[~ sn/2] ~ sn ~] [~ [~ sn] ~ [~ sn]]",
+    drum "[~ cp ~ ~] [~ cp ~ ~]"
+  ],
+  drum "[ch(4,4)] !"
+]
+
+
+
+
+
+
+
+
+
+hush
+
+q $ stack[
+  stut 2 0 0.75 $ slowcho' [42] 0 "[~ 1 ~ ~] [~ 1 ~ ~]" [0,0,3,3]
+] # dur "0.1"
+
+
+let takeN :: Integer -> [a] -> [a]; takeN n l = take (fromIntegral n) l
+
+
+m5 $ slow 2 $ stack[
+  chrot' [48,50] 0 "[1 ~ ~ ~] [1 ~ ~ ~]" [0]  # dur "1" # vel "0.25",
+  chrot' [42,49] 0 "1(6,8)" [0,2,7] # dur "0.05" # vel "0.5"
+]
+
+
+hush

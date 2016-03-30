@@ -1,0 +1,101 @@
+---- charly went mad.
+bps 2
+
+
+--- boom
+
+d1 $ density 4 $ every 10 (rev . (striate' 8 (0.1)) . (|+| speed "2.5")) $ every 8 (density 8) $ every 9 ((striate' 32 (0.1)) . brak) $ sound "gabba:3 gabba:1"
+ |+| shape "0.7"
+ |+| begin rand
+
+-- bass
+
+d2 $ density 4 $ striate' 32 (0.1) $ every 2 ((|+| speed "5")) $ every 3 ((|+| speed "2")) $ every 4 ((|+| speed "3")) $ smash 3 [2..4] $ sound "~ jvbass*8"
+ |+| speed "0.5"
+ |+| pan (slow 4 triwave1)
+ |+| shape "0.9 0.5"
+
+-- vocals
+
+d3 $ every 25 (|+| speed ((0.9+) <$> sine1)) $ every 8 ((|+| speed "1.5") . (|+| shape "0.1") . (jux rev) . (smash 4 [2..4])) $ every 9 ((striate' 8 (0.1)) . rev) $ every 2 (rev . (spread' slow "[2, 4, 2, 3, 2]") . brak) $ density 4 $ striate 32 $ sound "moan"
+ |+| slow 2 (vowel "a e i")
+ |+| speed "2.5"
+ |+| shape "0.3 0.1"
+
+-- ooo aa
+
+d4 $ smash 4 [4, 2, 8] $ every 4 ((|+| speed "2")) $ every 2 ((|+| speed "2.5") . rev) $ every 3 (brak . (|+| speed "1")) $ spread' slow "[8, 2, 8, 3, 2]" $ interlace (striate 8 $ slow 2 $ sound "flick ~ flick ~ flick ~") (sound "~ house ~ gab:3")
+  |+| speed "2.5"
+  |+| slow 2 (vowel (pick <$> "a o e" <*> run 3))
+  |+| shape "0.1"
+  |+| pan "0.1 0 0.5"
+
+-- base1
+
+d5 $ every 2 ((density 2) . (|+| shape "0.5") . brak) $ every 2 ((|+| shape "0.3") . rev . (density 8)) $ sound "e sn pluck:3/2 bd"
+ |+| vowel "u i o"
+ |+| speed "2"
+ |+| shape triwave1 --"0.5"
+ |+| slow 32 (vowel "a")
+
+
+-- platillos
+
+d6 $ every 8 (|+| speed ((0.1+) <$> sine1)) $ every 3 (echo (1/2)) $ every 4 (echo (7/4)) $ ((0.5 <~) $ interlace (every 8 (density 2) $ sound "dr2*2 dr2:2/7") (every 4 (striate 2) $ sound "cp/2 dr*4"))
+ |+| pan (slow 8 triwave1)
+
+
+
+
+
+hush
+
+
+
+
+
+
+
+
+
+
+
+
+d6 silence
+
+
+
+
+
+
+
+
+
+
+
+d6 $ juxcut (rev . (|+| speed "0.5") . (|+| shape "0.9")) $ interlace (spread' slow "[16, 32, 8]" $ jux rev $ sound "bottle:3*8/4") (every 5 (brak) $ sound "bd/2 moan/4 sn")
+ |+| shape triwave1
+ |+| speed "5.9"
+ |+| delay "0.5"
+ |+| delaytime "0.5"
+ |+| pan (slow 8 triwave1)
+ |+| end rand
+ |+| accelerate "3 14 15 9 6 2"
+
+--d5 $ every 2 ((|+| speed "0.5")) $ density 2 $ every 4 ((|+| shape "0.9") . rev . brak) $ sound "pluck sn pluck:3/2 bd"
+-- d5 $ every 3 ((slow 2) . (|+| shape "0.5") . brak) $ every 2 ((|+| shape "0.3") . rev . (density 8))  $ interlace (sound "gab:4 sn") (sound (pick <$> "~ cp*8" <*> run 2))
+--   |+| shape "0.2"
+--   |+| speed "2.2"
+--   |+| slow 32 (vowel (pick <$> "a o e" <*> run 3))
+
+
+------------------------------------------------------------
+
+
+--  |+| slow 32 (vowel (pick <$> "a o e" <*> run 3))
+
+
+
+  --(samples "gab gab*2" (slow 2 "3 4"))
+
+hush

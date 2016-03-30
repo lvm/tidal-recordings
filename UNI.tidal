@@ -1,0 +1,29 @@
+bps 0.666
+
+d1 $ spread' density "2 1 2" . stut 2 0.9 (-0.5) . every 5 (rev) $ sound "~ unix unix:1 ~"
+ |+| shape (slow 8 "0.6 0.5 0.8 0.7 0.5 0.7 0.6 0.5")
+ |+| speed (slow 8 "0.6 0.5 0.8 0.7 0.5 0.7 0.6 0.5")
+ |+| gain (slow 4 "0.9 0.7 0.5 0.3 0.2 0.1")
+
+d2 $ every 3 (rev) . spread' density "2 1 2" . stut 2 0.9 (-0.5) $ sound "unix:1 ~ unix:4/3 unix:3"
+ |+| gain (slow 4 "0.9 0.7 0.5 0.3 0.2 0.1")
+
+d4 silence
+
+d3 $ echo (7/4) $ every 8 (rev) . every 4 (density 2) . stut 2 0.9 (-0.5) $ sound "minipops:3*2 minipops:4?"
+ |+| speed (every 8 ((0.1-) <$>) $ "0.8")
+ |+| shape "0.666"
+ |+| gain "1"
+ |+| end rand
+ |+| gain (slow 4 "0.9 0.7 0.5 0.3 0.2 0.1")
+
+d4 $ every 4 (spread' density "2 3 2") . stut 2 0.9 (-0.2) . spread' striate "2 4 2 4" $ sound "glitch ~ glitch:3 ~"
+ |+| gain "0.6"
+ |+| speed (((0.1-) <$>) $ iter 4 "1 0.71 2 1.7")
+ |+| shape "0.666"
+ |+| end rand
+ |+| gain (slow 4 "0.9 0.7 0.5 0.3 0.2 0.1")
+
+
+
+hush

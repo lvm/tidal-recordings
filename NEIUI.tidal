@@ -1,0 +1,71 @@
+bps 0.5
+
+
+d1 $ every 4 (rev) $ density 2 $ sound "{bd [ht sn, lt mt ht] lt, sn cp}%2"
+
+
+
+
+d1 $ trunc 0.75 $ sound "bd sn*2 cp hh*4 arpy bd*2 cp bd*2"
+
+
+
+hush
+
+
+d1 $ wedge (1/4) (sound "bd*2 arpy*3 cp sn*2") (sound "odx [feel future]*2 hh hh")
+
+
+
+
+d1 $ (brak (sound "bd sn:2 bd sn"))
+   |+| pan ((*) <$> sinewave1 <*> (slow 8 $ "0 0.25 0.75"))
+
+
+
+
+
+d1 $ sound (pick <$> "kurt mouth can*3 sn" <*> slow 7 "0 1 2 3 4")
+
+
+
+
+d2 $ sound "{drum:3 sn:3 drum:0 bd, bd cp}%5"
+   |+| speed (scale 0.5 2 $ sine1)
+
+
+
+d1 $ slow 8 $ jux (rev) $ striate' 32 (1/16) $ sound "bev"
+
+
+
+
+d1 $ every 2 (revArc (0.25, 0.5)) $ every 4 (rev) . chop 16 $ sound "breaks165"
+ 
+
+
+
+d1 $ slowspread (withArc (0, 1/4)) [id, (0.5 <~), density 2, (|+| speed "0.9")] $ chop 64 $ sound "breaks165"
+
+
+
+
+cps 0.3
+
+d1 $ whenmod 6 4 (within (0.5, 1) (0.25 ~>)) $ whenmod 5 3 (within (0, 0.5) (0.25 <~)) $ slowspread (within (0.25, 0.75)) [(0.25 ~>), (0.1225 <~), trunc 0.25, id, (0.5 <~), (0.25 <~), id, (0.75 ~>), (0.1225 ~>), stut 8 0.7 0.1] $ every 3 (0.25 <~) $ every 2 (0.25 <~) $ chop 16 $ sound "breaks165"
+ |+| speed "1.1"
+ |+| cut "1"
+ 
+ 
+ |+| shape (scale 0.2 0.43 $ sine1)
+
+
+
+d2 $ spread' chop "8 16 2" $ sound "house*2"
+
+
+hush
+
+
+
+d1 $ stack [slowspread (chop) [16,2] $ sound "newnotes [newnotes:3*3] newnotes:4 ~"]

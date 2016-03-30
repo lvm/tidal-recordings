@@ -1,0 +1,17 @@
+cps 0.8
+
+b $ every 4 (stut 2 0 0.25) $ stack[
+drum "bd [sn [~ sn]]",
+drum "[ch [~ ch]] oh/2",
+drum "~ cp ~ [~ cp]"
+] # stt "0" # std "0"
+
+m1 $ stack[
+e 3 8 $ chrot [48] "1" [0, 0, 0, 3, 7]
+] # vel "1" # dur "1"
+
+m2 $ every 6 (stut 2 0 0.75) $ every 3 (sometimes((# chrot [72] "[1(5, 8), 1(3,8)]" [0,0,0,3,7]))) $ every 5 (slow 2 . (#dur "1")) $ stack[
+chrot [60] "[1(5, 8), 1(3,8,2)]" [0,0,0,3,7]
+] # vel "0.75" # dur "0.05"
+
+hush

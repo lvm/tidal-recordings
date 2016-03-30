@@ -1,0 +1,32 @@
+cps 0.5
+
+b $ stack[drum "ht", drum "bd/2", drum "ch*2 oh"]
+
+|+| speed (every 4 ((0.5+) <$>) $ every 3 ((0.45+) <$>) $ every 5 ((0.4+) <$>) $ scale 0.5 0.9 $ "0.666")
+|+| shape (scale 0.2 0.666 $ "0.2")
+
+
+b $ echo (7/4) $ every 8 (iter 8) $ every 4 (slow 2) $ striate 2 $ (drum "sn*2? ch*2 {oh*2}/2 bd")
+
+d3 silence
+
+
+cps 1
+
+b $ sometimes rev . every 7 (within (0, 0.5) (chop 2)) . degradeBy 0.3 $ every 9 (iter 8) $ stack[
+  drum "sn/2 bd*2 sn sn",
+  degradeBy 0.2 $ striate 8 $ drum "lt"
+  |+| llt "0.5"
+  ,
+  density 2 $ drum "ch ch ch ch",
+  drum "bd ~ ~ ~"
+]
+|+| stt "0"
+|+| std "0"
+
+
+hush
+
+
+
+

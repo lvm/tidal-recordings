@@ -1,0 +1,128 @@
+cps 1
+
+-- lazy helpers
+let sw f = sometimes(within(0, 0.5) f)
+    sw' d h f = sometimes(within (d, h) f)
+    ---
+    ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    --- q $ note (cho 48 "1 [~ 1] 1 1 " [0, 3, 7, 5])
+    cho n pat chord = preplace(1,1) pat $ listToPat [ch + n | ch <- chord]
+    --- q $ note (cho' 48 3 "1 [~ 1] 1 1 " [0, 3, 7, 5])
+    cho' n off pat chord = cho (n+off) pat chord
+    --- q $ slowcho [47, 45, 42] "[1 !] 1 1 1" [0, 3, 0, 3]
+    slowcho nlist pat chord = slowcat[note (cho n pat chord) | n <- nlist]
+    --- q $ slowcho' [47, 45, 42] 3 "[1 !] 1 1 1" [0, 3, 0, 3]
+    slowcho' nlist off pat chord = slowcat[note (cho' n off pat chord) | n <- nlist]
+    --  q $ slowcat[note (cho 60 "1 1 1" (rotate i [0,3,7,10])) | i <- [0..3]]
+    rotate :: Int -> [a] -> [a]
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+    -- q $ chrot [51, 48] "1 1 1 1" [0, 3, 5, 7] 3
+    chrot nlist pat chord = slowcat[slowcho nlist pat (rotate i chord) | i <- [0..((length chord)-1)]]
+
+
+b $ every 23(chop 2) . every 7 ((# stt "0.23") . (# std "0.1")) $ every 4 (stut 2 0 0.75) $ stack[
+slowcat[drum $ preplace (1,1) "[x !?] [x [~ x]]" "bd sn", drum "bd sn"],
+slowcat[drum $ preplace (1,1) "x ~ x [~ x]"  "cp ~ ch*2", drum "ch/6 [~ cp]"],
+every 2 (# drum "~ ~") $ drum "[~ ch] !",
+drum "~ ~ oh/3 ~",
+drum "[cl(9,16)]/2"
+] # stt "0" # std "0" # scl "1"
+
+q $ every 2 (within (0, 0.25) (#cutoffegint "0.75")) . slowspread (stut 2 0) [0.75,0.75,0.75, 0.5,0.5,0.5, 0.25,0.25,0.5] $ stack[
+chrot [23, 26, 30] "[1(3,8)]" [0,0,0,4,7,11]
+] # decay "0.75"  # cutoffegint (scale 0.1 0.15 $ slow 2 . palindrome $ sine1)
+
+ # cutoffegint (scale 0.1 0.15 $ slow 2 . palindrome $ sine1) # lforate (scale 0.75 0.8 $ palindrome $ sine1) # lfoint "[0.15 0.15 0.25 0.25 0.25]/7"
+
+hush
+
+q $ every 7 (within (0, 0.1) (#cutoffegint "0.666")) . slowspread (stut 2 0) [0.75,0.75,0.75, 0.5,0.5,0.5, 0.25,0.25,0.5] $ stack[
+chrot [23, 26, 30] "1(3,8)" [0,0,0,4,7,11]
+] # decay "1" # cutoffegint (scale 0.1 0.15 $ slow 2 . palindrome $ sine1) # lforate (scale 0.75 0.8 $ palindrome $ sine1) # lfoint "[0.15 0.15 0.25 0.25 0.25]/7"
+
+
+hush
+
+
+m2 $ note "[30(5,8), 26(5,8), 23(7, 8), 30(7,8)]" # vel "1"
+
+b $ density 1.2 $ stack[
+drum "[bd [sn [~ sn]]]",
+slowcat[drum "[ch [~ ch]] ~ cp", drum "ch [~ ch] ~ cp"],
+drum "[~ ~ cr ~] [~ ~ cr ~]"
+] # scr "0.75"
+
+
+
+
+b $ density 1.2 $ every 4 (stut 2 0 0.25) $ stack[
+drum "bd(1,4,1) !",
+every 4 (stut 2 0 0.75) $ drum "~ cp",
+density 2 $ drum "ch*2 oh",
+every 2 (# drum "~ ~") $ drum "[~ ch] !"
+] # dch "0.1"
+
+
+cps 0.8
+
+b $ stack[
+drum "bd bd",
+stut 2 0 0.75 $ drum $ preplace (1,1) "x(3,4)" "sn*2 ~ cp",
+drum "[ch(9,16)]/2",
+drum "~ ~ oh/3 ~"
+] # sag (scale 0.9 1 $ palindrome $ sine1)
+
+q $ stack[
+chrot [32] "[1(2,8), 1(5, 8), 1(3,8)]" [0,0,0,3,7]
+] # pitch1 "1" # pitch2 "1" # pitch3 "1"
+
+
+
+
+
+
+ # lfoint (scale 0.45 0.5 $ slow 8 $ sine1)
+
+
+
+hush
+
+
+q $ stack[
+chrot [48,36] "[1(3,8), 1(5,8)]" [0,0,0,3,7]
+--,chrot [41,45,48] "[1(3,8,1), 1(5, 8,1)]" [0,0,0,3,7]
+] # decay "1"
+
+
+
+q $ chrot [29,32,36] "[1(5,8), 1(5,8), 1(7, 8), 1(7,8)]" [0,0,0,4,7]
+
+q $ slowcat[
+chrot [30] "[1(3,8,1), 1(3,8,1), 1(5,8,1), 1(5,8,1)]" [0,0,0,3,7]
+] # decay "1"
+
+# cutoffegint (scale 0.3 0.45 $ slow 2 . palindrome $ sine1) # lforate (scale 0.75 0.8 $ palindrome $ sine1) # lfoint "[0.15 0.15 0.25 0.25 0.25]/7"
+
+
+
+
+hush
+
+
+
+
+q $ density 1.2 $ stack[
+  chrot [41,45,48] "[1(5,8), 1(5,8), 1(7, 8), 1(7,8)]" [0,0,0,3,7],
+  chrot [23,25,30] "[1(3,8,1), 1(3,8,1), 1(5,8,1), 1(5,8,1)]" [0,0,0,3,7]
+]  # decay "0.75"
+
+
+
+every 7 (within (0, 0.1) (#cutoffegint "0.666")) . 
+ # cutoffegint (scale 0.3 0.45 $ slow 2 . palindrome $ sine1) # lforate (scale 0.75 0.8 $ palindrome $ sine1) # lfoint "[0.15 0.15 0.25 0.25 0.25]/7"
+
+hush
+
+
+-- :-)

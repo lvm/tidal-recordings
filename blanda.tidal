@@ -1,0 +1,118 @@
+cps 0.25
+
+d1 $ stut 2 0.9 (-0.5) $ striate 2 $ stack[sound "sn:2 sn !? !?", sound "bd bd bd bd", every 2 (spread' slow "2 3 1") $ striate' 4 (0.5) $ sound "bd:1 ~ bd:2"]
+ |+| speed "0.5"
+
+d2 $ echo (7/4) $ every 9 (slow 8) $ every 4 (stut 8 0.1 (-0.5)) $ (echo (3/4) $ every 4 (rev) $ every 9 (density 2) $ iter 4 . density 8 $ degradeBy 0.25 $ stack[(slow 2 $ sound $ samples "{mattel}?" $ iter 10 $ run 10)]
+ |+| speed (((*1) <$>) $ every 2 ((*0.8) <$>) "0.8"))
+
+d3 $ density 2 $ echo (7/4) $ every 2 (slow 2) . density 2 $ stack[(sound $ samples "{glitch}?" $ iter 4 "5 6 7 8 9"), striate 2 $ sound "sn:1"]
+ |+| shape (((*0.9) <$>) $ every 4 ((*2) <$>) "0.3")
+ |+| gain sinewave1
+
+
+
+
+d4 $ chop 2 . density 4 $ sound "stab" |+| end "0.2" |+| cut "1" |+| speed (((0.1-) <$>) $ "1")
+
+d5 $ sound "blue"
+
+
+
+
+hush
+
+cps 0.5
+
+d4 $ echo (7/4) $ every 4 (|+| vowel "u") . every 3 (density 2) . every 2 (echo (5/3)) $ sound "~ ~ psr:1"
+ |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 2 ((*0.2) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+ |+| shape "0.2"
+ |+| vowel "o"
+
+d5 $ echo (7/8) $ every 2 (echo (7/4)) $ every 15 (slow 2 . (|+| sound "cp*2") . (|+| speed "1") . (|+| end "0.7")) . every 3 (|+| end "0.9") $ every 2 (brak . iter 3) . every 3 (density 2) $ sound "{visco:4*2? ~ visco:5*2}%3"
+ |+| shape (iter 4 $ "0.3 0.5 0.666 0.4")
+ |+| speed (every 4 ((*2) <$>) $ "1")
+
+d5 silence
+
+d6 $ echo (7/8) $ every 2 (echo (7/4)) $ every 5 (stut 4 0.9 2) . every 3 (|+| end "0.9") $ whenmod 6 4 (palindrome) . every 3 (density 2) . every 9 (0.25 <~) $ sound "{watford:3? ~ watford:2*2}%3"
+ |+| shape (iter 4 $ "0.3 0.5 0.666 0.4")
+ |+| speed (every 10 ((0.1-) <$>) $ every 4 ((*2) <$>) $ "1.9")
+ |+| cut "1"
+ |+| end "0.123"
+
+
+
+
+
+hush
+
+cps 0.3666
+
+d4 $ echo (7/4) $ every 4 (|+| vowel "u") . every 3 (density 2) . every 2 (echo (5/3)) $ sound "~ ~ psr:1"
+ |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 2 ((*0.2) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+ |+| shape "0.35"
+ |+| vowel "o"
+
+d5 $ echo (7/8) $ every 2 (echo (7/4)) $ every 15 ((|+| sound "cp") . (|+| speed "1") . (|+| end "0.7")) . every 3 (|+| end "0.9") $ every 2 (brak . iter 3) . every 3 (density 2) $ sound "{visco:4*2? visco:5*2 visco:5}%3"
+ |+| shape (iter 4 $ "0.3 0.5 0.666 0.4")
+ |+| speed (every 4 ((*2) <$>) $ "1")
+
+d5 $ echo (7/8) $ every 2 (echo (7/4)) $ every 15 ((|+| sound "visco:4") . (|+| speed "1") . (|+| end "0.7")) . every 3 (|+| end "0.9") $ every 2 (brak . iter 3) . every 3 (density 2) $ sound "{visco:4*2? visco:5*2 visco:5}%3"
+ |+| shape (iter 4 $ "0.3 0.5 0.666 0.4")
+ |+| speed (every 4 ((*2) <$>) $ "1")
+
+d5 silence
+
+d6 $ fadeOut 2 $ echo (7/8) $ every 2 (echo (7/4)) $ every 5 (stut 4 0.9 2) . every 3 (|+| end "0.9") $ whenmod 6 4 (palindrome) . every 3 (density 2) . every 9 (0.25 <~) $ sound "{watford:3? ~ watford:2*2}%3"
+ |+| shape (iter 4 $ "0.3 0.5 0.666 0.4")
+ |+| speed (every 10 ((0.1-) <$>) $ every 4 ((*2) <$>) $ "1.9")
+ |+| cut "1"
+ |+| end "0.123"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hush
+
+d3 silence
+
+
+
+
+
+
+d5 $ echo (7/8) $ iter 3 . chop 2 . every 2 (echo (7/4)) $ every 5 (stut 4 0.9 2) . every 3 (slow 2) . every 9 (0.25 <~) $ every 13 (slow 8) $ sound "{lsdj:2*2? ~ {lsdj:2 lsdj/3}}%3"
+ |+| shape (iter 4 $ "0.3 0.5 0.666 0.4")
+ |+| speed (every 4 ((*2) <$>) $ "0.666")
+
+
+
+
+
+
+bps 0.97
+
+d5 $ echo (7/8) $ density 2 . every 2 (rev) . chop 2 $ sound " ~ glitch:2 ~"
+ |+| speed (every 2 ((*2) <$>) $ "0.666")
+
+d4 $ echo (7/4) $ every 3 (density 2) . every 2 (echo (5/3)) $ sound "~ ~ psr:1"
+ |+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 2 ((*0.2) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+ |+| shape "0.5"
+
+cps 0.2
+hush

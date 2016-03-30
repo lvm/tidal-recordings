@@ -1,0 +1,58 @@
+
+bps 0.9
+
+d3 $ stack[sound "fat909/2 bass bass bass", sound "cp {{bass0 house} [{dr, ~ ~ dr}, ~ dr]}", striate 2 $ sound "~ ~ ~ ~ ~ dr dr dr dr"]
+ |+| speed (slow 0.1 "2 4 2 4")
+
+d4 $ stack[density 2 $ sound $ samples "jvbass" $ iter 5 $ run 5, sound "dr:2 dr dr*2? dr "]
+
+d5 $ every 8 (density 2) $ stack[sound "mattel:5 mattel:5 mattel:1 mattel:5", sound "{bass0, dr} [bass0, dr]? {bass0, dr} {bass0, dr}"]
+ |+| gain (slow 2 "0.8 0.6")
+ |+| speed (((0.5+) <$>) sine1)
+
+---
+bps $ 109/60
+hush
+
+
+
+d5 $ stack[sound "mattel:5 mattel:5 mattel:1 mattel:5", density 8 $ striate 8 $ sound "{bass0, gab:4, dr} {bass0, gab:4, dr} {bass0, gab:4, dr} {bass0, gab:4, dr}"]
+ |+| gain (slow 2 "0.8 0.5")
+
+d5 $ stack[sound "mattel:5 mattel:5 mattel:1 mattel:5", density 16 $ striate 8 $ sound "{bass0, gab:4, dr} {bass0, gab:4, dr} {bass0, gab:4, dr} {bass0, gab:4, dr}"]
+ |+| gain (slow 2 "0.8 0.5")
+
+---
+
+d6 $ echo (8/4) $ jux palindrome $ stut 2 0.5 (-0.5) $ striate' 4 (1.5) . every 4 (brak) $ every 11 (|+| gain "0.0") $ every 3 (rev) $ spin 2 $ sound "arpy ~"
+ |+| vowel (iter 2 "a o i u")
+ |+| speed (((*0.5) <$>) $ iter 2 "2 12 1 5 1")
+
+
+ 
+
+
+ |+| gain (slow 8 "0.8 0.7")
+ |+| speed (slow 0.5 "2 2 1 5 1")
+ |+| vowel (slow 2 "a o i u")
+ |+| shape ((*0.1) <$> sinewave1)
+ |+| accelerate "[1 -10 10]"
+
+---
+
+d6 silence
+
+hush
+
+
+
+
+d5 $ every 8 (density 2) $ stack[sound "mattel:5 mattel:5 mattel:1 mattel:5", sound "{bass0, dr} {bass0, dr} {bass0, dr} {bass0, dr}", density 4 $ striate 4 $ sound "{~, gab:4, dr} {~, gab:4, dr} {~, gab:4, dr} {~, gab:4, dr}"]
+ |+| gain (slow 2 "0.8 0.5")
+
+
+--d9 <- stream "192.168.1.205" 7771 dirt
+
+d9 $ sound "~ bd ~ bd"
+
+d9 silence

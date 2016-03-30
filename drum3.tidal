@@ -1,0 +1,49 @@
+cps 1
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    nm p = note $ toMIDI p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+    sttd t d = (# stt t) . (# std d)
+
+b $ density 2 $ stack[
+drum "bd ~ ~ bd/2"
+,
+drum "sn ~ sn cp/2"
+,
+drum "ch ~ ch ~"
+,
+drum "~ ~ ~ oh/2"
+] # dch "0.1"
+
+
+
+b $ every 4 rev $ stack[
+drum "bd ~ [~ bd] [~ bd/2]",
+drum "~ sn ~ sn",
+drum "ch*2 ! ch oh",
+drum "~ ~ ~ cp/2"
+] # doh "0.25" # dch "0.25"
+
+
+b $ every 9 (sw(#std "0.1")) . foldEvery[5, 7] (sw(chop 2) . sw' 0 0.25(slow 2)) $ every 3 (ra 0.5) $ slowcat[
+stack[
+--drum "bd [sn sn*2]",
+drum "bd bd",
+density 2 $ drum "ch*2 oh",
+--every 8 (slow 2) . every 4 (sw(chop 2)) . chop 2 $ drum "[~ cr] [~ cr]",
+drum "~ cp"
+--,degrade $ drum "~ [ag !]"
+],
+stack[
+drum "bd(2,4)", drum "~ ~ cp ~", drum "ch ch ch oh"
+]
+] # stt "0" # std "0"
+|+| scr "0.99"
+|+| hg "0.75"
+|+| dch "0.1"
+|+| doh "0.9"
+|+| sag "0.5"

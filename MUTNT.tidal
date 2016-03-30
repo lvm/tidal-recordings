@@ -1,0 +1,25 @@
+bps 1.5
+
+d1 $ echo (7/4) $ density 2 $ sound (samples "mattel/2 ~ mattel:0/3 mattel" (iter 2 $ run 2))
+ |+| speed (every 4 (rev) "0.5 0.9 1.5 1.3 1")
+ |+| gain "1.2"
+
+d2 $ stack[sound "lsdj:2 ~ lsdj:0 cp/4", density 4 $ sound (samples "alphabet numbers" (iter 10 (run 9))) |+| speed rand |+| end (slow 2 "0.1 0.2 0.5 0.1")]
+ |+| gain "0.9"
+ |+| accelerate "1 -15 2"
+
+d3 $ density 2 $ echo (7/4) $ stack[density 2 $ slow 4 $ smash 2 [1..3] $ striate 4 $ sound (samples "[e:0 mouth:0]" "2 5 4"), sound "fat909:4*2/8"]
+ |+| gain "1.2"
+
+d4 $ echo (7/8) $ density 2 $ every 4 (density 2) $ interlace (sound (samples "dr ~" $ run 2) |+| speed (every 4 (rev) "0.5 0.9 1.5 1.3 1")) (every 4 ((0.5 ~>) . rev) $ sound "cp/4 ho" |+| end "0.2" |+| speed "1.5")
+ |+| gain "1.2"
+
+d5 $ echo (7/4) $ every 8 (slow 4) $ every 7 (density 2) $ density 2 $ every 4 ((|+| speed "2") ) $ every 3 (|+| speed "3") $ every 2 (|+| speed "4") $ sound (samples "jvbass jvbass/3 jvbass/2 jvbass/4" (run 4))
+ |+| gain "1.2"
+ |+| speed "1.5 2 3 2.5"
+
+solo $ d6 $ sound "alphabet:24/2"
+
+d6 silence
+
+hush

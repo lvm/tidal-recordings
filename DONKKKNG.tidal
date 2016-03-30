@@ -1,0 +1,23 @@
+bps 1
+
+d1 $ slow 2 $ every 2 (spin 8 . slow 8) $ (every 2 (spin 2 . (|+| speed "1.5")) $ sound "less:1*8?"
+ |+| end rand
+ |+| accelerate "[-5]/2"
+ |+| speed "1")
+ |+| gain "1.1"
+
+d2 $ slow 4 $ degrade $ every 2 (striate 2) $ sound "dr dr*2? dr*2 dr/2"
+ |+| gain "1.1"
+
+d3 $ slow 8 $ degrade $ stack[sound "less:3 ~ less:4 ~", slow 4 $ striate 2 $ sound "less:4/2 ~ less:4/2 ~", sound "~ less:1 ~ less:1", sound "house*2? house"]
+ |+| gain "0.8"
+
+hush
+
+
+
+
+
+
+-- d3 $ stack[sound "less:3 ~ less:4 ~", slow 4 $ striate 2 $ sound "less:4/2 ~ less:4/2 ~", sound "~ less:1 ~ less:1", sound "{bass0*2}?" |+| end (slow 2 "0.1 0.3")]
+--  |+| gain "0.8"

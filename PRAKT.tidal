@@ -1,0 +1,31 @@
+bps (140/60)
+
+d1 $ striate 2 $ density 2 $ smash 5 [1..4] $ striate' 32 (1.5) $ sound "ho hc"
+ |+| slow 3 (vowel "i o")
+ |+| delay "0.5"
+ |+| delayfeedback "0.5"
+ |+| delaytime "0.5"
+ |+| gain (slow 2 "0.9 0.5 0.3 0.0")
+
+d1 $ striate 1.5 $ sound "ho hc"
+
+d2 $ sound "house"
+
+d3 $ echo (7/4) $ stack[sound "bass bass", every 2 (density 8) $ sound "bass1 ~ ~"]
+
+d4 $ sound "~ dr2"
+
+d5 $ echo (7/4) $ sound "psr:4/8 cp/4"
+
+
+d4 $ density 4 $ smash 2 [1..3] $ striate' 16 (0.1) $ interlace (sound "jvbass") (sound "~")
+
+d4 $ density 4 $ striate 2 $ smash 2 [1..4] $ striate 16 $ interlace (sound "jvbass") (sound "~")
+ |+| shape triwave1
+
+
+-- d3 $ echo (7/4) $ jux rev $ interlace (stack[sound "bass bass", every 2 (density 8) $ sound "bass1 ~ ~"]) (density 8 $ sound "mouth" |+| shape "0.9" |+| vowel "a i")
+--  |+| gain "2"
+--  |+| accelerate "11 5 -5 1 2"
+
+hush

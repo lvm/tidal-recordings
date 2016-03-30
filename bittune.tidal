@@ -1,0 +1,166 @@
+cps 0.666
+
+cps 1
+
+q $ sometimes (#decay "0") $ stack[
+every 23 ( chop 4 ) $ bnote $ toMIDI "c8",
+sometimes rev . slow 4 . iter 4 $ bnote $ toMIDI "f5 c5 a6 g5",
+slowcat[bnote $ toMIDI "f3 g3 c4 a4", bnote $ toMIDI "f4 g4 c5 a5"]
+]
+|+| cutoffegint (scale 0 0.9 $ slow 2 $  sine1)
+|+| decay (scale 0.6 0.9 $ slow 2 $ sine1)
+|+| lforate "0.75"
+|+| lfoint "0.45"
+|+| bdur "0.1"
+|+| attack (scale 0.2 0.25 sine1)
+|+| gate "0.1"
+
+b $ stack[
+drum "bd([2 1]/2,4)",
+slowcat[drum "~ sn ~ sn", drum "sn(3,4)"],
+every 2 (within (0, 0.5) (chop 2)) $ density 2 $ drum "ch*2 oh",
+density 2 $ drum "ag(3,4)"
+]
+|+| sag "0.95"
+
+q $ stack[
+  degrade $ slowcat[
+  bnote $ toMIDI "c6"
+  ,slow 4 . iter 4 $ bnote $ toMIDI "f7 f7 f7 f7"
+  ,chop 4 $ bnote $ toMIDI "g7*4"
+  ]
+  ,
+  every 3 (within (0, 0.8) (#bdur "0.5")) $ sometimes rev . sometimesW (slow 2) . chop 4 . density 2 $ slowcat[
+  bnote $ toMIDI "c4",
+  bnote $ toMIDI "f4",
+  bnote $ toMIDI "d4",
+  bnote $ toMIDI "d4",
+  bnote $ toMIDI "c4",
+  bnote $ toMIDI "c5",
+  bnote $ toMIDI "f5",
+  bnote $ toMIDI "d5",
+  bnote $ toMIDI "d5",
+  bnote $ toMIDI "c5"
+  ]
+]
+|+| bdur "0.1"
+|+| decay "0.9"
+|+| cutoffegint (scale 0 0.5 $ density 2 $ rand)
+|+| pitch2 (scale 0 0.9 sine1)
+
+
+
+b $ slow 2 $ stack[
+drum "bd bd",
+slowcat[drum "~ cp", drum "[cp cp] ! [cp cp] [cp cp]"],
+every 2 (within (0, 0.5) (chop 2)) $ density 2 $ drum "ch*2 oh"
+]
+|+| sag "0.95"
+
+
+-----
+
+cps 0.666
+
+q $ stack[
+  chop 4 . iter 2 $ slowcat[
+  bnote $ toMIDI "c4",
+  bnote $ toMIDI "f4",
+  bnote $ toMIDI "d6",
+  bnote $ toMIDI "d4",
+  bnote $ toMIDI "c4",
+  bnote $ toMIDI "c4",
+  bnote $ toMIDI "c3",
+  bnote $ toMIDI "f3",
+  bnote $ toMIDI "d3",
+  bnote $ toMIDI "d5",
+  bnote $ toMIDI "c5",
+  bnote $ toMIDI "c4"
+  ]
+]
+|+| bdur "0.25" -- (scale 0.05 0.2 sine1)
+|+| cutoffegint (scale 0 0.9 sine1)
+|+| nudge (scale 0 0.5 sine1)
+
+
+
+b $ every 3 (within (0, 0.5) (chop 2)) . every 4 (revArc(0, 0.5)) $ slowcat[
+  stack[ -- 1
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ oh ~] [~ oh ~ ~]"
+  ]
+  ,
+  stack[ -- 2
+   drum "[bd ~ ~ bd] [~ ~ ~ ~]"
+   ,
+   drum "[~ sn ~ ~] [~ sn ~ sn]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ,
+  stack[ -- 3
+   drum "[bd bd bd, sn sn]"
+   ,
+   drum "[ch ~ ch ~] [~ ~ [ch*2 oh] ~]"
+  ]
+  ,
+  stack[ -- 4
+   drum "[bd ~ ~ bd] [~ ~ ~ ~]"
+   ,
+   drum "[~ sn ~ ~] [~ sn ~ sn]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ,
+  stack[ -- 5
+   drum "[~ bd ~ ~] [bd ~ ~ ~]"
+   ,
+   degrade $ drum "[~ ~ sn ~] [~ sn [~ sn]/2 [~ sn]/2]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ]
+|+| hg "0.75"
+|+| doh "0.2"
+|+| dch "0.2"
+
+|+| stt "0"
+|+| std "0.26"
+
+
+b $ stack[ -- 3
+   drum "[bd bd bd, sn sn]"
+   ,
+   drum "[ch ~ ch ~] [~ ~ [ch*2 oh] ~]"
+  ]
+
+
+-- synth strings 2
+m5 $ e 5 8 . stut 2 0 0.25 $ stack[
+  chop 2 . iter 2  $ slowcat[
+  note $ toMIDI "c4 !",
+  note $ toMIDI "f4 !",
+  note $ toMIDI "d4 !",
+  note $ toMIDI "d4 !",
+  note $ toMIDI "c4 !",
+  note $ toMIDI "e4 !"
+  ]
+  ]
+|+| dur "0.9"
+|+| sustainpedal (scale 0 0.8 sine1)
+|+| vel "0.25" --(scale 0.25 0.666 sine1)
+
+m2 silence
+
+hush

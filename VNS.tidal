@@ -1,0 +1,33 @@
+bps 4
+
+d1 $ density 2 $ sound "gab:4"
+ |+| gain "2"
+
+d2 $ density 2 $ sound "rave:1"
+ |+| end "0.1"
+
+
+solo $ d3 $ interlace (density 2 $ sound "gab:4*2") (density 2 $ sound "rave:1" |+| end "0.1")
+ |+| gain "1"
+
+
+d4 $ stack[sound "gab:4*2", sound "[gab:4*8]/4", sound "cp*8"]
+ |+| gain "2"
+
+d4 $ stack[sound "dr*8", density 8 $ sound "cp"]
+ |+| gain "2"
+
+---
+
+
+solo $
+
+d2 $ slow 2 $ striate 16 $ sound "breaks125"
+ |+| accelerate "-1 -10 -5"
+ |+| speed (every 2 (rev) "1 1.5 2 1 0.9")
+ |+| slow 2 (vowel "i a o")
+
+d3 $ echo (7/4) $ every 4 (slow 2) $ density 2 $ sound "jvbass e bass*3 [dr*2]/2"
+
+
+hush

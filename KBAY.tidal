@@ -1,0 +1,110 @@
+bps 3
+
+cps 1.5
+
+d5 $ every 23 (|+| accelerate "-5") $ every 3 (density 2) $ sound "deepsky:6"
+ |+| shape (every 2 ((0.5-) <$>) $ "0.4")
+
+d4 $ every 3 (slow 2) $ every 2 (stut 2 0.5 0.5) . every 5 (rev . iter 2) $ stack[sound "wurlitzer:4", spin 2 $ sound "wurlitzer:4" |+| vowel "a"]
+ |+| speed (iter 8 "3 14 15 9 2 6")
+ |+| speed (every 2 (rev) $ slow 8 "0.8 0.5 1")
+
+d3 $ every 10 (iter 4) . every 4 (spin 2) $ sound (pick <$> "bass3" <*> iter 4 "4 2 6")
+ |+| speed (slow 4 "2 1")
+ |+| end rand
+
+d2 $ every 4 (spread' density "2 1") $ sound "{sn sn? !?}"
+ |+| speed (slow 4 "0.5 0.777")
+
+d2 $ every 4 (spread' density "2 1") $ sound "sn !?"
+ |+| speed (slow 4 "0.5 0.777")
+
+d1 $ every 3 (density 2) . striate 2 $ sound "dr/2"
+
+d1 $ every 4 (iter 2) . every 3 (density 2) . spread' striate "2 1" $ sound "dr/2"
+
+
+
+hush
+
+
+
+
+cps 1
+
+
+d5 $ every 5 (density 2) $ density 2 $ sound "gabba:1"
+ |+| shape (every 2 ((0.5-) <$>) $ "0.4")
+ |+| crush "5"
+
+d4 $ spread' striate "2 1" $ every 4 (stut 2 0.8 (-0.9)) . density 3 $ sound "watford:4"
+ |+| shape (every 2 ((0.5-) <$>) $ "0.4")
+ |+| end rand
+ |+| speed (every 2 ((0.3-) <$>) $ slow 4 "0.5 0.8")
+ |+| crush (iter 4 "8 7 5")
+
+ |+| speed (slow 4 "0.5 0.666")
+
+d3 $ every 4 (slow 2 . rev) $ every 5 (spread' striate "8 1 4") $ spread' striate "2 4 4" $ sound "acetoneace:2"
+
+hush
+
+
+---------------------------------------
+
+d4 $ slow 8 . every 3 (iter 2) . density 3 $ sound "bass2"
+ |+| speed (every 2 (rev) $ slow 8 "0.8 0.5 1")
+
+d4 silence
+
+d3 $ every 9 (|+| speed "4") $ density 3 . every 10 (iter 4) $ sound (pick <$> "bass3" <*> iter 4 "4 2 6")
+ |+| speed (slow 4 "2 1 [4, 1]/3 [2, 1]/2")
+ |+| end rand
+
+
+d1 silence
+
+bps 1.3
+
+hush
+
+cps 1
+
+d5 $ every 3 (rev) $ spread' density "3 0 2" $ sound "deepsky:5"
+ |+| speed (every 2 ((1.5-) <$>) $ "1")
+ |+| shape (every 2 ((0.5-) <$>) $ "0.4")
+
+d4 $ every 3 (density 3) . spread' chop "6 3" $ sound "linndrum:5"
+
+d3 $ every 9 (|+| speed "4") $ density 3 . every 10 (iter 4) $ sound (pick <$> "bass3" <*> iter 4 "4 2 6")
+ |+| speed (slow 4 "2 1 [4, 1]/3 [2, 1]/2")
+ |+| cut "1"
+
+d2 $ every 3 (density 2) . spread' striate "3 2" $ sound "minipops:4"
+ |+| gain ((0.3+) <$> sinewave1)
+ |+| end rand
+ |+| speed (every 3 ((0.1-) <$>) "1")
+
+d1 $ every 5 (rev . (|+| speed "1")) $ every 7 (slow 2 . (|+| speed "2.5")) $ stut 8 0.2 0.5 $ sound (pick <$> "pluck" <*> slow 8 "5 6") 
+ |+| speed (every 2 ((0.3-) <$>) $ slow 8 "1.5 2" )
+ |+| cut "1"
+
+hush
+
+
+
+d2 silence
+
+d2 $ stack[echo (7/4) $ every 2 (slow 2) $ every 4 (|+| speed "2") . spread' density "3 1 2" $ sound "orchestral/2"
+ |+| speed (((0.5-) <$>) "2")
+ |+| end "0.9", sound "dr2:4/8"]
+
+ |+| gain ((0.1+) <$> sinewave1)
+
+solo $ d2 $ sound "dr2:4"
+
+hush
+
+d2 silence
+
+hush

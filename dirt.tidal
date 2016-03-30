@@ -1,0 +1,5 @@
+cps 1
+
+d1 $ sound "rim8!!"
+
+hush

@@ -1,0 +1,27 @@
+----- eye test.
+
+d1 $ echo (7/4) $ every 4 (echo (7/8)) $ density 2 $ every 9 (brak) $ every 5 (|+| speed "5") $ every 2 (rev) $ every 10 (rev . (|+| shape "0.9")) $ sound "ifdrums:3 dr2:1"
+  |+| shape triwave1
+
+d2 $ density 2 $ every 5 (|+| speed "5") $ every 2 (rev) $ sound "~ cp:0/3"
+  |+| shape triwave1
+
+d3 $ every 2 (|+| speed (slow 2 "0.5 1 0.9")) $ sound "drumtraks:1 dr*4"
+  |+| shape (slow 2 "0.6 0.9")
+  |+| pan (slow 4 triwave1)
+
+-- d4 $ slow 4 $ striate' 32 (0.5) $ sound "gabba*2 e*2"
+--   |+| shape triwave1
+
+d5 $ every 2 (|+| speed "5") $ density 8 $ striate 32 $  spread' slow "2 4 5" $ interlace (sound (samples "~ hand/4" (iter 4 $ "0 7 2 4"))) (every 2 (rev) $ striate' 4 (0.1) $ sound (samples "~ fat909/3 jvbass/6" (iter 3 $ run 3)) |+| speed rand |+| slow 2 (vowel "o u"))
+  |+| end rand
+
+d6 $ jux ( rev ) $ interlace (every 8 (|+| speed "1.5") $ sound (samples "hmm/2 ~" (slow 5 ("0 1 2 3 4")))) (sound (samples "~ kurt" (slow 5 ("0 1 2 3 4"))))
+  |+| shape "0.7"
+  |+| begin rand
+  |+| slow 2 (vowel "a i o u e")
+
+bps (150/60)
+bps (170/60)
+
+hush

@@ -1,0 +1,50 @@
+cps 0.85
+
+hush
+
+b $ every 4 (sometimes ((# stt "0.5") . (# std "0.1"))) $ stack[
+drum "bd(2,4)"
+,
+density 2 $ drum "ch*2 oh"
+,
+drum "~ cp"
+,
+within (0, 0.5) (density 2) $ slowcat[drum "~ sn", append' (drum "~ sn ") (drum "sn*2 sn")]
+,
+within (0, 0.5) (chop 2 . slow 2) $ drum "ag(3,8)"
+,
+slowcat[append' (drum "~ cr/2") (drum "cp*4 cp"), drum "~ cp/2"]
+]
+|+| dhg "0.75"
+|+| doh "0.2"
+|+| dch "0.2"
+|+| sag (scale 0.8 0.99 $ density 4 $ squarewave1) --"0.6""0.5"
+|+| lag "1.0"
+|+| scr "0.6"
+|+| stt "0"
+|+| std "0"
+
+
+m3 $ every 2 rev $ slowcat[
+slow 2 $ iter 8 $ note $ toMIDI "f4 d4 d4 e4 e4 f5 d5 a5"
+,
+slowcat[
+note $ toMIDI "f3*2 d3"
+,
+note $ toMIDI "d3*2 e3"
+]
+,
+slowcat[
+note $ toMIDI "e3*2 f4"
+,
+note $ toMIDI "d4*2 a4"
+]
+]
+|+| dur "0.9"
+
+
+
+|+| sustainpedal (scale 0.5 0.6 sine1)
+
+
+hush

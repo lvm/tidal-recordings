@@ -1,0 +1,334 @@
+cps 0.4
+
+
+b1 $ stack[
+  slowcat[
+  drum "bd [~ ~ bd] [~ ~ bd ~] [~ ~ ~ ~] [bd ~ ~]",
+  drum "bd [~ ~ bd] [~ ~ ~ ~] [bd ~ ~] [bd ~ ~ ~ ~] ~"
+  ]
+]
+
+
+|+| dch "0.5"
+|+| doh "0.75"
+
+
+
+b1 silence
+
+b1 $ slowcat[
+  stack[
+  drum "[bd ~ ~  ~] [~ ~ bd ~] [~ ~ bd  ~]"
+  ]
+  ,
+  stack[
+  drum "[bd ~ ~ ~] [~ bd ~] [~ ~ ~ ~]"
+  ]
+]
+
+   drum "[bd ~ ch] [bd ch ~] [bd ~ oh] [bd ~ ~]"
+
+
+let magik = every 2 (within (0.75, 0.9) (brak)) . density 1.2 . smash 2 [3]
+
+cps 0.5
+
+b1 $ magik $ stack[
+   drum "[bd ~ ~] [bd ~ ~] [bd ~ ~] [bd([2 1]/2,2)]"
+   ,
+   slow 2 . chop 2 $ drum "[~ cl ~] [~ ~ cl] [~ cl ~] [~ cl [cl cl?]]"
+   |+| scl "0.9"
+]
+|+| dch "0.1"
+|+| doh "0.25"
+|+| dhg "0.9"
+
+
+---
+
+cps 0.45
+
+b1 $ smash 2 [3] $ stack[
+   drum "[bd ~ ~ ~] [~ ~ ~ ~] [bd ~ ~ ~] [~ bd/2 ~ ~]"
+   ,
+   drum "[~ ~ ~ ~] [cp ~ ~ ~] [~ ~ ~ cp] [~ ~ ~ ~]"
+]
+|+| scp "0.25"
+|+| lcp "0.5"
+
+
+
+         ,
+         slowcat[
+                stack[
+                        drum "[~ ~ ~ ~] [bd ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+                        ,
+                        drum "[cp ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [cp ~ ~ ~]"
+                ]
+                ,
+                stack[
+                        drum "[~ ~ ~ ~] [bd ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+                        ,
+                        drum "[~ ~ ~ ~] [~ ~ ~ ~] [cp ~ cp ~] [~ ~ ~ ~]"
+                ]
+         ]
+
+
+cps 0.45
+
+cps 0.5
+
+cps 0.6
+
+cps 0.666
+
+b1 $ smash 2 [3] $ stack[
+   stack[
+        slowcat[
+           drum "[bd ~ ~ ~] [~ ~ bd ~] [~ bd ~ ~] [bd/2 ~ ~ ~]"
+           ,
+           drum "[bd ~ ~ ~] [~ ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~]"
+           ,
+           drum "[bd ~ ~ ~] [~ ~ ~ ~] [bd ~ ~ ~] [~ bd ~ ~]"
+           ]
+           ,
+        chop 2 . slow 2 . sometimes (stut 2 0.01 0.5) $ slowcat[
+           drum "[~ ~ ~ ~] [cp ~ ~ ~] [~ cp ~ cp] [~ ~ ~ ~]"
+           ,
+           drum "[~ ~ ~ ~] [cp ~ cp ~] [~ cp ~ cp] [~ ~ cp ~]"
+           ,
+           drum "[~ ~ ~ ~] [cp ~ ~ ~] [~ ~ ~ cp] [~ ~ ~ cp]"
+           ]
+   ]
+|+| scp "0.75"
+|+| lcp "0.666"
+|+| lbd "0.5"
+,
+slowcat[
+        every 10 (within (0.3, 0.4)(chop 4 . gap 2)) . slow 2 . chop 2 $ drum "[ch([9 8]/2,16)]"
+        ,
+        drum "[ch([16 14]/2,16)]"
+        ]
+|+| dch "0.15"
+,
+drum "[ ~ ~ ~ ~ ] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~ ]"
+|+| doh "0.9"
+]
+|+| dhg (scale 0.9 0.99 $ rand) --"0.99"
+
+
+b1 silence
+
+---
+
+
+b1 $ smash 2 [3] $ stack[
+   stack[
+        slowcat[
+           drum "[bd ~ ~ ~] [~ ~ bd ~] [~ bd ~ ~] [bd/2 ~ ~ ~]"
+           ,
+           drum "[bd ~ ~ ~] [~ ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~]"
+        ]
+        ,
+        stut 2 0.01 0.5 $ slowcat[
+           drum "[~ ~ ~ ~] [cp ~ ~ ~] [~ cp ~ cp] [~ ~ ~ ~]"
+           ,
+           drum "[~ ~ ~ ~] [cp ~ cp ~] [~ cp ~ cp] [~ ~ cp ~]"
+           ]
+   ]
+|+| scp "0.8"
+|+| lcp "0.666"
+|+| lbd "0.5"
+,
+slowcat[
+        every 4 (within (0.3, 0.4)(chop 4 . gap 2)) . slow 2 . chop 2 $ drum "[ch([9 8]/2,16)]"
+        ,
+        drum "[ch([16 14]/2,16)]"
+        ]
+|+| dch "0.15"
+,
+drum "[ ~ ~ ~ ~ ] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~ ]"
+|+| doh "0.9"
+]
+|+| dhg (scale 0.9 0.99 $ rand) --"0.99"
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cps 0.45
+
+cps 0.5
+
+cps 0.6
+
+cps 0.666
+
+
+b1 $ smash 2 [3] $ stack[
+   stack[
+        drum "[bd ~ ~ ~] [~ ~ bd ~] [~ bd ~ ~] [bd/2 ~ ~ ~]"
+        ,
+        sometimes ( every 4 (within (0.3, 0.4)(chop 4 . gap 2)) . slow 2 . chop 2) $ stut 2 0.01 0.5 $  drum "[~ ~ ~ ~] [cl ~ cl ~] [~ cl ~ cl] [~ ~ cl ~]"
+   ]
+|+| scl "0.8"
+|+| lcl "0.9"
+|+| lbd "0.5"
+,
+slowcat[
+        every 4 (within (0.3, 0.4)(chop 4 . gap 2)) . slow 2 . chop 2 $ drum "[ch([9 8]/2,16)]"
+        ,
+        drum "[ch([16 14]/2,16)]"
+        ]
+|+| dch "0.15"
+,
+drum "[ ~ ~ ~ ~ ] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~ ]"
+|+| doh "0.9"
+]
+|+| dhg (scale 0.9 0.99 $ rand) --"0.99"
+
+---
+
+b1 $ smash 2 [3] $ stack[
+   stack[
+        slowcat[
+           drum "[bd ~ ~ ~] [~ ~ bd ~] [~ bd ~ ~] [bd/2 ~ ~ ~]"
+           ,
+           drum "[bd ~ ~ ~] [~ ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~]"
+        ]
+        ,
+        sometimes ( every 4 (within (0.3, 0.4)(chop 4 . gap 2)) . slow 2 . chop 2) $ stut 2 0.01 0.5 $ slowcat[
+           drum "[~ ~ ~ ~] [cl ~ ~ ~] [~ cl ~ cl] [~ ~ ~ ~]"
+           ,
+           drum "[~ ~ ~ ~] [cl ~ cl ~] [~ cl ~ cl] [~ ~ cl ~]"
+           ]
+   ]
+|+| scl (scale 0.75 0.8 $ squarewave1)
+|+| lcl "0.9"
+|+| lbd "0.5"
+,
+slowcat[
+        every 4 (within (0.3, 0.4)(chop 4 . gap 2)) . slow 2 . chop 2 $ drum "[ch([9 8]/2,16)]"
+        ,
+        drum "[ch([16 14]/2,16)]"
+        ]
+|+| dch "0.15"
+,
+drum "[ ~ ~ ~ ~ ] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~ ]"
+|+| doh "0.9"
+]
+|+| dhg (scale 0.9 0.99 $ rand) --"0.99"
+
+---
+
+---
+
+---
+
+
+b1 $ smash 2 [3] $ stack[
+   stack[
+        slowcat[
+           drum "[bd ~ ~ ~] [~ ~ bd ~] [~ bd ~ ~] [bd/2 ~ ~ ~]"
+           ,
+           drum "[bd ~ ~ ~] [~ ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~]"
+           ,
+           drum "[bd ~ ~ ~] [~ ~ ~ ~] [bd ~ ~ ~] [~ bd ~ ~]"
+           ]
+           ,
+        chop 2 . slow 2 . stut 2 0.01 0.5 $ slowcat[
+           drum "[~ ~ ~ ~] [cl ~ ~ ~] [~ cl ~ cl] [~ ~ ~ ~]"
+           ,
+           drum "[~ ~ ~ ~] [cl ~ cl ~] [~ cl ~ cl] [~ ~ cl ~]"
+           ,
+           drum "[~ ~ ~ ~] [cl ~ ~ ~] [~ ~ ~ cl] [~ ~ ~ cl]"
+           ]
+   ]
+|+| scl (scale 0.75 0.8 $ squarewave1)
+|+| lcl "0.9"
+|+| lbd "0.5"
+,
+slowcat[
+        every 10 (within (0.3, 0.4)(chop 4 . gap 2)) . slow 2 . chop 2 $ drum "[ch([9 8]/2,16)]"
+        ,
+        drum "[ch([16 14]/2,16)]"
+        ]
+|+| dch "0.15"
+,
+drum "[ ~ ~ ~ ~ ] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~ ]"
+|+| doh "0.9"
+]
+|+| dhg (scale 0.9 0.99 $ rand) --"0.99"
+
+
+
+---
+---
+---
+---
+---
+---
+---
+---
+
+cps 0.45
+
+cps 0.5
+
+cps 0.6
+
+cps 0.666
+
+cps 0.7
+
+b1 $ smash 2 [3] $ stack[
+  slowcat[
+   drum "[bd ~ ~ ~] [~ ~ bd ~] [~ ~ bd ~] [~ ~ ~ ~]"
+   ,
+   drum "[bd ~ ~ ~] [~ ~ bd ~] [~ bd ~ ~] [bd ~ ~ ~]"
+   ]
+|+| lbd "0.5"
+,
+slowcat[
+        chop 2 . slow 2 . stut 2 0.01 0.5 $ slowcat[
+           drum "[~ ~ ~ ~] [cl ~ ~ ~] [~ cl ~ cl] [~ ~ ~ ~]"
+           ,
+           drum "[~ ~ ~ ~] [cl ~ cl ~] [~ cl ~ cl] [~ ~ cl ~]"
+           ,
+           drum "[~ ~ ~ ~] [cl ~ ~ ~] [~ ~ ~ cl] [~ ~ ~ cl]"
+           ]
+        ,
+        sometimes ( every 4 (within (0.3, 0.4)(chop 4 . gap 2)) . slow 2 . chop 2) $ stut 2 0.01 0.5 $  drum "[~ ~ ~ ~] [cl ~ cl ~] [~ cl ~ cl] [~ ~ cl ~]"
+        ]
+|+| scl "0.8"
+|+| lcl "0.9"
+,
+slowcat[
+        every 4 (within (0.3, 0.4)(chop 4 . gap 2)) . slow 2 . chop 2 $ drum "[ch([14 16]/2,16)]"
+        ,
+        drum "[ch(15,16)]"
+        ]
+|+| dch "0.15"
+,
+drum "[ ~ ~ oh ~ ] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ oh ~ ]"
+|+| doh "0.9"
+]
+|+| dhg (scale 0.9 0.99 $ rand) --"0.99"
+
+
+
+
+b1 silence

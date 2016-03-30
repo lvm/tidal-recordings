@@ -1,0 +1,92 @@
+
+cps 0.5
+
+b1 $ fadeOut 8 $ stack[
+ drum "[ch ch? ch ch?] [ch ch? ch? ch] [ch? ch ch? ch] [ch ch? ch? ch]"
+ ,
+ drum "[~ ~ ~ oh] [~ ~ ~ oh] [~ ~  ~ oh] [~ ~ ~ oh]"
+ ]
+|+| scr "0.5"
+|+| dhg "0.5"
+|+| dch "0.5"
+|+| lch "0.5"
+
+b3 $ fadeOut 4 $ stack[
+  chop 8 . every 2 (within (0,0.5) brak) $ drum "[~ ~ ~ ~] [cp ~ ~ cp] [~ ~ cp ~] [cp ~ cp ~]"
+  |+| scp (scale 0.8 0.9 $ every 2 rev . density 2 $ squarewave1)
+  |+| stt (scale 0.1 0.25 $ every 3 (sometimes rev) $ superimpose (density 2) $ sine1)
+  |+| std "0"
+  ,
+  drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [~ bd? ~ ~]"
+ ]
+|+| lcp "0.5"
+|+| lbd "0"
+
+b2 $ fadeOut 4 $ drum "ag(12,16)"
+|+| sag (scale 0.01 0.1 $ rand)
+|+| stt (scale 0.01 0.25 $ every 3 (sometimes rev) $ superimpose (density 2) $ sine1)
+|+| std "[0.2 0.9 0.2 0.5 0.7 0.8 0.9]/7"
+|+| lag (scale 0.5 0.9 $ sine1)
+
+b2 $ stack[
+  drum "[bd ~ bd ~] [~ ~ bd ~] [~ ~ bd ~] [~ ~ ~ ~]"
+  ,
+  drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ sn ~]"
+  ]
+|+| dt "0.25"
+|+| lbd "0.666"
+
+b2 silence
+
+
+---
+
+cps 0.5
+
+let dz = density 2 . zoom (0, 0.5)
+
+let dz2 = density 2 . zoom (0.5, 0.9)
+
+let e7 = every 7 (within (0, 0.5) (density 2 . dz))
+let e11 = every 11 (within (0, 0.2) (brak))
+
+let e2 = every 2 (within (0, 0.2) (brak))
+
+b1 $ e2 $ stack[
+ drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch]"
+ ,
+ degrade . sometimes (within (0, 0.25) (spin 2) ) . every 3 degrade . chop 8 . density 4 $ drum "cl(4,16)" --"[~ cl ~ cl] [~ cl ~ cl] [~ cl ~ cl] [~ cl ~ cl]"
+ |+| scl (every 4 ((0.5+) <$>) $ every 3 ((0.5-) <$>) $ iter 4 $ "[0.5 ~] [0.2 ~] [0.25 ~] [0.4 ~]")
+ |+| std "0.9"
+ |+| stt "0.2"
+ ,
+ drum "[~ ~ ~ oh] [~ ~ ~ oh] [~ ~  ~ oh] [~ ~ ~ oh]"
+ ]
+|+| scr "0.5"
+|+| dhg "0.9"
+|+| dch "0.1"
+|+| doh "0.1"
+|+| lch "0.5"
+
+b2 $ e11 $ stack[
+  drum "[~ lt ~ ~] [~ [lt,bd] ~ ~] [~ lt ~ ~] [~ [lt,bd] ~ ~]"
+  ,
+  slowcat[
+    drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ sn sn sn] [sn ~ sn ~]"
+    ,
+    drum "[~ sn ~ sn] [~ ~ ~ ~] [~ sn sn sn] [sn ~ sn ~]"
+    ]
+  ,
+  drum "[~ ~ ~ ~] [~ cp ~ ~] [cp? ~ ~ ~] [~ ~ ~ cp]"
+  |+| scp "0.5"
+  ]
+|+| lbd "0.666"
+|+| dt "0.9"
+|+| scr "0.8"
+
+
+b2 silence
+
+b2 silence
+
+b1 silence

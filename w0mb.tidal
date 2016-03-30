@@ -1,0 +1,61 @@
+cps 1
+
+let sw f = sometimes(within (0, 0.5) f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    sra n = revArc(0, n)
+
+b $ sw' 0 0.5 (# dch "0.1") $ sw (# hg "0.1") $ slow 2 $ stack[
+drum "[~ bd ~ ~] [~ ~ bd ~] [~ bd ~ ~] [~ ~ ~ ~]",
+sw (chop 2) $ drum "[~ ~ ~ ch] [~ ~ ~ ~] [~ ch !!] [~ ~ ~ ~]",
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ oh ~ ~]",
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ cp]",
+drum "[~ ~ ~ cl] [~ cl ~ ~] [~ ~ cl ~] [~ ~ ~ cr/4]"
+] # dch "0.25" # doh "0.9" # hg "0.75"
+
+
+
+b $ sw' 0 0.33 ((# std "0.15") . (slow 2)) . every 3 (revArc(0,0.25)) . sw' 0 0.5 (# dch "0.1") $ sw (# hg "0.1") $ stack[
+drum "[~ bd ~ ~] !",
+every 4 (sw' 0 0.33 (chop 2)) $ drum "ch(7,8)",
+drum "[~ ~ ~ ~] [~ ~ ~ oh]",
+drum "[~ ~ cp/4 ~] [~ cp ~ ~]"
+] # dch "0.25" # doh "0.75" # hg "0.75" # stt "0" # std "0"
+
+
+let pqa = nm "[c4 ~ a3 ~] [g4 ~ b4 ~]"
+    pqb = nm "[c4 ~ a3 ~] [g4 ~ f4 ~]"
+    pqc = nm "[c4 ~ f3 ~] [g4 ~ d4 ~]"
+    pqd = nm "[c4 ~ f3 ~] [g4 ~ e4 ~]"
+    pqe = nm "[c4 ~ f3 ~] [g3 ~ f3 ~]"
+    pqx = nm "[c4 ~ c4 ~] [b3 ~ b3 ~]"
+
+
+q $ sw rev . density 2 $ stack[
+slowcat[nm "[g4 ~ c3 ~]", nm "[g3 ~ c4 ~]"],
+slowcat[
+nm "[~ ~ ~ f4]",
+nm "[~ f4 ~ ~]"
+]
+] # decay (scale 0.75 0.9 sine1) # cutoffegint "[0.6 0.5 0.7]/3" # bdur (scale 0.05 0.09 sine1)
+
+q $ density 2 . every 3 (sw (# decay "0.1")) $ stack[
+slow 12 $ slowcat[
+nm "[~ c3 ~  ~] !",
+nm "[~ d3 ~  ~] !"
+],
+every 4 (iter 2) $ 
+slowcat[
+pqa, pqc
+]
+] # decay (scale 0.8 0.9 sine1)  # bdur "0.05" --(scale 0.05 0.09 sine1)
+|+| cutoffegint (scale 0 0.9 $ density 4 $ rand) --"[0.6 0.5 0.7]/3"
+sw
+
+
+
+
+
+
+|+| lfoint (

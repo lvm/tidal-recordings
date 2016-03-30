@@ -1,0 +1,163 @@
+cps 1
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+    st2' d = stut 2 0 d
+    st2 = st2' 0.25
+    ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    -- cho :: Pattern -> Int -> [Int] -> Pattern Int;
+    -- q $ note (cho 60 "1 1 1" [0, 3, 7])
+    cho n pat chord = preplace(1,1) pat $ listToPat [ch + n | ch <- chord]
+    cho' n off pat chord = cho (n+off) pat chord
+    n48 sc = note $ ch 48 sc
+    n n off sc = note $ ch (n+off) sc
+    nn off sc = n 48 off sc
+    --  m1 $ slowcat[note (skp 60 "1 1 1" (rotate i [0,3,7,10])) | i <- [0..3]]
+    rotate :: Int -> [a] -> [a]
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+    -- chords
+    minor = [0,3,7]
+    major = [0,4,7]
+    nine = [0,4,7,10,14]
+    ninesus4 = [0,5,7,10,14]
+    add9 = [0,4,7,14]
+    madd9 = [0,3,7,14]
+    maj9 = [0,4,7,11,14]
+    m9 = [0,3,7,10,14]
+    sus2 = [0,2,7]
+    sus4 = [0,5,7]
+    seven = [0,4,7,10]
+    m7 = [0,3,7,10]
+    eleven = [0,4,7,10,14,17]
+    m11 = [0,3,7,10,14,17]
+    thirteen = [0,4,7,10,14,21]
+    m13 = [0,3,7,10,14,21]
+
+
+b $ drum "bd ch" # 
+
+q $ note "38 !?" # decay "1" # dur "0.05"
+
+q silence
+
+b $ stack[
+slowcat[stut 2 0 0.75 $ drum "[bd ~ ~ ~] [~ ~ ~ bd]",drum "[~ ~ ~ bd] [~ bd ~ ~]", stut 2 0 0.5 $ drum "[~ bd ~ ~] [~ bd ~ ~]"]
+--every 13 (stut 2 0 0.5) $ every 2 (stut 2 0 0.75) $ drum "[~ ~ ~ ~] [~ cp ~ ~]",
+--every 5 (sw' 0 0.25 (spin 2)) . every 4 (# drum "[ cr ~ cr cr ] [~ cr ~ cr]") $ every 13 (# drum "[ ~ cr ~ ~ ] [~ cr ~ cr]") $ drum "[ ~ cr ~ cr ] [~ cr ~ cr]",
+--drum "cl([5 8]/2,8)"
+] # stt "0" # std "0.1" # lbd "0.5" # scp "0.45" # hg "0.75" # doh "0.5" #loh "1" # scr "0.85" # hg "0.1" # dch "0.1" # scl "1" # lcl (scale 0.23 1 rand)
+
+b silence
+
+
+b $ stack[
+drum "bd ~",
+drum "~ ~",
+density 2 $ drum "ch*2 oh",
+every 2 (sw(stut 2 0 0.75)) $ every 3(sw (stut 2 0 0.5) ) $ drum "~ cp"
+         ] # stt "0" # std "0" # scl (scale 0.75 0.8 sine1) # dch "0.1" # hg "0.75"
+
+
+b $ drum "cr([5 8]/2,8)"
+
+  # stt "0" # std "0.1" # lbd "0.5" # scp "0.45" # hg "0.75" # doh "0.5" #loh "1" # scr "0.85" # hg "0.1" # dch "0.1" # scl "1" # lcl (scale 0.23 1 rand)
+
+b $ foldEvery [7,9] (sw' 0 0.33 (# std "1")) $ drum "[[bd ~, [[~ bd/2] !] [cr!!?!,[cp!!?!]/2]], [[{ch*2}%2 [~]/2], oh/2]]" # dch "0.25 0.5 0.75 1" # lbd "0.65" # lch "0.5" # scl "1"  # stt "0" # std "0.1" # lbd "0.45"
+
+hush
+
+
+
+
+
+
+
+
+
+
+b $ stack[
+drum "[bd/2 bd/3 bd/4 ~] [~ ~ ~ ~]",
+every 2 (stut 2 0 0.5) $ foldEvery [3,5,7] (stut 2 0 0.75) $ drum "[~ ~ ~ ~] [~ cp ~ ~]",
+drum "[~ ~ ~ ~] [~ ~ ~ ~]",
+slowcat[
+drum "cl([5 4]/2,4) [~ ~ ~ ~]"
+],
+stack[
+drum "[ch([3 4]/2,4)] !",
+drum "[~ ~ oh ~] !"
+]
+] # scl "0.75" # lcl (scale 0.8 1 $ rand) # lbd "0.5"
+|+| stt "0"
+|+| std "0"
+|+| hg "0.75"
+|+| dch "0.1"
+
+hush
+
+
+
+
+b $ every 6 (wf0 0.5 ((# std "1"))) . every 11 (# hg "0.1") $ every 9 (sw (# std "0") ) $ stack[
+--bd
+degradeBy 0.75 $ slowcat[
+drum "[bd/2 bd/3 bd/4 ~] [~ bd/3 ~ ~]",
+drum "[~ bd ~ bd/8] !"
+],
+--cp
+every 2 (stut 2 0 0.5) $ foldEvery [3,5,7] (stut 2 0 0.75) $ drum "[~ ~ cp ~] [~ cp ~ ~]",
+--cl
+slowcat[
+drum "[cl([5 4]/2,4)] [~ ~ ~ ~]",
+drum "cl([5 8]/2,8)"
+],
+--(o|ch)
+stack[
+slowcat[drum "[ch([4 3]/2,4)] !",degradeBy 0.25 $ drum "[ch([5 8]/2,8)] !", drum "" ],
+drum "[~ ~ oh ~] !"
+],
+-- sn
+drum "[~ sn/8 ~ ~] [~ [~ sn !!?] ~ ~]"
+] # lcl (scale 0.8 1 $ rand) # lbd "0.666"
+|+| stt "0"
+|+| std "0.1"
+|+| hg "0.75"
+|+| dch "0.1"
+|+| scl (scale 0.75 0.8 $ sine1)
+
+
+b $ sw' 0 0.25 (# std "1") $ slowcat[
+every 9 (sw (# std "1") ) $ stack[
+slowcat[
+drum "[~ bd ~ ~][bd/2 ~ bd/4 ~]",
+drum "bd([2 8 4 2]/4,8)",
+drum "{bd*2 ~}%4"
+],
+drum "[~ ~ ~ ~] [~ cp ~ ~]",
+drum "[ch([2 4 1]/2,8)]",
+drum "[~ ~ ~ ~] [~ ~ cr ~]",
+drum "[~ ~ ~ ~] [~ [~ sn !!?] ~ ~]"
+]
+,
+drum "[~ bd ~ ~] !",
+drum "[~ ~ ~ ~] [~ cp ~ ~]",
+drum "[ch([5 8]/2,8)]",
+drum "[~ ~ cr ~] [~ ~ cr ~]",
+drum "[~ sn ~ ~] [~ [~ sn !!?] ~ ~]"
+] # lcl (scale 0.8 1 $ rand) # lbd "0.666"
+|+| stt "0"
+|+| std "0.1"
+|+| hg "0.1"
+|+| dch "0.1"
+|+| scl (scale 0.75 0.8 $ sine1)
+|+| sag (scale 0.9 1 $ rand)
+|+| lag (scale 0 1 $ slow 8 $ squarewave1)
+|+| scr "1"
+
+b silence -- o0o0o0o

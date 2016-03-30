@@ -1,0 +1,41 @@
+cps 0.5
+cps 0.666
+
+d1 $ every 4 ((0.5<~) . rev) $ sound "rhodes:2 rhodes:1(2,1) wobble(3,3) rhodes:3"
+ |+| cut "1"
+ |+| speed "[2 2.1 2.2 2.1 1.9]/5"
+
+d2 $ slow 8 . every 3 (rev) . chop 2 . density 2 $ sound "bass3:5(3,1) bass3:4(8,1) bass3:8(3,8) bass3:6(8,1)"
+ |+| speed "[2 2.1 2.2 2.1 1.9]/5"
+
+
+
+cps 0.25
+
+d2 $ stut 2 0.9 (-0.5) $ sound "{bass3:5(2,1) bass3:4(3,4)}%4"
+ |+| speed (every 23 ((/1.1) <$>) $ "[2.3 2.2 2.3]/3")
+ |+| gain "0.2"
+
+d2 $ stut 2 0.9 (-0.5) $ sound "{bass3:5(2,1) bass3:4(1,1)}%4"
+ |+| speed (every 23 ((/1.1) <$>) $ "[2.3 2.2 2.3]/3")
+ |+| gain "0.2"
+
+d2 $ sound "{bass3:5(1,1) bass3:4(1,1)}%4"
+ |+| speed (every 23 ((/1.1) <$>) $ "[2.3 2.2 2.3]/3")
+ |+| gain "0.2"
+
+d3 $ stack[every 2 (slow 2) . within (0.5, 0.7) ( every 3 (rev) ) . chop 32 . density 23 $ sound "sid:8"]
+ |+| cut "1"
+ |+| pan "1"
+ |+| gain "[1 1.2 1.5 1.3]/4"
+
+d4 $ spread' chop "1 1 2 1 1 4" $ density 2 $ sound "e(2,2) e(3,5) e(2,1)"
+ |+| speed "5"
+ |+| pan "0"
+ |+| gain "[1.5 1.2 1 1.3]/4"
+
+d5 $ within (0.25, 0.3) (|+| vowel "i") . within (0.5, 0.666) (|+| vowel "a") . every 8 (chop 2) . every 2 (rev) . density 2 . chop 8 $ sound "reese"
+ |+| speed (every 3 ((0.1-) <$>) $ ((*0.666) <$>) $ "[2 2.1 2.2 2.1 1.9]/5")
+
+ 
+hush

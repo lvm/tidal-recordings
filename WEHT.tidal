@@ -1,0 +1,154 @@
+cps 1
+
+let fill n q = within (q, q+0.25) (density n)
+
+let ch q w e = chop q . slow (w+2) . striate (e*2)
+
+let db x y = x*2 + y*x
+
+let rcbb q w e r =  (|+| resonance q) . (|+| cutoff w) . (|+| bandf e) .(|+| bandq r)
+
+
+let ddd d = (|+| delay d) . (|+| delaytime d) . (|+| delayfeedback d)
+
+
+d1 $ slow 2 . every 2 rev . striate 2 . density (db 1 2) . slowspread (slow) [2, 8, 4] . chop (db 8 4) $ sound "sine"
+|+| coarse "[5 6 4]/3"
+|+| cut "1"
+|+| end rand
+|+| speed "[0.5 0.7 0.6]/3"
+
+
+
+
+
+
+
+
+
+hush
+
+
+d3 $ juxcut rev . echo (1/2) . rcbb "1.8" "0.8" "[0.2 0.5 0.3 0.25]/5" "2.8" . ch 1 1.5 2 $ sound "sine"
+|+| cut "1"
+|+| begin "0.15"
+|+| end "0.1"
+|+| speed (((*1.2) <$>) "[0.6 0.25 0.5 0.7]/4")
+|+| vowel "[a o e i u]/5"
+|+| gain "1"
+
+d4 $ echo (1/3) . every 4 (ch 2 2 2) . every 2 rev . slow 2 . slowspread (chop) [db 1 2, 2, 2, 4, 2] . stut 2 0.5 0.5  $ sound "[amencutup:2 {amencutup, ch} amencutup:3, amencutup:1 !]"
+|+| crush "7"
+|+| gain "0.666"
+|+| speed (((/2) <$>) $ every 3 (((/2) <$>)) $ every 2 ((*1.5) <$>) $ slow 8 "1.23 1.2 1.3 1.25 1.2 1.25 1.2")
+
+
+
+
+
+
+
+
+
+
+
+
+d2 $ rcbb "0.2" "0.5" "2.0" "1.5" . within (0, 0.15) ((|+| vowel "a") . (|+| coarse "23")) . stut 2 0.5 0.1 . ch 2 1.25 2 . fill 2 2 . every 2 rev . striate 2 . density (db 1 2) . slowspread (slow) [2, 8, 4] . chop (db 8 4) $ sound "sine2:1"
+|+| coarse "[5 6 4]/3"
+|+| cut "1"
+|+| end rand
+|+| speed (slow 8 "1.23 1.2 1.3 1.25 1.2 1.25 1.2")
+|+| speed (((/2) <$>) $ every 3 (((/2) <$>)) $ every 2 ((*1.5) <$>) $ slow 8 "1.23 1.2 1.3 1.25 1.2 1.25 1.2")
+
+
+
+
+|+| coarse "[5 6 4]/3"
+|+| speed (((/2) <$>) $ every 3 (((/2) <$>)) $ every 2 ((*1.5) <$>) $ slow 8 "1.23 1.2 1.3 1.25 1.2 1.25 1.2")
+
+
+-----
+hush
+
+cps 0.5
+
+d2 $ density 3 $ stack[
+every 4 (density 2) $ sound "sine2:1 {visco:5 !?}"
+|+| speed "[0.6 0.25 0.5 0.7]/4"
+,
+sound "sine2:1*2 {visco:5 !?}"
+]
+|+| speed (((/2) <$>) $ every 3 (((/2) <$>)) $ every 2 ((*1.5) <$>) $ slow 8 "1.23 1.2 1.3 1.25 1.2 1.25 1.2")
+|+| coarse "[5 6 4]/3"
+
+d3 $ rcbb "1.8" "0.8" "[0.2 0.5 0.3 0.25]/5" "0.8" . slow 8 . striate 128 $ sound "sine"
+|+| cut "1"
+|+| speed "[0.6 0.25 0.5 0.7]/4"
+|+| gain "0.8"
+|+| vowel "[a o x q e i q x u]/9"
+|+| coarse "[6 3 7 4 4]/5"
+
+hush
+
+----
+
+
+
+d3 $ rcbb "1.8" "0.8" "[0.2 0.5 0.3 0.25]/5" "0.8" . slow 8 . striate 128 $ sound "sine"
+|+| cut "1"
+|+| speed "[0.6 0.25 0.5 0.7]/4"
+|+| gain "0.8"
+|+| vowel "[a o x q a]/5"
+|+| coarse "[6 3 7 4 4]/5"
+
+
+d2 $ ddd "0.25" . slow 2 . striate 32 $ sound "reese"
+|+| begin "0.2"
+|+| end "0.25"
+|+| cut "1"
+|+| speed "[0.6 0.25 0.5 0.7]/4"
+|+| vowel "[a o x q a]/5"
+|+| coarse "[6 3 7 4 4]/5"
+
+----
+
+d3 $ stack[
+every 4 (ch 2 2 2) . striate 2 . density (db 2 2) . fill 0 2 $ sound "~ bass"
+|+| coarse "[6 3 7 4 4]/5"
+,
+every 4 (density 2) . echo (1/4) $ sound "~ rapman:2 ~"
+|+| crush "2"
+,
+sound "~ ~ bev"
+|+| cut "1"
+|+| end "0.02"
+]
+
+let tt t = echo (2/t)
+
+cps 1
+
+cps 0.85666
+
+d4 $ within (0, 0.15) (stut 8 0.5 0.1 . chop 2) . spread' (striate' 8) "[0.6 0.5 0.9]/3" $ sound "bev"
+|+| cut "1"
+
+|+| speed (slow 8 "1.23 1.2 1.3 1.25 1.2 1.25 1.2")
+
+d5 $ every 5 ((|+| sound "syll syllbr sylloh") . (density 3) . within (0, 0.25) ( (|+| vowel (slow 5 $ "a e o i q")) . (|+| speed ((0.1-) <$> "1")))) . every 3 (|+| shape "0.23") . juxcut (|+| coarse "11") . superimpose (|+| cut "1") . spread' tt "1 3" . ch 1 1.2 2 . rev . slow 2 . chop 2 . stut 2 0.5 0.5  $ sound "[amencutup [[dr, ch] !?] amencutup:2, amencutup:3 amencutup]"
+|+| crush "23"
+|+| gain "0.666"
+
+
+hush
+
+---
+
+
+d5 $ every 3 (|+| shape "0.23") . juxcut (|+| coarse "11") . superimpose (|+| cut "1") . spread' tt "1 3" . ch 1 1.2 2 . rev . slow 2 . chop 2 . stut 2 0.5 0.5  $ sound "[amencutup [[dr, ch] !?] amencutup:2, amencutup:3 amencutup]"
+|+| crush "23"
+|+| gain "0.666"
+
+d5 $ echo (2/3) . every 3 (|+| shape "0.23") . juxcut (|+| coarse "11") . superimpose (|+| cut "1") . rev . slow 2 . chop 2 $ sound "[amencutup [[dr, ch] !?] amencutup:2, amencutup:3 amencutup:6*2, amencutup !]"
+|+| crush "23"
+|+| gain "0.666"

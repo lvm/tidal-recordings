@@ -1,0 +1,179 @@
+cps 0.666
+
+d1 $ every 2 rev $ stack[
+sound "amenkit:2 [sn, amenkit:2] amenkit:2 [sn amenkit:2]" --sound "[amenkit:2 [sn, amenkit:2] amenkit:2, sn amenkit:2]"
+,
+sound "gabba:1 ! ! gabba:1 rapman:2"
+|+| coarse "1 11 1 8"
+]
+
+
+d2 $ density 1.25 $ stack[
+striate 2 $ (sound $ samples "[amencutup:4 amencutup*2 amencutup:4, amencutup:8 amencutup:8]" $ iter 4 $ run 4)
+]
+|+| cut "1"
+
+cps 0.4
+
+d2 $ every 2 (chop 2) . slow 4 . striate' 4 (0.5) . every 4 ( within (0, 0.25) (|+| coarse "11") ) $ every 2 (rev) $ density 2 $ stack[
+smash 2 [1..2] . echo (8/6) $ sound "glitch ~ casio:2"
+,
+spread' density "4 2 8" $ sound "~ rapman ~"
+,
+sound "[db db db, ch ch]"
+,
+sound "~ ~ bd8:1"
+|+| coarse "[1 5 11]/3"
+]
+
+
+d2 $ every 5 (slow 2 . stut 4 0.1 0.5) . every 9 (echo (1/4)) . echo (7/4) . every 4 ( within (0, 0.25) (|+| coarse "11") ) $ stack[
+smash 2 [1..2] . echo (8/6) $ sound "glitch ~ casio:2"
+,
+every 4 (density 2) . slow 2 $ sound "~ ae ae:7 ~"
+,
+sound "[glitch glitch ch, glitch ch]"
+,
+sound "[bd8 bd8 bd8, bd8 bd8]"
+,
+slowspread (striate) [2, 2, 4] . density 2 $ sound "ch ! !"
+|+| speed "0.25"
+]
+|+| speed "[0.6 0.8 1]/3"
+
+hush
+
+
+d1 $ chop 2 . density 2.5 $ stack[
+(sound $ samples "[amencutup:3 amencutup*2 amencutup:1, amencutup:5 amencutup:5]" $ slow 0.25 $ "0 5 5 5 2 0")
+]
+|+| speed "0.8"
+
+
+
+d1 $ density 1.5 $ stack[
+slowspread(chop) [1,2,4,2] $ (sound $ samples "[amencutup*2 amencutup:1 amencutup:5, amencutup:3 amencutup:3]" $ iter 2 $ "0 1 2 3 4 5")
+]
+|+| speed "0.8"
+
+
+
+
+d1 $ stack[
+every 2 (striate 2) $ sound "[hardcore:4 hardcore:4 {hardcore:4 cp/2}%1, hardcore:3*3 hardcore:5]"
+,
+slow 2 $ sound "~ ae ae:7"
+|+| speed "0.25"
+,
+sound "ae:2 ~ ~ ae:6/4"
+|+| speed "0.25"
+]
+
+
+
+hush
+
+
+
+-- d1 $ stack[
+-- every 2 (striate 2) $ sound "[hardcore:4 hardcore:4 {hardcore:4 cp/2}%1, hardcore:3*3 hardcore:5]"
+-- ,
+-- sound "[sn sn sn]? !"
+-- ]
+
+d1 $ jux rev $ stack[
+every 2 (striate 2) $ sound "[~ ~ cp/2, hardcore:3*3 hardcore:5]"
+,
+every 4 (slow 2 . striate 2) $ sound "[sn sn sn]? !"
+|+| coarse "[7 0 11]/3"
+]
+
+d1 $ stack[
+slowspread(slow) [2, 4] . chop 2 . every 4 (slow 2 . striate 2) $ sound "[bd bd sn, sn sn:3] tabla:1"
+|+| coarse "[7 0 11]/3"
+|+| cut "1"
+,
+sound "bd8:1 ! sn"
+|+| coarse "[7 0 11]/3"
+]
+
+
+d1 $ fadeOut 32 $ every 8 (slow 2) . within (0.5, 0.75) (|+| accelerate "-50") $ stack[
+superimpose ((|+| gain "0.8") . (|+| speed "[0.5 0.9 0.666]/3") . (|+| coarse "11")) $ echo (1/3) . every 4 (echo (1/4)) $ sound "[bottle:1 ~ bottle:1 , bottle:2 bottle:2]"
+,
+brak . every 2 (rev) $ within (0, 0.5) (echo (1/3)) $ slow 2 $ sound "amencutup:2 amencutup:3? amencutup:3 amencutup:3"
+]
+
+
+d2 $ fadeOut 16 $ stack[
+sound "~ glasstap ~"
+,
+slow 2 $ sound "glasstap:2 ~ glasstap:2"
+|+| end "0.1"
+,
+every 4 (jux rev) . slowspread (striate) [2, 4, 2] . slow 2 $ sound "~ ~ ~ glitch:2"
+,
+chop 4 . rev . echo (1/3) $ every 2 (rev) . within (0, 0.5) (slow 2) . slow 4 $ sound "~ minipops:3 glasstap:2 ae"
+,
+every 4 ( |+| speed "0.7" ) $ sound "minipops:2 minipops:2/2"
+|+| end "0.1"
+]
+
+d2 silence
+
+d3 $ slow 1.25 . superimpose (stut 16 0.2 0.1 . slow 4 . (jux rev) . (|+| vowel "a")) . every 10 (|+| coarse "11") $ stack[
+sound "{ae:3 !? !?} ~ ae:2 ae/2"
+,
+every 5 (|+| sound "auto:1*2") . every 4 (density 2) $ sound "~ [auto/3 auto:2] ~"
+,
+every 4 ( |+| speed "0.7" ) $ sound "minipops:2 minipops:2/2"
+|+| end "0.1"
+]
+
+d2 silence
+
+d4 $ stack[
+within (0, 0.25) (density 2) . every 4 (rev) $ sound "auto:4 auto:1/3 {auto:2 auto:2/2}%1 ~"
+]
+|+| coarse "11"
+|+| speed "0.1"
+
+d5$ slow 4 $ stack[
+echo (1/3) $ sound "~ unix:1 unix:1"
+,
+every 3 (rev) $ sound "[lsdj:2, ~ click click*2]"
+,
+slow 2 $ sound "{auto:1/3 !? !? bottle:4}%2"
+,
+every 2 (|+| gain "1") $ sound "d d*2? d"
+|+| gain "0"
+]
+|+| speed "[0.9 1]/2"
+
+
+d6 $ stack[
+sound "~ deepsky:8 sf:2*2"
+|+| speed (iter 4 $ "0.5 0.8")
+,
+chop 2 . striate 2 $ slow 2 $ interlace (sound "[sf:5 sf:3 sf:6, sf:2 !]") (sound "sf:5 sf:3 sf:6")
+e]
+
+let ddd d = (|+| delay d) . (|+| delayfeedback d) . (|+| delaytime d)
+
+cps 0.6
+
+d6 $ every 3 (within (0, 0.5) (chop 8 . iter 2)) . every 13 (|+| coarse "11") . every 2 (|+| speed (iter 4 $ "0.5 0.8")) $ stack[
+every 2 (chop 2) . slow 1.5 . striate' 2 (0.5) $ interlace (sound "[sf:6 sf:5 sf:3, amencutup:3 ae:6/4]") (sound "amencutup:3 ae sf:6")
+]
+
+d6 $ every 3 (within (0, 0.5) (chop 8 . iter 2)) . every 13 (|+| coarse "11") . every 2 (|+| speed (iter 4 $ "0.5 0.8")) $ stack[
+every 2 (chop 2) . slow 1.5 . striate' 2 (0.5) $ interlace (sound "[amencutup:4 amencutup amencutup:4, amencutup:3 amencutup]") (sound "amencutup:3 amencutup:2 amencutup:1")
+]
+
+d6 $ fadeOut 4 $ slow 2 . slow 4 $ stack[
+chop 2 . slowspread(chop) [2, 4] $ (sound $ samples "[~ amencutup !, sn:2 ~]" $ iter 6 $ "0 0 0 0 0 5" )
+|+| speed "0.5"
+,
+sound "cp ~ auto:1"
+]
+

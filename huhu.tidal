@@ -1,0 +1,78 @@
+bps 1
+--hush
+---------------------------
+
+hush
+
+--density 2 $ every 9 ((|+| shape "0.1") . (slow 8) . (striate' 2 (0.1))) $ 
+
+
+
+d3 silence
+d3 $ density 2 $ interlace (sound "~ ~ gab:3*18") (sound "~ gab:3*8 ~")
+ |+| shape "0.1"
+-- |+| slow 32 (accelerate "2 3 8")
+
+
+
+d4 $ every 4 (slow 2 . rev) $ striate' 32 (0.1) $ sound "hh/2 cp*8/2"
+ |+| shape triwave1
+ |+| accelerate "2 3 8"
+
+
+d1 $ density 8 $ sound "gab:3 ~"
+ |+| shape "0.9"
+
+d2 $ density 8 $ sound "~ gab:4"
+ |+| shape "0.9"
+
+d2 silence
+
+
+
+
+d5 $ striate' 3 (1.0) $ sound "~ flick*8"
+  |+| speed "0.5"
+
+
+
+
+d5 $ echo (1/2) $ density 3 $ interlace (sound "~ ~ house/4") (sound "~ sn ~")
+ |+| accelerate "2 3 8"
+
+
+
+
+
+
+d3 silence
+
+
+hush
+
+--------------------------------
+
+d1 $ density 8 $ sound "gab:3 ~"
+ |+| shape "0.9"
+
+d2 $ density 8 $ every 2 (slow 32) $ striate 8 $ sound "~ gab:4*16/8"
+ |+| shape "0.9"
+
+d5 silence
+
+d4 $ every 4 (slow 2 . rev) $ striate' 32 (0.1) $ sound "hh/2 cp*8/2"
+ |+| shape triwave1
+
+d5 $ every 3 (rev) $ smash 4 [4..8] $ striate' 32 (0.5) $ sound "pluck flick*8/4"
+ |+| speed "0.1" --"2.2 0.3"
+ |+| shape triwave1
+-- |+| accelerate "13 2"
+
+
+d5 $ density 8 $ every 3 (rev) $ every 2 (slow 4 . (striate 6) . ( |+| speed "4 0.5")) $ smash 4 [4..8] $ striate' 8 (0.1) $ sound "pluck flick*8/4"
+ |+| speed "2.2 0.3"
+ |+| shape triwave1
+ |+| accelerate "13 2"
+
+
+--

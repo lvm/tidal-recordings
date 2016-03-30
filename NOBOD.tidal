@@ -1,0 +1,5 @@
+
+
+
+let del = (|+| delay "0.5") . (|+| delayfeedback "0.5") . (|+| delaytime "0.5")
+

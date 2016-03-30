@@ -1,0 +1,93 @@
+cps 0.666
+
+cps 1
+
+m2 $ every 4 rev . smash 2 [3]  $ stack[
+  note $ toMIDI "d4",
+  slowcat[
+  note $ toMIDI "d5 g4 c4"
+  ,
+  note $ toMIDI "d5 g5 c5"
+  ,
+  note $ toMIDI "d5 g5 f5"
+  ,
+  note $ toMIDI "d5 ~ ~"
+  ]
+]
+|+| dur (scale 0.4 0.6 sine1) --"0.9"
+
+m2 $ every 7 (chop 2) . every 2 rev $ slowcat[
+slow 2 $ iter 8 $ note $ toMIDI "f4 d4 d4 e4 e4 f5 d5 a5"
+,
+slowcat[
+note $ toMIDI "f3*2 d3"
+,
+note $ toMIDI "d3*2 e3"
+]
+,
+slowcat[
+note $ toMIDI "e3*2 f4"
+,
+note $ toMIDI "d4*2 a4"
+]
+]
+|+| dur "0.9"
+
+m2 $ sometimes rev . slow 6 $ iter 8 $ (note $ toMIDI "f4 d4 d4 e4 e4 f5 d5 a5")
+|+| dur "0.9"
+
+
+
+---
+
+cps 0.666
+
+cps 1
+
+let sttd t d = (#stt t) . (#std d)
+
+b $ every 2 (sometimes (sttd "[0.45 0.5]/2" "[0.1 0.25]/4")) $ every 5 rev . every 8 (iter 4) . slow 1.25 $ stack[
+drum "[~ bd ~ ~] [bd*2 bd ~ ~]"
+,
+drum "[oh/4 ~ ~ ~] [~ ~ ~ oh]"
+,
+slowcat[
+every 2 rev $ sometimes (foldEvery [4,7,13] (chop 2)) $ drum "[~ ~ ch ~] [ch*2 oh ch ~]",
+drum "[ch ch oh ch] !"
+]
+,
+slowcat[
+drum "[~ ~ ~ ~] [~ ~ [oh ch?] oh]"
+,
+drum "[~ ~ ~ ~] [~ ~ oh oh/2]"
+]
+,
+drum "[~ ~ ~ cp] [~ ~ cp cp]"
+          ]
+|+| stt "0"
+|+| std "0"
+
+
+m4 $ every 2 rev $ slowcat[
+slow 2 $ iter 8 $ note $ toMIDI "f4 d4 d4 e4 e4 f5 d5 a5"
+,
+slowcat[
+note $ toMIDI "f3*2 d3"
+,
+note $ toMIDI "d3*2 e3"
+]
+,
+slowcat[
+note $ toMIDI "e3*2 f4"
+,
+note $ toMIDI "d4*2 a4"
+]
+]
+|+| dur "0.9"
+|+| vel (scale 0.25 0.3 sine1)
+
+
+
+b silence
+
+hush

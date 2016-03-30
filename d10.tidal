@@ -1,0 +1,42 @@
+cps 0.6
+
+b $ every 5 ((# stt "0") . (# std "0")) $ every 2 (sometimes brak) . foldEvery [3,5,7] (# stt (scale 0 1 rand)) . every 16 ((# scr "1") . (#sag "1")) $ every 8 (slow 2 . chop 4) $ stack[
+drum "[bd/4 ~ bd ~] [~ ~ ~ bd]",
+drum "[~ ch oh ~] [ch ch ~ oh]",
+every 4 (chop 4 . spin 2) $ drum "[cr ~ ~ cr] [~ ~ ~ ~]",
+randcat[drum "[cp(6,8)]", drum "[cl(6,8)]", sometimes (degrade) $ drum "[ag(5,8)]"]
+] # stt (scale 0 0.1 sine1) # std "0.1" # lbd "0.5" # dch "0.1" # hg "0.1" # scr (every 2 ((+(-0.25)) <$>) $ "0.75") # sag "0.75" # scl "1"
+
+-- bank 1 - 36: basic4
+m5 $ stut 2 0 0.75 $ stack[
+  chrot' [36,39,41,39] 0 "1(3,8)" [0]
+] # dur "0.05" # vel "0.35"
+
+-- bank 1 - 36: basic4
+m4 $ stack[
+  chrot' [36,41,43,36] 0 "1(5,8)" [0,4,7]
+] # dur "0.1" # vel "0.25"
+
+----
+
+hush
+
+
+
+
+
+
+b $ stack[
+every 8 (# drum "bd(5,8)") $ drum "bd!",
+sometimes (slowspread (stut 2 0) [0.5,0.75]) $ drum "~ cp",
+stack[
+every 3 (chop 2) . density 2 $ drum "[ch!] oh",
+every 3 (# drum "~ ~") $ density 2 $ drum "[~ ch] !"
+],
+every 2 (sw(chop 2)) $ drum "[sn(5,8)]/2",
+drum "cr/8 ~"
+] # stt "0" # std "0" # scr "0.75"
+
+
+
+q $ every 3 (sometimes(within(0,1) (# note (cho 60 "1 1 1 1" [12,6,0,12]) )) . (# dur "0.05")) $ every 2 (# note "[36 !] 41 [43 !!?] 36") $ note "[48 !?] 36 [51 !?] 48" # dur "0.25" # decay "1"

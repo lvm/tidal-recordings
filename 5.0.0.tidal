@@ -1,0 +1,170 @@
+bps 0.5
+
+
+d1 $ spread' density "2 1 2" . every 5 (rev) $ stack[sound "~ unix ~", sound "~ ~ deepsky ~", every 8 (striate 2) . striate 2 $ sound "dr unix:1 dr unix:2?" |+| speed "0.5"]
+ |+| speed (((*2) <$>) $ slow 8 "0.6 0.7 0.8 0.9 0.51 0.5 0.6 0.8")
+ |+| shape (slow 8 "0.1 0.5 0.6 0.5 0.3 0.5 0.6 0.8")
+
+d2 $ spread' density "2 1 2" $ sound "~ rhodes"
+ |+| speed (((*4) <$>) $ iter 3 "1 2 1")
+
+--------------------------------------
+hush
+--------------------------------------
+
+bps 1
+
+cps 0.666
+
+
+
+let ddd d = (|+| delay d) . (|+| delayfeedback d) . (|+| delaytime d)
+
+d1 $ spread' density "2 1 2 1 2" . every 4 (rev) . stut 2 0.9 0.5 $ sound "~ rhodes"
+ |+| speed (((*8) <$>) $ every 2 ((*0.5) <$>) $ every 4 ((*2) <$>) $ every 3 ((*0.666) <$>) $ slow 8 "0.6 0.7 0.8 0.9 0.51 0.5 0.6 0.8")
+
+
+d2 $ spread' striate "2 1 4 1 2" . stut 2 0.5 (-2) . density 2 $ sound "mattel:2"
+
+
+d3 $ spread' striate "8 4 8" $ sound "gab:4"
+ |+| speed (((*4) <$>) $ sinewave1)
+
+
+
+d4 $ slow 32 . striate 32 $ sound "moan"
+ |+| end "0.5"
+
+
+
+--------------------------------------
+hush
+--------------------------------------
+
+
+bps 2
+
+
+d2 $ every 2 (|+| vowel "a") $ (every 2 (jux rev) . spread' density "32 24 12 6 12 24 32" . every 4 (slow 2) . every 2 (slow 4) . every 5 (slow 3) . spread' striate "8 3 4 3 8" $ sound "moan"
+ |+| speed (((*8) <$>) $ every 2 ((*0.5) <$>) $ every 4 ((*2) <$>) $ every 3 ((*0.666) <$>) $ slow 2 "0.2 0.3 0.1 0.15 0.1 0.25 0.46 0.38")
+ |+| gain " 0.1 0.0")
+ |+| vowel (slow 8 "u o a i e")
+
+d1 $ echo (4/4) $ slow 8 $ stack[stut 2 0.5 0.5 $ sound "~ unix:1 ~ ~", stut 2 0.9 0.5 $ sound "~ ~ ~ unix:3/2", sound "~ ~ ~ unix:4/8"]
+ |+| speed (every 5 ((/8) <$>) $ ((*8) <$>) $ every 2 ((*5) <$>) $ every 4 ((*2) <$>) $ every 3 ((*6) <$>) $ slow 2 "0.2 0.3 0.1 0.15 0.1 0.25 0.46 0.38")
+ |+| gain "1.2"
+
+
+d3 $ echo (4/4) $ sound "~ house ~ ~"
+ |+| gain "0.1"
+
+d2 silence
+
+
+
+
+
+hush
+
+
+
+
+
+
+
+hush
+
+
+
+
+
+
+------------------
+hush
+------------------
+
+
+
+bps 1
+
+
+
+d3 $ stut 2 0.9 (-0.5) . spread' density "8 2 4 8 4" $ sound "gab:7"
+ |+| speed (((*16) <$>) $ every 2 ((*5) <$>) $ every 4 ((*2) <$>) $ every 3 ((*6) <$>) $ iter 4 "0.2 0.3 0.1 0.15 0.1 0.25 0.46 0.38")
+ |+| speed (((*16) <$>) $ every 2 ((*5) <$>) $ every 4 ((*2) <$>) $ every 3 ((*6) <$>) $ sinewave1)
+
+
+d2 $ spread' density "2 1 4 1 8 1 4" . spread' striate "8 2 4 2 4" $ sound "gab:8"
+ |+| speed (((*3) <$>) $ every 3 ((*4) <$>) $ every 5 ((*2) <$>) $ sinewave1)
+
+d3 $ jux (|+| gain "1") $ spread' density "2 4 2 1" . spread' striate "8 1 4 2 8 1 4" $ sound "gab:7"
+ |+| speed (((*3) <$>) $ sinewave1)
+
+d4 $ spread' density "2 4 2" . palindrome $ sound "mattel ~ deepsky:7 ~"
+ |+| speed (((*2) <$>) $ sinewave1)
+
+hush
+
+
+
+
+
+
+bps 1
+
+
+d4 $ slow 4 . density 2 . spread' striate "15 16 15 16 15 16" $ sound "breaks125"
+ |+| speed ((((*2.5) . (0.1-)) <$>) $ sinewave1)
+ |+| shape (slow 2 "0.2 0.3 0.1 0.15 0.2 0.25 0.46 0.38")
+
+
+
+
+
+d5 $ slow 32 . striate 32 $ sound "moan"
+ |+| end "0.5"
+
+d5 silence
+
+
+
+
+------------------
+hush
+------------------
+
+
+
+
+bps 2
+
+
+d1 $ spread' density "2 1 2 4" . spread' striate "8 2 4 2 8" $ sound "mattel:2"
+ |+| speed (((*8) <$>) $ every 2 ((*0.5) <$>) $ every 4 ((*2) <$>) $ slow 2 "0.2 0.3 0.1 0.15 0.1 0.25 0.46 0.38")
+
+d1 $ spread' striate "2 1 4 1 2" . stut 2 0.5 (-2) . density 2 $ sound "mattel:2"
+
+
+d2 $ jux (|+| gain "1") . spread' density "2 1 2 4" . spread' striate "8 2 4 2 8" $ sound "mattel:3"
+ |+| speed (((*8) <$>) $ every 2 ((*0.5) <$>) $ every 4 ((*2) <$>) $ slow 2 "0.2 0.3 0.1 0.15 0.1 0.25 0.46 0.38")
+
+d2 $ jux (|+| gain "1") . spread' density "2 1 2 4" . spread' striate "8 2 4 2 8" $ sound "mattel:3"
+ |+| speed (((*8) <$>) $ every 2 ((*0.5) <$>) $ every 4 ((*2) <$>) $ slow 2 "0.2 0.3 0.1 0.15 0.1 0.25 0.46 0.38")
+
+
+d4 $ slow 4 . spread' striate "8 4 2 8 4" $ sound "breaks125"
+
+
+d4 $ spread' striate "8 4 8" $ sound "gab:4"
+ |+| speed (((*4) <$>) $ sinewave1)
+
+
+
+d5 $ slow 32 . striate 32 $ sound "moan"
+ |+| end "0.5"
+
+
+
+--------------------------------------
+hush
+--------------------------------------

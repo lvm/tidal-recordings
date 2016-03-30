@@ -1,0 +1,37 @@
+bps 0.5
+
+d1 $ stut 2 0.5 (-0.5) $ density 3 $ sound "house*2 house?"
+ |+| shape (every 3 ((0.5-) <$>) $ "0.3")
+
+
+d3 $ echo (3/4) $ every 2 (density 2) . striate' 6 (0.9) $ sound "dr2:5"
+
+d3 $ echo (3/4) $ every 2 (density 2) . striate' 6 (0.5) $ sound "dr2:5"
+
+
+d4 $ every 9 (slow 4 . (|+| speed "-1")) . spread' density "4 2 3" $ sound "mattel:5"
+ |+| speed (every 3 ((*1.5) <$>) $ every 5 ((*2) <$>) $ every 7 ((*3) <$>) "1")
+
+
+hush
+
+
+----------------------------
+
+bps 1
+
+
+d3 $ stut 2 0.5 0.5 $ (spread' density "4 8 4" $ sound "deepsky:8 ~ ~ ~"
+ |+| slow 2 (vowel "o u o")
+ |+| speed (every 2 ((0.9*) <$>) $ every 3 ((*1.1) <$>) $ every 7 ((*1.5) <$>)  $ every 5 ((*1.2) <$>) "2"))
+ |+| gain sinewave1
+
+d2 $ every 2 (density 2 . iter 4) . density 2 $ sound "bass2"
+ |+| speed (slow 2 "2 2.1")
+
+d1 $ every 2 (iter 8) . spread striate [2,1] $ sound (pick <$> "dr:2 dr" <*> slow 32 "5 6")
+ |+| end rand
+
+d1 $ spread striate [2,1] $ stack[sound "dr:2 ~", sound "dr:5 dr:6/3"]
+
+hush

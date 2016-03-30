@@ -1,0 +1,67 @@
+cps 0.23
+
+let t x = echo (x/4)
+let rcbb q w e r =  (|+| resonance q) . (|+| cutoff w) . (|+| bandf e) .(|+| bandq r)
+
+-- !!!
+
+-- d1 $ every 8 (rcbb "0.5" "0.1" "[0.2 0.1 0.3 0.25]/4" "0.2") . spread' t "7 32 1 8" . every 3 rev . every 5 (within (0, 0.25) (slow 2)) . slowspread ($) [iter 4, iter 2, rev] . striate 2 . chop 2 . every 4 (chop 2) $ (sound $ samples "[unix*2 !, unix:1*2 kawaixd:2, kawaixd !]" $ iter 4 $ run 4)
+-- |+| coarse "[6 8 7 9]/4"
+-- |+| end rand
+
+
+-- d1 $ stack[
+-- slow 1.5 . every 8 (rcbb "0.5" "0.1" "[0.2 0.1 0.666 0.3 0.25]/5" "0.2") . spread' t "7 32 8" . every 3 rev . every 5 (within (0, 0.25) (slow 2)) . slowspread ($) [iter 4, iter 2, rev] . striate 2 . chop 2 . every 4 (chop 2) $ (sound $ samples "[unix unix:1 kawaixd, kawaixd !]" $ iter 4 $ run 4)
+-- |+| coarse "[6 8 7 9]/4"
+-- ]
+
+
+
+-- d1 $ every 13 (within (0, 0.25) (|+| accelerate "-1")) . slow 1.25 . every 8 (rcbb "0.5" "0.1" "[0.2 0.1 0.666 0.3 0.25]/5" "0.2") . spread' t "7 32 8" . every 3 rev . every 5 (within (0, 0.25) (slow 2)) . slowspread ($) [iter 4, iter 2, rev] . chop 2 $ (sound $ samples "[unix unix:1 kawaixd, kawaixd !]" $ iter 8 $ run 8)
+-- |+| coarse "[6 8 11 7 9]/5"
+
+
+-- d2 $ rcbb "1.5" "0.9" "[0.2 0.1 0.666 0.3 0.25]/5" "0.8" . slow 4 . chop 32 $ sound "sine"
+-- |+| gain "0.5"
+-- |+| cut "1"
+-- |+| speed "[0.50 0.25 0.666 0.3]/4"
+-- |+| vowel "[a e x q o u q x i]/9"
+
+
+
+cps 0.35
+
+cps 0.7
+
+cps 1
+
+cps 0.25
+
+d1 $ density 2 . rcbb "0.5" "0.2" "0.8" "0.8" $ sound "hhop"
+|+| gain "0.8"
+|+| coarse "[6 8 11 7 9]/5"
+|+| cut "1"
+
+
+hush
+
+
+,
+stut 2 0.5 0.9 $ sound "~ ~ ~ {ch*4 !?}%1"
+
+stut 2 0.5 0.5 $ sound "bd8:1 ~ bd8:2 bd8:3"
+,
+
+hush
+
+d2 $ rcbb "1.5" "0.9" "[0.2 0.1 0.666 0.3 0.25]/5" "0.8" . slow 2 . chop 32 $ sound "wcd"
+|+| gain "0.6"
+|+| cut "1"
+|+| speed "[0.50 0.25 0.666 0.3]/4"
+|+| vowel "[a e x q o u q x i]/9"
+
+
+hush
+
+
+--- !!!!

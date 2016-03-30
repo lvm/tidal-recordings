@@ -1,0 +1,76 @@
+cps 0.666
+
+hush
+
+-- d1 1st
+d1 $ every 3 (within (0, 0.25) ( |+| speed "0.666" )) $ stack[
+every 2 (density 1.5) $ sound "{[acetoneace:1 ~]/2 ~ acetoneace:5}%5"
+ |+| coarse "[9 12 10]/3"
+,
+interlace
+(echo (7/4) $  every 7 (density 2) . every 2 (del) $ sound "wurlitzer:4 [daytone:7 daytone:6] sid:2"  |+| speed "3 1 1")
+(every 3 (density 2) . every 2 (del) $ sound "wurlitzer:3 [daytone:7 daytone:6] [visco visco:5]" |+| speed "4 1 1")
+ |+| coarse "[9 12 10]/3"
+ |+| gain "0.9"
+]
+ |+| shape "0.666"
+
+-- d2 1st
+d2 $ every 4 (within (0.25, 0.5) (stut 4 0.5 0.1)) . every 2 (striate' 4 (0.5)) . every 5 (striate' 2 (0.5)) . slow 2 $ sound "ursu"
+ |+| cut "1"
+ |+| speed (((0.1-) <$>) "[0.55 0.5 0.6 0.666]/4")
+ |+| end "0.2"
+ |+| gain "[0.55 0.666 0.777 0.9]/4"
+
+ |+| gain "1"
+
+
+-- d1 2nd -- break
+d1 $ rev . slow 1.25 . stut 8 0.2 0.1 . every 4 (|+| speed "[1 0.5 0.7]/3") $ stack[
+every 2 (density 1.5) $ sound "{[acetoneace:1 ~]/2 ~ acetoneace:5}%5"
+ |+| coarse "[9 12 10]/3"
+,
+interlace
+(echo (7/4) $  every 7 (density 2) . every 2 (del) $ sound "wurlitzer:4 [daytone:7 daytone:6] sid:2"  |+| speed "3 1 1")
+(every 3 (density 2) . every 2 (del) $ sound "wurlitzer:3 [daytone:7 daytone:6] [visco visco:5]" |+| speed "4 1 1")
+ |+| coarse "[9 12 10]/3"
+ |+| gain "0.9"
+]
+ |+| shape "0.666"
+
+-- d2 2nd
+d2 $ juxcut rev . every 4 (within (0.25, 0.5) (stut 4 0.5 0.1)) . every 2 (striate' 4 (0.5)) . every 5 (striate' 2 (0.5)) . slow 2 $ sound "ursu"
+ |+| cut "1"
+ |+| speed (((*2) <$>) $ ((0.1-) <$>) "[0.55 0.5 0.6 0.666]/4")
+ |+| end "0.2"
+ |+| gain "1"
+
+
+-- d1 3rd
+d1 $ every 6 (within (0, 0.25) (rev)) . slow 1.25 . stut 8 0.2 0.1 . every 4 (|+| speed "[1 0.5 0.7]/3") $ stack[
+every 2 (density 1.5) $ sound "{[acetoneace:1 ~]/2 ~ acetoneace:5}%5"
+ |+| coarse "[9 12 10]/3"
+,
+interlace
+(echo (7/4) $  every 7 (density 2) . every 2 (del) $ sound "wurlitzer:4 [daytone:7 daytone:6] sid:2"  |+| speed "3 1 1")
+(every 3 (density 2) . every 2 (del) $ sound "wurlitzer:3 [daytone:7 daytone:6] [visco visco:5]" |+| speed "4 1 1")
+ |+| coarse "[9 12 10]/3"
+ |+| gain "0.9"
+]
+ |+| shape "0.666"
+
+--- d1 4th 
+d1 $ every 2 (stut 8 0.2 0.1 ) . slow 1.25 . every 4 (|+| speed "[1 0.5 0.7]/3") $ stack[
+every 2 (density 1.5) $ sound "{[acetoneace:1 ~]/2 ~ acetoneace:5}%5"
+ |+| coarse "[9 12 10]/3"
+,
+interlace
+(echo (7/4) $  every 7 (density 2) . every 2 (del) $ sound "wurlitzer:4 [daytone:7 daytone:6] sid:2"  |+| speed "3 1 1")
+(every 3 (density 2) . every 2 (del) $ sound "wurlitzer:3 [daytone:7 daytone:6] [visco visco:5]" |+| speed "4 1 1")
+ |+| coarse "[9 12 10]/3"
+ |+| gain "0.9"
+]
+ |+| shape "0.666"
+
+
+

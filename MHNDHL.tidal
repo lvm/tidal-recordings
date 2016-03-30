@@ -1,0 +1,23 @@
+bps (1.666/2)
+
+d1 $ jux palindrome $ every 2 (palindrome) $ every 3 (slow 2) $ every 6 (spin 16) $ density 4 $ (sound $ samples "arpy*2" $ iter 10 $ run 10)
+ |+| speed ((*0.5) <$> sine1)
+ |+| gain "1.1"
+
+d2 $ every 9 (rev) $ stack[echo (7/4) $ every 2 (slow 4) $ density 2 $ sound "dr dr {dr dr/2} dr", every 4 (echo (7/8)) $ sound "{fat909:2, fat909}/2", every 4 (density 4) $ sound "{jvbass bass0/8}*8"]
+ |+| speed ((0.1+) <$> sine1)
+ |+| shape ((/2) <$> sinewave1)
+
+d3 $ every 4 (slow 2) $ density 2 $ sound "~ bass0*2"
+ |+| shape ((/2) <$> sinewave1)
+ |+| vowel "a"
+
+d4 $ echo (7/4) $ every 8 (striate 2) $ density 2 $ sound "house:7 ~ house:7 !?"
+ |+| speed "2"
+ |+| shape ((/2) <$> sinewave1)
+
+
+
+
+
+hush

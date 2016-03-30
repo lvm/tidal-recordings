@@ -1,0 +1,57 @@
+bps (140/60)
+
+d9 $ every 2 (juxcut rev) $ sound "gabba*2 ~ cp"
+ |+| speed "1.5 2 1"
+
+d8 $ every 2 (juxcut rev . (|+| shape "0.5") . (|+| accelerate "1 2 0.1")) $ sound "co ~ ~"
+ |+| speed "1.5 2 1"
+
+
+solo $ d7 $ every 2 (juxcut rev . (|+| speed "1.5 1 0.5")) $  sound "db:5*2 bd co:2 sn:4"
+
+
+d7 $ every 2 (jux rev . (|+| speed "1.5 1 0.5")) $  sound "db:5*2 bd co:2 sn:4"
+
+d7 $ every 2 ((|+| speed "1.5 1 0.5")) $ striate' 1 (0.8) $ sound "db:5*2 bd co:2 sn:4"
+
+d7 $ every 2 ((|+| speed "1.5 1 0.5")) $ sound "db:5*2 bd co:2 sn:4"
+
+d7 $ every 4 (jux ((|+| speed "2 5 9"))) $ every 2 ((|+| speed "1.5 1 0.5")) $ striate' 1 (0.8) $ sound "db:5*2 bd co:2 sn:4"
+
+
+d7 silence
+bps 2
+
+hush
+
+d6 $ every 2 (juxcut ((|+| speed "0.5") . rev)) $ sound "hardcore:3 hardcore/2 hardcore:4*2 ~"
+ |+| shape "0.9"
+
+d4 $ jux (rev) $ sound "cp*2 ~ cp casio:2"
+
+d5 $ every 2 (jux ((|+| speed "0.5") . rev)) $ sound "[kurt*4, kurt*4] [co/4 cp/2]"
+
+
+d5 $ every 2 (jux ((|+| speed "0.5") . rev)) $ sound "kurt*4"
+
+d5 $ every 2 (jux (rev) . (striate' 1 (0.2))) $ sound "gabba*2 drumtraks drumtraks:4 [ho:4, ho]/2"
+
+
+
+
+
+
+hush
+
+
+--------------------------
+
+
+
+
+d8 $ every 2 (juxcut rev) $ slow 2 $ sound (samples "jvbass ~" (iter 2 $ "3 1 5"))
+ |+| speed "1.5 2 1"
+
+
+d9 $ every 2 (juxcut rev) $ sound "gabba*2 ~ cp*4/2"
+ |+| speed "1.5 2 1"

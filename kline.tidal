@@ -1,0 +1,185 @@
+cps 1
+
+let sw f = sometimes(within (0, 0.5) f)
+    sw' d h f = sometimes(within (d, h) f)
+    sttd t d = (#stt t) . (#std d)
+    notem p = note $ toMIDI p
+    nm p = notem p
+
+b $ slow 2.1 $ sw((# dch "0.1")) $ slowcat[
+  stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   within (0, 0.75) (chop 2) $ drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ ~] [~ ~ ~ oh/3]"
+   ,
+   every 4 (within (0, 0.35) (chop 2)) $ drum "[~ ~ sn [sn sn]] [[~ sn] ~ sn ~]"
+  ]
+  ,
+  stack[
+   drum "[bd ~ bd ~] [~ ~ bd ~] [~ ~ bd ~] [~ ~ ~ ~]"
+   ,
+   drum "[ch ch ch ch] ! ! !"
+   ,
+   drum "[~ ~ ~ ~] ! ! [~ ~ ~ oh/3]"
+   ,
+   drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ ~ ~]"
+  ]
+]
+|+| hg "0.75"
+|+| dch "0.25"
+|+| doh "0.2"
+|+| lag "0.35"
+|+| sag (scale 0 0.9 sine1)
+|+| stt "0"
+|+| std "0"
+
+q $ slow 1.2 . sw (# modwheel (scale 0.25 0.66 sine1)) $ stack[
+slowcat[
+  note $ toMIDI "g4 ! f4",
+  note $ toMIDI "f4 ! e4",
+  note $ toMIDI "e4 ! d4",
+  note $ toMIDI "d4 ! c4",
+  note $ toMIDI "c4 ! b4",
+  note $ toMIDI "b4 ! a4",
+  note $ toMIDI "a4 ! f4"
+]
+]
+|=| decay "0.99" --(scale 0.25 0.9 sine1)
+|=| pitch3 "0.35"
+|=| modwheel "0.99"
+
+
+q $ sw' 0 0.25 (slow 2) . sw (revArc(0, 0.25)) . sw (# modwheel (scale 0.25 0.66 sine1)) $ stack[
+slowcat[
+  note $ toMIDI "g4 g5 a4",
+  note $ toMIDI "f4 ! e4",
+  note $ toMIDI "d5 ! a4",
+  note $ toMIDI "a4 c5 d4",
+  note $ toMIDI "e4 ! f4"
+]
+]
+|=| decay "0.99" --(scale 0.25 0.9 sine1)
+|=| pitch3 "0.35"
+|=| modwheel "0.99"
+
+
+|=| lforate (scale 0.75 0.8 sine1)
+|=| lfoint (scale 0 0.9 $ density 2 $ squarewave1)
+
+
+hush
+
+
+
+
+
+
+
+
+hush
+
+
+
+m1 $ foldEvery [7, 9] (sw' 0 0.23 (gap 2)) . every 5 (slow 2 . spin 2) . sw (# modwheel (scale 0.25 0.66 sine1)) . every 2 (zoom (0.25, 0.5)) . iter 4 $ stack[
+density 2 $ slowcat[
+,(nm "c4 d4 e4 f4")
+,(nm "g4 a4 bs4 a4")
+,(nm "b4 cs4 d4 a4")
+]
+,density 2 $ randcat[nm "~ ~ c6 d6", nm "~ ~ c5 d5", nm "~ ~ d5 e5", degrade $ nm "g5 a5 bs5 ~"]
+--,iter 4 $ nm "c5 d5 e5 f5"
+]
+|=| dur "0.5"
+|=| vel "0.5"
+|=| sustainpedal (scale 0 0.65 sine1)
+
+
+hush
+
+
+m2 $ density 2 . sw (# modwheel (scale 0.25 0.66 sine1)) . every 2 (zoom (0.25, 0.5)) . iter 4 $ slowcat[
+nm "[c4 ~ d4 ~] [ e4 ~ f4 ~]"
+,nm "[g4 ~ a4 ~] [bs4 ~ a4 ~]"
+,nm "[b4 ~ cs4 ~] [d4 ~ a4 ~]"
+]
+|=| dur "0.5"
+|=| vel "0.8"
+
+m2 $ slowcat[
+  nm "c6",
+  nm "a5",
+  nm "b5",
+  nm "g5"
+  ]
+|+| dur "0.05"
+|+| vel (scale 0 0.35 $ slow 2 $ sine1)
+|+| modwheel (scale 0.5 0.9 rand)
+|+| sustainpedal (scale 0 0.666 sine1)
+
+
+---
+
+
+
+
+
+
+let pqa = nm "[c4 ~ a3 ~] [g4 ~ b4 ~]"
+    pqb = nm "[c4 ~ a3 ~] [g4 ~ f4 ~]"
+    pqc = nm "[c4 ~ f3 ~] [g4 ~ d4 ~]"
+    pqd = nm "[c4 ~ f3 ~] [g4 ~ e4 ~]"
+    pqx = nm "[c4 ~ c4 ~] [b3 ~ b3 ~]"
+
+--every 13 (sw' 0 0.25 (slow 4 . spin 2 . iter 4)) . every 11 (sw' 0 0.25 (slow 2)) . 
+
+cps 1
+
+-- celesta
+m1 $ fadeOut 16 . every 2(sw(slow 2)) . sw (revArc (0, 0.25)) . foldEvery [4, 11] (jux(sometimes (iter 4 . slow 2 . spin 2 . chop 4))) . sw (# modwheel (scale 0.25 0.66 sine1)) $ slowcat[
+  pqa, pqd, pqa, pqa, pqd, pqd, pqb,
+  pqa, pqb, pqc, pqc, pqb, pqx, pqa, pqc, pqd,
+  pqa, pqa, pqa, pqa, pqx, pqd, pqd, pqb,
+  pqb, pqb, pqb, pqx, pqc, pqd, pqc, pqc
+  ]
+|=| dur "0.05"
+|=| vel "0.33"
+
+-- synth bass 2 -- clavinova harp
+m2 $ sw (jux (sw' 0 0.25 (chop 2)) ) . sw (# modwheel (scale 0.25 0.66 sine1)) $ slowcat[
+  pqb, pqa, degrade $ pqa, pqc, pqc, degrade $ pqc, pqc, pqd, pqx,
+  pqa, pqd, pqa, pqa, pqd, pqd, pqb,
+  pqa, pqb, pqc, pqc, pqb, pqx, pqa, pqc, pqd,
+  pqa, pqa, pqa, pqa, pqx, pqd, pqd, pqb,
+  pqb, pqb, pqb, pqx, pqc, pqd, pqc, pqc
+  ]
+|=| dur "0.9"
+|=| vel "0.25"
+|=| sustainpedal (scale 0 0.65 sine1)
+
+-- synth bass 201
+m3 $ fadeOut 8 $ stack[
+jux(sw' 0 0.5 (spin 4)) . every 4 (slow 2 . spin 2 . iter 4) . within (0, 0.5) (density 2) $ slowcat[nm "~ c3", append' (nm "~ c3 ") (nm "c3/2 c3/4"), nm "[~ ~ c3 ~] [~ c3 ~ ~]"]
+]
+|=| dur (scale 0.01 0.023 sine1)
+|=| vel "0.7"
+
+-- tub bell
+m4 $ slow 8 . jux (sw' 0 0.25 (chop 2)) . sw (# modwheel (scale 0.25 0.66 sine1)) $ nm "[~ c4 ~ ~]"
+|=| dur "0.9"
+|=| vel "0.23" --"0.35"
+
+
+hush
+
+
+-- -- crystal rhodes ep
+-- m4 $ sw (jux (sw' 0 0.25 (chop 2)) ) . sw (# modwheel (scale 0.25 0.66 sine1)) $ slowcat[
+--   pqa, pqd, pqa, pqa, pqd, pqd, pqb,
+--   pqa, pqb, pqc, pqc, pqb, pqx, pqa, pqc, pqd,
+--   pqa, pqa, pqa, pqa, pqx, pqd, pqd, pqb,
+--   pqb, pqb, pqb, pqx, pqc, pqd, pqc, pqc
+--   ]
+-- |=| dur "0.5"
+-- |=| vel (scale 0.25 0.3 sine1) --"0.35"

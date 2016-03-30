@@ -1,0 +1,18 @@
+
+cps 0.5
+
+m2 $ stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ oh ~] [~ oh ~ ~]"
+  ]
+  |+| dhg "0.75"
+  |+| doh "0.2"
+  |+| dch "0.2"
+|+| dur "0.1"
+
+hush

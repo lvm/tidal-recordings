@@ -1,0 +1,416 @@
+cps 0.666
+
+hush
+
+-- pizzicato section
+m1 $ chop 2 . density 2 $ iter 4 $ slowcat[
+  note $ toMIDI "c4",
+  note $ toMIDI "f4",
+  note $ toMIDI "d4",
+  note $ toMIDI "d4",
+  note $ toMIDI "c4"
+  ]
+|+| dur "0.5"
+|+| sustainpedal "0.65"
+|+| vel "0.5"
+
+-- synth bass 101
+m4 $ chop 2 . density 2 $ iter 4 $ slowcat[
+  note $ toMIDI "c3",
+  note $ toMIDI "f3",
+  note $ toMIDI "d3",
+  note $ toMIDI "d3",
+  note $ toMIDI "c3"
+  ]
+|+| dur "0.9"
+|+| sustainpedal "0.75"
+|+| vel "0.5"
+
+-- moog pad
+m2 $ every 27 rev . every 4 (sometimes(within (0, 0.33) (chop 2))) . slow 2 $ stack[
+slowcat[
+note $ toMIDI "f3 ~ a5 g5",
+note $ toMIDI "f4 ~ c5 d5",
+note $ toMIDI "f4 ~ c5 d5"
+],
+slowcat[
+note $ toMIDI "a4(5,8)"
+,
+note $ toMIDI "b4(5,8)"
+]
+]
+|+| dur "0.9"
+|+| sustainpedal (scale 0 0.6 rand)
+
+-- stream
+m3 $ sometimes rev . slow 4 $ slowcat[
+note $ toMIDI "c4",
+note $ toMIDI "b3",
+note $ toMIDI "a3",
+note $ toMIDI "a3"
+]
+|+| dur "0.9"
+|+| sustainpedal "0.75" --(scale 0 0.75 sine1)
+|+| vel (scale 0 0.75 sine1)
+
+
+--
+hush
+
+b silence
+
+b $ fadeOut 8 $ stack[
+  every 23 (smash 2 [3]) $ every 4 (sometimes (within (0, 0.5)(slow 4 . iter 4 . gap 4))) $ slowcat[
+  stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ oh ~] [~ oh ~ ~]"
+  ]
+  ,
+  stack[
+   drum "[bd ~ ~ bd] [~ ~ ~ ~]"
+   ,
+   drum "[~ sn ~ ~] [~ sn ~ sn]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ,
+  stack[
+   drum "[~ bd ~ ~] [bd ~ ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ sn [~ sn]/2 [~ sn]/2]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+]
+|+| dhg "0.75"
+|+| doh "0.2"
+|+| dch "0.2"
+|+| stt "0"
+|+| std (every 2 ((0.15-) <$>) $ scale 0 0.25 sine1)
+]
+
+hush
+
+
+----
+
+-- instrumentos no usados
+
+
+-- polysynth / wave organ
+-- (chop 2) .
+m1 $ sometimes (chop 2) . smash 2[3] $ slowcat[
+  note $ toMIDI "f5 ! d5"
+  ,
+  note $ toMIDI "d5 ! e5"
+  ,
+  note $ toMIDI "e5 ! f5"
+  ]
+|+| dur "0.9"
+|+| vel (scale 0 0.666 $ slow 2 $  sine1)
+
+-- xg scream
+m2 $ sometimes rev . slow 3 $ slowcat[
+note $ toMIDI "c4 a3 g4"
+,
+note $ toMIDI "f4 a2 a3"
+,
+note $ toMIDI "c4 a3 d3"
+,
+note $ toMIDI "c3 a3 a3"
+]
+|+| dur "0.9"
+
+m3 $ sometimes rev . slow 3 $ slowcat[
+note $ toMIDI "c4 b3 a3"
+,
+note $ toMIDI "a3 ~ ~"
+]
+|+| dur "0.9"
+|+| sustainpedal "0.65"
+
+---
+
+
+
+----
+
+
+
+
+
+
+
+b $ slow 1.5 . every 8 (smash 2 [3])  $ every 9(sometimes (within (0, 0.5)(slow 4 . iter 4 . chop 2))) $stack[
+slowcat[
+stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[ch ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+,
+drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ sn] [sn ~ ~ ~]"
+]
+,
+stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[bd ~ bd ~] [~ bd ~ ~] [~ bd bd ~] [~ bd ~ ~]"
+,
+drum "[ch ~ ~ ~] [~ ~ ch ~] [~ [ch !?] ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ oh ~ ~] [~ ~ oh ~] [~ ~ ~ [oh !? oh !?]]"
+,
+drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ sn] [sn ~ ~ ~]"
+]
+,
+stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[ch ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+,
+drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ sn] [sn ~ ~ ~]"
+]
+,
+rev $ stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[ch ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+,
+drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ sn] [sn ~ ~ ~]"
+]
+]
+]
+|+| stt "0"
+|+| std (scale 0 0.25 $ rand)
+|+| sag "0.9"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cps 1
+
+hush
+
+b $ slow 3 $ stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[bd ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[~ ~ ~ ~] [~ sn ~ ~] [~ ~ ~ ~] [~ ~ sn sn]"
+,
+slowcat[
+stack[
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+]
+,
+stack[
+drum "[~ ~ ~ ~] [~ ch ch ch] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+]
+]
+,
+every 2 (within (0, 0.25) (slowspread chop [2,4,1,1,1,1,4,2])) $ drum "[~ ~ [lt,ht] ~] [~ [ht] ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+         ]
+|+| stt "0"
+|+| std "0" -- (scale 0 0.2 $ rand)
+
+|+| lcl "0.6"
+|+| sag "0.9"
+
+
+--
+
+
+b $ slow 3 $ stack[
+stack[every 7 (within (0, 0.5) (density 2)) $ drum "[bd ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[~ ~ ~ ~] [~ sn ~ ~] [~ ~ ~ ~] [~ ~ sn sn]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+]
+,
+slowcat[
+(# scl "0.2") . every 2 (within (0, 0.25) (slowspread chop [2,4,1,1,1,1,4,2])) $ drum "[~ ~ cl ~] [~ [cl] ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+,(# scl "0.2") . every 2 (within (0, 0.25) (slowspread chop [2,4,1,1,1,1,4,2])) $ drum "[~ ~ cl ~] [~ [cl] ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+,(# scl "0.2") . every 2 (within (0, 0.25) (slowspread chop [2,4,1,1,1,1,4,2])) $ drum "[~ ~ cl ~] [~ [cl] ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+,stack[every 4 (slow 2) . chop 2 . slow 2 $ drum "cl(16,16)" |+| scl "0.2", drum "[~ ~ cp ~] [~ ~ cp ~] [~ cp ~ cp] [cp ~ ~ ~]"]
+]
+         ]
+|+| stt "0"
+|+| std "0.25" --(scale 0 0.2 $ rand)
+|+| lcl "0.6"
+
+hush
+
+
+-----
+cps 1
+
+
+m1 $ slow 2 . palindrome $ stack[
+   note $ toMIDI "[~ ~ ~ ~] [~ c5 ~ ~]"
+   ,
+   iter 4 $ note $ toMIDI "~ d5 [a5, f4?] ~"
+   ,
+   note $ toMIDI "[~ f5 c4 ~] [f5 ~ [e3, c3] f5]"
+  ]
+|+| dur (scale 0.25 0.3 sine1)
+|+| modwheel (scale 0.5 0.9 sine1)
+|+| sustainpedal (scale 0.4 0.6 sine1)
+
+hush
+
+
+----
+
+
+b $ slow 3 $ stack[
+stack[every 7 (within (0, 0.5) (density 2)) $ drum "[bd ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[~ ~ ~ ~] [~ sn ~ ~] [~ ~ ~ ~] [~ ~ sn sn]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+]
+,
+drum "[~ ~ cp ~] [~ ~ cp ~] [~ cp ~ cp] [cp ~ ~ ~]"
+]
+|+| stt "0"
+|+| std "0.25" --(scale 0 0.2 $ rand)
+|+| lcl "0.6"
+
+
+---
+
+cps 0.9
+
+b $ slow 1.5 . every 8 (smash 2 [3])  $ every 9(sometimes (within (0, 0.5)(slow 4 . iter 4 . chop 2))) $stack[
+drum "[~ ~ ~ ~] [~ ag ~ ~] [~ ~ ~ ~] [~ ~ ag ag]"
+,
+slowcat[
+stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[ch ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+,
+drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ sn] [sn ~ ~ ~]"
+]
+,
+stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[bd ~ bd ~] [~ bd ~ ~] [~ bd bd ~] [~ bd ~ ~]"
+,
+drum "[ch ~ ~ ~] [~ ~ ch ~] [~ [ch !?] ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ oh ~ ~] [~ ~ oh ~] [~ ~ ~ [oh !? oh !?]]"
+,
+drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ sn] [sn ~ ~ ~]"
+]
+,
+stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[ch ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+,
+drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ sn] [sn ~ ~ ~]"
+]
+,
+rev $ stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[ch ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+,
+drum "[~ ~ sn ~] [~ ~ sn ~] [~ sn ~ sn] [sn ~ ~ ~]"
+]
+]
+]
+|+| stt "0"
+|+| std (scale 0 0.25 $ rand)
+|+| sag "0.9"
+
+hush
+
+
+cps 0.666
+
+cps 0.8
+
+b $ every 10 (smash 2 [3]) $ sometimes (within (0, 0.5)(slow 4 . iter 4 . gap 4)) $ slowcat[
+  stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ oh ~] [~ oh ~ ~]"
+  ]
+  ,
+  stack[
+   drum "[bd ~ ~ bd] [~ ~ ~ ~]"
+   ,
+   drum "[~ sn ~ ~] [~ sn ~ sn]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ,
+  stack[
+   drum "[~ bd ~ ~] [bd ~ ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ sn [~ sn]/2 [~ sn]/2]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+]
+|+| dhg "0.75"
+|+| doh "0.2"
+|+| dch "0.2"
+|+| stt "0"
+|+| std (every 2 ((0.15-) <$>) $ scale 0 0.25 sine1)
+
+
+hush

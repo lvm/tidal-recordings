@@ -1,0 +1,58 @@
+cps 0.35
+
+cps 0.6
+
+
+let t x = echo (x/4)
+let rcbb q w e r =  (|+| resonance q) . (|+| cutoff w) . (|+| bandf e) .(|+| bandq r)
+
+
+-- d2 $ slowspread (slow) [1.25, 2, 1.5] . spread' t "7 32 8" . chop 2 . slowspread ($) [iter 4, rev . iter 2, rev] . every 4 (chop 2) $ (sound $ samples "[amencutup*2 ! amencutup:1*2, amencutup:5 !]" $ iter 8 $ run 8)
+
+-- d1 $ slow 4 . juxcut rev $ sound "timecare"
+-- |+| end "0.18"
+-- |+| speed (every 4 ((0.1-) <$>) $ ( (/2) <$>) $ "[0.9 0.85 0.8666 0.8 0.91]/5")
+-- |+| coarse "[6 8 7 9]/4"
+-- |+| resonance "1.8"
+-- |+| cutoff "0.8"
+-- |+| bandf "0.1"
+-- |+| bandq "2.8"
+-- |+| vowel "a"
+-- |+| gain "0.68"
+
+
+
+d2 $ rcbb "1.8" "0.8" "[0.1 0.5 0.3 0.25]/5" "0.8" . spread' t "7 32 8" . spread' (striate' 3) "0.1 0.5" $ sound "[amencutup:5*2 amencutup:2 !, amencutup:1 !]"
+
+
+cps 0.5
+
+d3 $ striate 2 . slow 2 . spread' t "7 32 8" . chop 2 . slowspread ($) [iter 4, rev . iter 2, rev] . every 4 (chop 2) $ (sound $ samples "[amencutup*2 ! amencutup:1*2, amencutup:5 !]" $ iter 8 $ run 8)
+
+d4 $ juxcut rev . rcbb "1.8" "0.8" "[0.1 0.5 0.3 0.25]/5" "0.8" . slow 6 . striate 128 $ sound "bev"
+|+| cut "1"
+
+
+hush
+
+cps 0.5
+
+d3 $ every 3 rev . striate 2 . slow 2 . spread' t "7 32 8" . chop 2 . slowspread ($) [iter 4, rev . iter 2, rev] . every 4 (chop 2) $ (sound $ samples "[unix*2 ! unix:1*2, kawaixd:2 !]" $ iter 8 $ run 8)
+
+--------
+
+cps 0.5
+
+d3 $ every 3 rev . every 8 (rcbb "0.2" "0.1" "[0.1 0.5 0.3 0.25]/5" "0.2") . striate 2 . every 4 (within (0, 0.25) (slow 2)) . spread' t "7 32 8" . chop 2 . slowspread ($) [iter 4, rev . iter 2, rev] . every 4 (chop 2) $ (sound $ samples "[unix*2 !, unix:1*2 kawaixd:2, kawaixd !]" $ iter 8 $ run 8)
+|+| coarse "[6 8 7 9]/4"
+
+d2 $ jux rev . rcbb "1.8" "0.8" "[0.2 0.5 0.3 0.25]/5" "0.8" . slow 8 . striate 128 $ sound "sine"
+|+| cut "1"
+|+| speed "[0.6 0.25 0.5 0.7]/4"
+|+| gain "0.8"
+|+| vowel "[a o x q e i q x u]/9"
+|+| coarse "[11 3 21 4 14]/4"
+
+
+
+hush

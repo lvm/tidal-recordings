@@ -1,0 +1,13 @@
+bps (69/60)
+
+d4 $ slowspread ($) [density 8] $ slow 16 $ striate' 32 (0.1) $ smash 8 [5..8] $ sound (samples "pad/2 moog/4" (iter 2 $ "2 1"))
+ |+| speed rand
+
+
+d6 $ echo (7/4) $ every 3 (echo (7/8)) $ density 2 $ every 2 (rev) $ stack[density 2 $ striate' 16 (0.1) $ sound "ifdrums ifdrums:4/2 ifdrums:3", sound "casio:2 hand*2/2"]
+ |+| slow 3 (vowel "a e i")
+ |+| speed ((2+) <$> sine1)
+
+
+
+hush

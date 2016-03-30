@@ -1,0 +1,50 @@
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+    sttd t d = (# stt t) . (# std d)
+    st2 = stut 2 0 0.25
+
+
+
+cps 1
+
+hush
+
+
+q $ slowspread ($) [density 2, id, density 4, striate 8] $ note "40"
+
+b $ spread' density "8  2  2  4  2" $ drum "ch ch ch"
+
+
+let randpick xs = (xs !!) <$> (irand $ fromIntegral $ length xs)
+
+let choose xs = (xs !!) <$> (irand $ fromIntegral $ length xs)
+    chooseMidi root xs pat = (|+| note root) $ (|+| note (choose xs)) $ note pat
+    phryg = [0,1,3,5,7,8,10]
+
+q $ chooseMidi "55" phryg "0(3,8)"
+
+let shift = (1 <~)
+let chooseMidi' root xs ranges pat = (|+| note (choose ranges)) $ shift $ chooseMidi root xs pat
+
+
+hush
+
+
+
+let randpick xs = (xs !!) <$> (irand $ fromIntegral $ length xs)
+
+q $ note $ randpick [46..50]
+  # nudge "0.25"
+
+let d p = chop 2 $ drum p
+
+--b (every 2 (chop 2 . slow 2) (drum "bd sn"))
+
+b $ d "bd sn sn" |+| lbd "0.2"

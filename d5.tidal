@@ -1,0 +1,45 @@
+cps 1
+
+cps 0.8
+
+cps 0.666
+
+let sn1 = drum "[~ sn ~ ~] [sn ~ sn ~]"
+    sn2 = drum "[~ sn ~ sn] [~ sn ~ sn]"
+    sttd t d = (# stt t) . (# std d)
+
+-- amsynth - synth strings / fun2
+m5 $ stack[
+  iter 4 $ chrot' [42,37,38,35] 24 "1(1,4)" [0,3,7],
+  chrot' [42,37,38,35,30] 12 "1(3,4)" [0,3,7]
+] # dur "1" # vel "0.25"
+
+q $ foldEvery[3,5,7](sometimes (within(0, 0.5)(# dur "0.1")) . sometimes (# cutoffegint "0.666")) $ every 2 (revArc(0,0.5)) $ stack[
+  iter 4 $ chrot' [42,37,38,35] 24 "1(1,4)" [0,3,7],
+  chrot' [42,37,38,35,30] 12 "1(5,8)" [0,3,7]
+] # dur "0.025" # vel "0.666" # cutoffegint "0.5" # lforate "0" # lfoint "0" # decay "1"
+
+b $ density 1.5 . sometimes (# hg (scale 0.23 0.666 rand)) . every 23 (# std "0.666") $ every 3 (sometimes (sttd "[0 0.1]/2" "0.1")) $ stack[
+   randcat[drum "[bd ~ ~ ~] [~ bd ~ ~]", drum "[bd ~ ~ bd/2] [~ bd ~ ~]", drum "[bd/3 bd/2 bd/4 ~] [~ bd ~ ~]"],
+   every 4 (slow 4 . spin 2) $ slowcat[sn1, sn1, sn2, sn1, drum "sn(6,8)", sn2],
+   drum "[ch ch ch ch] [ch ch ~ [ch ch]]",
+   sometimes degrade $ slowcat[drum "[~ oh ~ ~] [~ oh ~ ~]", drum "[~ oh ~ ~] [~ ~ oh oh/3]"],
+   drum "[~ ~ cp/8 ~] [~ cp/4 ~ ~]"
+  ] # hg "1" # doh "0.02" # dch "0.15" # stt "0" # std "0"
+
+hush
+-- b $ every 3 (sometimes(within(0,0.33)(iter 2))) . foldEvery[3,5,7](sometimes (# dch "0.5")) $ every 2 (revArc(0,0.5)) . every 3 (within (0, 0.5)(chop 2)) $ stack[
+--    randcat[drum "[~ bd ~ ~] !", drum "[bd ~ ~ bd/2] [~ bd ~ ~]", drum "[bd/3 bd/2 bd/4 ~] [~ bd ~ ~]"],
+--    slowcat[sn1, sn1, sn1, sn1, drum "sn(6,8)", sn1, sn2],
+--    drum "[ch ch ch ch] [ch ch ~ [ch ch]]",
+--    sometimes degrade $ slowcat[drum "[~ oh ~ ~] [~ oh ~ ~]", drum "[~ oh ~ ~] [~ ~ oh oh/3]"],
+--    drum "[~ ~ cp/8 ~] [~ cp/4 ~ ~]"
+--   ] # hg "0.6" # doh "0.02" # dch "0.15"
+
+hush
+
+-- polysynth
+m1 $ stack[
+  iter 4 $ chrot' [42,37,38,35] 24 "1([1 1]/2,4)" [0,3,7],
+  chrot' [42,37,38,35,30] 12 "1(3,4)" [0,3,7]
+] # dur "0.5" # vel "0.2"

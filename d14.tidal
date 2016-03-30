@@ -1,0 +1,41 @@
+cps 0.666
+
+b $ every 4 ( # dch "0.01" ) . foldEvery [3, 7, 5, 13] (sometimes (# std (scale 0 1 rand))) $ stack[
+slowcat[drum "bd ~", append' (drum "bd ~") (drum "[bd bd] [[~ bd] !]")],
+drum "sn([5 6]/2,8)",
+every 5 (0.25<~) . every 8 ( chop 2 ) $ drum "cp(1,8,4)",
+every 4 (within(0, 0.5)(density 2) ) $ density 2 $ drum "ch(3,8)",
+drum "oh([2 1]/2,8,5)"
+] # scl (scale 0.95 1 sine1) # dch "0.25"
+
+-- amsynth 9 - 4 fmforme3
+m5 $ e 5 8 . stut 2 0 0.25 $ stack[
+  chop 2 . iter 2  $ slowcat[
+  note $ toMIDI "c4 !",
+  note $ toMIDI "f4 !",
+  note $ toMIDI "d4 !",
+  note $ toMIDI "d4 !",
+  note $ toMIDI "c4 !",
+  note $ toMIDI "e4 !"
+  ]
+  ]
+|+| dur "0.9"
+|+| sustainpedal (scale 0 0.8 sine1)
+|+| vel "0.25" --(scale 0.25 0.666 sine1)
+
+-- synth strings 2
+q $ stack[
+  slowcat[
+  e 3 8 $ note $ toMIDI "c4 !",
+  e 3 8 $ note $ toMIDI "f4 !",
+  e 3 8 $ note $ toMIDI "d4 !",
+  e 3 8 $ note $ toMIDI "d4 !",
+  e 3 8 $ note $ toMIDI "c4 !",
+  e 3 8 $ note $ toMIDI "e4 !"
+  ]
+  ]
+|+| dur "1"
+|+| vel "0.25" --(scale 0.25 0.666 sine1)
+
+
+hush

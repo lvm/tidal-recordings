@@ -1,0 +1,42 @@
+cps 0.25
+
+d2 $ stack[
+zoom (0, 0.5) $ density 2 $ gap 2 $ sound "~ ~ [~ , ~ visco:5 ~,  visco:5] ~"
+|+| speed (((*0.1) . (0.9+)) <$> "2")
+]
+|+| delay "0.25"
+|+| delayfeedback "0.25"
+|+| delaytime "0.25"
+
+
+
+
+d2 $ palindrome . foldEvery [3, 7] (zoom (0, 0.75)) $ within (0.2, 0.3) (density 2) . within (0.3, 0.5) (chop 2) $ chop 2 $ sound "[peri:3 ~] [~ glitch:1 , ~ ~ glitch, ~ glitch:1 ~, ~ ~ ~, glitch ~] peri:1/2"
+|+| speed (((*0.1) . (0.9+)) <$> "0.5")
+
+
+hush
+
+----
+
+cps 0.25
+
+-- orig
+
+d2 $ whenmod 21 7 (density 2 . rev) $ stut 2 0.25 0.5 . density 3 . foldEvery [3, 7] (zoom (0, 0.5)) $ gap 2 $ sound "[~ visco:5 ~, glitch peri:1]"
+|+| speed (every 2 ((*2) <$>) $ ((*0.1) . (0.9+)) <$> "0.5")
+|+| gain "1.2"
+|+| coarse "5"
+
+---
+
+d2 $ stut 2 0.25 0.5 . density 3 . foldEvery [3, 7] (zoom (0, 0.5)) $ gap 2 $ sound "[~ visco:5 ~, glitch peri:1]"
+|+| speed (every 4 ((*2) <$>) $ ((*0.1) . (0.9+)) <$> "0.5")
+|+| gain "1.2"
+
+d2 $ density 2 . rev $ stut 2 0.25 0.5 . density 3 . foldEvery [3, 7] (zoom (0, 0.5)) $ gap 2 $ sound "[~ visco:5 ~, glitch peri:1]"
+|+| speed (every 4 ((*2) <$>) $ ((*0.1) . (0.9+)) <$> "0.5")
+|+| gain "1.2"
+
+
+hush

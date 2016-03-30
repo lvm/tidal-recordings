@@ -1,0 +1,31 @@
+bps (69/60)
+
+bps 0.3
+
+d1 $ jux ((|+| pan "0 1")) $ echo (7/4) $ every 3 (echo (7/8)) $ every 4 (rev) $ slowspread ($) [density 2, (|+| shape triwave1), (|+| speed "1.2")] $ sound "bass*4 ~ glitch2:1*4 [future:5*8]/4"
+
+
+d2 $ density 2 . density 1.2 $ every 2 ((|+| speed "0.9")) $ every 3 (rev) $ density 2 $ stack[sound (samples "bass ~ " (slow 2 "0 1 2")), every 2 (brak) $ (slow 8 $ density 8 $ striate' 32 (0.1) $ sound (samples "feelfx ~ " (iter 6 "2 1 2 3")))]
+ |+| speed "0.5"
+ |+| slow 2 (vowel "a i o")
+ |+| delay "0.2"
+ |+| delayfeedback "0.2"
+ |+| delaytime "0.1"
+
+d3 $ slow 1.5 $ every 3 ((density 2) . (striate 2)) $ every 2 ((|+| speed "0.9")) $ every 3 (rev) $ density 2 $ stack[sound (samples "fat909*1.5 ~ " (slow 2 "0 1 2")), every 2 (rev . brak) $ (slow 8 $ density 8 $ striate' 32 (0.1) $ sound (samples "cr*1.2 ~ " (iter 6 "2 1 2 3")))]
+ |+| speed ((0.5+) <$> sine1)
+ |+| slow 2 (vowel "a i o")
+ |+| delay "0.2"
+ |+| delayfeedback "0.2"
+ |+| delaytime "0.1"
+
+-- speed --"0.5"
+
+d4 $ every 2 (|+| speed rand) $ slowspread ($) [density 8] $ slow 16 $ striate' 32 (0.1) $ smash 8 [5..8] $ sound (samples "pad ~" (iter 2 $ "2 1"))
+ |+| speed ((0.5+) <$> sine1)
+
+
+
+
+
+hush

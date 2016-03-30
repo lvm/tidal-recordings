@@ -1,0 +1,15 @@
+bps 2.5
+
+
+d1 $ every 5 (rev) $ every 3 (echo (9/4)) $ density 2 $ stack[sound "deepsky deepsky:2", sound "deepsky:3"]
+ |+| speed (every 3 ((*3) <$>) $ every 7 ((*2) <$>) "2")
+
+d2 $ stack[every 4 (striate 2) $ striate 2 $ sound "drumtraks:4", sound "drumtraks*2?" |+| vowel "o"]
+
+d3 $ sound "cp/8"
+
+d4 $ every 7 (slow 2) $ every 3 (density 2 . iter 8) . stut 8 0.2 (-0.2) $ striate' 2 (0.1) . every 2 (slow 4) $ sound "bd bd bd bd sn sn sn sn"
+ |+| speed (every 2 ((*0.5) <$>) $ every 3 ((*0.666) <$>) $ iter 2 "5 1 5 2")
+
+
+hush

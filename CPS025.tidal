@@ -1,0 +1,77 @@
+let lpf c r = (|+| cutoff c) . (|+| resonance r)
+
+d3 $ juxBy 0 ( (jux rev) . foldEvery [5, 3, 8] (|+| vowel "a") ) . lpf "0.05" "0.9" $ slow 4 $ striate 64 $ sound "hidden"
+|+| speed "[0.5 0.666 0.7 0.6]/4"
+|+| coarse "[3 2 4 1 5 4]/6"
+|+| gain "0.6"
+
+
+d8 $ juxBy 0 (lpf "0.05" "0.5") . whenmod 20 5 (within (0, 0.25) (slow 2) . within (0.25, 0.3) (|+| accelerate "-1") . within (0, 0.15) (|+| speed "0.5")) $ stut 2 0.25 0.5 . every 5 (|+| cut "1") . juxBy 0 ((|+| coarse "[2 7 6]/3")) $ append (sound "[unix:0 unix:4] ~") (sound "bd:4 ch ae:7")
+|+| speed "0.8"
+
+
+----
+
+cps 0.25
+
+
+d8 $ retrig $ striate' 4 (0.5) $ juxBy 0 (lpf "0.05" "0.5") . whenmod 20 5 (within (0.25, 0.3) (|+| accelerate "-1") . within (0, 0.15) (|+| speed "0.5")) $ seqP[
+(0, 4, sound "[unix:0 bd:4] [unix:4 ch] [visco:5 ae:2]")
+,
+(4, 8, sound "[unix:0 bd:4] [unix:4 db] [visco:5 ae:2]")
+,
+(8, 12, juxBy 0 ((|+| coarse "[2 7 6]/3")) $ sound "[unix:0 bd:4] [unix:4 ch] [visco:5 bd8]")
+,
+(12, 16, append (sound "bd8:1 unix:4 ~") (sound "bd:4 ch"))
+,
+(0, 16, sound "cp cp cp" |+| end "0.1" |+| cut "1")
+]
+|+| speed "0.8"
+
+
+
+
+
+
+d8 $ juxBy 0 (lpf "0.05" "0.5") . whenmod 20 5 (within (0.25, 0.3) (|+| accelerate "-1") . within (0, 0.15) (|+| speed "0.5")) $ stack[
+cat[
+append (sound "unix:0 unix:4 ~") (sound "bd:4 ch ae:7")
+,
+juxBy 0 ((|+| coarse "[2 7 6]/3")) $ append (sound "unix:0 unix:4 ~") (sound "bd:4 ch ae:7")
+]
+,
+jux rev $ sound "visco:5 ! !"
+]
+|+| speed "0.8"
+
+
+
+-------
+
+hush
+-----------
+
+
+cps 0.23
+
+d8 $ slow 1.25 . every 13 (within (0, 0.25) (gap 2 . chop 4)) $ striate' 4 (0.5) $ juxBy 0 (lpf "0.05" "0.5") . whenmod 20 5 (within (0.25, 0.3) (|+| accelerate "-1") . within (0, 0.15) (|+| speed "0.5")) $ stack[
+ cat[
+  sound "[rapman:1 bd:4] [[sd8:2*4] ch] [visco:5*2? glitch:2]"
+ ,
+  sound "[rapman:1 bd:4] [unix:0 db] [~ glitch]"
+ ]
+,
+ cat[
+  juxBy 0 ((|+| coarse "[2 7 6]/3")) $ sound "[unix:0 bd:4] [unix:4 ch] [visco:5 bd8]"
+ ,
+  append (sound "amencutup:4 unix:4 ~") (sound "bd:4 ch visco:5")
+ ]
+]
+|+| speed "0.8"
+
+d3 $ every 23 (|+| coarse "23") . juxBy 0 ( (jux rev) . foldEvery [5, 3, 8] (|+| vowel "a") ) . lpf "0.5" "0.9" $ slow 2 $ striate 256 $ sound "hidden"
+|+| speed (((*2) <$>) "[0.5 0.666 0.7 0.6]/4")
+|+| coarse "[3 2 4 1 5 4]/6"
+|+| gain "0.6"
+
+hush

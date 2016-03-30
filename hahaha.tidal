@@ -1,0 +1,12 @@
+cps 1
+
+let ddd d = (|+| delay d) . (|+| delaytime d) . (|+| delayfeedback d)
+
+d1 $ ddd "0.25" $ stack[
+juxBy 0 (within (0, 0.09) (|+| speed ((0.1-) <$> "1"))) $ sound "sid:2 visco"
+]
+|+| coarse "23"
+|+| resonance "0.023"
+|+| cutoff "[0.08 0.01 0.025]/2"
+|+| bandq "[0.025 0.07 0.8]/3"
+|+| bandf "0.25"

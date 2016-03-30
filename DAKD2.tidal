@@ -1,0 +1,18 @@
+cps 0.9
+
+d4 $ jux rev $ brak $ sound "mute:3"
+ |+| speed (((*6) <$>) $ scale 0.6 0.2 $ sine1)
+ |+| shape (scale 0.2 0.8 $ sine1)
+ |+| vowel "o"
+ |+| pan "1"
+ |+| delay "0.5"
+ |+| delayfeedback "0.5"
+ |+| delaytime "0.5"
+
+d5 $ density 4 $ sound "mute:5/2"
+ |+| speed (scale 0.2 0.3 $ sine1)
+ |+| shape (scale 0.6 0.8 $ sine1)
+ |+| vowel "u"
+ |+| pan "0"
+
+hush

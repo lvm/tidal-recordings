@@ -1,0 +1,37 @@
+cps 0.666
+
+
+d1 $ every 8 (|+| speed (every 2 ((/2) <$>) $ every 4 ((0.1-) <$>) $((+1) <$>) $ sinewave1)) $ echo (7/4) $ stack[
+every 2 (slow 2 . striate 2) $ sound "minipops:3 minipops:3 ! !"
+,
+sound "glitch minipops:3*2 ~"
+,
+sound "~ ~ bd:8"
+,
+sound "~ cp/2 ~"
+,
+sound "~ ~ drumtraks:4"
+]
+ |+| coarse "11"
+
+solo $ d2 $ slow 4 . every 2 (smash 4 [1..2]) . chop 8 $ sound "wcd:1"
+|+| speed (every 2 ((/2) <$>) $ every 4 ((0.1-) <$>) $((+1) <$>) $ sinewave1)
+|+| cut "1"
+|+| gain "[0.5 0.777]/2"
+
+d3 $ rev . slow 2 $ stack[
+sound "kickass*2? ~ ~"
+,
+sound "~ ae ae:6"
+,
+density 4 $ sound "~ kickass ~"
+,
+sound "~ ~ ae:7"
+,
+sound "mt:5 mt mt:2*2"
+]
+
+d4 $ jux rev . density 1.5 . every 2 (rev) . slowspread (density) [4, 2, 4] $ (sound $ samples "syll*2"  $ iter 4 $ run 4)
+
+
+hush

@@ -1,0 +1,31 @@
+bps (100/120)
+
+
+b $ every 4 (# scp "1") $ foldEvery [3,5,7] (sometimes(# lbd "0.666")) $ every 12 (sometimes(chop 2)) $ stack[
+--drum "ch(16,8)",
+drum "[~ oh] [oh/2 [~ oh]]"
+--drum "[[~ [cp [cp cp?]]] [sn [sn [sn sn]]]]",
+--drum "bd([10 10 10 10 10 9]/6,16)"
+] # lbd "0.45" # scp "0.6"
+
+b silence
+
+m5 $ fadeOut 6 . sometimes(# dur "0.01") $ every 2 (sometimes(# dur "1")) $ density 2 $ stack[
+note $ preplace (1,1) "1(8,8)" ((+60) <$> "3 0 3 0 5 0 7"),
+every 13 (stut 2 0 0.25) $ slowcat[
+chrot [48] "1(3,8)" [0],
+chrot [48] "1(3,8)" [0],
+chrot [48] "1(3,8)" [0],
+chrot [48] "1(3,8)" [3],
+chrot [48] "1(3,8)" [3],
+chrot [48] "1(3,8)" [5],
+chrot [48] "1(3,8)" [5],
+chrot [48] "1(3,8)" [7]
+]
+] # dur "0.1" # vel "0.1" # sustainpedal "0"
+
+m5 silence
+
+m4 $ density 2 . stut 2 0 0.75 $ stack[ every 13 (const $ note "60(5,8)") $ every 7 (const $ note "60(3,8)") $ chrot [48] "1(3,8)" [0,0,0,3,3,5,7] ] # dur "0.25" # vel "0.15"
+
+hush

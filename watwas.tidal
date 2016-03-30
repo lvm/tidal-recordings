@@ -1,0 +1,355 @@
+cps 0.25
+
+cps 0.35
+
+cps 0.5
+
+q $ every 23 (chop 2 . slow 1.25) . density 1.25 $ stack[
+every 8 rev $ stack[
+slowcat[
+   drum "bd ~ ~ ~ ~ [~ bd] ~ ~"
+,
+   drum "bd ~ ~ ~ ~ bd ~ ~"
+,
+   drum "bd ~ [~ bd] ~ ~ [~ bd] ~ ~"
+]
+   ,
+   drum "~ ~ ~ ch ch ch ~ ~"
+   ,
+stack[
+   drum "~ ~ ~ ~ ~ ~ ~ oh"
+   ,
+   drum "~ ~ ~ ~ ~ ~ ~ [cl cr/2]"
+]
+   ,
+   drum "~ ~ sn [~ sn] [~ sn] ~ sn*2 ~"
+   ,
+   drum "~ ~ ~ ~ ~ cp ~ ~"
+  ]
+,
+stack[
+degrade $ note $ toMIDI "~ ~ ~ ~ f7 ~ f8 ~"
+,
+slowcat[
+note $ toMIDI "~ c4 ~ ~ ~ ~ ~ c4"
+,
+note $ toMIDI "~ c4 ~ ~ c6 ~ ~ c4"
+]
+     ]
+         ]
+|+| cutoffegint (scale 0 0.9 squarewave1)
+|+| scl "0.5"
+|+| nudge "0.15"
+
+---
+
+cps 0.666
+
+q $ sometimes (# decay "0.9") $ stack[
+every 8 rev . every 5 (sometimes (within (0, 0.3) (chop 2))) $ stack[
+smash 2 [3] $ drum "bd(2,2)"
+,
+sometimes (jux (stut 2 0.5 0.25)) $ drum "ch*2 oh"
+,
+drum "sn(5,8)"
+,
+drum "cp cp"
+     ],
+stack[
+degrade $ note $ toMIDI "~ ~ ~ ~ f7 ~ f8 ~"
+,
+slowcat[
+note $ toMIDI "~ c4 ~ ~ a7 ~ ~ c4"
+,
+note $ toMIDI "~ c4 a4 ~ c6 ~ [c3,e3] c4"
+]
+     ]
+         ]
+|+| cutoffegint "0.2"
+|+| lfoint "0.75"
+|+| lforate "0.25"
+|+| decay "0"
+|+| pitch1 (scale 0 0.25 sine1)
+|+| pitch2 (scale 0.25 0.5 sine1)
+|+| pitch3 (scale 0.5 0.75 sine1)
+
+
+
+cps 1
+
+q $ stack[
+stack[
+drum "[~ bd(1,3)] !",
+drum "[ch(1,3) oh]",
+drum "[cr ~ ~ ~]",
+drum "[~ cp ~ cp]",
+drum "[sn([1 5]/2,8)]",
+drum "[cl(6,8)]"
+     ],
+stack[
+palindrome . slow 2 . chop 4 $ (note $ toMIDI "c7 e3 c5 f3")
+]
+         ]
+|+| decay "0.9"
+|+| cutoffegint "0.9"
+
+
+-----
+
+
+cps 0.8
+
+cps 0.9
+
+cps 0.45
+
+q $ stack[
+every 3 (within (0, 0.5) (slow 2 . chop 2)) . every 4 (revArc(0, 0.5)) $ slowcat[
+  stack[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ oh ~] [~ oh ~ ~]"
+  ]
+  ,
+  stack[
+   drum "[bd ~ ~ bd] [~ ~ ~ ~]"
+   ,
+   drum "[~ sn ~ ~] [~ sn ~ sn]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ,
+  stack[
+   drum "[~ bd ~ ~] [bd ~ ~ ~]"
+   ,
+   drum "[~ ~ sn ~] [~ sn [~ sn]/2 [~ sn]/2]"
+   ,
+   drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ]
+  |+| dhg "0.75"
+  |+| doh "0.2"
+  |+| dch "0.2"
+,
+sometimes (# cutoffegint "0.5") $ stack[
+degrade $ note $ toMIDI "~ ~ ~ ~ f7 ~ f8 ~"
+,
+slowcat[
+note $ toMIDI "~ c4 ~ ~ ~ ~ ~ c4"
+,
+note $ toMIDI "~ c4 ~ ~ c6 ~ ~ c4"
+]
+     ]
+]
+|+| decay "0.9"
+|+| cutoffegint (scale 0 0.5 sine1)
+
+
+q silence
+
+
+---
+
+
+cps 0.45
+
+q $ sometimes (within (0, 0.3) (# decay (scale 0 0.9 sine1))) $ density 1.25 $ stack[
+slowcat[
+drum "bd([2 2 2 2 4 2 2 12]/8,4)",
+drum "bd(2,4)"
+]
+|+| decay "0 0.9"
+,
+slowcat[note "40!!!", note "70!!!"]
+|+| decay "0.1 0.9"
+,
+note $ toMIDI "[~ ~] [c5,c9] [f4,f8]"
+,
+slowcat[
+drum "~ [~ cp] ~"
+,
+drum "cp [~ cp] cp"
+,
+drum "cp*2 [~ cp] cp"
+]
+,
+drum "ch ch ch oh"
+]
+|+| cutoffegint (scale 0 0.9 sine1)
+
+
+
+
+
+----
+
+
+
+cps 0.45
+
+q $ stack[
+drum "bd([1 3 4]/3,4)",
+slowcat[
+drum "~ [~ cp] ~"
+,
+drum "cp [~ cp] cp"
+,
+drum "cp*2 [~ cp] cp"
+]
+,
+drum "ch ch ch oh"
+,
+drum "~ sn ~ ~"
+]
+
+hush
+
+
+----
+
+-- drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+
+cps 0.45
+
+b $ every 7 (gap 2 . iter 4) . every 5 ( within (0, 0.25) (slow 2) . within (0, 0.3) (chop 2) ) $ stack[
+  stack[
+drum "[bd ~ bd ~] [~ ~ bd ~] [~ ~ bd ~] [~ ~ ~ ~]"
+,
+drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ sn ~]"
+,
+slowcat[
+drum "[~ ch ~ ~] [~ ch ch ~] [ch ch ch ch] [~ ch ~ ~]"
+,
+drum "ch(15,16)"
+]
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ oh]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ cp] [~ ~ ~ ~] [~ ~ ~ cp]"
+         ]
+,
+every 4 rev $ stack[
+every 4 (sometimes (density 2) . (# attack "0.125")) . iter 4 $ note $ toMIDI "[~ ~ f7 ~] [~ ~ c4 c5] [~ ~ f8 ~] [f9 ~ ~ ~]"
+,
+note $ toMIDI "~ ~ ~ ~ f7 ~ f8 ~"
+,
+slowcat[
+note $ toMIDI "~ c4 ~ ~ ~ ~ ~ c4"
+,
+note $ toMIDI "~ c4 ~ ~ c6 ~ ~ c4"
+]
+]
+]
+|+| cutoffegint (scale 0 0.9 squarewave1)
+|+| decay (scale 0.5 0.75 sine1)
+|+| pitch2 (scale 0 0.5 sine1)
+|+| lfoint (scale 0.25 0.75 $ slow 2 $ sine1)
+|+| lforate "0.75"
+|+| attack "0"
+
+
+----
+
+
+cps 1
+
+b $ sometimes (# decay "0") $ stack[
+smash 2 [3] $ stack[
+drum "bd bd"
+,
+density 2 $ drum "ch*2 oh"
+,
+density 2 $ drum "cr*2 cr "
+,
+density 2 $ drum "sn ~ sn ~"
+,
+slowcat[drum "~ cp*2",drum "~ cp"]
+,
+drum "~ [~ ag]*2"
+     ],
+stack[
+note $ toMIDI "[~ ~ ] [c8, f8]"
+,
+iter 2 $ note $ toMIDI "[c9, f9] [e8,c8]"
+]
+         ]
+|+| cutoffegint (scale 0 0.9 $ every 2 rev $ sine1)
+|+| pitch3 (scale 0.25 0.9 $ every 2 rev $ sine1)
+|+| decay (scale 0.25 0.9 sine1)
+
+
+cps 1
+
+every 3 (chop 2) . smash 2 [5] $
+drum "~ bd !? bd*2"
+
+
+b $ sometimes (# decay "0") $ stack[
+stack[
+slowcat[drum "~ cp*2",drum "cp cp"]
+,
+density 2 $ drum "ch*2 oh"
+,
+drum "sn(2,4)"
+,
+drum "bd bd"
+     ],
+stack[
+note $ toMIDI "[~ ~ ] [c8, f8]"
+,
+iter 2 $ note $ toMIDI "[c9, f9] [e8,c8]"
+]
+         ]
+|+| cutoffegint (scale 0 0.9 $ every 2 rev $ sine1)
+|+| pitch3 (scale 0.25 0.9 $ every 2 rev $ sine1)
+|+| decay (scale 0.25 0.9 sine1)
+
+
+hush
+
+----
+
+
+cps 1
+
+cps 0.5
+
+q $ stack[
+stack[
+drum "bd bd"
+,
+density 2 $ drum "ch*2 oh"
+,
+drum "~ cp"
+]
+,
+stack[
+iter 4 $ note $ toMIDI "a5 ! f5 [d7, f8]"
+     ]
+]
+
+
+---
+
+
+q $ stack[
+stack[
+note $ toMIDI "[c3,a3] [d7, f8]"
+     ]
+]
+
+
+q $ density 2 $ stack[
+degrade $ note $ toMIDI "~ ~ ~ ~ f7 ~ f8 ~"
+,
+density 2 $ note $ toMIDI "~ c4 ~ ~ c6 ~ ~ c4"
+]
+|+| decay "0.9"

@@ -1,0 +1,25 @@
+
+cps 0.3666
+
+d2 $ chop 8 . density 3 $ sound "~ house(1,1) house sf:3(1,1)"
+ |+| speed (((*2.666) <$>) $ scale 0.5 0.5 $ "0.666")
+ |+| shape (iter 4 $ scale 0.1 0.5 $ sinewave1)
+
+d3 $ sound "sf !! ~"
+ |+| speed (every 9 ((0.1-) <$>) $ "[0.566 0.5 0.6]/2")
+
+d4 $ every 44 (|+| vowel "a") . within (0, 0.5) (density 2) . iter 3 . chop 2 . density 3 $ sound "~ sf"
+ |+| speed (((2*) <$>) $ every 2 ((*2) <$>) $ every 4 ((*1.2) <$>) $ every 3 ((0.1-) <$>) $ scale 1.2 2.5 $ sine1)
+ |+| shape "0.2"
+ |+| cut "1"
+
+d5 $ chop 2 . rev . density 3 . within (0, 0.25) (superimpose(|+| vowel "u o i")) $ sound "rapman:2 [visco:5(1,1) rapman:11(1,1)] "
+ |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ every 5 ((*1.2) <$>) $ every 13 ((0.1-) <$>) $ "0.666")
+ |+| shape (iter 4 $ scale 0.1 0.5 $ sinewave1)
+
+ |+| accelerate (((0.1-) <$>) $ scale 0.7 0.9 $ sine1)
+
+ |+| gain (scale 0.7 0.9 $ sine1)
+
+
+hush

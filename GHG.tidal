@@ -1,0 +1,101 @@
+cps 1
+
+cps 0.666
+
+let gd1 = chop 2 . spread' chop "2 1 1 4 2 1 1" . palindrome . every 3 (rev) . every 2 (spin 2) . brak . stut 2 0.5 0.5 
+let chop2 = chop 2 . spread' slow "2 4 2" . stut 2 0.5 0.5
+
+d1 $ gd1 $ sound "{peri peri:3*2 peri:6 peri:2*2}%1 peri:1"
+
+
+
+----
+
+cps 0.45
+
+d1 $ every 3 (iter 3) . chop 2 . stut 2 0.5 0.5  $ stack[sound "dr db watford", sound "dr ~ db"]
+ |+| shape "0 0 0.666"
+ |+| speed (((*0.666) <$>) $ every 2 ((+0.2) <$>) $ "1 0.9 1")
+
+d2 $ spread' chop "2 1 1 4 2 1 1" . stut 2 0.5 0.5  $ sound "~ sf:9/8 ~"
+
+d5 $ echo (5/3) $ spread' density "2" . every 3 (rev) . spread' striate "2 1 2 1 2" $ sound "{lsdj:2 visco:5*2 visco:5}%3"
+ |+| speed (((*0.666) <$>) $ every 2 ((+0.2) <$>) $ "1 0.9 1")
+
+d3 $ every 4 (density 2) . density 3 . every 2 rev $ sound "house ~"
+ |+| speed (((*0.666) <$>) $ every 2 ((+0.2) <$>) $ "1 0.9 1")
+
+
+
+
+hush
+
+--------------------------------
+
+
+cps 0.5
+
+d2 $ stut 2 0.2 0.5 $ sound "lsdj:2 sn:2 bd:2 !?"
+ |+| end rand
+ |+| shape "0.5"
+
+
+
+cps 0.5
+
+d2 $ juxcut rev . every 2 (|+| vowel "i") . echo (7/4) $ chop2 . chop2 . every 3 (rev) . chop 2 $ sound "ade:3"
+ |+| begin "0.3"
+ |+| end "0.5"
+ |+| speed (every 3 ((0.1-) <$>) "1")
+ |+| gain (scale 0.2 0.3 $ sine1)
+
+d7 $ every 2 (rev) $ sound "{~ bend:3, ~ ~ e:2, ul:1 ~}%1"
+ |+| speed (((/2) <$>) $ ((0.1-) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5")
+ |+| shape "0.33"
+
+d4 $ echo (7/4) $ every 3 (rev) . retrig $ every 7 (iter 3) $ sound "sf:1 ~ ~ sf:5 sf:3"
+ |+| speed (((/2) <$>) $ iter 4 "0.5 1 0.7 0.5")
+ |+| shape "0.23"
+
+hush
+
+d3 $ every 3 (retrig) $ jux ((|+| speed "0.5") . rev) $ (sound (pick <$> "atari" <*> slow 7 "2 3 1 2 0"))
+ |+| speed (((*2) <$>) $ every 4 ((*2) <$>) $ every 3 ((0.1-) <$>) $ scale 0.2 0.5 $ sine1)
+ |+| gain "0.7"
+
+d5 $ stack[
+ jux palindrome . every 3 (iter 3) . density 2 . chop 2 $ sound "lsdj:2 perc/2 visco:5"
+ |+| end rand --"0.2 0.1 0.2"
+ |+| speed (((*0.666) <$>) $ every 2 ((+0.2) <$>) $ "1 0.9 1")
+ |+| shape (every 4 ((0.2+) <$>) $ "0.666"),
+ every 2 rev $ sound "house house"
+ |+| slow 32 (vowel (pick <$> "a i o i e i u" <*> run 6))
+]
+
+d4 $ stack[
+ palindrome . every 3 (iter 3) . chop 2 . density 3 $ every 2 (slow 3 . iter 2 . rev) $ stack[sound "peri sf:3/2 visco:5/4"]
+ |+| end "0.1"
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| shape (every 4 ((0.2+) <$>) $ "0.666")
+ |+| gain (scale 0.7 1 $ sinewave1)
+ |+| pan (slow 2 $ scale 0 1 $ sinewave1),
+ palindrome . every 3 (iter 3) . chop 2 . density 3 $ every 2 (slow 3 . iter 2 . rev) $ stack[sound "peri peri:2/4 lsdj:2/3"]
+ |+| end "0.1"
+ |+| speed (((*0.6) <$>) $ iter 4 "1 0.5 1 0.8")
+ |+| shape (every 4 ((0.2+) <$>) $ "0.666")
+ |+| gain (scale 0.7 1 $ sinewave1)
+ |+| pan (slow 2 $ scale 1 0 $ sinewave1)
+]
+
+
+hush
+
+
+
+
+
+
+
+d3 $ every 3 (retrig) $ jux ((|+| speed "0.5") . rev) $ sound "sax:1"
+ |+| speed (scale 1.8 2.5 $ sine1)
+ |+| cut "1"

@@ -1,0 +1,24 @@
+cps 1.4
+cps $ 150/60
+
+cps 0.75
+
+cps 0.9
+
+d1 $ echo (7/4) $ density 2 $ stack[sound "dr dr/2 ~ dr", every 4 (density 2) $ spread' density "1 0 2 0" $ sound "deepsky ~ akai ~"]
+
+d2 $ density 2 $ every 4 ((0.5 ~>) . rev) $ sound "sn/4 sn sn/3 sn/2"
+ |+| pan (slow 2 "0 1")
+
+d3 $ every 3 (|+| speed ((2+) <$> sine1)) $ sound "bass bass3:1 bass bass3"
+ |+| speed ((2+) <$> saw1)
+
+d4 $ every 4 (|+| speed ((0.2+) <$> triwave1)) $ stack[density 8 $ sound $ samples "jvbass" $ iter 2 $ run 4, sound "[sn, house] {[ifdrums*2]/4}"]
+ |+| speed "2"
+
+d5 $ echo (7/4) $ every 4 ((0.5 <~) . brak) $ sound "{[house*8]/4} bass2 {[sn*8]/8 sn} e*2"
+
+d6 $ every 2 ((slow 2) . rev) $ stack[sound "lsdj:1/6 ~", sound "lsdj:2", sound "lsdj:5*8"]
+ |+| gain "0.7"
+
+hush

@@ -1,0 +1,57 @@
+bps 0.7
+
+d1 $ every 8 (slow 4) . stut 2 2 0.5 . spread' density "4 2 8 2 4" . spread' striate "8 4 2 4 8" $ sound "unix"
+
+d2 $ stut 2 0.9 0.5 . spread' density "4 2 8 2 4" . spread' striate "8 4 2 4 8" $ sound "psr:3"
+ |+| speed (((*1.2) <$>) $ every 7 ((0.1-) <$>) $ slow 8 "1 0.9 1 1.1")
+
+
+
+
+
+d2 $ stut 2 0.9 0.5 . spread' density "4 2 8 2 4" . spread' striate "8 4 2 4 8" $ sound "psr:3"
+ |+| speed (((*1.2) <$>) $ every 7 ((0.1-) <$>) $ slow 8 "1 0.9 1 1.1")
+
+
+
+hush
+
+
+
+
+cps 0.666
+
+cps 0.4
+
+d1 $ density 2 . stut 2 0.5 0.1 $ sound "lsdj:6 lsdj:2*2? lsdj:5 lsdj:1/4"
+ |+| speed (((*2) <$>) $ every 3 ((*2) <$>) $ every 5 ((/2) <$>) $ iter 8 "1 1.5 1.9 1.2 1.5 2 1.5 1.8")
+
+d2 $ stut 2 0.9 0.5 . spread' density "4 2 8 2 4" . spread' striate "8 4 2 4 8" $ sound "psr:2"
+ |+| speed (((*1.2) <$>) $ every 3 ((*2) <$>) $ every 5 ((/2) <$>) $ every 7 ((0.1-) <$>) $ iter 8 "1 1.5 1.9 1.2 1.5 2 1.5 1.8")
+
+
+
+
+
+
+
+
+
+
+
+d1 $ spread' density "2 1 2 1 2" . every 4 (rev) . stut 2 0.9 0.5 $ sound "~ rhodes"
+ |+| speed (((*8) <$>) $ every 2 ((*0.5) <$>) $ every 4 ((*2) <$>) $ every 3 ((*0.666) <$>) $ slow 8 "0.6 0.7 0.8 0.9 0.51 0.5 0.6 0.8")
+
+d2 $ spread' density "2 1 2" $ sound "~ casio"
+ |+| speed (iter 3 "1 2 1")
+
+d4 $ stut 2 0.9 0.5 . spread' density "4 2 8 2 4" $ sound "psr:2"
+ |+| speed (((*2) <$>) $ every 3 ((*2) <$>) $ every 5 ((/2) <$>) $ iter 2 "1 1.5 1.9 1.2 1.5 2 1.5 1.8")
+
+
+
+hush
+
+
+
+

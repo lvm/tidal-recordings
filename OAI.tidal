@@ -1,0 +1,8 @@
+bps 2
+
+d1 $ echo (7/4) $ every 13 (brak) $ every 4 (slow 2) $ every 8 (density 2) $ every 3 (spread' iter "4 1") $ stack[sound "house house:7 house fat909" |+| speed ( ((0.5+) <$>) $ every 4 ( ((*2) <$>)) "1.2"), every 2 (striate 2) $ echo (2/4) $ sound "dr*2 dr2" |+| end "0.1"]
+
+bps 0.5
+
+
+hush

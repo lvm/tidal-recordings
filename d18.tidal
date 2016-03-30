@@ -1,0 +1,48 @@
+bps (120/120)
+
+cps 1
+
+let every2 = drum $ preplace (1,1) "[x!!, x x]" "lt ht"
+
+b $ stut 2 0 0.75 $ drum "[[[bd [cp? sn], cp? sn], [ch ch] [ch [ch cp?]]], [ch*2 ch*2, ~ oh] [ch [oh!!!]/6 ]]" # scr "0.5" # lcr "0.25" # lbd "0.5"
+
+hush
+
+
+b $ slow 2 $ stack[
+  drum "[{[bd sn ch](5,8)}%2, ~ [~ cp]]",
+  sometimes (stut 2 0 0.75) $ drum "[cr [cr], oh/2]",
+  drum "[cl(9,16)]/2"
+] # lcp "0.5" # lsn "0.5" # lbd "0.5" # lcl "1" # loh "0.75" # scr "0.75" # lcr "0.5"
+
+
+q $ stack[
+note $ cho 48 "[1(13,24,14)]/3" [0],
+note $ cho 50 "[1(13,24,16)]/6" [0],
+note $ cho 55 "[1(13,24,21)]/9" [0]
+]
+
+
+bps (120/120)
+
+let brak4 = every 4 ( within (0.25, 0.75) (chop 2) . within (0.25, 0.5)(slow 2) . within (0.5,0.75) (slow 4) )
+
+b $ stack[
+   drum "[bd ~ bd ~] [~ ~ bd ~] [~ ~ bd ~] [~ ~ ~ ~]",
+   brak4 $ drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ ~ ~]",
+   drum "[ch(15,16)]",
+   drum "[~ ~ oh ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ oh/2]"
+  ]
+
+
+
+
+
+
+q $ slowcat[
+--slowcho [48,50,48,43,46] "[1(13,16)]" [0],
+chrot [48] "[1(13,16)]" [0,2,0,(-5),(-2)]
+]
+
+
+q silence

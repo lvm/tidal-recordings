@@ -1,0 +1,49 @@
+bps (160/60)
+bps 1.2
+
+---- NOMQE
+
+d1 $ stack[density 4 $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "3")) $ every 5 ((|+| speed "5") . rev) $ striate' 128 (0.1) $ sound "ho hc", sound "~ psr:4"]
+ |+| slow 2 (iter 2 (vowel "u o u"))
+ |+| gain "1.5"
+ |+| pan sine1
+
+d2 $ density 2 $ every 2 ((|+| speed "2")) $ every 3 ((|+| speed "1.3")) $ every 5 ((slow 2) . (|+| speed "0.5") . rev) $ striate' 128 (0.1) $ stack[sound "~ ifdrums*3", interlace (every 3 ((slow 2) . (striate 3) . (|+| gain "0.5")) $ sound "jvbass") (sound "~")]
+ |+| slow 2 (vowel "o i a u")
+ |+| gain "1.1"
+ |+| pan triwave1
+
+d3 $ every 2 (echo (1/2)) $ every 4 (echo (7/4)) $ every 2 (|+| accelerate "8 -23 8") $ jux rev $ stack[sound "~ gab:3*2" |+| slow 2 (vowel "o i a u"), every 4 ((|+| vowel "o") . (|+| speed "0.5")) $ interlace (whenmod 10 5 (density 2) $ sound "[dr*4]/2") (echo (7/8) $ every 8 (density 2) $ sound "lsdj:2*4")]
+ |+| shape (slow 2 "0.1 0.5 0.7")
+
+ |+| accelerate "1 -5 1"
+
+
+----- SHMU
+
+bps (100/60)
+
+d1 $ stack[density 2 $ every 2 ((|+| speed "2") . rev) $ sound "ho hc", sound "~ psr:4"]
+ |+| gain "1.5"
+
+d2 $ stack[density 2 $ every 2 ((|+| speed "2") . rev) $ stack[every 3 (|+| speed (every 2 (rev) "1.5 0.5 2")) $ density 2 $ sound (samples "bass1 ~" (slow 4 "0 3 3")), interlace(sound (samples "~ ~ ~ jvbass" (iter 2 $ run 2))) (every 4 (echo (7/4)) $ every 3 (|+| speed "2") $ every 2 ((|+| speed "1.5") . (striate 2) . (density 2) . (|+| gain "0.2")) $ slowspread ($) [(|+| gain "0.2"), density 1] $ sound (samples "dr/4 ~" (iter 3 "0 3 4")))]]
+ |+| gain "1"
+
+d3 $ stack[every 4 ((0.2 <~)) $ striate 64 $ sound "breaks125", every 4 (density 2) $ stack[every 4 ((0.5 ~>)) $ interlace (sound (samples "house:0*4 bass1" (iter 5 $ run 5))) (every 2 (density 4) $ sound "~ dr2 ~")]]
+ |+| gain "0.9"
+
+
+-- PARTDOS.
+
+--d3 $ density 4 $ every 2 ((|+| speed "2") . rev) $ every 3 (|+| speed (every 2 (rev) "0.9 0.5 0.8")) $ jux rev $ density 4 $ smash 2 [1..5] $ striate' 8 (0.1) $ sound (samples "bass1 ~" (slow 2 "0 2 2"))
+--d3 $ density 4 $ every 2 ((|+| speed "2") . rev) $ every 3 (|+| speed (every 2 (rev) "0.9 0.5 0.8")) $ jux rev $ density 4 $ sound (samples "bass1 ~" (slow 2 "0 2 2"))
+d3 $ density 4 $ every 2 ((|+| speed "2") . rev) $ every 3 (|+| speed (every 2 (rev) "0.9 0.5 0.8")) $ density 4 $ sound (samples "bass1 ~" (slow 2 "0 2 2"))
+
+d4 $ stack[density 2 $ every 2 ((|+| speed "2") . rev) $ sound "mattel", every 2 (density 2) $ sound "~ mattel:1*4"]
+--d4 $ stack[density 2 $ every 2 ((|+| speed "2") . rev) $ sound "mattel", every 2 (density 2) $ sound "~ mattel:1*4 ~ mattel:4"]
+ |+| gain "1.5"
+
+d1 $ stack[density 2 $ every 2 ((|+| speed "2") . rev) $ sound "dr dr*8/2", sound "~ drumtraks:4*4"]
+ |+| gain "1.5"
+
+hush

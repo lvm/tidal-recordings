@@ -1,0 +1,59 @@
+solo $ d2 $ every 4 (slow 2) . density 2 . every 2 (striate 2) $ sound "minipops:5*2 ~"
+ |+| speed (every 5 ((0.1-) <$>) $ scale 0.5 0.3 $ sine1)
+ |+| pan (slow 8 triwave1)
+
+d4 $ retrig $ stack[sound "rapman:8/4", seqP[(0, 16, sound "rapman rapman:9 rapman:2"), (16, 32, sound "rapman:9"), (0,32, sound "rapman !? !!")], chop 4 . every 2 (slow 2) $ sound "db db db db"]
+ |+| shape "0.6"
+
+d4 $ retrig $ stack[sound "rapman:8/4", seqP[(0, 16, sound "rapman rapman:9 rapman:2"), (16, 32, sound "rapman:9"), (0,32, sound "rapman !? !!")]]
+ |+| shape "0.6"
+
+
+
+hush
+
+---------
+
+cps 0.666
+
+
+d7 $ echo (7/4) $ spread' density "4 4 4 4 4 4 4 7" . striate' 16 (0.5) . every 2 (slow 2) $ sound "bass2"
+ |+| speed (((*2.5) <$>) $ every 2 ((/1.52) <$>) $ scale 0.666 1 $ sine1)
+
+d8 $ echo (7/4) $ stut 2 0.5 0.5 . density 4 $ sound "db db !? db"
+ |+| speed (((*2) <$>) $ every 2 ((/1.52) <$>) $ scale 0.666 1 $ sine1)
+ |+| gain "2"
+
+d8 $ echo (7/4) $ spread' density "4 4 4 4 4 4 4 7" $ every 3 (chop 2) $ sound "db db"
+ |+| speed "2"
+ |+| shape (scale 0.666 0.9 $ sine1)
+ |+| gain "1.2"
+
+d9 $ density 2 . every 3 (stut 2 0.5 0.5) . chop 8 $ sound "rapman !? !!"
+ |+| speed (((*0.98) <$>) $ every 2 ((/1.52) <$>) $ every 3 ((/2) <$>) $ scale 0.666 1 $ sine1)
+ |+| gain "2"
+
+d1 $ slow 4 . chop 4 $ sound "rave"
+ |+| speed (((*2.5) <$>) $ every 2 ((/1.52) <$>) $ scale 0.666 1 $ sine1)
+ |+| cut "1"
+ |+| end "0.5"
+
+
+
+
+
+hush
+
+
+
+----
+
+
+
+d7 $ echo (7/4) $ spread' density "4 4 4 4 4 4 4 7" . striate' 16 (0.5) . every 2 (slow 2) $ sound "bass2"
+ |+| speed (((*2.5) <$>) $ every 2 ((/1.52) <$>) $ scale 0.666 1 $ sine1)
+
+d6 $ echo (7/4) $ spread' density "4 4 4 4 4 4 4 7" $ every 3 (chop 2) $ sound "hardcore hardcore"
+ |+| speed "2"
+ |+| shape (scale 0.666 0.9 $ sine1)
+ |+| gain "1.2"

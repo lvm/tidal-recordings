@@ -1,0 +1,196 @@
+cps 1
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+    st2' d = stut 2 0 d
+    st2 = st2' 0.25
+    ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    -- cho :: Pattern -> Int -> [Int] -> Pattern Int;
+    -- q $ note (cho 60 "1 1 1" [0, 3, 7])
+    cho n pat chord = preplace(1,1) pat $ listToPat [ch + n | ch <- chord]
+    cho' n off pat chord = cho (n+off) pat chord
+    n48 sc = note $ ch 48 sc
+    n n off sc = note $ ch (n+off) sc
+    nn off sc = n 48 off sc
+    --  m1 $ slowcat[note (skp 60 "1 1 1" (rotate i [0,3,7,10])) | i <- [0..3]]
+    rotate :: Int -> [a] -> [a]
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+    -- chords
+    minor = [0,3,7]
+    major = [0,4,7]
+    nine = [0,4,7,10,14]
+    ninesus4 = [0,5,7,10,14]
+    add9 = [0,4,7,14]
+    madd9 = [0,3,7,14]
+    maj9 = [0,4,7,11,14]
+    m9 = [0,3,7,10,14]
+    sus2 = [0,2,7]
+    sus4 = [0,5,7]
+    seven = [0,4,7,10]
+    m7 = [0,3,7,10]
+    eleven = [0,4,7,10,14,17]
+    m11 = [0,3,7,10,14,17]
+    thirteen = [0,4,7,10,14,21]
+    m13 = [0,3,7,10,14,21]
+
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+    st2' d = stut 2 0 d
+    st2 = st2' 0.25
+    sk :: Int -> [Int] -> Pattern Int ; sk n scale = listToPat [sc + n | sc <- scale]
+    n48 sc = note $ sk 48 sc
+    n n off sc = note $ sk (n+off) sc
+    nn off sc = n 48 off sc
+
+
+let rotate :: Int -> [a] -> [a] 
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+
+-- skp :: Pattern -> Int -> [Int] -> Pattern Int; 
+let skp n pat scale = preplace(1,1) pat $ listToPat [sc + n | sc <- scale]
+    skp' n off pat scale = skp (n+off) pat scale
+
+let minor = [0,3,7]
+    major = [0,4,7]
+    nine = [0,4,7,10,14]
+    ninesus4 = [0,5,7,10,14]
+    add9 = [0,4,7,14]
+    madd9 = [0,3,7,14]
+    maj9 = [0,4,7,11,14]
+    m9 = [0,3,7,10,14]
+    sus2 = [0,2,7]
+    sus4 = [0,5,7]
+    seven = [0,4,7,10]
+    m7 = [0,3,7,10]
+    eleven = [0,4,7,10,14,17]
+    m11 = [0,3,7,10,14,17]
+    thirteen = [0,4,7,10,14,21]
+    m13 = [0,3,7,10,14,21]
+
+
+b $ sw' 0 0.5 (# dch "0.1") $ sw (# hg "0.1") $ stack[
+   drum "[~ bd ~ ~] !"
+   ,
+--   drum "[~ ~ sn ~] [~ sn/4 ~ sn/4]",
+   stack[
+     every 4 (sw' 0 0.25 (chop 2)) . density 2 $ drum "ch(3,4)"
+     ,
+     density 2 $ drum "~ ~ ~ oh"
+   ]
+   ,
+   drum "[cp/4 ~ ~ ~] [~ cp ~ ~]"
+   ]
+|+| hg "0.75"
+|+| dch "0.25"
+|+| stt "0"
+|+| std "0"
+
+q $ iter 2 . every 3 (sw' 0.5 0.75 (#cutoffegint "1") ) . chop 2 . smash 2 [2] . every 5 (within (0, 0.33)(# pitch3 "1")) $ slowcat[
+  note (cho 36 "[1 !?] 1 1 [1 !]" [0, 7, 3, 0]),
+  note (cho 38 "1 [1 !] [1 !?] 1" [0, 3, 7, 0])
+] # dur "0.05" #decay "1" # lforate "0.75" #lfoint "0.1" # cutoffegint (scale 0 0.15 squarewave1) # decay "0.99" # pitch3 "0.666"
+
+q $ every 3 (sw' 0.5 0.75 (#cutoffegint "1") ) . chop 2 . smash 2 [2] . every 5 (within (0, 0.33)(# pitch3 "1")) $ slowcat[
+  note (cho 36 "[1 !?] 1 1 [1 !]" [0, 0 ,3, 3]),
+  note (cho 38 "1 [1 !] [1 !?] 1" [3, 7, 7, 0])
+] # dur "0.05" #decay "1" # lforate "0.75" #lfoint "0.1" # cutoffegint (scale 0 0.15 squarewave1) # decay "0.99" # pitch3 "0.666"
+
+hush
+
+
+--
+
+cps 1
+
+q $ slowspread iter [2..8] . every 3 (sw' 0.5 0.75 (#cutoffegint "1") ) . slow 2 . every 5 (within (0, 0.33)(# pitch3 "1")) $ stack[
+  note (cho 36 "[~ 1  ~ 1] [~ 1 1 ~] [~ 1 ~ 1] [~ 1 ~ ~]" [0, 0 , 3, 3]),
+  note (cho 48 "[~ ~ 1 ~] [1 ~ ~ 1] [1 ~ ~ ~] [1 ~ ~ ~]" [3, 0 , 7, 3]),
+  note (cho 48 "[1 ~ ~ ~] [~ ~ ~ ~] [~ ~ 1 ~] [~ ~ 1 1]" [0, 3 , 7, 10])
+] # dur "0.05" #decay "1" # lforate "0.75" # lfoint "0.15" # cutoffegint (scale 0 1 $ slow 4 $ squarewave1) # decay "0.99" # pitch3 "0.666"
+
+b $ every 4 (sw(#scl "0.05")) . slow 2 $ stack[
+drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~]",
+slowspread (stut 2 0) [0.5,0.75] $ drum "[~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~] [~ cp ~ ~]",
+drum "[ch(4,4)] [ch(2,4)] [ch(4,4)] [ch(3,4)]",
+drum "[~ ~ ~ ~] [~ ~ ~ oh/2] [~ ~ ~ ~] [~ ~ ~ oh]",
+every 2 (slowspread (stut 2 0) [0.5..0.75]) $ drum "cl(9,16)",
+slow 2 $ drum "[~ ~ ~ ~] [~ ag ~ ~] [~ ~ ~ [ag !?]] [~ ~ ~ ~]"
+] # scl (scale 0.45 0.5 triwave1) # sag "0.66"
+
+hush
+
+---
+
+cps 1
+
+b $ sw' 0 0.5 (# dch "0.1") $ sw (# hg "0.1") $ every 9 (sw' 0 0.33 (chop 2) ) $ stack[
+slowcat[drum "[~ bd bd/2 ~] [bd ~ ~ ~]", drum "[bd/2 bd/3 bd/4 ~] [~ ~ ~ ~]"],
+every 5 (slowspread (stut 2 0) [0.5,0.5,0.75]) $ drum "[~ ~ ~ ~] [~ cp ~ ~]",
+drum "[oh ch ch ch] [ch ch oh/2 ch]"
+] # dch "[0.25 0.5]/2" # hg "0.75" # scp "0.45" # doh "0.5" # lbd "1" # lcp "1" # loh "1" # lch "1" # stt "0" # std "0"
+
+q $ sw (# note (cho 36 "[1 1  1 1] [1 1 1 1]" [0, 0 , 3, 3])) . every 3 (sw' 0.5 0.75 (#cutoffegint "1") ) . every 5 (within (0, 0.33)(# pitch3 "1")) $ stack[
+  note (cho 36 "[~ 1  ~ 1] [~ 1 1 ~]" [0, 0 , 3, 3]),
+  note (cho 48 "[~ ~ 1 ~] [1 ~ ~ 1]" [3, 0 , 7, 3]),
+  note (cho 48 "[1 ~ ~ ~] [~ ~ ~ ~]" [0, 3 , 7, 10])
+] # dur "0.05" # lforate "0.85" # lfoint "0.25" # cutoffegint (scale 0.5 1 $ slow 4 $ squarewave1) # pitch3 "0.666" # decay "[0.5 1 0]/3" 
+
+hush
+
+---
+
+m1 $ slowcat[
+  note (skp 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [3, 0 , 0, 3]),
+  note (skp 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [3, 0 , 0, 3]),
+  note (skp 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [5, 7 , 10, 3])
+] # decay "1" # dur "0.05" # pitch3 "0.5" # cutoffegint "0" #lforate "0.75" # lfoint "0.15"
+
+
+m1 $ slow 2 $ slowcat[
+  note (skp 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [3, 0 , 0, 3]),
+  note (skp 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [3, 0 , 0, 3]),
+  note (skp 48 "[~ 1 ~ ~] [1 1/2 1 1/3]" [5, 7 , 10, 3])
+] # dur "0.05"
+
+m1 $ slowcat[
+note (skp 60 "1 1 1" [0, 3, 7]),
+note (skp 60 "1 1 1" [3, 7, 0]),
+note (skp 60 "1 1 1" [7, 0, 3])
+            ]
+
+
+
+[(note (skp 60 "1 1 1" ls)) | i <- [1..3], ls <- (rotate i)]
+
+[ls | i <- [1..3], ls <- (rotate i [0,3,7])]
+
+hush
+
+
+m1 $ slowcat[
+note (skp 60 "1 1 1" [0, 3, 7]),
+note (skp 60 "1 1 1" [3, 7, 0]),
+note (skp 60 "1 1 1" [7, 0, 3])
+            ]
+
+
+m1 $ slowcat[note (skp 60 "1 1 1" (rotate i [0,3,7])) | i <- [1..3]]
+
+hush
+
+q $ slowcat[note (cho 36 "1 1 1" (rotate i [0,3,7,10,14,21])) | i <- [0..3]] # decay "1"

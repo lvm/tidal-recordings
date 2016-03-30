@@ -1,0 +1,347 @@
+cps 0.23
+
+
+d5 $ every 10 (|+| accelerate "-1") $ stack[
+every 23 (chop 2 . within (0.5, 1) (|+| bandq "0.8") . within (0.7, 1) ((0.25<~). slow 4)) . every 25 (|+| coarse "11") . every 26 (within (0, 0.15) (|+| accelerate "-5")) . every 2 (juxcut rev) . density 1.25 . chop 8 $ sound "hhop:1"
+|+| coarse "[6 8 7 9]/4"
+|+| cut "1"
+|+| gain "0.9"
+|+| resonance "0.3"
+|+| bandf "0.1"
+,
+jux rev . density 1.25 . chop 32 $ (sound $ samples "pluck" $ iter 4 $ run 4)
+|+| speed "[1 1.23 1.1 1.4]/4"
+|+| coarse "[11 13 11 14]/4"
+|+| crush "[7 8 6 4]/4"
+|+| gain "0.8"
+]
+
+
+hush
+
+d5 silence
+
+d5 $ density 2 . chop 2 . every 2 (within (0, 0.25) (|+| coarse "11")) . t 1 $ stack[
+slowspread (chop) [2, 1, 4, 8, 1, 1, 1, 16] $ sound "hhop ~ ~ ~"
+,
+every 8 rev $ sound "~ hhop:1 ~ ~"
+|+| speed (every 2 ((0.1-) <$>) "[0.5 0.56 0.666]/3")
+]
+|+| cut "1"
+|+| begin "0.5"
+|+| end "0.6"
+|+| gain "0.9"
+|+| resonance "0.3"
+|+| bandf "0.1"
+|+| coarse "[6 8 7 9]/4"
+
+
+--|+| speed (every 2 ((0.1-) <$>) "[0.25 0.256 0.366]/3")
+
+
+
+
+
+cps 0.5
+
+let rcbb q w e r =  (|+| resonance q) . (|+| cutoff w) . (|+| bandf e) .(|+| bandq r)
+let t x = echo (x/4)
+let ddd d = (|+| delay d) .(|+| delayfeedback d) .(|+| delaytime d)
+
+
+d5 $ juxcut rev . slow 2 . rcbb "0.8" "0.8" "0.25" "0.8" $ stack[
+sound "idmel ~ ~"
+|+| speed (((0.1-) <$>) "[0.26 0.24 0.25 0.23]/4")
+|+| vowel "[a x o x]/4"
+]
+|+| coarse "6"
+|+| cut "1"
+|+| begin "0.35"
+|+| end "0.4"
+|+| gain "1.2"
+
+d3 $ slow 2 . every 8 (chop 2) . every 5 (within (0, 0.25) (striate 2)) . slowspread(t) [32, 8, 16] . chop 2 . slowspread ($) [iter 4, rev . iter 2, rev] . every 4 (chop 2 . chop 2 . slow 2) $ stack[
+(sound $ samples "[amencutup*2 ! !?, amencutup:1*2 !, amencutup:5 !]" $ iter 8 $ run 8)
+]
+|+| gain "0.8"
+
+d4 $ density 4.25 . chop 32 $ (sound $ samples "pluck" $ iter 4 $ run 4)
+|+| speed "[1 1.23 1.1 1.4]/4"
+|+| coarse "[11 13 11 14]/4"
+|+| crush "[7 8 6 4]/4"
+|+| gain "0.8"
+
+
+hush
+
+d3 silence
+
+cps 0.5
+
+d4 $ stack[
+sound "ae ae:2*2 ae:6"
+,
+slowspread (density)[4, 2, 2] . striate 3 $ sound "ae:7 "
+]
+|+| coarse "[6 5 3 4]/2"
+|+| gain "0.8"
+
+|+| speed "[1 1.23 1.1 1.4]/4"
+|+| crush "[7 8 6 4]/4"
+
+hush
+
+
+
+,
+every 8 rev $ sound "~ hhop:1 ~ ~"
+|+| speed (every 2 ((0.1-) <$>) "[0.5 0.56 0.666]/3")
+
+
+cps 0.25
+
+d4 $ rcbb "0.8" "[1.2 0.8]/2" "[1.23 1.5]/2" "1.8" $ every 5 (within (0, 0.25) (chop 2) ) . striate 3 $ stack[
+sound "hhop ~ ~ ~"
+|+| begin "0.5"
+|+| end "0.6"
+,
+sound "~ vocalbits vocalbits !"
+|+| begin "0.8"
+|+| end "0.85"
+|+| gain "0.9"
+,
+sound "~ minipops:3 ~ minipops:4"
+|+| speed (((0.1-) <$>) "[0.5 0.56 0.666]/3")
+|+| coarse "[6 5 3 4]/2"
+]
+|+| cut "1"
+
+|+| resonance "0.3"
+|+| bandf "0.1"
+
+
+
+hush
+
+
+
+d4 $ every 2 rev . every 5 (within (0, 0.25) (chop 2) ) . striate 3 $ stack[
+sound "hhop ~ ~ ~"
+|+| begin "0.5"
+|+| end "0.6"
+,
+every 4 (chop 2) $ sound "~ ~ vocalbits:2 ~"
+,
+sound "[vocalbits:3, vocalbits vocalbits, vocalbits:2]"
+]
+|+| cut "1"
+|+| resonance "0.3"
+|+| bandf "0.1"
+
+cps 0.5
+
+d5 $ every 5 (within (0, 0.25) (chop 2) ) . striate 3 $ stack[
+sound "hhop ~ ~"
+|+| begin "0.5"
+|+| end "0.65"
+,
+every 4 (chop 2) $ sound "~ ~ vocalbits:2 ~"
+,
+sound "~ vocalbits ~ vocalbits"
+]
+|+| cut "1"
+
+|+| resonance "0.3"
+|+| bandf "0.1"
+
+
+hush
+
+
+
+
+
+d5 $ stack[
+sound "btbeat ~ ~"
+|+| speed "0.5"
+]
+|+| cut "1"
+
+
+cps 1
+
+cps 0.666
+
+cps 0.25
+
+
+d5 $ stack[
+chop 4 . spread' density "[1, 4, 2]/3 [2, 4]/2 [1, 1, 2]/3" $ sound "e acetoneace acetoneace:3"
+,
+jux rev . spread' t "7 1" . chop 2 $ sound $ samples  "deepsky:0 bd8:1? click" $ iter 2 $ run 2
+,
+echo (2/3) . spread' density "[2, 4]/2 [1, 2]/2" $ (sound $ samples "[vocalbits, sn:3?] ~ vocalbits:0" $ iter 4 " 2 5")
+,
+slowspread(density) [2, 4, 1, 2] $ sound "[[made, made:2] sid:2 [ae ~ ae:2], [ae:7 ae:6]]"
+]
+|+| coarse "[6 5 3 4]/2"
+
+
+hush
+
+
+cps 0.5
+
+d5 $ stack[
+jux rev . spread' t "7 1" . chop 2 $ sound $ samples  "deepsky:0 bd8:1? click" $ iter 2 $ run 2
+,
+spread' density "[2, 4]/2 [1, 2]/2" $ (sound $ samples "[vocalbits, sn:3?] ~ vocalbits:0" $ iter 4 " 2 5")
+|+| vowel "i"
+]
+|+| coarse "[6 5 3 4]/2"
+
+
+
+
+d5 $ every 4 (within (0, 0.5) (slow 2) . chop 2 ) $ stack[
+jux rev . spread' t "7 1" . chop 2 $ sound $ samples  "deepsky:0 bd8:1? click" $ iter 2 $ run 2
+,
+slowspread (density) [2, 2, 2, 4, 2, 4] $ (sound $ samples "[vocalbits, sn:3?] ~ vocalbits:0" $ iter 4 " 2 5")
+|+| vowel "i"
+]
+|+| coarse "[6 5 3 4]/2"
+|+| speed "0.666"
+
+
+cps 0.5
+
+d6 $ superimpose (|+| speed (((0.1-) <$>) "[0.26 0.24 0.25 0.23]/4")) . juxcut rev . slow 2 $ stack[
+sound "idmel:2 ~ ~"
+]
+|+| cut "1"
+|+| end "0.25"
+|+| vowel "[a x o x i x]/6"
+
+|+| coarse "[6 5 3 4]/2"
+
+|+| gain "0.1"
+
+
+d5 $ every 12 (|+| coarse "[6 5 3 4]/2") . slow 2 . every 8 (chop 2) . every 5 (within (0, 0.25) (striate 2)) . slowspread(t) [32, 8, 16] . chop 2 . slowspread ($) [iter 4, rev . iter 2, rev] . every 23 (chop 2 . chop 2 . slow 2) $ stack[
+(sound $ samples "[amencutup*2 ! !?, amencutup:1*2 !, amencutup:5*2 !]" $ iter 8 $ run 8)
+]
+|+| gain "0.8"
+
+
+-- d5 $ superimpose (|+| coarse "[6 0]/2") . (|+| crush "[16 8]/2"). every 12 (|+| coarse "[6 5 3 4]/2") . slow 2 . chop 2 . slowspread(t) [32, 8, 16] . chop 2 . slowspread ($) [iter 4, rev . iter 2, rev] $ stack[
+-- slow 8 . brak $ (sound $ samples "[amencutup*2 ! !, amencutup:1? ~ amencutup:5?]" $ iter 8 $ run 8)
+-- ]
+
+-- d5 silence
+
+
+
+-- d5 $ every 12 (|+| coarse "[6 5 3 4]/2") . slow 1.25 . every 8 (chop 2) . every 2 (rev . striate 2 . slow 4) . slowspread(t) [32, 8, 16] . chop 2 . slowspread ($) [iter 4, rev . iter 2, rev] $ stack[
+-- (sound $ samples "[amencutup*2 ! !?, amencutup:1*2 !, amencutup:5 !]" $ iter 8 $ run 8)
+-- ]
+
+hush
+
+--- orig
+-- d5 $ every 12 (|+| coarse "[6 5 3 4]/2") . slow 1.25 . every 8 (chop 2) . every 5 (within (0, 0.25) (striate 2)) . slowspread(t) [32, 8, 16] . chop 2 . slowspread ($) [iter 4, rev . iter 2, rev] . every 23 (chop 2 . chop 2 . slow 2) $ stack[
+-- (sound $ samples "[amencutup*2 ! !?, amencutup:1*2 !, amencutup:5*2 !]" $ iter 8 $ run 8)
+-- ]
+
+|+| gain "0.9"
+
+hush
+
+
+
+
+
+cps 0.45
+
+d6 $ density 4 . within (0, 0.5) (slow 4) $ stack[
+sound "idmel:1 ~ ~"
+]
+|+| cut "1"
+|+| begin "0.25"
+|+| end "0.5"
+|+| speed (slow 0.1 $ iter 2 $ "[0.25 0.32 0.4 0.45 0.35]/5")
+
+--|+| speed (slow 0.1 $ iter 2 $ "0.25 0.32 0.4 0.45 0.35")
+
+
+d2 $ every 3 (within (0, 0.25) (ddd "0.25")) . rcbb "0.8" "[0.1 0.1 0.1 0.5 0.1 0.8]/6" "[0.5 0.5 0.5 0.5 1.5 0.666 2.3]/6" "1.8" $ stack[
+sound "[[e:3 e:2] [click:2 click:3*4] ~, click:2]"
+,
+sound "click:3*4"
+]
+|+| speed "0.5"
+|+| shape "0.6"
+|+| coarse "[6 5 3 4]/2"
+
+d2 $ every 3 (within (0, 0.25) (ddd "0.25")) . rcbb "0.8" "[0.1 0.1 0.1 0.5 0.1 0.8]/6" "[0.5 0.5 0.5 0.5 1.5 0.666 2.3]/6" "1.8" $ stack[
+sound "[[e:3 e:2] [click:2 click:3*4] ~, click:2]"
+,
+sound "click:3*8"
+]
+|+| speed "0.5"
+|+| shape "0.6"
+|+| coarse "[6 5 3 4]/2"
+
+d2 $ every 3 (within (0, 0.25) (ddd "0.25")) . rcbb "0.8" "[0.1 0.1 0.1 0.5 0.1 0.8]/6" "2.3" "1.8" $ stack[
+sound "[[e:3 e:2] [click:2 click:3*4] ~, click:2]"
+,
+sound "click:3*8"
+]
+|+| speed "0.5"
+|+| shape "0.6"
+|+| coarse "[6 5 3 4]/2"
+
+d2 $ every 3 (within (0, 0.25) (ddd "0.25")) . rcbb "0.8" "0.8" "2.3" "1.8" $ stack[
+sound "[[e:3 e:2] [click:2 click:3*4] ~, click:2]"
+,
+every 2 (density 2) $ sound "click:3*4"
+]
+|+| speed "0.5"
+|+| shape "0.6"
+|+| coarse "[6 5 3 4]/2"
+
+d2 $ every 3 (within (0, 0.25) (ddd "0.25")) . rcbb "0.8" "0.8" "2.3" "1.8" $ stack[
+sound "[[e:3 e:2*2] [click:2 click:3*4] ~, click:2]"
+,
+every 2 (density 2) $ sound "click:3*4"
+]
+|+| speed "0.5"
+|+| shape "0.6"
+|+| coarse "[6 5 3 4]/2"
+
+
+
+
+
+
+-- d2 $ rcbb "0.8" "[0.1 0.1 0.1 0.5 0.1 0.8]/6" "[0.5 0.5 0.5 0.5 1.5 0.666 2.3]/6" "1.8" $ stack[
+-- every 3 (within (0, 0.25) (ddd "0.25")) $ sound "[[e:3 e:2] [click:2 click:3*4] ~, click:2]"
+-- ,
+-- sound "[bd8:1, bd8] ! !"
+-- ,
+-- sound "[click:3*8 minipops:3]"
+-- ]
+-- |+| speed "0.5"
+-- |+| shape "0.6"
+-- |+| coarse "[6 5 3 4]/2"
+
+
+-- hush
+
+
+-- ((0.1-) <$>) $ 
+
+-- |+| vowel "[a x o x]/4"
+
+-- |+| speed "[0.5 0.25 0.4 0.35]/8"
+
+-- |+| coarse "[6 5 3 4]/2"

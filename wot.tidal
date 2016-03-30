@@ -1,0 +1,33 @@
+cps 1
+
+d4 $ slow 1.25 . juxBy 0 (rev . (|+| coarse "7")) $ stack[
+gap 2 . stut 2 0.25 0.5 $ (sound $ samples "future ! !?" (iter 2 "2 3 4 2 0"))
+,
+stut 2 0.5 0.5 . chop 2 $ sound "~ [gabba:1 visco:5?] [dr house:3]"
+]
+|+| speed (scale 1.5 2 $ sine1)
+|+| resonance "[0.25 0.5 0.7 1.0]/4"
+|+| cutoff "[0.03 0.3 0.24 0.08]/4"
+|+| bandq "[0.08 0.1 0.25]/3"
+|+| bandf "[0.05 0.25 0.09]/3"
+
+d4 $ slow 1.25 . juxBy 0 (rev . (|+| coarse "7")) $ stack[
+gap 2 . stut 2 0.25 0.5 $ (sound $ samples "future ! !?" (iter 2 "2 3 4 2 0"))
+,
+stut 2 0.5 0.5 . chop 2 $ sound "~ [rapman rapman:2] [dr house:3]"
+]
+|+| speed (scale 1.5 2 $ sine1)
+|+| resonance "[0.25 0.5 0.7 1.0]/4"
+|+| cutoff "[0.03 0.3 0.24 0.08]/4"
+|+| bandq "[0.08 0.1 0.25]/3"
+|+| bandf "[0.05 0.25 0.09]/3"
+
+d5 $ slow 1.25 . gap 2 . every 2 (stut 3 0.25 0.5) $ (sound $ samples "hh27 !? !?" $ iter 2 $ "0 2")
+|+| coarse "23"
+|+| resonance "0.25"
+|+| cutoff "[0.03 0.3 0.24 0.08]/4"
+|+| bandq "0.02"
+|+| bandf "0.8"
+
+
+hush

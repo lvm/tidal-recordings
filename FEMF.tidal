@@ -1,0 +1,110 @@
+cps 2
+
+
+d1 $ every 2 (rev) . every 3 (brak) $ sound "mt lt bd sn"
+
+d1 $ every 2 (rev) . every 3 (brak) $ sound "{mt lt bd sn}%3"
+
+d1 $ every 4 (slow 2) $ every 2 (rev) . every 3 (brak) $ sound "{mt lt bd sn}%5"
+
+d1 $ stut 2 0.9 (-0.5) . spread' density "2 1 4 1 2" . striate' 32 (0.1) $ every 4 (slow 2) $ every 2 (rev) . every 3 (brak . iter 4) $ sound "{mt lt bd sn}%3"
+ |+| speed (every 2 ((0.5+) <$>) $ every 3 ((1.5+) <$>) $ every 5 ((*2) <$>) $ scale 0.7 0.9 $ sine1)
+
+
+d1 $ fadeOut 16 $ every 9 (|+| vowel "o") $ every 3 ((|+| speed "2")) $ every 4 ((|+| speed "8")) $ stut 2 0.9 (-0.5) . spread' density "2 1 4 1 2" . striate' 32 (0.1) $ every 4 (slow 2) $ every 2 (rev) . every 3 (brak . iter 4) $ sound "{mt lt bd sn}%5"
+ |+| speed (every 2 ((0.1-) <$>) $ every 3 ((*1.5) <$>) $ every 5 ((*2) <$>) $ scale 0.7 0.9 $ sine1)
+
+d3 $ fadeOut 4 $ every 9 (|+| vowel "o") $ every 3 ((|+| speed "2")) $ stut 2 0.9 (-0.5) . palindrome . spread' chop "2 2 4 2 1 2" $ sound "unix:4*2"
+ |+| speed (scale 0.8 0.9 $ "0.9")
+
+d2 $ fadeOut 4 $ slow 2 . palindrome . spread' chop "2 2 4 2 1 2" $ sound "unix:3*2"
+ |+| speed (scale 0.8 0.9 $ "0.666")
+ |+| shape "0.8"
+ |+| speed (every 2 ((*2) <$>) $ every 4 ((*2) <$>) $ scale 0.2 0.9 $ triwave1)
+
+d5 $ every 4 (stut 2 0.5 (-0.5)) $ stut 2 0.5 (-0.5) . every 2 (rev) $ sound "{rapman rapman:2}"
+ |+| speed (every 2 ((*2) <$>) $ every 4 ((*2) <$>) $ scale 0.2 0.9 $ "2")
+ |+| shape "0.8"
+
+
+d5 $ every 4 (stut 2 0.5 (-0.5)) $ stut 2 0.5 (-0.5) . every 2 (rev) $ sound "{rapman rapman:2}%3"
+ |+| speed (every 2 ((*2) <$>) $ every 4 ((*2) <$>) $ scale 0.2 0.9 $ "2")
+ |+| shape "0.8"
+
+
+
+d5 $ every 4 (stut 2 0.5 (-0.5)) $ palindrome . stut 2 0.5 (-0.5) $ sound "{[rapman, bd, sn] dr rapman:2}%3"
+ |+| speed (every 2 ((*2) <$>) $ every 4 ((*2) <$>) $ scale 0.2 0.9 $ "2")
+ |+| shape "0.8"
+
+
+
+d5 $ spread' density "4 1" . every 2 (within (1/2, 1) (every 4 (density 2) . rev . slow 1.5 . chop 16)) . every 5 (|+| accelerate "-10") . every 6 (|+| vowel "o") . echo (3/3) $ withArc (0, 3/7) (revArc (0.5, 0.9)) . every 3 (rev) . every 5 (|+| sound "gab:8") . every 4 (stut 2 0.5 (-0.5)) $ palindrome . stut 2 0.5 (-0.5) $ stack[sound (samples "{bass3}%2" (run 10)), every 2 (density 2) $ sound "lsdj"]
+ |+| speed (((*2) <$>) $ every 3 ((*1.666) <$>) $ every 2 ((*2) <$>) $ every 4 ((*2) <$>) $ scale 0.2 0.9 $ sine1)
+ |+| shape (slow 2 "0.87 0.5 0.9 0.8")
+ |+| cut "0.8"
+
+
+hush
+
+
+
+d5 $ every 4 (stut 2 0.5 (-0.5)) $ stut 2 0.5 (-0.5) . every 2 (rev) $ sound "{rapman rapman:2}%5"
+ |+| speed (every 2 ((*2) <$>) $ every 4 ((*2) <$>) $ scale 0.2 0.9 $ "2")
+ |+| shape "0.8"
+
+
+
+
+
+
+
+cps 0.9
+
+
+d1 $ echo (3/5) $ stut 8 0.2 0.5 . every 2 (rev) $ sound "{unix unix:1 unix:3/2}%5"
+ |+| speed (every 2 ((/2) <$>) $ every 4 ((*2) <$>) $ scale 0.2 0.9 $ sine1)
+ |+| shape "0.666"
+
+
+
+-----------
+
+
+d2 $ spread' striate "2 1 2" $ sound "{mt lt bd}%4"
+ |+| shape "0.666"
+ |+| vowel (slow 16 "o u i")
+ |+| speed (every 2 ((*2) <$>) $ every 4 ((*2) <$>) $ scale 0.2 0.9 $ square1)
+
+d3 $ every 5 (density 2) . every 4 (rev) . density 2 . spread' striate "2 1 8 1 2" $ sound "{unix:4 unix:3}%2"
+ |+| speed (every 2 ((*1.2) <$>) $ every 4 ((*2) <$>) $ scale 0.2 0.9 $ sine1)
+
+
+
+
+
+d1 $ echo (4/4) $ revArc (0.1, 0.7) $ sound "orchestral:5 orchestral:4"
+ |+| cut "0.9"
+ |+| speed (((*0.2) <$>) $ every 3 ((/1.2) <$>) $ every 2 ((/0.9) <$>) $ every 4 ((/1) <$>) $ scale 0.2 0.5 $ sine1)
+
+d2 $ spread' density "2 1 2 1 1 2 " $ sound (samples "pianod" (run 10))
+ |+| cut "0.8"
+ |+| speed (every 5 ((/2) <$>) $ every 4 ((/1.5) <$>) $ every 2 ((/1.666) <$>) $ every 3 ((/1.2) <$>) $ scale 0.2 0.9 $ sine1)
+
+
+
+-----------
+
+
+
+
+
+
+hush
+
+
+d2 $ jux rev $ every 2 (rev) . every 3 (brak) $ sound "{mt lt bd sn}%3"
+ |+| speed (((*4) <$>) $ every 4 ((*2) <$>) $ scale 0.2 0.9 $ sine1)
+ |+| shape "0.666"
+ |+| vowel (slow 16 "o u i")
+

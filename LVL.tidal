@@ -1,0 +1,40 @@
+bps 2
+
+d1 $ slow 2 . every 23 (|+| accelerate "-5") $ every 4 (|+| shape "0.5") $ spread' striate "1 2 8" . spread' iter "[4, 2, 1]" $ sound "kawai:10 kawai:9/2"
+--- |+| speed (every 2 ((*2) <$>) $ every 3 ((*3) <$>) $ every 7 ((*1.5) <$>) $ every 5 ((*2.5) <$>) $ "1")
+
+d2 $ every 5 ((0.25 <~)) $ every 2 (density 2) . every 4 (striate' 32 (0.1)) . iter 2 $ stack[sound "kawai:8", sound "house:7"]
+ |+| speed "0.5"
+ |+| shape "0.9"
+ |+| speed (every 2 ((*2) <$>) $ every 3 ((*3) <$>) $ every 7 ((*1.5) <$>) $ every 5 ((*2.5) <$>) $ "0.5")
+ |+| gain "0.8"
+
+d7 $ every 5 ((0.25 <~)) $ every 4 (slow 2 . iter 4) . striate 4 $ sound "kawai:6"
+
+---------
+
+cps 2
+
+d3 $ every 5 (iter 2) $ every 3 (rev) $ stack[sound "pluck:4 pluck:5/3", sound "~ ~ pluck:6/8"]
+ |+| speed (every 2 ((*2) <$>) $ every 3 ((*3) <$>) $ every 7 ((*1.5) <$>) $ every 5 ((*2.5) <$>) $ every 2 (rev) "0.5")
+ |+| gain "1.5"
+
+d4 $ every 5 ((0.25 <~)) $ every 4 (striate' 32 (0.1)) $ stack[slow 2 . striate 4 $ sound "mattel:2*2?", sound "mattel:5/4"]
+ |+| gain "1.2"
+
+d5 $ every 5 (density 2) . slow 4 $ sound "glitch:3 mattel:3*2?"
+
+d7 $ every 5 ((0.25 <~)) $ every 4 (slow 2 . iter 4) . striate 4 $ sound "kawai:6"
+
+
+---------
+
+d6 $ stack[density 2 $ sound "casio", every 4 (density 4) $ slow 4 . striate' 32 (0.1) $ sound "daytone:8"]
+ |+| speed (every 2 ((*2) <$>) $ every 3 ((*3) <$>) $ every 7 ((*1.5) <$>) $ every 5 ((*2.5) <$>) $ iter 2 "0.5 0.1 0.8")
+
+d7 $ every 3 (iter 2) . slow 2 $ sound "wurlitzer:2"
+
+
+
+
+hush

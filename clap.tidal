@@ -1,0 +1,38 @@
+cps 0.8
+
+b $ stack[
+drum "[cp ~ [~ cp]]",
+slowcat[
+drum "[[bd ~ [~ bd]], cl([1 2 3 2 3]/5,3)]",
+drum "[bd(2,2), cl([1 2 3 2 3]/5,3)]",
+drum "[bd(2,2), cl([1 2 3 2 3]/5,3)]",
+drum "[bd(2,2), cl([1 2 3 2 3]/5,3)]",
+drum "[bd(2,2), cl([1 2 3 2 3]/5,3)]",
+drum "[bd(2,2), cl([1 2 3 2 3]/5,3)]",
+drum "[bd(2,2), cl([1 2 3 2 3]/5,3)]"
+],
+drum "[ch ch/2] oh [~ [~ ch] ~]"
+] # scl "1" # scp "0.5"
+
+q $ stack[
+slowcat[
+note "57 [~ 57]",
+note "53 [~ 57]"
+],
+slowcat[
+note "~ 50 ~",
+note "~ 60 ~",
+note "~ 50 ~",
+slow 2 . stut 2 0 0.75 $ note "~ 60 ~",
+note "~ 50 ~"
+]
+] #lforate "0.8" #lfoint "0.1" # vel "1"
+
+m1 $ slow 1.2 $ stack[
+e 3 8 $ chrot [48] "1" [0,4,7,11,7]
+] # vel "0.75" # dur "1" # sustainpedal (scale 0 0.65 sine1)
+
+
+
+
+hush

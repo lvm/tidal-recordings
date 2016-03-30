@@ -1,0 +1,33 @@
+cps 0.25
+
+cps 0.6
+
+d1 $ spread' density "4 4 4 5 4" $ sound "made:3(2,8)"
+
+d2 $ sound "made:4(2,8)"
+
+d3 $ stut 2 0.5 (-0.1) . slow 1.25 . every 2 (|+| end "0.1") . within (0.25, 0.5) (rev) . density 3 . slowspread ($) [striate 2, chop 2] $ sound "mattel:2(2,1) mattel:5(2,1)"
+ |+| speed ("1 2")
+
+
+cps 0.25
+
+d3 $ every 4 ( within (0, 0.5) ((|+| sound "seqtom:5") . density 2 . (|+| end rand)) . within (0.5, 0.99) ((|+| sound "perc seqtom:5 peri") . density 2 . (|+| end rand)) ) . spread' density "2 2 2 2 2" $ sound "{house perc seqtom:5 peri}%5"
+
+d3 $ echo (7/4) $ sound "{house perc seqtom:5 peri}%5"
+ |+| speed (((0.666*) <$>) $ every 2 ((*2) <$>) $ every 4 ((*1.2) <$>) $ scale 0.5 0.5 $ sine1)
+ |+| end rand
+
+
+
+cps 0.35
+
+cps 0.5
+
+d4 $ echo (7/4) $ every 4 ( within (0, 0.5) ((|+| sound "visco:4") . (|+| end rand)) . within (0.5, 0.99) ((|+| sound "visco:5 glitch click*2") . density 2 . (|+| end rand)) ) . spread' density "2 2 2 2 2" $ sound "{mattel:2 bd glitch bd:8}%5"
+|+| end rand
+|+| speed (((0.666*) <$>) $ every 2 ((*2) <$>) $ every 4 ((*1.2) <$>) $ scale 1.2 2.5 $ sine1)
+|+| coarse "[6 1 16]/3"
+
+
+hush

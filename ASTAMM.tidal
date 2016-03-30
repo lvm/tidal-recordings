@@ -1,0 +1,101 @@
+bps $ 1.5
+
+d1 $ every 8 ((0.5 <~) . rev) $ stack[sound "[bass bass] [bass bass]", sound "bass {[bass bass] bass} bass bass", every 2 (|+| speed ((0.5+) <$> sine1)) $ density 2 $ sound $ samples "jvbass jvbass jvbass jvbass" $ run 4, echo (7/4) $ sound "sn bd sn*2 sn"]
+
+ |+| shape ((0.1+) <$> sine1)
+
+d2 $ every 9 (striate 2) $ every 8 (slow 2) $ every 4 (density 2) $ sound "dr dr dr dr dr dr"
+
+ |+| shape ((0.1+) <$> sine1)
+
+d3 $ every 15 (echo (7/4)) $ every 6 (echo (7/8)) $ stack[sound "house house/4 house mattel", sound "mattel:5 ~ mattel:5 house"]
+
+ |+| shape ((0.2+) <$> sine1)
+
+d4 $ striate 2 $ every 4 (density 2) $ every 5 (slow 4) $ (density 2 $ sound $ samples "gab:4 {gab:4 ifdrums}" $ iter 5 $ run 5)
+ |+| speed (every 4 (rev) "2.5 1.5 1.3 0.9 1")
+ |+| gain (slow 2 "0.9 0.8 0.7")
+
+
+---------------------------------------------------------------------------------------------------
+
+hush
+
+bps (140/60)
+
+solo $ d3 $ interlace (echo (4/4) $ every 3 (|+| speed ((0.9+) <$> saw1)) $ every 4 (|+| speed ((0.9+) <$> sine1)) $ every 5 (|+| vowel "o") $ every 6 (|+| vowel "u") $ stack[density 4 $ slow 2 $ smash 12 [9..15] $ striate' 32 (1.5) $ sound "{house*3 sn} ifdrums:1 house*4 fat909/4", every 4 (slow 2) $ density 8 $ sound $ samples "{jvbass:0*8 jvbass}" $ run 4, every 4 (striate 2) $ sound (samples "mattel cp:0*2" (iter 2 "1 5"))]) (density 2 $ every 4 ((|+| delay "0.5") .(|+| delayfeedback "0.5") .(|+| delaytime "0.5")) $ sound "bd sn sn {bd bd sn}")
+ |+| speed ((0.9+) <$> triwave1)
+
+
+---------------------------------------------------------------------------------------------------
+bps $ 1.5
+
+
+bps $ 2
+
+d1 $ every 3 (|+| speed ((0.7+) <$> sine1)) $ every 2 (|+| speed ((0.9+) <$> sine1)) $ stack[sound "bd bd ~ dr", sound "~ ~ sn/2 ~", sound "~ bass/3 bass ~ ", striate 2 $ sound "dr dr dr dr", sound "e e e e" |+| slow 32 (vowel "a e o")]
+ |+| speed ((0.8+) <$> sine1)
+
+d3 $ every 15 (echo (7/4)) $ every 6 (echo (7/8)) $ stack[sound "house:0 dr ~ mattel:0", sound "mattel:5 sn mattel:5 house"]
+
+
+d2 $ stack[sound "[bass bass] [bass bass]", slowspread ($) [density 2, rev, density 2 . (|+| speed ((0.9+) <$> iter 2 sine1))] $ sound "~ {[bass {sn dr/2}] house} cp/8 bass3", (slowspread ($) [striate 2, brak, density 4] $ every 4 (striate' 32 (0.1)) $ every 2 (slow 2) $ density 4 $ sound (samples "~ ~ future ~ flick/8 ~" (iter 2 $ run 4)) |+| vowel "o" |+| speed "0.5")]
+ |+| speed ((0.9+) <$> saw1)
+
+d2 $ echo (7/4) $ sound $ samples "e/3 {jvbass ~ future} bass:0" $ iter 2 $ run 3
+
+d3 $ slow 8 $ every 15 (echo (7/4)) $ every 6 (echo (7/8)) $ stack[sound "house ~ ~ mattel", sound "mattel:5 sn mattel:5 house"]
+
+
+solo $ d3 $ echo (4/4) $ every 3 (|+| speed ((0.9+) <$> saw1)) $ every 4 (|+| speed ((0.9+) <$> sine1)) $ every 5 (|+| vowel "o") $ every 6 (|+| vowel "u") $ echo (7/4) $ stack[sound "house/4 sn/4 dr*2", echo (7/8) $ stack[sound "fat909/8 bd sn sn ~ sn dr/8", echo (4/4) $ every 4 (density 2) $ sound "dr2 dr hh dr" |+| gain "0.7", sound "bass3 dr2/4 cp/8 bass3"]]
+ |+| speed ((0.8+) <$> sine1)
+
+
+
+bps $ 69/60
+
+d1 $ sound "house [house*4]/4 house ~"
+
+d2 $ every 4 (density 2) $ sound "dr dr dr dr dr dr dr dr"
+
+d4 $ density 1.5 $ sound "lsdj:2 dr2/4"
+
+d5 $ every 4 (density 2) $ density 2 $ sound "dr2 {lsdj:2 dr/4}"
+
+
+hush
+---------------------------------------------------------------------------------------------------
+
+bps $ 140/60
+
+d1 $ stack[sound "sn:2 sn", spread' slow "2 3 1" $ striate 2 $ sound "bd:1 ~ bd:2"]
+ |+| speed "0.5"
+
+solo $ d2 $ every 2 (juxcut rev . (|+| speed "1.5 1 0.5")) $ stack[sound "db:5*2 bd co:2 sn:4", every 4 ((density 2) . rev) $ density 2 $ sound "jvbass bass"]
+
+d3 $ every 4 (density 2) $ sound "dr dr dr dr dr dr dr dr"
+ |+| gain (slow 2 "0.9 0.7 0.8")
+
+
+---------------------------------------------------------------------------------------------------
+hush
+---------------------------------------------------------------------------------------------------
+
+bps 1.5
+
+d1 $ stack[sound "sn:2 sn", spread' slow "2 3 1" $ striate 2 $ sound "bd:1 ~ bd:2"]
+ |+| speed "0.5"
+
+d2 $ stack[every 2 (juxcut rev . (|+| speed "1.5 1 0.5")) $ every 4 ((density 2) . rev) $ density 2 $ sound "jvbass bass", striate 8 $ sound "jvbass"]
+ |+| gain "1.2"
+
+d3 $ slow 2 $ every 4 ((iter 4) . (density 2) . (|+| delay "0.9")) $ sound "~ mattel:4 [{bd, sn, bd}]/8 mattel:5"
+
+d4 $ every 4 (density 2) $ sound "dr dr dr dr dr dr dr dr"
+ |+| gain (slow 2 "0.8 0.5 0.7")
+
+d5 $ (every 13 (striate 2) $ density 4 $ sound $ samples "bass3 ~ ~ ~" $ iter 30 "1 2 3 4 5")
+ |+| speed ((0.9+) <$> triwave1)
+
+hush
+ 

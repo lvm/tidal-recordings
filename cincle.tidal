@@ -1,0 +1,120 @@
+cps 1
+
+let sw f = sometimes(within (0, 0.5) f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    sra n = revArc(0, n)
+
+cps 1
+
+foldEvery [3,5,7] (sw' 0 0.25 (0.5<~)) . 
+every 8 (sw' 0 0.25 (slow 2)) $
+foldEvery [3,5,7] (sw' 0 0.33 ((# std "0.1"))) . sw((# dch "0.1")) $ 
+
+-- cps 0.8
+
+cps 0.6
+
+b $ density 2 $  sw' 0 0.5 (# dch "0.1") $ sw (# hg "0.1") $ stack[
+,slowcat[
+     drum "[~ ~ ~ sn] [~ ~ sn ~]",
+     drum "[~ sn ~ ~] [~ ~ sn ~]",
+     drum "[~ ~ sn ~] [~ ~ ~ sn]",
+     drum "[~ ~ ~ sn] [~ ~ sn ~]"
+   ]
+
+
+b $ density 2 . sw (# hg "0.1") $ every 11 (sw(# std "1")) . sw' 0 0.33 ((#std "0.1")) . sw((# dch "0.1")) $ stack[
+   drum "[~ bd ~ ~ ] !"
+   ,
+   drum "ch(7,8)"
+   ,
+   slowcat[drum "~ ~ ~ ~ ~ ~ ~ oh", drum "oh(3,8)"]
+   ,
+   slowcat[drum "[~ ~ ~ cp] [ ~ ~ ~ cp]", drum "[~ ~ ~ cp] [ ~ ~ ~ cp]", drum "[cp(5,8)]/2"]
+   ,
+   append' (drum "[~ ~ ~ ~] [~ ~ ~ ~]") (drum "[~ ~ ~ ~] [~ ~ sn sn/2]")
+  ]
+|+| hg "0.75"
+|+| dch "0.25"
+|+| stt "0"
+|+| std "0"
+
+
+---
+
+
+b $ density 2 . sw' 0 0.15 (chop 2) . sw' 0 0.5 (# dch "0.1") $ sw (# hg "0.1") $ stack[
+   drum "[~ bd ~ ~] !"
+   ,
+   stack[
+     every 4 (sw' 0 0.25 (chop 2)) . density 2 $ drum "ch(3,4)"
+     ,
+     density 2 $ drum "~ ~ ~ oh"
+   ]
+   ,
+   drum "[cp/4 ~ ~ ~] [~ cp ~ ~]"
+   ]
+|+| hg "0.75"
+|+| dch "0.25"
+|+| stt "0"
+|+| std "0"
+
+
+let pqa = nm "[c4 ~ a3 ~] [g4 ~ b4 ~]"
+    pqb = nm "[c4 ~ a3 ~] [g4 ~ f4 ~]"
+    pqc = nm "[c4 ~ f3 ~] [g4 ~ d4 ~]"
+    pqd = nm "[c4 ~ f3 ~] [g4 ~ e4 ~]"
+    pqe = nm "[c4 ~ f3 ~] [g3 ~ f3 ~]"
+    pqx = nm "[c4 ~ c4 ~] [b3 ~ b3 ~]"
+
+-- q $ every 5 (sw (#decay "0.9")) . sw rev $ stack[
+--   slowcat[
+--      nm "c4(9,16)", nm "d4(9,16)", nm "e4(9,16)", nm "f4(9,16)",
+--      nm "g4(9,16)", nm "f4(9,16)", nm "e4(9,16)", nm "d4(9,16)"
+--      ]
+--     ,
+--   slowcat[
+--   slowcat[pqa, pqd, pqa, pqa, pqd, pqd, pqb],
+--   slowcat[pqa, pqb, pqc, pqc, pqb, pqx, pqa, pqc, pqd],
+--   slowcat[pqa, pqa, pqa, pqa, pqx, pqd, pqd, pqb],
+--   slowcat[pqb, pqb, pqb, pqx, pqc, pqd, pqc, pqc]
+--   ]
+-- ]
+-- |+| decay "[0.1 0.25 0.15]/3"
+-- |+| cutoffegint "[0.1 0.25 0.15]/3"
+-- |+| lfoint (scale 0.4 0.7 sine1)
+-- |+| attack (scale 0 0.05 sine1)
+
+
+q $ retrig $ every 2 (sw (#decay "0.9")) $ stack[
+  slowcat[
+     nm "c4(9,16)", nm "d4(9,16)", nm "e4(9,16)", nm "f4(9,16)"
+     ,
+     nm "g4(9,16)", nm "f4(9,16)", nm "e4(9,16)", nm "d4(9,16)"
+     ,
+     nm "c5(9,16)"
+     ,
+     nm "d4(9,16)", nm "e4(9,16)", nm "f4(9,16)", nm "g4(9,16)"
+     ,
+     nm "f4(9,16)", nm "e4(9,16)", nm "d4(9,16)"
+     --, nm "c4(9,16)"
+     --nm "d5(9,16)", nm "e5(9,16)", nm "f5(9,16)",nm "g5(9,16)", nm "f5(9,16)", nm "e5(9,16)", nm "d5(9,16)"
+     ]
+  --,pqe
+  ,slowcat[pqa,slowcat[pqb,pqc,pqd],pqx,pqa]
+]
+|+| decay "[0.1 0.25 0.15]/3"
+|+| cutoffegint "[0.1 0.25 0.15]/3"
+|+| lfoint (scale 0.4 0.7 sine1)
+|+| attack (scale 0 0.05 sine1)
+|+| bdur "0.05"
+
+
+
+
+|+| pitch2 (scale 0.25 0.75 sine1)
+
+
+hush

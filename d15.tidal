@@ -1,0 +1,60 @@
+cps 1
+
+bps (120/120)
+
+b $ echo (7/4) $ stack[
+drum "[bd bd/2] [[~ bd] !]",
+--drum "sn(3,8)",
+drum "cp(1,8,4)",
+density 2 $ drum "ch(2,2) !?",
+drum "oh(3,8,4)"
+]
+
+hush
+
+cps 0.666
+
+cps 1
+
+
+b $ drum "[[[~ bd] ~ ~ bd, sn*2 ~ sn ~, ~ cp ~ [~ cp/2], ch([8 4]/2,4), [oh(1,4,3)]], cr ag cl ht]"
+
+d1 $ jux rev . slow 2 . striate' 4 (0.25) $ sound "alphabet:20 alphabet:17" # up (scale 1 3 rand)
+
+q $ stack[
+  stack[note $ fit 3 [36, 38, 42] "0 1 ~ 2"],
+  chrot' [36, 38, 42] 12 "~ ~ 1 ~" [0, 3, 7]
+] # dur "0.25"
+
+
+q $ stack[
+note $ toMIDI $ fit 4 (words "f4 e2 c4") "[1 0 2 ~] [1 0 ~ 2]",
+chrot' [40,48] 12 "[~ ~ ~ 1] [~ ~ 1 ~]" [0,5,7]
+] # dur "0.05"
+
+q silence
+
+d1 $ every 2 brak $ ( density 3.5 $ sound $ samples "amencutup*2" $ iter 4 $ run 4 ) # up "2" # end rand # coarse (floor <$> scale 0 16 rand)
+
+
+d1 $ stack[
+sound $ samples  "[[shaker5 ~ shaker5 [[shaker5, sn]]] cp:2]" $ iter 2 $ run 2,
+(sound $ preplace (3,8) "[~ x] !" "amencutup:5*3 amencutup:4*2") # delay "0.25"
+]
+
+q $ stack[
+chrot' [48] 0 "1 ~ 1 1" [0,0,3,7]
+]
+
+
+
+solo $ b $ stack[
+drum  "[lt(3,8), cp]" # scp "0.5" # dt "1",
+drum $ preplace (3,8) "[~ x] !" "sn"
+]
+
+q silence
+
+d1 silence
+
+hush

@@ -1,0 +1,26 @@
+cps 0.25
+
+d2 $ stut 2 0.25 0.15 . striate 2 . chop 2 . gap 2 $ stack[
+palindrome . slow 2 . striate' 16 (1/50) $ (sound $ samples "pluck:4 pluck" $ spread (slow) [0.25, 0.5] $ iter 2 ("2 4"))
+]
+|+| speed (scale 0.5 0.9 $ squarewave1)
+|+| resonance "0.5"
+|+| cutoff "0.02"
+|+| bandq "0.8"
+|+| bandf "0.2"
+|+| gain "0.666"
+
+d3 $ juxcut rev . every 23 (gap 2 . chop 2) $ stack[
+stut 2 0.25 0.15 . striate' 2 (0.8) . within (0.33, 0.5666) (slowspread (chop) [4, 2, 2]) . gap 2 $ stack[
+every 3 (echo (7/4)) . palindrome $ (sound $ samples "amencutup ! ! ~ amencutup:3" $ spread (slow) [0.25, 0.5] $ iter 2 ("2 4"))
+]
+,
+sound "amencutup ! ! ! ~"
+]
+|+| speed (scale 0.666 0.7 $ triwave1)
+|+| resonance "0.666"
+|+| cutoff "[0.03 0.025 0.02 0.025]/4"
+|+| gain "0.8"
+
+ 
+hush

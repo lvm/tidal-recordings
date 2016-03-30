@@ -1,0 +1,194 @@
+cps 0.5
+
+-- BASIC ACID
+
+let dz = density 2 . zoom (0, 0.5)
+
+let dz2 = density 2 . zoom (0.5, 0.9)
+
+let stdt = (# std "0.45") . (# stt "0.25")
+
+let e3 = every 3 (within (0.5, 0.8) stdt)
+let e11 = every 11 (within (0, 0.2) (brak))
+let e7 = every 7 (within (0, 0.5) (density 2 . dz))
+
+let chp = drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ~ oh ~]"
+
+b1 $ stack[
+ slowcat[
+ drum "[~ bd ~ ~] [~ ~ ~ ~] [~ ~ bd ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ ~ ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ ~ ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ bd ~ ~] [~ ~ ~ ~] [bd ~ ~ ~]"
+ ,
+ drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [bd ~ ~ ~]"
+ ]
+ ,
+ sometimes ((# dt "0.5")) $ drum "[ht ~ ~] [~ ~ ~ ~] [~ lt ~ ~] [~ cr ~ lt]"
+ |+| dt "0.9"
+ |+| scr "0.75"
+ ,
+ drum "[~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~] [~ cp ~ cp?]"
+ |+| scp "0.6"
+ ,
+ foldEvery [3,5] dz . every 2 dz $ stack[
+ drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ~ oh ~]"
+ ,
+ drum "[cl ~ cl ~] [cl ~ cl ~] [cl ~ cl ~] [cl ~ cl ~]"
+ |+| lcl "0.9"
+ |+| scl (scale 0.8 0.95 $ every 3 (sometimes rev) $ superimpose (density 2) $ sine1)
+ ]
+ |+| dch "0.5"
+ |+| dhg "0.75"
+ |+| lch "0.33"
+ ]
+ |+| std "0"
+ |+| stt "0"
+
+
+-----
+
+cps 0.35
+
+-- BRKL CUBM
+
+let stdt255 = ((# stt "0.5") . (# std "0.5"))
+
+b1 $ every 5 (iter 4) . whenmod 16 8 (foldEvery [3,5,7] (smash 2 [3]) . every 2 (slow 2 . chop 3)) $ stack[
+   sometimes (echo (1/4)) $ stack[
+      drum "[bd ~ ~] [~ ~ ~ ~ ~] [bd ~ ~ ~] [~ ~ ~ ~]"
+      ,
+      sometimes stdt255 $ drum "[~ ~ ~ cr] [~ ~ ~ ~] [~ ~ ~ cr] [ ~ ~ cr/2 ~]"
+      ,
+      drum "[~ ~ cp ~] [~ ~ ~ ~] [~ ~ ~ ~] [ ~ ag ~ ~]"
+   ],
+   sometimes (within (0.25, 0.5) (chop 2) ) $ rev $ drum "sn(9,16)"
+   ,
+   drum "ch(12,16)"
+   ,
+   drum "oh/2"
+   ]
+|+| scr "0.7"
+|+| sag "0.99"
+|+| stt "0"
+|+| std "0"
+
+b1 silence
+
+----
+
+cps 0.5
+
+b1 $ retrig $ stack[
+ stack[
+ every 16 (# lsn "0") $ drum "[~ ~ sn ~] [~ ~ sn ~] [sn? ~ sn ~] [sn ~ sn ~]"
+ |+| lsn "0.7"
+ ],
+ stack[
+ every 18 (# lbd "0") $ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~]"
+ |+| lbd "0.9"
+ ,
+ foldEvery [8,9] (# lcp "0") $ drum "[~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~] [~ cp ~ cp?]"
+ |+| lcp "0.9"
+ |+| scp "0.6"
+ ,
+ foldEvery [3,5] dz . every 2 dz $ stack[
+ drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch]"
+ ,
+ drum "[~ ~ ~ oh] [~ ~ ~ oh] [~ ~  ~ oh] [~ ~ ~ oh]"
+ |+| lcl "0.9"
+ |+| scl (scale 0.8 0.95 $ every 3 (sometimes rev) $ superimpose (density 2) $ sine1)
+ ]
+ |+| dch "0.5"
+ |+| doh "0.25"
+ |+| dhg "0.75"
+ |+| lch "0.33"
+ ]
+ ]
+ |+| std "0"
+ |+| stt "0"
+
+b1 silence
+
+
+----
+
+
+b1 $ every 11 (iter 16 . within (0, 0.5) (brak)) . within (0, 0.33) (chop 2) . smash 2 [3] $ stack[
+ stack[
+ drum "[~ ~ sn ~] [~ ~ sn ~] [sn? ~ sn ~] [sn ~ sn ~]"
+ |+| lsn "0.7"
+ ],
+ stack[
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~]"
+ |+| lbd "0.9"
+ ,
+ drum "[~ ~ ~ ~] [~ cp ~ ~] [~ ~ ~ ~] [~ cp ~ cp?]"
+ |+| lcp "0.9"
+ |+| scp "0.6"
+ ,
+ foldEvery [3,5] dz . every 2 dz $ stack[
+ drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch]"
+ ,
+ drum "[~ ~ ~ oh] [~ ~ ~ oh] [~ ~  ~ oh] [~ ~ ~ oh]"
+ |+| lcl "0.9"
+ |+| scl (scale 0.8 0.95 $ every 3 (sometimes rev) $ superimpose (density 2) $ sine1)
+ ]
+ |+| dch "0.5"
+ |+| doh "0.25"
+ |+| dhg "0.75"
+ |+| lch "0.33"
+ ]
+ ]
+ |+| std (scale 0.1 0.9 $ sine1)
+ |+| stt "0"
+
+----
+
+b1 $ stack[
+ slowcat[
+ drum "[~ ~ sn ~] [~ ~ sn ~] [sn? ~ sn ~] [sn ~ sn ~]"
+ ,
+ drum "sn(6,16)"
+ ,
+ drum "sn(9,16)"
+ ]
+ |+| lsn "0.7"
+ ,
+ stack[
+ drum "[~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~] [~ bd ~ ~]"
+ |+| lbd "0.9"
+ ,
+ foldEvery [3,5] dz . every 2 dz $ stack[
+ drum "[ch ch ch ch] [ch ch ch ch] [ch ch ch ch] [ch ch ch ch]"
+ ,
+ drum "[~ ~ ~ oh] [~ ~ ~ oh] [~ ~  ~ oh] [~ ~ ~ oh]"
+ |+| lcl "0.9"
+ |+| scl (scale 0.8 0.95 $ every 3 (sometimes rev) $ superimpose (density 2) $ sine1)
+ ]
+ |+| dch "0.5"
+ |+| doh "0.25"
+ |+| dhg "0.75"
+ |+| lch "0.33"
+ ]
+ ]
+ |+| std "0"
+ |+| stt "0"
+
+b1 silence
+
+---
+

@@ -1,0 +1,35 @@
+cps 1
+
+let fill n q = within (q, q+0.25) (density n)
+
+let cill n q = within (q, q+0.25) (chop n)
+
+let ch q w e = chop q . slow (w+2) . striate (e*2)
+
+let db x y = x*2 + y*x
+
+let rcbb q w e r =  (|+| resonance q) . (|+| cutoff w) . (|+| bandf e) .(|+| bandq r)
+
+let ddd d = (|+| delay d) . (|+| delaytime d) . (|+| delayfeedback d)
+
+let tt t = echo (2/t)
+
+let t t = echo (7/t)
+
+let js = juxcut (|+| coarse "3") . superimpose ((|+| speed "[1 1.25 1.23 1.2 1.19]/5"))
+
+let irand i = (floor . (*i)) <$> rand
+
+
+
+d1 $ gap 2 . density 2 $ sound $ samples "jvbass" $ iter 8 $ run 8
+
+
+
+d1 $ juxBy 0 (|+| coarse "2") . slow 4 . striate' 512 (0.5) $ sound "wcd"
+|+| cut "1"
+|+| speed (every 2 ((0.1-) <$>) "1")
+|+| gain (scale 0.5 0.7 $ squarewave1)
+
+
+hush

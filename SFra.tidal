@@ -1,0 +1,10 @@
+cps 1
+
+
+
+d1 $ sound "rapman visco:5 rapman(3,8)"
+
+d2 $ stut 4 0.9 0.5 $ sound "sf "
+ |+| speed "0.5"
+
+hush

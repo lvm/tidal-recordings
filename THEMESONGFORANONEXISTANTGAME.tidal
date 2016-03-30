@@ -1,0 +1,132 @@
+----------------------------------------------------------------
+bps (140/60)
+----------------------------------------------------------------
+
+hush
+
+-- d1 $ echo (7/8) $ every 3 (echo (7/4)) $ every 3 (|+| end "0.3") $ every 2 (|+| end "0.1") $ sound "ifdrums ~ ~ ~"
+--  |+| end "0.2"
+--  |+| speed "1.5"
+
+d1 $ echo (7/8) $ every 3 (echo (7/4)) $ every 4 (|+| end "0.3") $ every 2 (|+| end "0.1") $ every 5 ((0.25 ~>)) $ every 6 ((0.25 <~)) $ interlace (sound "ifdrums ~ ifdrums*2/4 ~") (sound "cp/4")
+ |+| end "0.2"
+ |+| speed (slow 2 "1.5 2")
+
+ |+| gain "0.0"
+
+d2 $ jux (|+| speed "1.0") $ echo (7/4) $ every 16 (echo (7/8)) $ density 2 $ sound (samples "jvbass ~" (iter 3 "0 2 4 5"))
+ |+| gain (slow 32 "1.3 1.1 1.2")
+
+d3 $ echo (7/4) $ every 3 (echo (7/8)) $ slow 2 $ stack[sound "malescream:6/4 ~ ~ ~", sound "~ ~ ~ malescream:20/8", sound "~ ~ malescream:19/16 ~ ~"]
+ |+| gain "0.9"
+
+d4 $ echo (7/4) $ every 3 (echo (7/8)) $ every 32 ((|+| delay "0.2") . (|+| delayfeedback "0.2") . (|+| delaytime "0.2")) $ density 2 $ interlace (sound (samples "fat909 ~" (iter 3 "0 2 4 5"))) (sound "~")
+ |+| begin "0.4"
+
+ |+| gain "0.0" --(slow 32 "0.8 0.9 0.7")
+
+d5 silence
+d5 $ echo (7/4) $ every 3 (echo (7/8)) $ sound (samples "glitch/2 glitch2*2" (iter 4 "0 1 2 3 4 5"))
+ |+| accelerate "15 20 10"
+ |+| gain "1.1"
+
+hush
+
+
+-- d3 $ echo (7/8) $ every 3 (echo (5/24)) $ every 3 ((|+| speed "4.5")) $ every 2 ((|+| speed "4") . jux ( rev )) $ density 2 $ (sound (samples "jvbass ~" (iter 3 "0 2 4 5")) |+| speed "5")
+--  |+| gain "1"
+--  |+| speed "3 5 4"
+--  |+| delay "0.1"
+--  |+| delayfeedback "0.1"
+--  |+| delaytime "0.1"
+
+
+----------------------------------------------------------------
+hush
+----------------------------------------------------------------
+
+d1 $ echo (7/8) $ every 3 (echo (7/4)) $ every 4 (|+| end "0.3") $ every 2 (|+| end "0.1") $ every 5 ((0.25 ~>)) $ every 6 ((0.25 <~)) $ interlace (sound "ifdrums ~ ifdrums*2/4 ~") (sound "cp/4")
+ |+| end "0.2"
+ |+| speed (slow 2 "1.5 2")
+ |+| gain "1.15"
+
+d2 $ jux (|+| speed "1.0") $ echo (7/4) $ every 16 (echo (7/8)) $ density 2 $ sound (samples "jvbass ~" (iter 3 "0 2 4 5"))
+ |+| gain (slow 32 "1.3 1.1 1.2")
+ |+| gain "1.2"
+
+d3 $ echo (7/4) $ every 3 (echo (7/8)) $ every 8 ((|+| delay "0.2") . (|+| delayfeedback "0.9") . (|+| delaytime "0.2")) $ density 2 $ interlace (sound (samples "fat909 ~" (iter 3 "0 2 4 5"))) (sound "~")
+ |+| begin "0.4"
+ |+| gain (slow 32 "0.8 0.9 0.7")
+
+
+----------------------------------------------------------------
+hush
+----------------------------------------------------------------
+bps (140/60)
+----------------------------------------------------------------
+-- v1
+solo $ d1 $ echo (7/4) $ every 32 (echo (1/2)) $ every 32 (|+| accelerate "1 -15 1") $ every 6 ((slow 4) . (|+| speed "0.9")) $ every 24 ((|+| begin rand) . (|+| speed "1.2") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev) $ slowspread ($) [(|+| speed "0.8"), slow 2, striate 2, jux (iter 2)] $ stack[sound "ifdrums*2 fat909:3 fat909:5 dr2*4", sound "hand*8/4 ~", sound "~ malescream:6/2 ~", interlace (every 5 (|+| slow 2 (vowel "i a")) $ sound "sn ~ malescream:9 bd") (sound (samples "bass2 ~ ~" (slow 2 "2 3")) |+| gain "0.8"), (every 4 (rev) $ slowspread ($) [(|+| speed "5.8"), slow 16, striate 2, jux (iter 8)] $ sound "dr2:1 ~ [dr2*8/2]/2 dr2"), (every 16 (echo (7/8)) $ density 2 $ sound (samples "jvbass ~" (iter 3 "0 2 4 5")) |+| gain "0.8")] |+| speed "1.5" |+| delay "0.09" |+| delayfeedback "0.2" |+| delaytime "0.2"
+-- v2
+solo $ d1 $ echo (7/4) $ every 32 (echo (1/2)) $  every 6 ((slow 4) . (|+| speed "0.9")) $ every 24 ((|+| begin rand) . (|+| speed "1.2") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev) $ slowspread ($) [(|+| speed "0.8"), slow 2, striate 2, jux (iter 2)] $ stack[sound "ifdrums*2 fat909:3 [fat909:5, dr2*4]/2 ~", sound "hand*8/4 ~", sound "~ malescream:6/2 ~", interlace (every 5 (|+| slow 2 (vowel "i a")) $ sound "sn ~ malescream:9 bd") (sound (samples "bass2 ~ ~" (iter 2 "2 3")) |+| gain "0.8")] |+| speed "1" |+| delay "0.09" |+| delayfeedback "0.2" |+| delaytime "0.2" |+| pan (slow 32 triwave1)
+
+----------------------------------------------------------------
+
+hush
+
+
+d1 $ echo (7/4) $ every 32 (echo (1/2)) $ every 6 ((slow 4) . (|+| speed "0.9")) $ every 24 (brak . (|+| speed "1.2") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev . (striate' 32 (0.1))) $ slowspread ($) [(|+| speed "1.8"), slow 2, striate 2, jux (iter 2)] $ stack[every 2 (striate' 2 (0.1)) $ sound (samples "dr ~ ~" (iter 3 "1 2 3")), sound "hand*16/4 ~"]
+
+d2 $ echo (7/4) $ every 32 (echo (1/2)) $ every 6 ((slow 4) . (|+| speed "0.9")) $ every 24 (brak . (|+| speed "1.2") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev . (striate' 32 (0.1))) $ slowspread ($) [(|+| speed "2.8"), slow 2, striate 2, jux (iter 2)] $ stack[every 2 (striate' 2 (0.1)) $ every 4 ((slow 8) . (striate' 4 (0.1))) $ sound "e*16/2", every 2 (striate' 2 (0.1)) $ every 4 (rev) $ sound "fat909:3/3 ifdrums fat909:5/2 jvbass"]
+
+d3 $ echo (7/4) $ every 32 (echo (1/2)) $ every 6 ((slow 2) . (|+| speed "0.9")) $ every 24 (brak . (|+| speed "1.2") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev . (striate' 32 (0.1))) $ slowspread ($) [(|+| speed "0.8"), slow 2, striate 2, jux (iter 2)] $ stack[every 2 (striate' 2 (0.1)) $ every 4 ((slow 8) . (striate' 4 (0.1))) $ sound (samples "speech hmm*4/8" (iter 2 "2 3")), every 2 (striate' 2 (0.1)) $ every 4 (rev) $ sound "~ glitch2:2/4"]
+
+
+----------------------------------------------------------------
+
+solo $ d3 $ echo (7/4) $ every 32 (echo (1/2)) $ every 6 ((slow 4) . (|+| speed "0.9")) $ every 24 (brak . (|+| speed "1.2") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev . (striate' 32 (0.1))) $ slowspread ($) [(|+| speed "0.8"), slow 2, striate 2, jux (iter 2)] $ sound "~ voodoo:3 ~"
+
+d3 silence
+
+d3 $ echo (7/4) $ every 32 (echo (1/2)) $ every 6 ((slow 4) . (|+| speed "0.9")) $ every 24 (brak . (|+| speed "1.2") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev . (striate' 32 (0.1))) $ slowspread ($) [(|+| speed "0.8"), slow 2, striate 2, jux (iter 2)] $ interlace (every 5 (|+| slow 2 (vowel "i a")) $ sound "sn ~ ~ bd") (density 5 $ sound (samples "fat909 ~ ~" (slow 2 "0 2 0")))
+
+-- d4 $ echo (7/4) $ every 32 (echo (1/2)) $ every 6 ((slow 4) . (|+| speed "0.9")) $ every 24 (brak . (|+| speed "1.2") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev . (striate' 32 (0.1))) $ slowspread ($) [(|+| speed "0.8"), slow 2, striate 2, jux (iter 2)] $ (every 4 (rev) $ slowspread ($) [(|+| speed "5.8"), slow 16, striate 2, jux (iter 8)] $ sound "dr2:1 ~ [dr2*8/2]/2 dr2")
+--  |+| speed "1.5"
+
+-- d4 $ echo (7/4) $ every 32 (echo (1/2)) $ every 6 ((slow 4) . (|+| speed "0.9")) $ every 24 (brak . (|+| speed "1.2") . rev) $ every 16 ((|+| accelerate "2 0 4 8") . (density 2) . rev . (striate' 32 (0.1))) $ slowspread ($) [(|+| speed "0.8"), slow 2, striate 2, jux (iter 2)] $ ( (every 16 (echo (7/8)) $ density 2 $ sound (samples "jvbass ~" (iter 3 "0 2 4 5")))]
+--  |+| speed "1.5"
+
+
+
+
+
+
+
+-- d4 $ echo (1/2) $ echo (1/2) $ every 8 ((|+| delay "0.5") . (|+| delayfeedback "0.5") . ( |+| delaytime "0.5")) $ density 2 $ smash 2 [4..6] $ striate 4 $ sound (samples "303 ~" (iter 3 "2 0 5"))
+--  |+| end "0.1"
+--  |+| shape triwave1
+
+----------------------------------------------------------------
+hush
+----------------------------------------------------------------
+
+d1 $ echo (7/8) $ every 3 (echo (7/4)) $ every 4 (|+| end "0.3") $ every 2 (|+| end "0.1") $ every 5 ((0.25 ~>)) $ every 6 ((0.25 <~)) $ interlace (sound "ifdrums ~ ~ ~") (sound "cp")
+ |+| end "0.2"
+ |+| speed (slow 2 "1.5 2")
+ |+| gain "1"
+
+d2 $ echo (7/4) $ density 4 $ stack[sound (samples "jvbass ~" (iter 3 "0 2 4 5")), slow 2 $ interlace (sound "audience/4 ~") (sound "glitch:4*8/3")]
+ |+| end "0.3"
+ |+| gain (slow 2 "0.5 0.7")
+
+d3 $ echo (7/8) $ every 3 (echo (7/4)) $ every 2 ((|+| speed "4") . (|+| shape "0.2")) $ every 4 (rev) $ density 2 $ (sound (samples "dr2 ~" (iter 4 "2 0 1 4")) |+| speed "1")
+ |+| end "0.6"
+ |+| gain (slow 2 "0.7 0.8")
+ |+| speed (slow 2 "1.5 2")
+
+d4 $ echo (7/8) $ every 3 (echo (7/4)) $ every 2 ((|+| end "0.4") . (slow 2)) $ every 4 ((|+| end "0.2")) $ density 2 $ striate' 2 (0.3) $ sound "jvbass:0 ~"
+ |+| gain "1.1"
+ |+| speed (slow 8 "1.5 0.1 2")
+
+----------------------------------------------------------------
+hush
+----------------------------------------------------------------

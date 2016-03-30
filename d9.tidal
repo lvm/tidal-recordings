@@ -1,0 +1,35 @@
+cps 0.6
+
+m5 $ stack[
+  chrot' [42,37,38,35,30] 12 "1(5,8)" [0,3,7]
+] # dur "1" # vel "0.25"
+
+m4 $ stack[
+  chrot' [42,37,38,35,30] 12 "1(5,8)" [0,3,7]
+] # dur "1" # vel "0.2"
+
+q $ stut 2 0 0.75 $ stack[
+  chrot' [42,37,38,35,30] 0 "1([5 5 5 6]/4,8)" [0,5,7]
+] # dur "0.25" # vel "0.2" # decay "1"
+
+b $ sometimes brak $ stack[
+sometimes (stut 2 0 0.75) . density 2 $ drum "~ oh",
+drum "bd cp",
+drum "ch(6,8)"
+] # dch "0.01" # scp "0.5"
+
+
+
+hush
+
+
+
+
+
+m5 $ stack[
+  chrot' [42,37,38,35,30] 12 "1(5,8)" [0,3,7]
+] # dur "1" # vel "0.25"
+
+q $ stack[
+  chrot' [42,37,38,35,30] 12 "[1(5,8)]" [0, 5, 3]
+] # dur "0.25" # vel "0.5" # decay "1"

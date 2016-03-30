@@ -1,0 +1,109 @@
+bps $ 0.8
+
+d1 $ every 8 (|+| accelerate "-1") $ stack[every 4 (((0.5) <~)) $ (every 4 (rev) $ density 8 $ striate 32 $ (sound $ samples "wurlitzer serge*2?" $ iter 10 $ run 10) |+| speed "0.5"), sound "{bd bd bd sn} sn*2?", sound "~ watford:3? {house*2}? house", sound "dr dr*2 dr*2? dr"]
+
+d2 $ every 7 (|+| speed "0.8") $ every 8 (|+| gain "0") $ striate 2 $ stack[sound "less:4*2? seqdru?", sound "jvbass*2? bass", sound "watford:2? ~"]
+ |+| speed ((0.5+) <$> "0.8")
+ |+| gain "0.9"
+
+-- d1 alt
+d1 $ stack[every 4 (((0.5) <~)) $ (every 4 (rev) $ density 8 $ striate 32 $ (sound $ samples "wurlitzer ~" $ iter 10 $ run 10) |+| speed "0.5"), every 4 (((0.5) <~)) $ (every 4 (rev) $ density 8 $ striate 32 $ (sound $ samples "~ serge*2?" $ iter 6 $ run 5) |+| speed "0.5"), every 2 (slow 2 . striate 2) $ sound "minipops:4*2 dr*2?", sound "{bd bd bd sn} sn*2?", sound "~ watford:3? {house*2}? house", sound "dr dr*2 dr*2? dr"]
+
+
+
+
+-------
+
+
+
+-- d1 alt
+d1 $ slow 2 $ stack[every 2 (slow 2 . striate 2) $ sound "minipops:4*2 dr*2?", sound "{bd bd bd sn} sn*2?", sound "~ watford:3? {house*2}? house", sound "dr dr*2 dr*2? dr"]
+
+d2 $ every 8 (|+| gain "0") $ striate 2 $ sound "jvbass*2? bass"
+ |+| speed ((0.5+) <$> "0.8")
+
+-------
+
+
+hush
+
+
+
+
+
+
+
+-- d1 $ stut 8 0.1 1.0 $ stack[every 4 (((0.5) <~)) $ (every 4 (rev) $ density 8 $ striate 32 $ (sound $ samples "wurlitzer ~" $ iter 10 $ run 10) |+| speed "0.5"), sound "{bd bd bd sn} sn*2?", sound "~ watford:3? {house*2}? house", sound "dr dr*2 dr*2? dr"]
+
+
+-- d2 $ striate 2 $ stack[sound "less:4*2? less:3*2?", sound "jvbass*2? bass"]
+--  |+| speed ((0.5+) <$> "0.8")
+
+
+solo $ d3 $ sound "wurlitzer:4"
+
+hush
+
+-------
+
+
+d3 $ spin 8 $ every 2 (rev) $ stack[sound "~ ~ ~ ~", density 4 $ striate 32 $ sound "dr dr/8 ~ dr2"]
+ |+| speed "0.9"
+ |+| gain "0.8"
+
+d3 $ slow 2 $ density 2 $ stack[sound "~ ~ ~ ~", density 4 $ striate 32 $ sound "dr dr/8 ~ dr2"]
+ |+| speed "0.9"
+
+-------
+
+
+
+d1 $ every 4 (rev) $ density 8 $ striate 32 $ (sound $ samples "wurlitzer serge*2?" $ iter 10 $ run 10)
+ |+| speed "0.5"
+
+
+d1 $ density 2 $ stack[sound "~ watford:2 ~ ~", density 4 $ striate 32 $ sound "dr dr/8 ~ dr2"]
+ |+| speed "0.9"
+
+
+d1 $ spin 8 $ every 2 (rev) $ stack[sound "~ ~ ~ ~", density 4 $ striate 32 $ sound "dr dr/8 ~ dr2"]
+ |+| speed "0.9"
+
+
+
+d1 $ density 2 $ stack[sound "~ watford:2 ~ ~", sound "~ ~ ~ ~"]
+ |+| speed "0.9"
+
+
+
+d3 $ every 4 (rev) $ density 8 $ striate 32 $ sound $ samples "~ serge*2?" $ iter 10 $ run 10
+
+d4 $ density 8 $ striate 4 $ sound $ samples "wurlitzer*2 wurlitzer:2" $ iter 10 $ run 10
+
+d5 $ echo (7/4) $ (sound $ samples "deepsky:3*2? deepsky deepsky:2 deepsky:1/2" $ iter 4 $ run 4)
+ |+| speed "3"
+
+
+
+
+
+hush
+
+
+
+
+
+
+
+bps 1.5
+
+d5 $ stut 2 0.5 0.1 $ stack[echo (7/4) $ sound $ samples "wurlitzer serge*4?" $ iter 5 $ run 5, sound "akai:1/2 akai:1*2?", sound "e*2 mouth"]
+ |+| delay "0.1"
+ |+| delayfeedback "0.8"
+ |+| delaytime "0.1"
+
+
+d5 $ stack[echo (7/4) $ sound $ samples "wurlitzer serge*4?" $ iter 5 $ run 5, sound "akai:1/2 akai:1*2?", sound "e*2 mouth"]
+ |+| delay "0.1"
+ |+| delayfeedback "0.8"
+ |+| delaytime "0.1"

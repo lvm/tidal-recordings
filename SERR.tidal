@@ -1,0 +1,50 @@
+cps 0.6
+
+
+-- d2 $ slow 2 . every 5 (rev) $ stack[
+-- every 2 (slow 2) . every 3 (striate 2) . striate 2 $ sound "ae ae:2? auto:5"
+-- |+| speed "0.8"
+-- |+| crush "5"
+-- ,
+-- superimpose (|+| coarse "11") . every 8 (density 2) $ sound "[auto:4 ! !, auto:2 auto:6/2]"
+-- ]
+
+
+d2 silence
+
+cps 0.5
+
+d1 $ stack[
+sound "sea"
+]
+|+| speed (scale 0.5 1 $ sine1)
+|+| cut "1"
+
+d3 $ every 4 (slow 2) . superimpose (|+| coarse "23") . every 5 rev . every 10 (within (0, 0.5) (chop 2)) $ stack[
+within (0, 0.25) (rev) . superimpose (|+| coarse "11") $ sound "rapman:2 ~ auto:2 auto:5?"
+|+| speed "[0.9 0.666 0.8]/3"
+,
+sound "ae ~ ae:6"
+|+| speed "[0.9 0.666 0.8]/3"
+,
+within (0, 0.5) (chop 4) . slow 2 . striate 2 $ sound "ch ! ch"
+,
+every 4 (jux rev) . density 2 $ sound "d ~ peri"
+]
+
+
+hush
+
+
+cps 0.3
+
+d3 $ every 2 rev . every 4 rev . within (0, 0.25) (stut 8 0.2 0.2) . superimpose (|+| coarse "23") $ weave 4 (shape $ scale 0.2 0.23 $ sine1) [
+superimpose (striate' 2 (0.5)) . density 3 $ (sound $ samples "bd8 ~ sd8:1 sd8:0" $ iter 2 $ run 2)
+]
+|+| speed "[0.666 0.5]/2"
+
+d1 $ every 8 ((|+|unit "c") . (|+| speed "0.5")) . every 3 (rev) . every 2 (slow 2) . density 4 . stut 2 0.5 0.1 $ sound "metal metal:4 metal:3"
+|+| speed (((*2) <$>) $ every 8 ((*0.666) <$>) $ every 2 ((*0.2) <$>) $ every 7 ((*0.5) <$>) $ every 4 ((/2) <$>) $ every 14 ((*0.5) <$>) $ iter 4 "1 2 0.5 1 0.7 0.5 0.2 9")
+|+| gain sine1
+
+

@@ -1,0 +1,80 @@
+hush
+
+bps $ 140/60
+
+d1 $ rev $ every 12 ((|+| accelerate "1 -5 1") . (|+| delay "0.9") . (|+| delayfeedback "0.9") . (|+| delaytime "0.9")) $ every 4 ((0.25 <~)) $ sound "bd sn hh [cp/4 hh bd]/4 sn bd {sn bd [sn bd] bd}/2"
+ |+| gain "1"
+
+d2 $ slow 2 $ every 2 (rev) $ sound "dr dr dr2 fat909/2 [cp/4 dr*8 dr2 dr]/4 dr2 dr2*2 dr {dr2 dr [dr2 dr] dr dr}/3"
+ |+| gain "1"
+
+
+-- 000000000000000000000000000000000000000000000000000000000000
+
+d1 silence
+d2 silence
+
+d3 $ every 4 (density 2) $ every 5 ((|+| accelerate "1 -1") . (|+| vowel "o i")) $ (slow 2 $ striate 2 $ every 2 (|+| speed "2") $ every 3 (|+| speed "3") $ every 4 (|+| speed "4") $ sound $ samples "dr*4" $ iter 5 $ run 5)
+ |+| speed ((0.4+) <$> sine1)
+ |+| gain "1.5"
+
+d4 $ echo (7/4) $ density 4 $ every 2 ((0.33 ~>) . rev) $ every 3 ((0.5 <~) . rev) $ sound (samples "bd*3 [bd sn]*1/3 [bd*12 bd*6]/3 fat909" "[2 0 4]/3")
+  |+| end rand
+  |+| gain "1.3"
+
+
+-- 000000000000000000000000000000000000000000000000000000000000
+
+
+d3 silence
+d4 silence
+
+
+d3 $ every 4 (density 2) $ every 5 ((|+| accelerate "1 -10") . (|+| vowel "o i")) $ (slow 2 $ striate 2 $ every 2 (|+| speed "2") $ every 3 (|+| speed "3") $ every 4 (|+| speed "4") $ sound $ samples "can*4" $ iter 5 $ run 5)
+ |+| speed ((0.4+) <$> sine1)
+ |+| gain "1.5"
+
+d5 $ every 12 ((|+| accelerate "1 -5 1") . (|+| delay "0.9") . (|+| delayfeedback "0.9") . (|+| delaytime "0.9")) $ (every 4 ((|+| vowel "a i") . (0.33 <~) . (brak) . (rev)) $ (every 4 ((|+| vowel "u o") . (0.25 <~) . rev) $ slow 2 $ striate 8 $ sound "breaks125"))
+ |+| speed ((0.5+) <$> sine1)
+ |+| gain "0.9"
+
+d6 silence
+
+d6 $ slow 6 $ sound "spoken:1 spoken:1 spoken:1"
+ |+| begin "0.1 0.4 0.81"
+ |+| end "0.201 0.42 0.9"
+ |+| gain "1.1 1 1.2 1.16"
+
+
+d6 $ slow 8 $ sound "spoken:3"
+ |+| gain "1.2"
+
+d6 $ slow 16 $ sound "spoken:1"
+ |+| gain "1.2"
+
+d6 $ slow 8 $ sound "alphabet:24"
+ |+| gain "1.5"
+
+d6 $ slow 8 $ sound "musicsux"
+ |+| gain "1.2"
+
+d6 $ slow 8 $ sound "musicsux:1"
+ |+| gain "1.5"
+
+d6 $ slow 8 $ sound "musicsux:2"
+ |+| gain "1.5"
+
+d6 $ slow 8 $ sound "musicsux:3"
+ |+| gain "1.5"
+
+d6 $ slow 8 $ sound "musicsux:4"
+ |+| gain "1.5"
+
+d6 $ slow 8 $ sound "spoken"
+ |+| gain "1.5"
+
+
+d6 silence
+
+
+hush

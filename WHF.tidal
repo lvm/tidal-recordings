@@ -1,0 +1,41 @@
+cps 0.3666
+
+let t t = echo (7/t)
+
+d3 $ every 5 (within (0, 0.123) (|+| vowel "o")) . every 4 (within (0, 0.12) (|+| coarse "23")) . juxBy 0 ((|+| speed "[0.5 0.666]") . foldEvery [13, 15, 17] (|+| speed "0.25")) . every 9 (within (0, 0.15) (|+| resonance "0.666")) . spread' t "2 4 2 2 2"  . striate' 2 (0.8) $ stack[
+(sound $ samples "[amencutup ! !, ~ amencutup:3]" $ slow 0.05 $ iter 2 ("2 4"))
+,
+sound "v:6 ! ! ~ ~"
+,
+sound "~ ~ ~ v:3 v:3?"
+]
+|+| speed (scale 0.666 0.7 $ triwave1)
+|+| resonance "0.0666"
+|+| cutoff (slow 0.25 $ iter 4 $ "0.013 0.025 0.012 0.05")
+|+| coarse "[8 7 13 6 7 5 2 8]/8"
+
+
+hush
+
+----
+
+d1 $ stack[
+echo (3/2) $ density 2 . stut 4 0.5 0.5 $ (sound $ samples "v:6 jvbass" $ iter 3 ("0 1 2 3 4 3 2 1 0"))
+|+| speed (scale 0.666 0.7 $ triwave1)
+|+| resonance "0.0666"
+|+| cutoff (slow 0.25 $ iter 4 $ "0.013 0.025 0.012 0.05")
+,
+sound "td:23"
+]
+|+| coarse "[8 7 13 6 7 5 2 8]/8"
+
+d2 $ juxBy 0 (|+| coarse "9") . every 4 (within (0, 0.5) (gap 4 . striate 2)) . every 2 (within (0, 0.25) (slow 2)) . gap 2 . density 4 . stut 2 0.25 0.5 $ sound "td:16 [~ td:16]"
+|+| resonance "0.0666"
+|+| cutoff (slow 0.25 $ iter 4 $ "0.013 0.025 0.012 0.05")
+
+d2 $ juxBy 0 (|+| coarse "9") . every 4 (within (0, 0.5) (gap 4 . striate 2)) . every 2 (within (0, 0.25) (slow 2)) . gap 2 . density 4 . stut 2 0.25 0.5 $ sound "bd [~ bd]"
+|+| resonance "0.0666"
+|+| cutoff (slow 0.25 $ iter 4 $ "0.013 0.025 0.012 0.05")
+
+
+hush

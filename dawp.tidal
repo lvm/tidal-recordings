@@ -1,0 +1,58 @@
+cps 0.25
+
+-- moog pad
+b $ rev . every 4 (sometimes(within (0, 0.33) (chop 2))) $ stack[
+slowcat[
+note $ toMIDI "f3 ~ a5 g5",
+note $ toMIDI "f4 ~ c5 d5",
+note $ toMIDI "f4 ~ c5 d5"
+],
+slowcat[
+note $ toMIDI "a7(5,8)"
+,
+note $ toMIDI "b8(5,8)"
+]
+]
+|+| dur "0.9"
+|+| sustainpedal "0.8"
+
+m3 $ note $ toMIDI "c5 c7"
+
+b $ density 2 . every 5 (sometimes (sttd "[0.45 0.5]/2" "[0.1 0.25]/4")) $ stack[
+drum "bd(2,4)",
+density 2 $ drum "ch*2 oh"
+,append' (drum "~ oh*2") (drum "~ ~")
+,drum "~ cp"
+,within (0, 0.5) (density 2) $ slowcat[drum "~ sn", append' (drum "~ sn ") (drum "sn sn")]
+,within (0, 0.5) (chop 2 . slow 2) $ drum "ag(3,8)"
+--,slowcat[drum "cp*4 cp", drum "~ cp/2"]
+]
+|+| hg "0.75"
+|+| doh "0.2"
+|+| dch "0.2"
+|+| sag (scale 0.8 0.99 $ density 4 $ squarewave1) --"0.6""0.5"
+|+| scr "0.6"
+|+| stt "0.5"
+|+| std "0.1"
+
+
+-- synth bass 201 / moog
+m4 $ every 4 (sometimes (chop 2)) . chop 2 . sometimes rev . every 2 (# sustainpedal "0") $ stack[
+   slow 4 $ note $ toMIDI "f6",
+  slowcat[
+  note $ toMIDI "c5",
+  note $ toMIDI "f5",
+  note $ toMIDI "b5",
+  note $ toMIDI "g5",
+  note $ toMIDI "d5",
+  note $ toMIDI "d5",
+  note $ toMIDI "c5"
+  ]
+  ]
+|+| dur "0.9"
+|+| sustainpedal (scale 0.5 0.95 sine1)
+|+| vel "0.5"
+
+
+
+hush

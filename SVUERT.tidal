@@ -1,0 +1,29 @@
+bps (140/60)
+
+d1 $ density 2 $ stack[sound "mattel:1 ~", density 4 $ sound (samples "jvbass" (iter 4 $ run 2)) |+| pan (slow 3 triwave1)]
+
+d2 $ jux rev $ slow 4 $ striate 64 $ density 2 $ smash 2 [4..12] $ striate' 32 (0.1) $ sound "~ mattel:3"
+ |+| pan "0 1"
+
+d3 $ density 2 $ stack[sound "lsdj:2*2 dr2*2", every 4 (|+| pan (slow 2 sine1)) $ interlace (sound "lsdj:2 dr*2") (sound "cp*4/8")]
+
+d4 $ density 4 $ every 2 ((|+| speed "8")) $ every 3 ((|+| speed "5")) $ slowspread ($) [(|+| accelerate "0.5 2 4 "), striate 33, density 2] $ slow 8 $  striate' 32 (0.1) $ sound "~ mattel:4"
+ |+| pan (slow 2 sine1)
+ |+| accelerate "3 14 15 9 6 2"
+
+d5 silence
+d6 silence
+d7 silence
+d8 silence
+d9 silence
+
+
+
+
+-- d5 $  (0.1) $ sound "musicsux:4"
+--  |+| begin "0.2"
+--  |+| end "0.45"
+--  |+| gain "1.5"
+
+
+hush

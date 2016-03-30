@@ -1,0 +1,19 @@
+cps 0.666
+
+d1 $ echo (7/4) $ within (0.25, 0.5) (every 2 (chop 4 . spread' density "2 1 4") . (|+| speed "8.2")) . within (0, 0.25) (striate' 2 (0.5)) $ sound "sid ~ ~"
+ |+| speed (every 9 ((*2) <$>) $ every 2 ((0.1-) <$>) $ scale 0.5 0.8 $ sine1)
+
+-----
+
+cps 0.35
+
+d2 $ stut 2 0.25 0.5 . every 18 (slow 8 . iter 32) $ every 14 (rev) $ stack[sound "sn sn*2? glitch*4 !?", sound $ samples "~ mattel:5 [glitch2*2?]/3 ~" $ iter 5 $ run 5]
+|+| speed "0.5"
+|+| gain "1.5"
+
+d3 $ gap 8 . echo (7/4) $ every 8 ((|+| accelerate "-5") . iter 8) $ every 4 (slow 2) $ striate 2 $ (sound $ samples "peri glitch peri:1 glitch" $ iter 4 $ run 4)
+|+| speed (every 3 ((*0.5) <$>) $ every 2 ((*2.5) <$>) "2")
+|+| gain "1.5"
+----
+
+hush

@@ -1,0 +1,55 @@
+cps 0.35
+
+hush
+
+let nostd = (# std "0.4")
+
+
+  slowcat[
+   drum "[bd ~ ~ ~] [~ bd ~ ~]"
+   ,
+   drum "[[bd bd] ~ ~ ~] [~ bd ~ ~]"
+  ]
+ degradeBy 0.25 . every 4 (within (0, 0.35) (slow 4 . chop 2)) $ drum "~ ~ sn [sn sn] [~ sn] ~ sn ~"
+
+
+hush
+
+b1 $ sometimes (revArc(0, 0.5)) $ stack[
+  slowcat[
+   drum "[cl ~ ~ ~] [~ cl ~ ~]"
+   ,
+   chop 2 $ drum "[[cl cl] ~ ~ ~] [~ cl ~ ~]"
+  ]
+  |+| scl "0.9"
+   ,
+   every 3 (degrade) $ drum "ch? ch [ch ch] ~ ch ch? [ch ch] ~"
+   ,
+   drum "~ ~ oh/2 ~ ~ ~ ~ oh"
+   |+| std "0.5"
+   ,
+   degradeBy 0.25 . every 4 (within (0, 0.35) (slow 4 . chop 2)) $ drum "~ ~ bd [bd bd] [~ bd] ~ bd ~"
+  ]
+|+| doh "0.9"
+|+| dch "0.25"
+|+| std "0.25"
+|+| stt "0"
+
+
+
+
+
+b1 $ every 5 (chop 2) $ stack[
+   drum "bd ~ ~ bd ~ [~ bd] ~ ~"
+   ,
+   drum "~ ~ ch [ch [ch*2]?] ch [ch*2]? ~ ~"
+   ,
+   drum "~ ~ ~ ~ ~ ~ ~ oh/3"
+   ,
+   drum "~ ~ sn [sn? sn] [~ sn] ~ sn ~"
+  ]
+|+| lbd "0.9"
+|+| lsn "0.9"
+
+
+hush

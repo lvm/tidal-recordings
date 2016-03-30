@@ -1,0 +1,19 @@
+bps $ 140/60
+
+d1 $ every 4 (striate 32) $ sound "[house, ifdrums] {sn, [~ sn*6]/5}"
+
+d2 $ stack[interlace (sound "jvbass*2 jvbass*2") (sound "mouth*4 mouth*8"), density 2 $ striate 32 $ sound "jvbass*32"]
+
+d3 $ sound "{[lsdj:5*4]/4 lsdj:2} mattel:5/4 lsdj:1/8 hh*2"
+
+d4 $ stack[density 2 $ every 4 (striate 2) $ slow 2 $ sound "dr dr dr dr", sound "dr2/8 ~ ~ ~"]
+
+d5 $ every 7 (rev . (|+| speed "1.2")) $ every 16 ((|+| speed ((2+) <$> triwave1))) $ every 2 ((|+| speed ((0.5+) <$> sine1))) $ density 8 $ sound "arpy"
+ |+| speed ((0.9+) <$> sine1)
+ |+| gain (slow 2 "0.9 0.8 0.7")
+
+d6 $ every 2 (rev) $ sound "bass0 bass1 bass0 bass3"
+ |+| accelerate "-1 -5 -10 -1"
+
+
+hush

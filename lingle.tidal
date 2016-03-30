@@ -1,0 +1,47 @@
+cps 1
+
+
+let sw f = sometimes(within (0, 0.5) f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    sra n = revArc(0, n)
+
+b $ every 7 (sw' 0 0.33 (revArc(0, 0.25))) $ sw' 0 0.15 (chop 2) . sw' 0 0.5 (# dch "0.1") $ sw (# hg "0.1") $ stack[
+   drum "[~ bd ~ ~] !"
+   ,
+   stack[
+     every 4 (sw' 0 0.25 (chop 2)) . density 2 $ drum "ch(3,4)"
+     ,
+     density 2 $ drum "~ ~ ~ oh"
+   ]
+   ,
+   drum "[cp/4 ~ ~ ~] [~ cp ~ ~]"
+   ]
+|+| hg "0.75"
+|+| dch "0.25"
+|+| stt "0"
+|+| std "0"
+
+hush
+
+let pm2a = nm "[c4 ~ a3 ~] [g4 ~ b4 ~]"
+    pm2b = nm "[c4 ~ a3 ~] [g4 ~ f4 ~]"
+    pm2c = nm "[c4 ~ f3 ~] [g3 ~ f3 ~]"
+
+let 
+
+q $ slowspread sra [0.25, 0.5] . superimpose(spin 2) . sw' 0 0.5( every 2 (spin 2) . (# cutoffegint (scale 0.35 0.5 sine1))) $ every 9 (sw' 0 0.33 (rev . iter 2)) $ stack[
+nm "[~ ~ c4 ~] [~ c4 ~ ~]",
+slowcat[
+nm "[~ b4 ~ d3] [f4 ~ d4 ~]",
+nm "[~ d3 ~ b4] [b3 ~ d4 ~]"
+]
+]
+-- |=| lfoint (scale 0.5 0.7 $ slow 2 $ squarewave1)
+|=| lforate "0"
+|=| cutoffegint (scale 0 0.35 $ sw' 0 0.25 rev $ sine1)
+|=| decay "[0.99 0.99 0.99 0.9 0.99 0.95 0.99]/7"
+
+hush
+

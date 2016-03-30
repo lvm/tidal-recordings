@@ -1,0 +1,65 @@
+cps 0.25
+
+b $ density 2 . every 2 (sometimes brak) . foldEvery [3,5,7] (# stt (scale 0 1 rand)) . every 14 ((# drum "cr cr cr cr") . sometimes((# stt (scale 0 0.15 rand)) . (# std "[0.1 0.3 0.6 0.8]/4"))) $ stack[
+  every 3 (within (0, 0.5) (chop 2)) . every 4 (revArc(0, 0.5)) $ stack[
+     drum "[[bd*2 [sn [~ sn]]], cl(9,16)]"
+     ]
+  ,
+  every 7 (within (0, 0.5) (slow 2 . stut 2 0 0.75)) $ stack[
+    every 2 ( within (0.25, 0.75) (chop 2) . within (0.25, 0.5)(slow 2) . within (0.5,0.75) (slow 4) ) $ sometimes (density 2) $
+    slowcat[drum "[[ch(8,8)], [oh cr/2]]", drum "[[ch(8,8)], [oh cr/2]]", drum "[[ch([16 8]/2,8)], [oh cr/2]]"],
+    every 2 (# drum "~") $ drum "[cp(3,8)]"
+  ]
+] # stt (scale 0 0.1 sine1) # std "0.1" # dch "0.25" # lch "0.5" # lcr "1" # loh "1" # lcp "1" # lbd "0.5" # hg "0.1" # scp "0.6" # scr (every 2 ((+(-0.25)) <$>) $ "0.75") # scl "1"
+
+q $ every 5 (stut 2 0 0.75) . (sometimes (# decay "1")) $ stack[
+  note $ toMIDI $ fit 9 (words "gs2 c3 f3 fs3 b4 gs2 c3 f3 fs3 b5") "0 ~ 1 ~ 2 3 ~ 4 ~ 5 ~ 6 ~ 7 8 ~"
+]  # dur "0.05" # decay (scale 0 1 rand) # lforate "0.8" # lfoint "0.2" # cutoffegint "0.5" # vel "0.75"
+
+m5 $ stack[
+  chrot' [36, 34, 43] 0 "[[1 !] [1 [~ 1]]]" [0]
+] # dur "1" # vel "0.25"
+
+hush
+
+
+let chrot nlist pat chord = slowcat[slowcho nlist pat (rotate i chord) | i <- [0..((length chord)-1)]]
+    chrot' nlist off pat chord = slowcat[slowcho' nlist off pat (rotate i chord) | i <- [0..((length chord)-1)]]
+    mirot nlist pat chord = slowcat[slowcho nlist pat (rotate i chord) | i <- [0..((length chord)-1)]]
+
+
+
+import Data.Maybe
+
+let ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    --- q $ note (cho 48 "1 [~ 1] 1 1 " [0, 3, 7, 5])
+    cho n pat chord = preplace(1,1) pat $ listToPat [ch + n | ch <- chord]
+    --- q $ note (cho' 48 3 "1 [~ 1] 1 1 " [0, 3, 7, 5])
+    cho' n off pat chord = cho (n+off) pat chord
+    --- q $ slowcho [47, 45, 42] "[1 !] 1 1 1" [0, 3, 0, 3]
+    slowcho nlist pat chord = slowcat[note (cho n pat chord) | n <- nlist]
+    noteLookup s = elemIndex s $ take 128 [(n ++ show o) | o <- [0 .. 10], n <- ["c","cs","d","ds","e","f","fs","g","gs","a","as","b"]]
+    toMIDI p = fromJust <$> (filterValues (isJust) (noteLookup <$> p))
+
+hush
+
+cps 0.25
+
+q $ superimpose (slow 1.05) $ note $ toMIDI "e4 fs4 b4 cs5 d5 fs4 e4 cs5 b4 fs4 d5 cs5"
+
+
+cps 0.25
+
+q $ note $ toMIDI $ fit 9 (words "gs1 c2 f2 fs2 b3 gs1 c2 f2 fs2 b4") "0 ~ ~ 1 2 ~ 3 ~ 4 ~ 5 ~ ~ 6 7 ~ 8" -- "0 ~ 1 ~ 2 3 ~ 4 ~ 5 ~ 6 ~ 7 8 ~"
+
+hush
+
+cps 1
+
+b $ sometimes (iter 2) $ stack[
+  drum $ fit 5 (words "bd sn ch oh cp") "[[0 !, 2 1], [2 3] [5 3?] [4 1]]",
+  drum "[lt !, ht ! cr]/2"
+] # doh "0.01" # stt (scale 0 1 sine1) # std (scale 0 0.1 $ rev $ sine1)
+
+q $ sometimes rev $ (slow 6 . note $ toMIDI "e4 fs4 b4 cs5 d5 fs4 e4 cs5 b4 fs4 d5 cs5") # dur "0.1" # delay "1"
+

@@ -1,0 +1,56 @@
+cps 0.666
+
+
+d1 $ sound "sid:2 [sn:2 sid:2?] ~ db:7"
+ |+| end "0.9 0.9 0.9 [0.1 0.4]/2"
+
+d2 $ echo (7/4) $ degradeBy 0.5 $ sound "~ ~ sid:2(4,8) ~"
+ |+| shape (scale 0.5 0.5666 $ sinewave1)
+ |+| speed (every 15 ((0.1-) <$>) $ ((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ "0.5666")
+
+
+hush
+
+cps 0.6
+cps 0.666
+
+cps 0.3
+cps 0.3666
+
+d6 $ juxcut rev . slow 8 . chop 16 $ sound "wcd:2"
+ |+| cut "1"
+ |+| speed (every 9 ((0.1-) <$>) "1")
+ |+| gain (scale 0.6 0.6 $ sine1)
+ |+| vowel "c a c a"
+ |+| slow 8 (pan "0 1")
+
+d5 silence
+-- d5 $ juxcut rev . slow 8 . chop 16 $ sound "idmel"
+--  |+| cut "1"
+--  |+| speed (every 18 ((0.1-) <$>) $ "1")
+--  |+| gain (scale 0.8 0.8 $ sine1)
+--  |+| vowel "c a c a"
+--  |+| slow 8 (pan "1 0")
+
+d4 $ every 2 (density 2) $ sound "ul:2 [~ ul:2]"
+ |+| shape (scale 0.5 0.5666 $ sinewave1)
+ |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ "0.666")
+ |+| crush "2"
+
+d3 $ every 5 (rev) . every 7 (within (0, 0.25) (chop 8)) . every 2 (striate 2) . striate' 2 (0.5) $ sound "db db db db"
+ |+| shape ( ((*0.5) <$>) sinewave1)
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ slow 2 "0.666 2.4 1 0.8")
+ |+| crush "6"
+
+d2 $ every 5 (rev) . every 7 (within (0, 0.25) (chop 8)) $ stack[degrade $ sound "visco:5(4,8)" |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ "0.666"), degrade $ sound "~ ~ e:8(4,8) ~" |+| speed "2.9"]
+ |+| shape ( ((*0.5) <$>) sinewave1)
+
+d1 $ every 2 (within (0,0.25) (|+| accelerate "-1") ) $ every 24 (every 4 (chop 32 . rev)) . within (0, 0.5) (stut 4 0.2 0.5) $ stack[sound "sid:2 [sn:2 sid:2?] ~ db:7" |+| end "0.9 0.9 0.9 [0.1 0.4]/2", echo (7/4) $ degradeBy 0.5 $ stack[sound "~ ~ sid:2(4,8) ~", sound "~ ~ visco:5(4,8) ~"]]
+ |+| shape (scale 0.5 0.5666 $ sinewave1)
+ |+| speed (every 15 ((0.1-) <$>) $ ((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ "0.5666")
+ |+| crush "9"
+
+hush
+
+d2 $ every 5 (rev) . every 7 (within (0, 0.25) (chop 8)) $ stack[degrade $ sound "visco:5(4,8)" |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ "0.23"), sound "~ ~ e:8(4,8) ~" |+| speed "2.9"]
+ |+| shape ( ((*0.5) <$>) sinewave1)

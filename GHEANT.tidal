@@ -1,0 +1,64 @@
+
+cps 0.35
+
+-- principio
+d1 $ echo (7/4) $ every 4 (slow 2) . stut 2 0.5 0.5 . chop 2 . spread' density "2 1 2 1 2" $ sound "sf:5 sf:6(3,3)"
+ |+| speed (every 2 (((*1.2)) <$>) $ every 3 (((*1.3)) <$>) $ iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+
+ |+| shape (iter 2 $ every 4 (rev) $ "[0.5 0.6 0.4 0.3]")
+
+-- medio
+d1 $ within (0.25, 0.5) (chop 16) $ echo (7/4) $ every 4 (slow 2) . stut 2 0.5 0.5 . chop 2 . spread' density "2 1 2 1 2" $ sound "sf:5 sf:6(3,3)"
+ |+| speed (every 2 (((*1.2)) <$>) $ every 3 (((*1.3)) <$>) $ iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+
+ |+| shape (iter 2 $ every 4 (rev) $ "[0.5 0.6 0.4 0.3]")
+
+-- medio
+d1 $ every 8 (within (0.25, 0.5) (chop 8) ) $ echo (7/4) $ every 4 (slow 2) . stut 2 0.5 0.5 . chop 2 . spread' density "2 1 2 1 2" $ sound "sf:5 sf:6(3,3)"
+ |+| speed (every 2 (((*1.2)) <$>) $ every 3 (((*1.3)) <$>) $ iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+
+ |+| shape (iter 2 $ every 4 (rev) $ "[0.5 0.6 0.4 0.3]")
+
+-- final
+d1 $ echo (7/4) $ chop 2 . spread' density "2 1 2 1 2" $ sound "sf:5 sf:6(3,3)"
+ |+| speed (every 2 (((*0.9)) <$>) $ every 3 (((*1.1)) <$>) $ iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+
+ |+| speed (every 2 (((*1.2)) <$>) $ every 3 (((*1.3)) <$>) $ iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+
+ |+| shape (iter 2 $ every 4 (rev) $ "[0.5 0.6 0.4 0.3]")
+
+
+hush
+
+-- principio?
+d2 $ juxcut rev . slow 2 . within (0,0.25) ((|+| speed "0.5")) . chop 4 . stut 2 0.5 0.5 $ sound "ade"
+ |+| speed (every 2 (((*1.5)) <$>) $ every 3 (((*1.3)) <$>) $ iter 2 $ every 4 (rev) $ "[0.5 0.6 0.7 0.9]")
+ |+| cut "1"
+ |+| vowel (slow 6 "c u l o")
+ |+| gain (scale 0.3 0.4 $ sine1)
+
+-- principio
+d2 $ juxcut rev . within (0,0.25) ((|+| speed "0.5")) . chop 2 $ sound "pad:2(3,3)"
+ |+| speed ("[0.5 0.6 0.7 0.9]")
+ |+| cut "1"
+ |+| gain (scale 0.666 0.8 $ sine1)
+ |+| vowel (slow 6 "c u l o")
+
+-- medio
+d2 $ slow 2 . juxcut rev . within (0,0.25) ((|+| speed "0.5")) . chop 2 $ sound "pad:2(3,3)"
+ |+| speed ("[0.5 0.6 0.7 0.9]")
+ |+| cut "1"
+ |+| gain (scale 0.5 0.777 $ sine1)
+ |+| vowel (slow 6 "c u l o")
+
+-- final
+d2 $ fadeOut 4 $ juxcut rev . within (0,0.25) ((|+| speed "0.5")) . chop 2 $ sound "pad:2(3,3)"
+ |+| speed ("[0.5 0.6 0.7 0.9]")
+ |+| cut "1"
+ |+| gain (scale 0.666 0.8 $ sine1)
+ |+| vowel (slow 6 "c u l o")
+
+
+
+hush
+

@@ -1,0 +1,101 @@
+bps (140/60)
+
+d1 $ brak $ sound (every 2 (density 4) "bd sn sn*3")
+d1 $ slow 2 . chop 8 . every 2 rev $ spread' (striate' 6) (((+0.1) . (*0.2)) <$> slow 32 sinewave1) $ sound "printshort:2*4/4"
+d1 silence
+
+d2 $ jux ((|+| speed "0.5") . rev) $ sound "future*8 pluck perc" |+| pan sinewave
+d2 silence
+
+--d3 $ sound "bd*2 sn*8"
+--d3 $ jux (rev) (sound (every 2 (density 4) "bass0:3/2 bass0:3*8/4 house:3/2"))
+d3 $ sound "bass0:3/2 bass0:3*8/4 house:3/2"
+d3 silence
+
+d4 $ jux ((|+| accelerate "2.5 5 100 0 ") . rev) $ (sound (pick <$> "future*8" <*> slow 7 "3 4 1 2 0"))
+--d4
+--d4 $ jux ((|+| speed "0.5") . rev) $ (sound (pick <$> "sax:1/4" <*> slow 7 "3 4 1 2 0"))
+d4 $ jux ((|+| speed "0.5") . rev) $ (sound (pick <$> "sax:1" <*> slow 7 "2 3 1 2 0"))
+--d4 $ sound "house"
+d4 silence
+
+--d5 $ slow 4 $ jux ((|+| speed "0.5") . rev) $ sound "[bd bd] [bd [sn [sn sn] sn] sn] bd jvbass*3/8 can*8/32 future [sn sn]"
+d5 $ jux (rev) (sound "[bd jvbass*3 [sn sn]]")
+
+
+
+hush
+
+d3 $ jux (rev . (|+| shape "0.9")) $ (sound (pick <$> "bass3 bass3:1/2 bass:2 bass3:2" <*> rev "2 3 1"))
+ |+| speed "0.01"
+
+d3 silence
+
+
+d5 $ sound "rave"
+  |+| speed "1"
+
+d5 silence
+
+
+d6 $ every 2 ((|+| speed "3") . rev . (|+| shape "0.9")) $ jux (rev . (|+| accelerate "2 1 2 1")) $  sound "mouth*4"
+  |+| vowel "o a u"
+
+d4 silence
+
+--
+
+
+d4 $ every 2 ((|+| accelerate "3.2 0.2 7 0.7") . (|+| speed "1.5")) $  (jux (rev) $ sound (pick <$> "gabba:1*4 mouth co:3/2 gabba:1 mt future*8" <*> slow 2 "3 4 1"))
+ |+| shape "0.9"
+ |+| speed "0.2"
+
+--
+
+d7 $ every 2 ((|+| accelerate "5 1 0") . (|+| speed "1") . rev . (|+| shape "0.5") ) $ sound "bass cp*2 co gabba bass3 gabba"
+  |+| vowel "o i e"
+  |+| shape "0.1"
+  |+| speed "1.5"
+
+hush
+
+
+cps 0.666
+
+
+d3 $ jux (rev . (|+| shape "0.9")) $ (sound (pick <$> "bass3 bass3:1/2 bass:2 bass3:2" <*> rev "2 3 1"))
+
+d6 $ every 2 ((|+| accelerate "0.1 1 0.4") . (|+| shape "0.2") . rev . (|+| speed "4.5")) $ jux (rev) $ sound "jazz [off:1*8]/3 pluck:1*3 jazz jazz*4/2 pluck*3"
+  |+| speed "2.3"
+  |+| vowel "o a i e"
+
+
+d6 $ every 2 ((|+| accelerate "0.1 5 0.4") . (|+| shape "0.9") . rev . (|+| speed "4.6")) $ jux (rev) $ interlace (every 2 (rev . (|+| delay "1") . (|+| delaytime "5")) $ sound "jazz off:1 pluck:1*3 jazz pluck*3") (jux ((|+| accelerate "0 22 0.5 1") . brak . (|+| vowel "o")) $ sound (pick <$> "bass3 bass3:1/2 bass:2 bass3:2" <*> (brak) "4 3 1"))
+  |+| speed "2.3"
+  |+| vowel "o u i a"
+
+
+d6 $ every 2 ((|+| accelerate "0.1 0.5 0.4") . (|+| shape "0.9") . rev . (|+| speed "4.6")) $ jux (rev) $ interlace (every 2 (rev . (|+| delay "1") . (|+| delaytime "5")) $ sound "jazz off:1 pluck:1*3 jazz pluck*3") (jux ((|+| accelerate "0 2.2 0.5 1") . brak . (|+| vowel "o")) $ sound (pick <$> "bass3 bass3:1/2 bass:2 bass3:2" <*> (brak) "4 3 1"))
+  |+| speed "2.3"
+  |+| vowel "o u i a"
+
+
+
+d6 silence
+
+d7 $ jux (rev) (sound "perc*8/2 odx*3/6")
+d7 $ sound "perc*8/2 odx*3/6"
+d7 silence
+
+d8 $ jux ((|+| delay "0.8") . rev ) $ sound (every 2 (density 8) "koy:1")
+
+
+d8 silence
+
+bps 9
+
+d9 $ every 2 (brak) $ sound "gabba drumtraks drumtraks:4"
+
+d9 silence
+ 
+hush

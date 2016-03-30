@@ -1,0 +1,5 @@
+bps 2
+
+d2 $ slow 1.37 $ every 3 (|+| speed "1.1") $ (sound "breaks165")
+
+hush

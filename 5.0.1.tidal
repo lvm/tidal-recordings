@@ -1,0 +1,24 @@
+bps 0.7
+
+d1 $ every 4 (density 3) $ every 2 (striate' 32 (0.1)) $ spread' striate "8 4 2" $ (sound $ samples "kurt" $ iter 3 $ run 3)
+ |+| speed (every 7 ((0.1-) <$>) $ iter 4 "1")
+ |+| speed (((*2) <$>) $ every 7 ((0.1-) <$>) $ iter 8 "1 0.5 0.9 1.2 1.5 2 1.5 0.8")
+
+d2 $ spread' density "4 2 8 4 2" $ interlace (sound "glitch:2") (stack[sound "lsdj:2" |+| end rand, every 3 (density 2) $ every 4 (striate 8) $ sound "lsdj:1" |+| end "0.1"])
+ |+| speed (((*2) <$>) $ every 7 ((0.1-) <$>) $ iter 8 "1 0.5 0.9 1.2 1.5 2 1.5 0.8")
+
+d3 $ spread' density "4 2 1 2 4" . striate 8 $ stut 4 0.9 0.5 $ sound "sn:2"
+ |+| gain "2"
+ |+| speed (((*2) <$>) $ every 7 ((0.1-) <$>) "1")
+
+
+
+d4 $ every 9 (|+| sound "kurt") $ every 4 (|+| sound "sn:2") $ every 3 (|+| sound "lsdj:2") $ spread' density "4 2 8 4 2" $ spin 32 $ sound "house"
+ |+| gain "2"
+ |+| speed (((*2) <$>) sinewave1)
+ |+| vowel "a"
+
+
+d4 silence
+
+hush

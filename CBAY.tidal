@@ -1,0 +1,45 @@
+cps 1.5
+
+cps 1
+
+d1 $ every 5 (echo (7/4) . slow 2) . juxcut (every 4 (density 2) . spread' striate "1 2 8" . spread' iter "[4, 2, 1]" . every 3 (0.5 <~)) $ sound "mattel:4 mattel:2 mattel:3 mattel:5"
+ |+| speed (((*0.9) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ "1")
+ |+| gain "1.2"
+
+d1 $ echo (7/4) . every 2 (rev) . slow 2 . spread' striate "1 2 8" . spread' iter "[4, 2, 1]" . every 3 (0.5 <~) $ sound "mattel:4/3 mattel:2 mattel:3/2 mattel:5"
+ |+| speed (((*0.9) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ "1")
+ |+| gain "1.2"
+
+d2 $ chop 8 . every 4 (rev . iter 4 . density 2) $ sound "dr dr2:4"
+ |+| speed "2"
+ |+| gain "1.3"
+
+d3 $ echo (7/8) $ stut 2 0.2 (-0.5) $ (every 5 (rev) . density 2 . every 9 (striate 2) . every 4 (iter 4) . echo (2/4) $ every 2 (iter 2) $ sound "bass2"
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ iter 4 "2 0.9 8 5"))
+ |+| accelerate (iter 8 "3 14 15 9 2 6")
+ |+| gain "0.5"
+
+d4 $ slow 2 . every 4 ((0.5 <~) . rev) $ every 2 (striate 2) $ sound "dr dr2:4/5 kawai:9*2 dr"
+ |+| gain "1.3"
+
+hush
+
+
+
+d3 $ stut 2 0.2 (-0.5) . every 23 (|+| accelerate "-5") $ (every 5 (rev) . density 2 . every 4 (iter 4) . echo (2/4) $ striate 2 . every 2 (iter 2) $ sound "bass2"
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ iter 4 "2 0.9 8 5"))
+ |+| accelerate (iter 8 "3 14 15 9 2 6")
+
+
+d3 $ (echo (2/4) $ sound "bass2"
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ iter 4 "2 0.9 8 5"))
+ |+| accelerate (iter 8 "3 14 15 9 2 6")
+ |+| shape "0.5"
+
+
+d3 $ brak . every 2 (rev) . density 2 $ sound "bass2 !?"
+ |+| speed "2" --(((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ iter 4 "2 0.9 8 5")
+ |+| accelerate (iter 8 "3 14 15 9 2 6")
+ |+| shape "0.1"
+
+hush

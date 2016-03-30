@@ -1,0 +1,26 @@
+cps 1
+
+d1 $ echo (7/4) $ every 4 (slow 2 . (|+| vowel "i")) $ striate 8 $ smash 8 [5..8] $ spin 8 $ density 2 $ (sound $ samples "jvbass" $ iter 3 $ run 3)
+ |+| gain "0.7"
+ |+| slow 8 (vowel "o")
+
+d2 $ sound "gab:3*2? ~ ~ ~"
+ |+| end "0.23"
+ |+| speed (every 3 ((*2) <$>) $ every 2 ((/2) <$>) "2")
+
+d3 $ palindrome $ rev $ juxcut (density 4 . (0.5 <~)) $ slow 8 $ echo (7/8) $ every 2 (rev . brak) $ striate 2 $ slow 8 $ spin 8 $ striate' 8 (0.1) $ sound "gab:1*2? !?"
+ |+| accelerate (slow 2 "1 2 -1 12")
+ |+| gain "0.9"
+ |+| speed (every 3 ((*2) <$>) $ every 2 ((/2) <$>) "0.666")
+
+d4 $ sound "less:4*2 ~ less:3 ~"
+
+d4 $ stack[sound "amenkit:7 amenkit:22 amenkit:20 amenkit:5", sound "less:4 ~ less:3 ~"]
+
+d5 $ degrade $ sound "~ [cp*2]? cp cp? "
+
+d6 $ every 10 (within (0, 0.25) (chop 8)) . every 7 (density 2) . slow 2 . echo (7/4) $ (sound $ samples "alphabet" $ iter 27 $ run 27)
+ |+| gain "0.7"
+ |+| slow 8 (vowel "c u l o")
+
+hush

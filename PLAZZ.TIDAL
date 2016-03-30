@@ -1,0 +1,29 @@
+
+cps 0.5
+
+d2 $ spread' density "4 2 8 2 4" . spread' striate "8 4 2 4 8" $ sound "psr:3"
+ |+| speed (((*1.2) <$>) $ slow 8 "1 0.9 1 1.1")
+
+d3 $ echo (8/4) $ every 2 (rev) $ slowspread ($) [every 6 (slow 2)] $ density 2 $ sound "sn mattel:4 {bd:8, sn:2, bd:8} mattel:5"
+ |+| speed (((*0.8) <$>) $ slow 8 "1 0.9 1 1.1")
+
+hush
+
+
+
+cps 0.5
+
+let ddd d = (|+| delay d) . (|+| delayfeedback d) . (|+| delaytime d)
+
+d1 $ juxcut rev . density 2 . spread' density "2 1 2 1 2" . every 4 (rev) . stut 2 0.9 0.5 $ sound "~ rhodes"
+ |+| speed (((*8) <$>) $ every 2 ((*0.5) <$>) $ every 4 ((*2) <$>) $ every 3 ((*0.666) <$>) $ slow 8 "0.6 0.7 0.8 0.9 0.51 0.5 0.6 0.8")
+ |+| gain "[0.9 0.7]/2"
+
+d2 $ spread' density "4 2 8 2 4" . spread' striate "8 4 2 4 8" $ sound "psr:3"
+ |+| speed (((*1.2) <$>) $ slow 8 "1 0.9 1 1.1")
+
+d3 $ every 2 (rev) $ density 2 $ sound "sid:2 mattel:4 sn:2 mattel:5"
+ |+| speed (((*0.8) <$>) $ slow 8 "1 0.9 1 1.1")
+
+
+hush

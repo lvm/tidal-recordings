@@ -1,0 +1,51 @@
+cps 1.2
+
+let st2 n = stut 2 n 0.75
+
+-- every 23 (# accelerate "-1") . every 7 palindrome . every 5 (within(0, 0.5)(slow 2 . striate 2)) . sometimes (echo (4/4)) . every 3 (# coarse "16") . sometimes(superimpose (# speed "0.7")) $ 
+
+d2 $ slow 2 . gap 2 $ slowcat[
+sound $ preplace (1,1) "[x([8 7 9 11 15]/5,16)]/2" "amencutup amencutup:2 amencutup:4 amencutup:5"
+] # bandq (scale 0.1 0.5 sine1) # bandf (scale 0 1 sine1) # resonance "0.23" # cutoff "0.23"
+
+d2 silence
+
+d1 $ fadeOut 8 $ slowspread st2 [0.25..0.5] $ slowcat[
+sound $ preplace (1,1) "[x([8 7 9 11 15]/5,16)]/2" "arpy:4 arpy*2 arpy arpy:2"
+] # coarse ((floor <$> ) $ scale 1 8 sine1) # bandq "0.1" # bandf "0.25" # vowel "[a ~ o i ~ e]/6" # pan "[0.25 0.5 0.75]/3" # gain "0.8"
+
+
+hush
+
+
+--
+
+cps 1
+
+b $ stack[
+every 2 (sometimes(stut 2 0 0.75)) $ drum $ preplace (1,1) "[x([8 7 9 11 15]/5,16)]/2" "[bd ch, cp] [~ oh]",
+degrade $ drum "[sn cp ~ cp*4]"
+] # hg "0.5" # dch "0.25" # stt "0" # std "0"
+
+hush
+
+
+---
+
+
+bps (140/120)
+
+cps 1
+
+
+---
+
+
+
+
+b $ stack[
+--every 2 (sometimes(stut 2 0 0.75)) $ drum $ preplace (1,1) "[x([8 7 9 11 15]/5,16)]/2" "[bd ch, cp] [~ oh]",
+drum "{[bd bd/2] [cp cp/2]/2 [[bd, cp*2 cp]]/2 !}%2"
+] # hg "0.5" # dch "0.25" # stt "0" # std "0"
+
+hush

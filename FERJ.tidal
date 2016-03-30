@@ -1,0 +1,30 @@
+cps 1
+
+--cps 0.666
+
+d3 $ echo (7/4) $ every 7 (density 2) . slow 4 . every 5 (rev) . every 3 (chop 2) . spread' striate "4 2 1" $ sound "sid:2 odx:3 ~ sid:2/2"
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ "1.2")
+ |+| shape (scale 0.5 0.87 $ sine1)
+
+d4 $ every 13 (echo (7/4)) $ within (0, 0.2) (|+| speed "2") . every 7 (chop 2) . every 9 (stut 2 0.5 0.5) $ stack[sound "rapman rapman:9", every 2 (rev) . slow 2 . chop 2 . striate' 2 (0.5) $ sound "rapman:3(2,1)/8"]
+ |+| shape (scale 0.5 0.87 $ sine1)
+ |+| speed (every 32 ((*2) <$>) $ scale 0.2 0.5 $ sine1)
+
+d5 $ every 2 (chop 2) . rev . within (0, 0.2) (|+| speed "2") . every 15 (chop 2) . every 9 (stut 2 0.5 0.5) $ stack[every 2 (rev) . slow 4 . chop 2 . striate' 2 (0.5) $ sound "sf(2,1) ~"]
+ |+| shape (scale 0.5 0.87 $ sine1)
+ |+| speed (scale 0.2 0.5 $ sine1)
+
+d6 $ spin 4 . stut 2 0.5 0.5 . striate 2 . within (0.5, 0.75) (rev) . within (0, 0.5) (density 2) . density 4 $ sound "sid/8"
+ |+| speed (((2*) <$>) $ every 2 ((*2) <$>) $ every 4 ((*1.2) <$>) $ every 3 ((0.1-) <$>) $ scale 1.2 2.5 $ sine1)
+ |+| shape "0.2"
+ |+| cut "1"
+
+d7 $ slow 4 . every 5 (rev) . spread' chop "4 2 1" $ sound "sea"
+ |+| cut "1"
+ |+| shape (scale 0.5 0.87 $ sine1)
+
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ "1")
+ |+| speed (((*0.6) <$>) $ scale 0.5 0.9 $ "1")
+
+
+hush

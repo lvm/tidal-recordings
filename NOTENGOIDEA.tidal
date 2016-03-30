@@ -1,0 +1,34 @@
+------------------ no tengo idea
+
+-- d1 $ echo (1/2) $ every 2 ((|+| speed "0.1")) $ every 9 ((density 6)) $ every 3 ((density 2)) $ sound "gab:3*2 ~"
+--  |+| shape triwave1
+--  |+| slow 2 (vowel "u o")
+--  |+| accelerate "1.5 2 3"
+--  |+| speed "0.1"
+
+d2 $ echo (7/4) $ every 4 ((brak) . (striate 8) . (slow 12) . (|+| speed "1")) $ density 2 $ striate 4 $ interlace (sound "~ gabba:4") (sound "~ jvbass*4/2")
+ |+| speed "2"
+ |+| slow 2 (vowel "o i")
+ |+| shape triwave1
+ |+| gain "1.15"
+
+d3 $ echo (1/2) $ every 5 ((slow 2) . brak) $ density 2 $ every 2 ((density 4) . rev) $ striate' 32 (0.1) $ interlace (sound "cp ~") (sound "~ cp*8/4")
+ |+| slow 2 (vowel "o a o")
+ |+| speed "0.9"
+ |+| gain "0.8"
+
+d4 $ echo (1/4) $ density 4 $ striate 32 $ interlace (sound "~ ~") (sound " ~ jvbass*8/2")
+ |+| pan (slow 2 triwave1)
+ |+| shape "0.9"
+ |+| slow 3 (vowel "o i")
+ |+| gain "0.7"
+
+d5 $ echo (5/2) $ interlace (sound "house ~") (sound "~ ifdrums:3")
+ |+| shape "0.5"
+ |+| slow 2 (vowel "o i")
+
+ |+| gain "1.1"
+
+bps (166/60)
+
+hush

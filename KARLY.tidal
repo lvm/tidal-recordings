@@ -1,0 +1,60 @@
+cps 0.666
+
+
+d1 $ every 3 (|+| begin "0.1") $ density 4 $ every 10 (rev . (striate' 8 (0.1)) . (|+| speed "2.5")) $ every 8 (density 8) $ every 9 ((striate' 32 (0.1)) . brak) $ sound "gabba:3 gabba:1"
+ |+| shape "0.7"
+ |+| begin rand
+
+d2 $ spread' density "4 1 1 4" . striate' 32 (0.1) $ every 2 ((|+| speed "5")) $ every 3 ((|+| speed "2")) $ every 4 ((|+| speed "3")) $ smash 3 [2..4] $ sound "~ jvbass*8"
+ |+| speed "0.5"
+ |+| pan (slow 4 triwave1)
+
+d3 $ fadeOut 8 $ degradeBy 0.2 . density 2 . every 2 (rev . slow 2 . brak) $ density 2 $ sound "rapman:3 rapman:2*2"
+ |+| shape "0.6"
+
+d4 $ fadeOut 8 $ degradeBy 0.2 . density 2 . every 2 (rev . slow 2 . brak) $ density 2 $ sound "rapman:8"
+ |+| shape "0.6"
+
+d6 $ every 8 (|+| speed ((0.1+) <$> sine1)) $ every 3 (echo (1/2)) $ every 4 (echo (7/4)) $ ((0.5 <~) $ interlace (every 8 (density 2) $ sound "dr2*2 dr2:2/7") (every 4 (striate 2) $ sound "rapman:8/2 db*4"))
+ |+| pan (slow 8 triwave1)
+ |+| gain (scale 0.4 0.7 $ sine1)
+
+hush
+
+
+cps 0.8
+
+cps 0.666
+
+d1 $ every 2 (within(0,0.6) ( revArc(0,0.25) )) . every 2 ((|+| begin "0.1")) $ density 2 $ every 10 (rev . (striate' 8 (0.1)) . (|+| speed "2.5")) $ every 8 (density 2) $ sound "gabba:3 gabba:1"
+ |+| shape "0.7"
+ |+| begin rand
+
+d2 $ spread' density "4 1 1 4" . striate' 32 (0.1) $ every 2 ((|+| speed "5")) $ every 3 ((|+| speed "2")) $ every 4 ((|+| speed "3")) $ sound "~ jvbass*8"
+ |+| speed "0.666"
+ |+| pan (slow 4 triwave1)
+
+d6 $ every 8 (|+| speed ((0.1+) <$> sine1)) $ every 3 (echo (1/2)) $ every 4 (echo (7/4)) $ ((0.5 <~) $ interlace (every 8 (density 2) $ sound "dr2*2 dr2:2/7") (every 4 (striate 2) $ sound "cp/2 dr*4"))
+ |+| pan (slow 8 triwave1)
+ |+| gain (scale 0.4 0.7 $ sine1)
+
+
+
+hush
+
+
+cps 0.5
+
+
+d1 $ fadeOut 8 $ degrade . jux rev . every 2 (within(0,0.6) ( revArc(0,0.5) )) $ density 4 . chop 4 $ sound "ho"
+ |+| speed (((*2) <$>) $ every 3 ((0.1-) <$>) $ scale 0.4 0.7 $ sine1)
+ |+| shape "0.6"
+
+d2 $ fadeOut 8 $ degradeBy 0.2 . density 2 . every 2 (rev . slow 2 . brak) $ density 2 $ sound "rapman:3 rapman:2*2"
+ |+| shape "0.6"
+
+d3 $ slow 8 . jux (slow 2) . every 4 (rev) . spread' chop "16 8 32 16" $ sound "space"
+ |+| cut "1.2"
+ |+| speed (((*2) <$>) $ every 2 ((*2.5) <$>) $ every 4 ((/1.52) <$>) $ scale 0.2 0.7 $ sine1)
+
+d3 silence

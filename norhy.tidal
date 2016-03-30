@@ -1,0 +1,167 @@
+
+import System.Cmd
+
+-- lazy helpers
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    cho n pat chord = preplace(1,1) pat $ ch n chord
+    slowcho nlist pat chord = slowcat[note (cho n pat chord) | n <- nlist]
+    rotate :: Int -> [a] -> [a]
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+    chrot nlist pat chord = slowcat[slowcho nlist pat (rotate i chord) | i <- [0..((length chord)-1)]]
+    whisper' m v a p s = system $ "espeak -v " ++ v ++ "+whisper -a " ++ a ++ " -p " ++ p ++ " -s " ++ s ++ " \"" ++ m ++ "\""
+    whisper m = whisper' m "en" "30" "50" "145"
+
+cps 0.8
+
+cps 0.666
+
+b $ sw(# scp "1") $ every 8 (# std "0.1") $ every 16 (# stt "0.23") $ every 3 (revArc(0, 0.5)) $ stack[
+  stack[
+     drum "[bd([3 5]/2,8), sn(3,8,2)]",
+     drum "~ oh",
+     foldEvery [4,5] (chop 2) $ drum "ch*2 ~"
+  ],
+  drum "~ [cp !!?!]"
+  --,drum "[cl(9,16)]/2"
+] # stt "0" # std "0" # dch "0.1" # doh "0.25" # scp "0.6"
+
+m5 $ stack[
+  chrot' [42,37,38,35,30] 24 "1(3,4)" [0,5,7]
+] # dur "1" # vel "0.25" # nudge "[0.01 0]/2"
+
+q $ slowspread (stut 2 0) [0.25, 0, 0, 0.75] . sw (# decay (scale 0 1 sine1)) $ every 6 (# cutoffegint "0.666") $ slowcat[
+  chrot [42,30] "[1(3,8)]" [0, 3, 7]
+] # cutoffegint "0.5" # decay "1" # lforate "0" # lfoint "0"
+
+
+
+hush
+----
+
+let e' n = e n 8
+
+cps 0.666
+
+b $ stack[
+drum "[~ bd ~ ~] [~ ~ ~ ~]",
+drum "[~ ~ sn/3 ~] [~ sn ~ ~]",
+drum "cp([8 7 7 7]/4,8)",
+drum "[ch*2 ch oh oh/2]",
+drum "~ [cr/4 !?]"
+] # scp "1" # dch "0.1" # doh "0.25" # scr "0.75"
+
+q $ slowspread e' [5,5,5,7,3] $ slowspread (stut 2 0) [0,25,0.25,0.75] $ slowcat[
+chrot [48] "1 1 1 1" [0, 4, 7],
+chrot [49] "1 1 1 1" [0, 5, 7],
+chrot [45] "1 1 1 1" [0, 4, 7],
+chrot [54] "1 1 1 1" [0, 3, 7],
+chrot [53] "1 1 1 1" [0, 3, 7]
+] # dur "0.05" # decay "1" # cutoffegint (scale 0.25 0.35 $ slow 8 . palindrome $ sine1) # vel "1"
+
+hush
+
+---
+
+cps 0.8
+
+b $ every 16 (stut 2 0 0.25) $ foldEvery [3,5,7] (sometimes((# stt "0.25") . (# std "0.1"))) $ stack[
+  slowcat[
+  stack[drum "bd sn",drum "~ ~ ~ cp"],
+  stack[drum "bd sn*2",drum "~ ~ ~ cp"],
+  stack[drum "bd sn",drum "~ ~ ~ cp"],
+  drum "bd [sn !?] ~ cp"
+  ],
+  drum "ch ch ch ch",
+  slowcat[drum "~ ~ ~ oh", drum "~ ~ ch*2 oh"],
+  drum "cr([5 3]/2,8,2)"
+] # scl "0.01" # stt "0" # std "0"
+
+q $ every 2 (# decay "0") $ slowspread (stut 2 0) [0.75, 0.25] $ stack[
+  slowcat[
+  stack[note "40 41",note "~ ~ ~ 46"],
+  stack[note "40 41",note "~ ~ ~ 46"],
+  stack[note "40 41",note "~ ~ ~ 46"],
+  note "40 41 ~ 46"
+  ],
+  chrot [41, 44] "1 1 1 1" [0, 0, 0, 0, 3, 7],
+  slowcat[note "~ ~ 45 ~", note "~ ~ 44*2 45"]
+] # decay "1" # vel "1"
+
+m2 $ every 2 (# decay "0.01") $ slowcat[
+  note "~ ~ 52 ~", note "~ ~ [48 48/2] 52"
+] # dur "1" # vel "1"
+
+hush
+
+----
+
+cps 1
+
+q $ foldEvery [5,7](sometimes (within(0.5, 1)(#decay "1"))) . sometimes(within(0, 0.1) (#cutoffegint "0.95")) . slowspread (stut 3 0) [0, 0, 0.75] $ slowcat[
+  chrot [36] "[1([3 5]/2,8), 1(3,8,2)]" [0, 3, 0, 3, 7]
+] # cutoffegint "0.5" # decay "0.5" # lforate "0.6" # lfoint "0" # vel "1"
+
+b $ stack[
+slowcat[stack[ drum "[cp cp/2] [sn !!?!]", drum "bd ~"], drum "bd sn"],
+--drum "sn(3,8)",
+drum "ch(8,8)",
+drum "~ oh"
+] # dch "0.01" # hg "0.1"
+
+
+hush ----
+
+cps 0.6
+
+foldEvery [15, 17] (sometimes(zoom(0, 0.5))) $ every 4 ( sometimes (within (0, 0.5) (stut 2 0 0.25)) ) $ 
+every 4 ( within (0.25, 0.75) (chop 2) . within (0.25, 0.5)(slow 2) . within (0.5,0.75) (slow 4) ) $
+
+
+b $ slow 1.2 . every 23 ((#std "0.5")) $ stack[
+    drum "[bd ~ bd ~] [~ ~ bd ~] [~ ~ bd ~] [~ ~ ~ ~]"
+    ,
+    drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ ~ ~]"
+    ,
+    drum "[ch ch ch ch] ! ! !"
+    ,
+    drum "[~ ~ ~ ~] ! ! [~ ~ ~ oh/3]"
+] # stt "0" # std "0"
+
+
+cps 0.666
+
+b $ stack[
+drum "bd/3 bd/2 bd bd/4",
+drum "~ sn ~ [sn !]",
+density 2 $ drum "ch*4 [ch !]",
+drum "[~ ch] oh",
+drum "~ [cp/2 cp/4]"
+]
+
+
+cps 1
+
+sometimes ( ((# stt "0.8") . (# std "[0 0.1 0.2]/3")) ) . 
+
+hush
+
+
+
+q $ slow 1.2 . sometimes (# chrot [60, 48] "1(5,8)" [0, 3, 7, 10, 4, 7, 10] ) . sometimes(within(0, 0.1) (#cutoffegint "0.95")) $ slowspread (stut 2 0) [0.25, 0.75] $ slowcat[
+  chrot' [30] 12 "1(3,8,2)" [0,3,7,10,3],
+  chrot' [25] 12 "[1(3,8)]" [0,3,7,10,14],
+  chrot' [26] 12 "[1(3,8,2)]" [0,4,7,10 ,14],
+  chrot' [23] 12 "[1(3,8)]" [0,3,7,10 ,14]
+] # cutoffegint "0.5" # decay "1" # lforate "0.6" # lfoint "0.28" # dur "0.25"
+
+
+
+
+---
+
+hush
+
+

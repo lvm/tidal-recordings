@@ -1,0 +1,19 @@
+bps 1.666
+
+d1 $ stack[every 2 (|+| speed ((0.5+) <$> triwave1)) $ sound "lsdj:1 ~", (sound (samples "lsdj*8" (iter 5 $ run 5)) |+| end "0.1"), every 4 (density 8) $ sound "~ lsdj:5*8"]
+ |+| gain (every 2 (rev) "1 1.1 0.9")
+
+
+d2 $ interlace (every 2 ((0.5 <~)) $ (every 4 (slow 2) $ density 8 $ smash 8 [1..5] $ every 3 (striate 2) $ striate 15 $ sound (samples "jvbass bass ~" (iter 5 $ run 5))) |+| gain "0.3") (every 2 (density 2) $ (sound "~ mattel:5*4 ~"))
+ |+| speed (every 2 (rev) "3 2 3 6 2")
+ |+| gain (every 2 (rev) "1 0.9")
+
+
+d3 $ every 2 (|+| speed "5") $ density 2 $ smash 2 [1..3] $ striate 2 $ sound "gab:4*8 ~ "
+ |+| gain (every 2 (rev) "1.1 0.9 1")
+ |+| speed (every 2 (rev) "2 7 10")
+
+
+
+
+hush

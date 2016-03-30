@@ -1,0 +1,31 @@
+cps 1
+
+b $ sometimes (# dch "0.1") $ stack[
+drum "[bd, ht/2] ~ [bd, [~ lt/2]] ~",
+slowcat[drum "~ cp", drum "~ [[cp !?] [~ cp]]"],
+every 2 (# drum "~ ~") $ density 2 $ drum "ch*2 oh",
+stack[density 2 $ drum "ch ch ~ ~", append' (drum "~ ~ ch ch") (slowcat[drum "~ ~ oh*2 ch", drum "~ ~ oh ch*2", drum "~ ~ oh oh"])],
+stack[density 2 $ drum "~ ~ [~ ch]/8 [~ ch]/4", slowcat[drum "~ [~ ch] ch ch", drum "~ [~ ch] ch oh"]],
+slow 2 $ drum "ag(3,8)"
+] # dch (scale 0.1 0.5 sine1) # doh "1" # sag "1" # dt "0.25"
+ # lbd "0.1"
+ # lcp "0.1"
+ # lch "0.1"
+ # loh "0.1"
+ # lag "0.1"
+
+
+b silence
+
+q $ slow 2 $ stack[
+chrot [42, 36] "[[~ ~ 1] [~ 1]] [[1? ~ 1] [~ 1]]" [0]
+]
+
+-- partenza 2
+m5 $ slow 4 $ stack[
+chrot [42, 36] "1" [0]
+] # dur "0.5" # sustainpedal (scale 0 0.65 sine1) # vel (scale 0 0.25 sine1)
+
+
+hush
+

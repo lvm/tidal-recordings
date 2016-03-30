@@ -1,0 +1,148 @@
+cps 1
+
+cps 1.2
+
+let sw f = sometimes(within (0, 0.5) f)
+    sw' d h f = sometimes(within (d, h) f)
+    sttd t d = (#stt t) . (#std d)
+    notem p = note $ toMIDI p
+    nm p = notem p
+
+let pbd = [drum "[~ bd ~ bd] [~ bd ~ ~]", drum "[~ bd ~ ~] [~ bd ~ ~]", drum "[bd bd ~ ~] [bd ~ ~ ~]"]
+    psn = [drum "[~ ~ ~ ~] [sn ~ ~ sn]", drum "[~ ~ ~ ~] [~ ~ sn ~]"]
+    poh = [drum "[ ~ ~ ] [oh ~]", drum "[ ~ ~ ] [~ oh]"]
+
+b $ sw((# dch "0.1")) $ stack[
+drum "bd !",
+slowcat[
+slowcat[drum "[~ sn ~ ~] [~ ~ ~ sn/2]", drum "sn([2 3]/2,4)"],
+        within (0, 0.5) (density 2) $ slowcat[drum "~ sn", append' (drum "~ sn ") (drum "sn sn")]
+],
+drum "~ cp",
+--slowcat[drum "~ cp", drum "~ cp", drum "[~ ~ cp ~] [~ cp ~ ~]", drum "cp([4 2 4 8]/4,4)"],
+foldEvery [11,13] (sw (zoom (0, 0.25))) . every 12 (sw' 0 0.5 (chop 2 . slow 4)) $ density 2 $ stack[drum "ch*2 oh", chop 2 $ drum "[~ ch]/2 ~]"] --
+--density 2 $ slowcat[drum "ch oh", drum "oh oh", drum "ch*2 oh"]
+,drum "~ [ag !?]"
+]
+|+| hg "0.75"
+|+| dch "[0.25 0.5]/2"
+|+| doh "0.2"
+|+| lag "0.35"
+|+| sag (scale 0 0.9 sine1)
+|+| stt "0"
+|+| std "0"
+
+let pqa = nm "[c4 ~ a3 ~] [g4 ~ b4 ~]"
+    pqb = nm "[c4 ~ a3 ~] [g4 ~ f4 ~]"
+    pqc = nm "[c4 ~ f3 ~] [g4 ~ d4 ~]"
+    pqd = nm "[c4 ~ f3 ~] [g4 ~ e4 ~]"
+    pqx = nm "[c4 ~ c4 ~] [b3 ~ b3 ~]"
+
+--every 13 (sw' 0 0.25 (slow 4 . spin 2 . iter 4)) . every 11 (sw' 0 0.25 (slow 2)) . 
+
+q $ density 2 . every 3 (sw' 0 0.33 (chop 4)) $ slowcat[
+  slowcat[pqa, pqd, pqa, pqa, pqd, pqd, pqb],
+  slowcat[pqa, pqb, pqc, pqc, pqb, pqx, pqa, pqc, pqd],
+  slowcat[pqa, pqa, pqa, pqa, pqx, pqd, pqd, pqb],
+  slowcat[pqb, pqb, pqb, pqx, pqc, pqd, pqc, pqc]
+  ]
+|+| decay (scale 0.25 0.9 sine1)
+|+| cutoffegint (scale 0.5 0.75 rand)
+|+| lforate (scale 0.75 0.8 sine1)
+|+| lfoint (scale 0 0.9 $ density 2 $ squarewave1)
+|+| pitch3 "0.35" --(scale 0.35 0.666 rand) --"0.35"
+|+| modwheel "0.99"
+
+|+| attack (scale 0 0.123 sine1)
+
+
+q $ density 2 . every 3 (sw' 0 0.33 (chop 4)) $ slowcat[
+  pqa, pqb, pqc,pqx,pqx,pqx,pqb,pqd
+  ]
+|+| decay (scale 0.25 0.9 sine1)
+|+| cutoffegint (scale 0.5 0.75 rand)
+|+| lforate (scale 0.75 0.8 sine1)
+|+| lfoint (scale 0 0.9 $ density 2 $ squarewave1)
+|+| pitch3 (scale 0.35 0.666 rand) --"0.35"
+|+| modwheel "0.99"
+
+|+| attack (scale 0 0.123 sine1)
+
+
+hush
+
+
+q $ note "66" # decay "0.9"
+
+
+
+
+
+----
+
+
+b $ every 2 (sw (sttd "[0.45 0.5]/2" "[0.1 0.25]/4")) $ sw((# dch "0.1")) $ stack[
+drum "bd !",
+--slowcat[drum "[~ sn ~ ~] [~ ~ ~ sn/2]", drum "sn([2 3]/2,4)"],
+within (0, 0.5) (density 2) $ slowcat[drum "~ sn", append' (drum "~ sn ") (drum "sn sn")],
+drum "~ cp",
+--slowcat[drum "~ cp", drum "~ cp", drum "[~ ~ cp ~] [~ cp ~ ~]", drum "cp([4 2 4 8]/4,4)"],
+every 4 (sw' 0 0.5 (chop 2 . slow 4)) $ density 2 $ stack[drum "ch*2 oh",drum "[~ ch]/2 ~]"] --
+--density 2 $ slowcat[drum "ch oh", drum "oh oh", drum "ch*2 oh"]
+--,drum "~ [ag !?]"
+]
+|+| hg "0.75"
+|+| dch "0.5" --"[0.25 0.5]/2"
+|+| doh "0.2"
+|+| lag "0.25"
+|+| sag (scale 0 0.9 sine1)
+|+| stt "0.5"
+|+| std "0.1"
+
+
+
+
+
+b $ stack[
+drum "bd(2,4)",
+density 2 $ drum "ch*2 oh"
+--,append' (drum "~ oh*2") (drum "oh oh")
+,drum "~ cp"
+,within (0, 0.5) (density 2) $ slowcat[drum "~ sn", append' (drum "~ sn ") (drum "sn sn")]
+--,within (0, 0.5) (chop 2 . slow 2) $ drum "ag(3,8)"
+--,slowcat[drum "cp*4 cp", drum "~ cp/2"]
+]
+|+| hg "0.75"
+|+| sag (scale 0.8 0.99 $ density 4 $ squarewave1) --"0.6""0.5"
+|+| scr "0.6"
+|+| stt "0"
+|+| std "0"
+
+b $ every 5 (sometimes (sttd "[0.45 0.5]/2" "[0.1 0.25]/4")) $ stack[
+drum "bd(2,4)",
+density 2 $ drum "ch*2 oh"
+,append' (drum "~ oh*2") (drum "oh/4 ~")
+,drum "~ cp"
+,within (0, 0.5) (density 2) $ slowcat[drum "~ sn", append' (drum "~ sn ") (drum "sn sn")]
+--,within (0, 0.5) (chop 2 . slow 2) $ drum "ag(3,8)"
+,slowcat[drum "cp*4 cp", drum "~ cp/2"]
+]
+|+| hg "0.75"
+|+| doh "0.2"
+|+| dch "0.2"
+|+| sag (scale 0.8 0.99 $ density 4 $ squarewave1) --"0.6""0.5"
+|+| scr "0.6"
+|+| stt "0.5"
+|+| std "0.1"
+
+q $ density 2 . every 3 (sw' 0 0.33 (chop 4)) $ slowcat[
+  pqa, pqd, pqx --, pqb, pqc,pqx,pqx,pqx,pqb,pqd
+  ]
+|=| decay (scale 0.25 0.9 sine1)
+|=| cutoffegint (scale 0.5 0.75 rand)
+|=| lforate (scale 0.75 0.8 sine1)
+|=| lfoint (scale 0 0.9 $ density 2 $ squarewave1)
+|=| pitch3 (scale 0.35 0.666 rand) --"0.35"
+|=| modwheel "0.99"
+
+hush

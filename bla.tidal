@@ -1,0 +1,16 @@
+bps 8
+
+d4 $ jux (rev) (sound "bass3 gabba bass2 trump:1*3/4 trump:2/2")
+
+d5 $ sound "newnotes*4/2 gabba:1 newnotes gabba:2 jvbass/2"
+d5 silence
+
+d6 $ sound "co*4/2 co"
+
+d7 $ jux (rev) (brak) (sound "ht*2")
+
+d8 $ jux (rev) (sound "cp/2")
+
+d9 $ jux (rev) (sound "drumtraks drumtraks:4")
+
+hush

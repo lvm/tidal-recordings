@@ -1,0 +1,173 @@
+cps 0.666
+
+cps 0.5
+
+hush
+
+let t t = echo (t/3)
+let o t = echo (t/8)
+let c n = echo (n/4)
+
+d2 $ foldEvery [3, 5, 7] (within (0, 0.5) (jux rev)) $ stut 2 0.25 0.5 $ sound "wobble(3,4)"
+|+| speed "[2.5 2.5 2.5 1.5]/4"
+|+| shape (scale 0.15 0.25 $ sine1)
+
+d4 $ within (0, 0.25) (chop 4) . gap 4 . every 3 (within (0, 0.25) (c 2 . density 2)) . slowspread c [4, 4, 4, 7] $ stack[
+every 2 rev $ sound "[td:4 [td:23(5,8)]/2 td:4, td:9 td:4]"
+]
+|+| resonance "0.7"
+|+| cutoff (scale 0.1 0.4 $ rand)
+|+| bandq "0.01"
+|+| bandf "0.25"
+|+| speed "2.5"
+|+| coarse ((floor <$>) $ scale 3 7 $ rand)
+|+| delay (scale 0 0.25 $ rand)
+
+cps 0.5
+
+let t t = echo (t/3)
+let o t = echo (t/8)
+let c n = echo (n/4)
+
+d3 $ foldEvery [3, 5, 7] (within (0, 0.5) (jux rev)) $ stut 2 0.25 0.5 $ sound "bell(5,8)"
+|+| speed (((/2) <$>) $ scale 1.5 2.5 $ sine1)
+|+| shape (scale 0.15 0.25 $ sine1)
+|+| gain "0.4"
+|+| vowel (iter 2 $ "a o")
+
+d4 $ every 9 (c 1) . within (0, 0.25) (chop 4) . gap 4 . every 3 (within (0, 0.25) (c 2)) . slowspread t [4, 4, 4, 7] $ slowcat[
+every 2 rev $ sound "[td:4 [td:23(5,8)]/2 td:4, td:9 td:4*2]"
+]
+|+| resonance "0.7"
+|+| cutoff (scale 0.1 0.4 $ rand)
+|+| bandq "0.01"
+|+| bandf "0.25"
+|+| speed "2.5"
+|+| coarse ((floor <$>) $ scale 3 7 $ rand)
+|+| delay (scale 0 0.25 $ rand)
+|+| gain "1.2"
+
+
+
+
+
+
+
+
+-----
+-- TODO LO DEMAHS.
+----
+
+
+d3 $ slow 2 $ (sound $ samples "~ bell" $ iter 16 "4 10 9 6 11 1 13 14 0 8 12 5 2 15 7 3") --run 16)
+|+| speed "2.5"
+|+| gain "0.98"
+|+| resonance "[0.7 0.25 0.5 1.0]/4"
+|+| cutoff "[0.37 0.05 0.15 0.08]/4"
+|+| bandq "[0.8 0.1 0.25]/3"
+|+| bandf "[0.05 0.15 0.666]/3"
+|+| vowel "a"
+
+
+hush
+
+d4 $ within (0, 0.25) (chop 4) . every 3 (slow 2) . stut 2 0.5 0.5 . every 7 (gap 4) . gap 4 . slowspread (c) [4, 4, 2, 2, 4] $ stack[
+every 2 rev $ sound "[td:4 td:4, td:23 td:23*2 td:9]"
+]
+|+| resonance "0.7"
+|+| cutoff (scale 0.1 0.4 $ rand)
+|+| bandq "0.01"
+|+| bandf "0.25"
+|+| speed "2"
+
+d4 $ within (0, 0.25) (chop 4) . gap 4 . slowspread (c) [4, 4, 2, 2, 4] $ stack[
+every 2 rev $ sound "[td:4 td:23 td:4, td:9 td:4]"
+]
+|+| resonance "0.7"
+|+| cutoff (scale 0.1 0.4 $ rand)
+|+| bandq "0.01"
+|+| bandf "0.25"
+|+| speed "2.5"
+
+
+
+d4 $ within (0, 0.25) (chop 4) . every 3 (slow 2) . stut 2 0.5 0.5 . every 7 (gap 4) . gap 4 . slowspread (c) [4, 4, 2, 2, 4] $ slowcat[
+every 2 rev $ sound "[td:4 td:4, td:23 td:23*2 td:9]"
+,
+sound "td:4 td:23 td:23"
+,
+every 2 rev $ sound "[td:4 td:4, td:23 td:23*2 td:9]"
+,
+sound "td:4 td:23 td:4 !"
+,
+every 2 rev $ sound "[td:4 td:4, td:23 td:23*2 td:9]"
+,
+sound "td:4 ~ ~"
+,
+every 2 rev $ sound "[td:4 td:4, td:23 td:23*2 td:9]"
+,
+sound "td:23 ! ! ! ! !"
+]
+|+| resonance "0.7"
+|+| cutoff (scale 0.1 0.4 $ rand)
+|+| bandq "0.01"
+|+| bandf "0.25"
+|+| speed "2.5"
+|+| coarse "[2 7]/2"
+
+
+d4 $ slow 2 . within (0, 0.25) (chop 4) . every 3 (slow 2) . stut 2 0.5 0.5 . every 7 (gap 4) . gap 4 . slowspread (c) [4, 4, 2, 2, 4] $ slowcat[
+every 2 rev $ sound "[td:4 td:4, td:23 td:23*2 td:9]"
+,
+every 2 rev $ sound "[td:4 td:23 td:4, td:9 td:4]"
+,
+sound "[td:23 ! td:4, td:9 td:2]"
+]
+|+| resonance "0.7"
+|+| cutoff (scale 0.1 0.4 $ rand)
+|+| bandq "0.01"
+|+| bandf "0.25"
+|+| speed (scale 2.5 3 $ rand) --"2.5"
+|+| coarse ((floor <$>) $ scale 3 7 $ rand)
+|+| delay (scale 0 0.25 $ rand)
+|+| delayfeedback (scale 0.25 0.5 $ rand)
+|+| delaytime (scale 0.25 0.5 $ rand)
+
+
+hush
+
+
+
+------
+
+cps 0.25
+
+
+d1 $ echo (7/8) $ within (0, 0.25) ((|+| delay "0.9") . (|+| delayfeedback "0.9") . (|+| delaytime "0.9")) . within (0, 0.25) (iter 3) . striate' 2 (0.5) . within (0, 1) (spread' density "2 2 2 2 2 3 2 3") $ within (0.25, 0.75) (stut 2 0.2 0.5) $ sound "drumtraks:2 ~"
+ |+| speed (((*0.666) <$>) $ every 2 (((*0.8)) <$>) $ every 4 ((*0.62) <$>) $ every 5 ((*0.725) <$>) $ every 7 (((*0.84)) <$>) $ scale 0.1 0.5 $ sine1)
+ |+| shape ( ((*0.2) <$>) sinewave1)
+ |+| end rand
+
+d2 $ every 9 (density 1.5) . foldEvery [3, 5, 7] (within (0, 0.5) (jux rev)) $ stut 2 0.25 0.5 $ sound "wobble(3,4)"
+|+| speed "[2.5 2.5 2.5 1.5]/4"
+|+| shape (scale 0.15 0.25 $ sine1)
+
+d3 $ foldEvery [3, 5, 7] (within (0, 0.5) (jux rev)) $ stut 2 0.25 0.5 $ sound "[td:4 td:4/2, ~ td:4*2? !]"
+
+|+| speed "[2.5 2.5 2.5 2]/4"
+
+
+
+
+
+d4 $ spread' density "[2 1 4]" . every 3 (density 2) . foldEvery [3, 5, 7] (within (0, 0.5) (jux rev)) $ stut 2 0.25 0.5 $ sound "dr"
+|+| speed "[2.5 2.5 2.5 2]/4"
+
+d5 $ chop 4 . spread' density "[2 1 4]" . foldEvery [3, 5, 7] (within (0, 0.5) (jux rev)) $ stut 2 0.25 0.5 $ sound "arp"
+|+| speed "[2.5 2.5 2.5 3]/4"
+|+| cut "1"
+
+d5 silence
+
+
+hush

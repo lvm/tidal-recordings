@@ -1,0 +1,172 @@
+bps 0.9666
+
+d1 $ echo (3/3) $ every 3 (stut 2 0.9 0.5) $ stack[sound "~ unix unix:1*2? ~", sound "unix:3*2? ~ ~ ~", sound "~ ~ ~ unix:4/2"]
+ |+| speed (every 2 ((*2) <$>) $ iter 4 "0.7 0.92 0.93")
+ |+| shape (iter 4 "0.2 0.3 0.4")
+
+
+d2 $ spread' striate "4 2 2" $ sound "unix:2 unix:2"
+ |+| shape (slow 8 "0.6 0.3 0.1 0.3 0.5")
+
+
+d3 $ striate' 2 (0.1) $ sound "unix:4 ~ ~ unix:4/2"
+ |+| speed (slow 8 "1.5 1.1 1.2") --every 13 ((0.1-) <$>) $
+
+
+d4 $ echo (7/4) $ sound "~ unix:3/2 unix:3/2 ~"
+ |+| speed "1"
+
+
+
+
+d4 $ echo (7/4) $ every 5 (stut 8 0.2 (-0.5)) $ sound "~ unix:3/4 unix:3/2 ~"
+ |+| speed (slow 4 "0.666 1.8 0.7")
+
+
+--------------
+hush
+--------------
+
+
+bps 0.6
+
+d1 $ spread' density "2 1 2" . stut 2 0.9 (-0.5) $ sound "~ unix unix:1 ~"
+ |+| speed "0.5"
+ |+| shape (slow 8 "0.6 0.5 0.8 0.7 0.5")
+
+d2 $ spread' density "2 1 2" . stut 2 0.9 (-0.5) $ sound "unix:1 ~ unix:4/3 unix:3"
+
+ |+| gain sinewave1
+ |+| shape (slow 8 "0.6 0.5 0.8 0.7 0.5")
+
+d3 $ echo (7/4) $ every 8 (rev) $ every 4 (stut 4 0.9 (-0.5))  $ sound "minipops:3 minipops:4?"
+ |+| gain "1.2"
+ |+| speed "0.8"
+ |+| shape "0.666"
+ |+| end rand
+
+d4 $ every 8 (density 2) . stut 2 0.9 (-0.5) . spread' striate "2 4 2 4 2%4" $ sound "glitch ~ glitch:3 ~"
+ |+| speed (((0.1-) <$>) $ iter 4 "1 0.71 0.8 1.7 1.5")
+ |+| shape "0.666"
+ |+| gain "1.5"
+
+
+--------------
+hush
+--------------
+
+bps 0.6
+
+
+d1 $ spread' density "8 4 8" . every 2 (striate 8) . stut 8 0.9 0.5 $ sound "~ unix ~"
+ |+| speed (every 8 ((*2) <$>) $ slow 8 "0.6 0.5 0.8 0.7 0.5")
+
+d2 $ spread' density "8 4 8" . every 2 (striate 8) . stut 8 0.5 (-0.5) $ sound "~ ~ unix:1"
+ |+| speed (iter 5 "1.6 1 1.8 0.9 1.5")
+
+d3 $ spread' striate "2 1 2" . every 4 (stut 2 0.9 0.6) . stut 4 0.9 (-0.5) $ sound "unix:3 ~ ~ unix:4"
+ |+| speed (iter 5 "1.6 1 1.8 0.9 1.5")
+
+
+--------------
+hush
+--------------
+
+bps 1
+
+d1 $ jux rev . every 6 (|+| vowel "u") . striate' 32 (0.5) $ sound "~ unix ~"
+ |+| speed "0.9"
+ |+| speed (every 8 ((*2) <$>) $ slow 8 "0.6 0.5 0.8 0.7 0.5")
+
+
+d2 $ every 8 (juxcut rev) . echo (5/3) $ every 3 (density 2) $ sound "~ ~ unix:2"
+ |+| speed "1"
+ |+| shape "0.5"
+ |+| vowel (slow 32 "i u o a e")
+
+
+d3 $ echo (7/4) $ every 3 (density 2) $ palindrome $ sound "~ unix:1 ~ unix"
+ |+| speed (((*4) <$>) $ iter 5 "1.6 1 1.8 0.9 1.5")
+
+
+d4 $ echo (7/4) $ every 3 (density 2) $ palindrome $ sound "~ unix:4 ~ unix:3"
+ |+| speed (((*8) <$>) $ iter 5 "1.6 1 1.8 0.9 1.5")
+
+--------------
+hush
+--------------
+
+bps 0.666
+
+
+d1 $ juxcut rev . stut 2 0.9 (-0.5) $ sound "unix ~"
+ |+| speed (every 4 ((0.1-) <$>) $ iter 4 "1.6 1 1.8 1.5")
+
+d2 $ echo (7/4) $ density 3 $ sound "unix:3 ~"
+ |+| speed (((*2) <$>) $ slow 2 "0.5 1.5")
+
+d3 $ echo (7/4) $ sound "~ unix:4"
+ |+| speed (((*2) <$>) $ slow 2 "0.5 1.5")
+
+d4 $ jux rev . echo (7/4) $ density 3 $ sound "~ unix:1"
+ |+| speed (every 8 ((0.1-) <$>) $ iter 4 "1.6 1 1.8 1.5")
+
+--------------
+hush
+--------------
+
+bps 0.666
+
+d1 $ every 2 (slow 2) . every 3 (slow 3) . every 5 (rev) . striate' 2 (0.5) . spread' density "5 12 4 2 6 32" . stut 32 0.9 (-0.9) $ sound "lsdj:5"
+ |+| speed (((*9) <$>) $ every 2 ((*2) <$>) sinewave1)
+ |+| gain sinewave1
+
+d1 $ every 2 (slow 2) . every 3 (slow 3) . every 5 (rev) . striate' 2 (0.5) . spread' density "5 12 4 2 6 32" . stut 32 0.9 (-0.9) $ sound "lsdj:5"
+ |+| speed (((*9) <$>) $ every 2 ((*2) <$>) $ every 5 ((*3) <$>) sinewave1)
+ |+| gain sinewave1
+
+d1 $ every 2 (slow 2) . every 3 (slow 3) . every 5 (rev) . striate' 2 (0.5) . spread' density "5 12 4 2 6 32" . stut 32 0.9 (-0.9) $ sound "lsdj:5"
+ |+| speed (((*9) <$>) $ every 2 ((*2) <$>) $ every 5 ((*3) <$>) $ every 7 ((*4) <$>) sinewave1)
+ |+| gain sinewave1
+
+d1 $ every 2 (slow 2) . every 3 (slow 3) . every 5 (rev) . every 7 (slow 0.9) . striate' 2 (0.5) . spread' density "5 12 4 2 6 32" . stut 32 0.9 (-0.9) $ sound "lsdj:5"
+ |+| speed (((*9) <$>) $ every 2 ((*2) <$>) $ every 5 ((*3) <$>) $ every 7 ((*4) <$>) sinewave1)
+ |+| gain sinewave1
+
+
+
+
+d1 $ rev . slow 8 . striate' 2 (0.5) . spread' density "5 12 4 2 6 32" . stut 32 0.9 (-0.9) $ sound "lsdj:5"
+ |+| speed (((*9) <$>) $ every 2 ((*2) <$>) $ every 5 ((*3) <$>) $ every 7 ((*4) <$>) sinewave1)
+ |+| gain sinewave1
+
+d2 $ sound "lsdj:5*2 lsdj:3"
+
+d2 $ sound "lsdj:3 lsdj:5*2 lsdj:5*2 lsdj:5*2 lsdj:5*2 lsdj:5*2 lsdj:5*2 lsdj:5*2 lsdj:5*2 lsdj:5*2 "
+
+
+d2 $ sound "lsdj:1 lsdj:5 lsdj:3 lsdj:5"
+
+d2 $ echo (7/4) $ sound "lsdj:1 lsdj:5 lsdj:3*3? lsdj:5"
+
+d2 $ juxcut rev . echo (7/4) $ sound "lsdj:1 lsdj:5 lsdj:3*3? lsdj:5"
+
+hush
+
+
+
+
+--------------
+hush
+--------------
+
+bps 2
+
+d4 $ echo (7/4) $ sound "~ unix:1 ~ unix"
+
+d3 $ echo (7/4) $ sound "~ ~ unix ~"
+
+d2 $ echo (7/4) $ sound "~ unix ~ ~"
+
+d1 $ echo (7/4) $ every 16 (striate 8) $ sound "unix ~ ~ ~"
+ |+| speed (((*9) <$>) $ every 2 ((*2) <$>) $ every 5 ((*3) <$>) $ every 7 ((*4) <$>) sinewave1)

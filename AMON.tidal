@@ -1,0 +1,109 @@
+cps 0.666
+
+let lpf = (# bandq "0.5") . (# bandf "0.9") . (# resonance "0.1") . (# cutoff "0.15")
+    juxLpf n = juxBy n lpf
+
+d1 $ every 3 (revArc(0, 0.5)) $ stack[
+  slowspread juxLpf [0, 0.25, 0.5, 0.75] $ stack[
+     sound "[bd5([3 5]/2,8), sn(3,8,2)]",
+     sound "~ oh5",
+     sound "ch*2 ~"
+  ],
+  every 3 (# sound "~ cp8") $ sound "~ [cp !!?!]"
+] # coarse (floor <$> scale 1 8 triwave1)
+
+
+
+
+---
+
+
+cps 1
+
+cps 1.2
+
+let you = sound "alphabet:20"
+    are = sound "alphabet:17"
+    dead = sound "alphabet:25"
+
+
+d1 $ sometimes(superimpose(# coarse (density 2 $ palindrome $ iter 7 "8 2 5 3 6 1 6"))) . every 10 ( sometimes (within (0, 0.5)((# end "0.1") ))) . every 23 (|+| accelerate "-1") . slowspread (stut 2 1) [0.25, 0, 0.75] . density 2 $ stack[
+sound (samples "[~ amencutup] !" (iter 8 $ run 8)),
+sound (samples "[~ amencutup] !" (irand 8))
+] # cut "0.75" # gain "1.2" 
+
+d1 $ sometimes(superimpose(# coarse (density 2 $ palindrome $ iter 7 "8 2 5 3 6 1 6"))) . every 10 ( sometimes (within (0, 0.5)((# end "0.1") ))) . every 23 (|+| accelerate "-1") . slowspread (stut 2 1) [0.25, 0, 0.75] . density 2 $ stack[
+--sound (samples "[~ amencutup] !" (iter 8 $ run 8)),
+sound $ samples "[~ amencutup] !" $ iter 4 "4 2"
+] # cut "0.75" # gain "1.2" 
+
+d2 $ retrig $ striate 4 $ sound "ade" # speed (density 4 . iter 4 $ scale 0.5 0.75 rand) # vowel "a i" # gain "0.8"  # bandq "0.5" # bandf "0.25" # resonance "0.1" # cutoff "0.15"
+
+d3 $ superimpose (# vowel "a") .chop 2 . spin 2 $ slowcat[you, are, dead]  # speed "0.9" # vowel "a i" # gain "0.8"  # bandq "0.5" # bandf "0.25" # resonance "0.1" # cutoff "0.15"
+
+d3 silence
+
+hush
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----
+
+
+
+d1 $ superimpose ((# coarse (floor <$> scale 1 23 rand)) . (# vowel "o")) $ stack[
+sound "bd*2 ~",
+sound "~ cp/2",
+every 2 (density 2 . sometimes(# end "0.1")) $ sound "~ ch*2",
+sound "[ch !!!?] oh/4" # end "1 0.25",
+sound "rim8([3 8 5]/3,8)"
+] # pan (scale 0 0.75 sine1)
+
+d3 $ stut 2 0.5 0.25 . jux (sometimes rev) $ stack[
+e 8 8 $ sound (samples "arpy:2 arpy arpy:4" (iter 5 $ run 5))
+] # speed (((/4)<$>) "1")  # density 8 (vowel "[a i a o]/4") # pan (scale 0.25 0.75 $ palindrome . iter 2 $ sine1) # coarse "7" # end "0.1"
+
+hush
+
+----
+
+cps 1.2
+
+let e' n = e n 8
+
+d1 $ jux brak . every 23 (# accelerate "-1") . foldEvery [21, 23] (# speed "0.5") . foldEvery [13,15,17] (sw(# coarse "4")) $ stack[
+stack[sound "[bd8:2 [~ bd8:1]/3, ~ bd8:2/2] bd", every 8 (# sound "~ cp8") $ every 5 (slow 2 . chop 4) $ sound "~ [cp !?]"],
+sound $ preplace (1,1) "[x([5 8]/2,8)]" "~ sn",
+slowcat[
+      every 3 (sw(slow 2)) . every 16 (chop 4 . slow 2 . iter 2) $ sound "[ch(9,16)]/2",
+      every 3 (sw(slow 2)) . every 16 (chop 4 . slow 2 . iter 2) $ sound "[ch([5 8]/2,8)]/2"
+],
+sound "~ ~ oh5/8 ~"
+] # speed "2" # gain "1.2"
+
+d2 $ fadeOut 8 . stut 2 0.25 0.25 . jux rev $ stack[
+e 3 8 $ sound (samples "sn*2 sn*2 sn*2" (iter 5 $ run 5))
+] # speed "[1 2 2 2 4 2 2 1 2]/9"  # density 8 (vowel "o i a") # pan (scale 0.25 0.75 $ palindrome . iter 2 $ sine1) # gain "[1]/1"
+
+d3 $ fadeOut 32 . stut 2 1 0.75 . jux (sometimes rev) $ stack[
+slowspread e' [3,3,3,3,5] $ sound (samples "arpy:2 arpy arpy:4 arpy" (iter 5 $ run 5))
+] # speed "0.5"
+
+d4 $ fadeOut 32 . stut 2 0.25 0.25 . jux (rev) $ stack[
+e 3 8 $ sound (samples "arpy:2 arpy arpy:4 arpy" (iter 5 $ run 5))
+] # speed "2" # gain "1.25"
+
+
+
+hush

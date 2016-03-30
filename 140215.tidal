@@ -1,0 +1,122 @@
+cps 0.5
+
+
+let ddd = (|+| delay "0.5") . (|+| delaytime "0.5") . (|+| delayfeedback "0.5")
+
+-- d1 $ every 8 (within (0, 0.5) (|+| accelerate "1")) $ every 5 (echo (7/4)) $ stack[
+-- slowspread (chop) [2, 4, 2, 2] . every 4 (rev) . within (0, 0.25) (striate 4) $ sound "~ ae ae:6 ~"
+-- ,
+-- striate 2 $ sound "ae:7/2 ~ ~ "
+-- ,
+-- slow 2 $ sound "~ ~ ~ bd8:1"
+-- |+| coarse "[1 15 4]/3"
+-- ,
+-- sound "~ ~ bd:8*2? ~"
+-- |+| crush "4"
+-- ]
+-- |+| speed (every 8 ((0.1-) <$>)  "1")
+
+
+-- d1 $ every 5 (rev) $ stack[
+-- slowspread (chop) [2, 4, 2, 2] . every 4 (rev) . within (0, 0.25) (striate 4) $ sound "~ ae ae:6 ~"
+-- ,
+-- striate 2 $ sound "ae:7 ~ ~ "
+-- ,
+-- sound "unix:0 unix:0 ~"
+-- |+| cut "1"
+-- ,
+-- chop 4 $ sound "~ ~ ~"
+-- ]
+
+
+-- d1 $ every 5 (rev) $ stack[
+-- slowspread (chop) [2, 4, 2, 2] . every 4 (rev) . within (0, 0.25) (striate 4) $ sound "~ ae ae:6 ~"
+-- ,
+-- striate 2 $ sound "ae:7 ~ ~ "
+-- ,
+-- sound "unix:0 unix:0 ~"
+-- |+| cut "1"
+-- ]
+
+
+-- d1 $ every 5 (rev) $ stack[
+-- within (0, 0.25) (rev) . slowspread (chop) [2, 4, 2, 2] . every 4 (rev) . within (0, 0.25) (striate 4) $ sound "{~ ae ae:6 ~ visco:5?}%4"
+-- ]
+
+-- d2 $ stack[
+-- sound "sn:1 ~ ~"
+-- |+| end rand
+-- ,
+-- within (0, 0.25)(striate' 2 (0.5)) $ sound "~ ~ ~ rapman:1(2,1)"
+-- ]
+-- |+| speed (every 2 ((/2) <$>) $ "[0.9 1]/2")
+
+-- d2 $ slow 4 $ stack[
+-- sound "sn:1 ~ ~"
+-- |+| end "0.1"
+-- ]
+-- |+| speed (((0.1-) <$>) $ every 2 ((/2) <$>) $ "[0.9 1]/2")
+
+
+-- d1 $ slow 16 . every 4 ((|+| sound "glitch bottle:1") . (|+| end "0.9 0.1")) $ slowspread ($) [within (0, 0.25) (chop 2), iter 4] . every 5 (rev) $ stack[
+-- within (0, 0.25) (rev) . slowspread (chop) [2, 4, 2, 2] . every 4 (rev) $ sound "~ ae:6 ae:6 ~"
+-- ]
+
+-- d2 $ every 2 (stut 2 0.5 (-0.1)) . striate' 2 (0.5) $ stack[
+-- (sound $ samples "~ {bottle cp:0?}%1" $ (iter 2 "0 1"))
+-- |+| end "[0.2 0.1]/2"
+-- |+| gain "[0.6 0.8 0.9]/3"
+-- |+| speed "[0.6 0.8 0.9]/3 1"
+-- ,
+-- stut 2 0.5 (-0.5) . slow 2 $ sound "~ ~ ~ ~ dr:2"
+-- |+| end "[0.1 0.2]/2"
+-- |+| speed (every 2 ((0.1-) <$>) $ "[0.2 0.25]/2")
+-- |+| gain "[0.26 0.4]/2"
+-- |+| vowel (slow 4 "o x x a")
+-- ]
+
+
+
+-- d2 $ fadeOut 8 $ every 6 (|+| vowel "o") $ sound "~ ~ dr? [ dr dr:2 ]"
+-- |+| end "[0.1 0.2]/2"
+-- |+| speed (every 2 ((0.1-) <$>) $ "[0.2 0.25]/2 0.1")
+-- |+| coarse "[11 1 45]/3"
+-- |+| gain "[0.5 0.3 0.7]/3"
+
+
+-- d3 $ every 8 (|+| speed "0.666") . every 2 (brak . rev) . slowspread (striate) [4, 2, 2] . superimpose (stut 2 0.1 (-0.1) . (|+| sound "sid:2")) $ sound "sid:2 {visco:5 !? !? !? !}%1 ~"
+-- |+| speed (((/2)<$>) $ "[3 14 15 6 9 2 5]/7")
+
+
+
+-- d3 $ stack[
+-- (sound (samples  "[~ ~] ~ pong?" (iter 24 $ run 24)))
+-- |+| end rand
+-- ,
+-- slow 2 . stut 2 0.5 0.1 $ sound "visco:4 ~ ~ ~"
+-- |+| end "0.1"
+-- ]
+
+-- d4 $ stack[
+-- density 1.5 . slowspread (chop) [4, 8, 4, 2] . density 1.5 $ (sound $ samples "amencutup*2" $ iter 6 $ run 6)
+-- |+| gain "[0.8 0]/2"
+-- ,
+-- within (0, 0.5) (density 1.5) . smash 2 [1..2] . slowspread (chop) [4, 8, 4, 2] . density 1.5 $ (sound $ samples "amencutup*2" $ iter 6 $ scan 6)
+-- |+| gain "[0 0.8]/2"
+-- ]
+-- |+| cut "1"
+
+
+-- d4 $ slowspread (chop) [4, 2] $ (sound $ samples "amencutup*2" $ iter 6 $ run 6)
+-- |+| gain "0.3"
+-- |+| cut "1"
+-- |+| speed (((0.1-) <$>)"1")
+
+
+-- d3 $ stack[
+-- sound "gabba:1 ~"
+-- |+| speed (every 2 ((0.1-) <$>)"1")
+-- ]
+
+
+hush

@@ -1,0 +1,139 @@
+cps 0.5
+
+b $ every 7 (slow 2 . chop 2) . smash 2 [3] . density 1.25 $ stack[
+
+let ch2 = within (0, 0.1) (chop 2)
+
+b $ every 23 (revArc(0, 0.1)) $ stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[bd ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[~ ~ ~ ~] [~ sn ~ ~] [~ ~ ~ ~] [~ ~ sn sn]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+,
+slowcat[
+(# scl "0.2") . every 2 (within (0, 0.25) (slowspread chop [2,4,1,1,1,1,4,2])) $ drum "[~ ~ cl ~] [~ [cl] ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+,(# scl "0.2") . every 2 (within (0, 0.25) (slowspread chop [2,4,1,1,1,1,4,2])) $ drum "[~ ~ cl ~] [~ [cl] ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+,(# scl "0.2") . every 2 (within (0, 0.25) (slowspread chop [2,4,1,1,1,1,4,2])) $ drum "[~ ~ cl ~] [~ [cl] ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+,stack[every 4 (slow 2) . chop 2 . slow 2 $ drum "cl(16,16)" |+| scl "0.2", drum "[~ ~ cp ~] [~ ~ cp ~] [~ cp ~ cp] [cp ~ ~ ~]"]
+]
+         ]
+|+| stt "0"
+|+| std "0.25" --(scale 0 0.2 $ rand)
+|+| lcl "0.6"
+
+
+
+
+-- q $ stack[
+-- iter 4 $ note $ toMIDI "~ b4 ~ ~   ~ ~ e4 ~ ~  ~ d4 ~   ~ f4 ~ ~"
+-- ]
+-- |+| decay "0.9"
+
+
+-- q $ sometimes rev . slow 4.25 $ stack[
+-- note $ toMIDI "e5 c4 e4 b4"
+-- ,
+-- iter 4 . slow 2 . chop 2 $ note $ toMIDI "c5 e5 f5 d5"
+-- ]
+-- |+| decay "0.9"
+
+
+q $ slowcat[
+note $ toMIDI "[c4 !] [c3!] [e4 !] !"
+,
+note $ toMIDI "[c5 !] [c4!] [e3 !] !"
+]
+|+| decay "0.9"
+
+
+|+| dur "0.5"
+
+
+
+hush
+
+
+
+----
+
+cps 0.666
+
+cps 0.5
+
+b $ every 4 (sometimes rev) . every 23 (revArc(0, 0.1)) $ stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[bd ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[~ ~ ~ ~] [~ sn ~ ~] [~ ~ ~ ~] [~ ~ sn sn]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+,
+(# scl "0.2") . every 2 (within (0, 0.25) (slowspread chop [2,4,1,1,1,1,4,2])) $ drum "[~ ~ cl ~] [~ [cl] ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+         ]
+|+| stt "0"
+|+| std "0.25" --(scale 0 0.2 $ rand)
+|+| lcl "0.6"
+
+
+
+
+
+
+
+cps 1
+
+
+b $ slow 3 . every 23 (revArc(0, 0.1)) $ stack[
+every 7 (within (0, 0.5) (density 2)) $ drum "[bd ~ ~ ~] [~ ~ ~ ~] [~ bd bd? ~] [~ bd ~ ~]"
+,
+drum "[~ ~ ~ ~] [~ sn ~ ~] [~ ~ ~ ~] [~ ~ sn sn]"
+,
+slowcat[
+stack[
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ [oh !? oh !?]]"
+]
+,
+stack[
+drum "[~ ~ ~ ~] [~ ch ch ch] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ag ag/3 ag/4] [~ ~ ~ [oh !? oh !?]]"
+]
+]
+,
+(# scl "0.2") . every 2 (within (0, 0.25) (slowspread chop [2,4,1,1,1,1,4,2])) $ drum "[~ ~ cl ~] [~ [cl] ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+         ]
+|+| stt "0"
+|+| std "0.25" -- (scale 0 0.2 $ rand)
+|+| lcl "0.6"
+|+| sag "0.9"
+
+
+hush
+
+
+
+
+
+cps 1
+
+q $ sometimes rev . every 4 (sometimes(within (0, 0.33) (chop 2))) . slow 4 $ stack[
+slowcat[
+note $ toMIDI "f4 ~ a5 g5",
+note $ toMIDI "f3 ~ c5 d5"
+],
+density 2 $ slowcat[
+note $ toMIDI "a4(10,16)"
+,
+note $ toMIDI "b4(10,16)"
+]
+]
+|+| decay (scale 0.5 0.9 sine1)
+
+
+q silence

@@ -1,0 +1,34 @@
+bps 1.2
+
+
+d1 $ stack[sound "[house fat909] dr2", density 2 $ sound "[cp*3]/8 dr2*2", every 2 (density 8) $ slow 8 $ sound "dr*16 dr2"]
+
+ |+| gain (slow 2 "1 0.7 0.5 0.3 0.1")
+
+ |+| gain "1.2"
+
+d2 $ density 2 $ sound (samples "fat909 house:0*2" (run 5))
+
+ |+| gain (slow 2 "1 0.7 0.5 0.3 0.1")
+
+ |+| gain "1.2"
+
+d3 $ interlace (density 2 $ sound "~ e*2 sn ~") (every 4 ((smash 2 [1..5]) . (striate 8)) $ sound "~ bass bass3/4 jvbass*8")
+ |+| accelerate "1 1 -10 1 1"
+
+ |+| gain (slow 2 "1 0.7 0.5 0.3 0.1")
+
+-- |+| gain "1.2"
+
+
+solo $ 
+
+d4 $ every 32 ((|+| end "0.2") . (|+| speed "5") . (|+| delay "0.5") . (|+| delayfeedback "0.2") . (|+| delaytime "0.9") . (density 2)) $ slow 32 $ striate' 256 (0.1) $ sound "believe"
+ |+| gain (slow 2 "1 0.7 0.5 0.3 0.1")
+ |+| end "0.1"
+ |+| speed (every 2 (rev) "0.9 0.8")
+
+ |+| gain "0.7"
+
+
+hush

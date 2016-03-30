@@ -1,0 +1,53 @@
+cps 0.5
+
+let pi = [iter 4 $ note $ toMIDI "g4 f5?"]
+
+-- synth strings 1
+m1 $ sometimes (slow 1.2) . slow 1.25 $ stack[
+  note $ toMIDI "c3 ~"
+  ,
+  slowcat[
+  note $ toMIDI "~ f3",
+  note $ toMIDI "~",
+  note $ toMIDI "~ e3"
+         ]
+  ,
+  slowcat[slowcat pi, cat pi]
+]
+|+| dur "0.9"
+|+| sustainpedal (scale 0 0.666 sine1)
+|+| vel "0.15"
+
+
+-- synth bass 201
+m3 $ density 1.2 $ stack[
+  iter 2 $ note $ toMIDI "c3 e3 ~ f4"
+]
+|+| dur "0.5"
+|+| sustainpedal (scale 0 0.666 sine1)
+|+| vel "0.35"
+
+
+---
+ 
+let pat0 = [drum "ht lt lt lt ht", drum "~ ht ~ ht*2 ~"] -- , drum "lt bd lt sn ht"
+
+let pat1 = [stack[drum "~ bd ~ ~ ~",drum "~ ~ sn ~ ~"], drum "~ sn ~ bd ~"] -- , drum "lt bd lt sn ht"
+
+b $ stack[
+slowcat[slowcat pat1, every 4 (sometimes (slow 2 . chop 4)) $ cat pat1]
+--,slowcat[slowcat pat0, every 4 (sometimes (slow 2 . chop 4)) $ cat pat0]
+,
+drum "ch ~ ~ oh/2 ~"
+,
+density 2 $ append' (drum "~ cl ~ cl ~") (every 2 (sometimes(within (0, 0.5)(chop 2))) $ drum "cl(3,5)")
+,
+slowspread slow [8,8,4,2] $ drum "~ ~ ~ cp ~"
+]
+|+| scl (scale 0.9 0.99 rand)
+
+
+
+hush
+
+q silence

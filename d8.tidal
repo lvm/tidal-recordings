@@ -1,0 +1,42 @@
+cps 0.666
+
+-- bank 2 - 126: evening3
+m4 $ echo (6/8) . slowspread (stut 2 0) [0.75] $ stack[
+  sometimes rev . iter 4 $ chrot' [42,30] 0 "[1(1,4,2)]" [0, 5, 7],
+  randcat[
+  chrot' [42,30] 24 "[1(1,4)]" [0, 5, 7],
+  chrot' [42,30] 12 "[1([1 2]/2,4)]" [0, 5, 7]
+  ]
+] # dur "0.25" # vel "0.35"
+
+-- bank 1 - 59: warm 1
+m5 $ stut 2 0 0.75 $ randcat[
+  chrot' [42,37,38,35,30] 12 "1(3,4)" [0,4,7]
+] # dur "0.05" # vel "0.5"
+
+b $ foldEvery [7,3,5] (sometimes(# dch "1")) . every 2 (sometimes (#scl (scale 0.75 0.9 rand))) . sometimes brak . echo (6/8) $ stack[
+  drum "~ ~ cp ~",
+  every 2 rev $ sometimes (every 3 (slow 2) . chop 2) $ drum "ch*2 oh",
+  drum "[~ ~ [cl!!!?]] [cl!!!!]",
+  drum "~ [cr/4 cr/8]"
+] # scp "0.5" # dch "0.01" # doh "0.01" # scr "0.75" # sag "1" # scl (scale 0.85 1 rand) # stt "0" # std "0.1"
+
+q $ every 23 brak $ slowcat[
+  chrot' [30] 0 "[1(5,8,2)]" [0, 3, 7],
+  chrot' [30] 0 "[1(3,8)]"  [0, 3, 7]
+] # decay "0" # lforate "0" # lfoint "0" # dur "0.01" # vel "0.75"
+
+hush
+
+
+
+
+hush
+
+q silence
+
+q $ echo (6/8) . slowspread (stut 2 0) [0.25] $ every 6 (# cutoffegint "0.1") $ randcat[
+--  iter 4 $ chrot' [42,30] 0 "[1(3,4)]" [0, 5, 7, 10, 14],
+  chrot' [42,30] 24 "[1(1,4)]" [0, 5, 7]
+--  chrot' [42,30] 12 "[1([1 2]/2,4)]" [0, 5, 7]
+] # cutoffegint "0.25" # decay "1" # lforate "0" # lfoint "0" # dur "0.25" # vel "0.75"

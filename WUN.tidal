@@ -1,0 +1,26 @@
+bps 0.5
+
+
+d1 $ spread' density "2 1 2" . stut 4 0.9 (-0.5) . every 5 (rev) $ sound "~ unix deepsky*2 ~"
+ |+| shape (slow 8 "0.6 0.5 0.8 0.7 0.5 0.7 0.6 0.5")
+ |+| speed (((*2) <$>) $ slow 8 "0.6 0.5 0.8 0.7 0.5 0.7 0.6 0.5")
+
+
+d2 $ spread' density "2 1 4 1 2" . stut 4 0.7 0.5 $ sound "fat909:2"
+ |+| speed (((*4) <$>) $ slow 8 "0.6 0.5 0.8 0.7 0.5 0.7 0.6 0.5")
+
+
+d3 $ every 4 (slow 2) . every 9 (slow 4) . density 8 . stut 32 0.9 (-0.9) $ sound "unix:4?"
+ |+| speed ((((*2) . (0.1-)) <$>) $ every 2 ((*4) <$>) $ every 3 ((*2) <$>) $ sinewave1)
+ |+| vowel (slow 8 "a i u e o")
+
+
+hush
+
+
+
+cps 0.6
+
+d1 $ spread' density "2 1 2" . stut 2 0.9 (-0.5) . every 5 (rev) $ stack[sound "~ amenkit:12 ~ house ~ ", striate 2 $ sound "dr dr dr2 dr" |+| speed "0.5" ]
+
+hush

@@ -1,0 +1,77 @@
+
+
+   every 4 (within (0, 0.35) (chop 2)) $ drum "[~ ~ bd [bd bd]] [[~ bd] ~ bd ~]"
+
+   hush
+   
+cps 0.5
+
+
+b $ slowcat[
+  stack[
+   drum "[cl ~ ~ ~] [~ cl ~ ~]"
+   ,
+   within (0, 0.75) (chop 2) $ drum "[ch ch ch ch] [ch ch ch ch]"
+   ,
+   drum "[~ ~ ~ ~ ] [~ ~ ~ oh]"
+   |+| std "0.5"
+   ,
+   every 4 (within (0, 0.35) (chop 2)) $ drum "[~ ~ lt [lt lt]] [[~ lt] ~ lt ~]"
+  ]
+  ,
+  stack[
+   drum "[cl ~ cl ~] [~ ~ cl ~] [~ ~ cl ~] [~ cl ~ ~]"
+   ,
+   drum "[ch ch ch ch] ! ! !"
+   ,
+   drum "[~ ~ ~ ~] ! ! [~ ~ ~ oh/3]"
+   |+| std "0.5"
+   ,
+   drum "[~ lt ~ ~] [lt ~ ~ lt] [~ lt ~ ~] [lt ~ lt/2 ~]"
+  ]
+]
+|+| std "0.3"
+|+| stt "0"
+|+| doh "0.9"
+|+| dch "0.25"
+|+| scl "0.9"
+
+
+b2 $ fadeOut 8 $ every 4 (slow 2) . every 8 (within (0, 0.35) (chop 2) . within (0.35, 0.5) (chop 4)) $ drum "cp(9,16)"
+|+| scp "0.5"
+|+| lcp (scale 0.25 0.5 $ sine1)
+
+b2 silence
+
+b3 $ drum "[cr(1,16)]/2"
+|+| scr "0.9"
+|+| lcr "0.9"
+|+| std "0.9"
+
+
+
+----
+
+hush
+
+
+b1 $ smash 2 [3] $ every 4 (chop 2) . density 2 $ stack[
+   drum "~ lt ~ cp"
+   ,
+   drum "~ ch ch ~"
+   ,
+   drum "oh ~ ~ ~"
+  ]
+|+| dch "0.25"
+
+b2 $ smash 2 [3] $ sometimes (chop 2) $ drum "cl(8,8)"
+|+| scl "0.9"
+
+b3 $ smash 2 [3] $ stack[
+  drum "cp"
+  ,
+  drum "~ ~ ~ [sn(5,8)]/2"
+  ]
+
+cps 0.666
+

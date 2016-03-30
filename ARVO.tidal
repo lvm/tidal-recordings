@@ -1,0 +1,67 @@
+---- brak.
+bps (60/60)
+
+cps 0.3
+
+d2 $ echo (7/4) $ stut 2 0.5 0.1 . density 10 $ striate' 8 (0.5) $ sound (samples "~ jvbass" (iter 8 "0 2 1 3 5 6 7 4 8"))
+  |+| speed "1.1 1.2 1.3"
+
+
+d2 silence
+
+
+d1 $ jux rev $ density 2 $ sound "rave:0 ~"
+  |+| end "0.1"
+  |+| shape triwave1
+  |+| speed "1.1 1.2 1.3"
+
+d2 $ density 2 $ sound "rave:1 ~"
+  |+| begin "0.3"
+  |+| end "0.4"
+  |+| speed "1.1 1.2 1.3"
+
+d1 $ echo (1/2) $ density 16 $ sound "rave:0 ~"
+  |+| end "0.1"
+  |+| speed "1.1 1.2 1.3"
+  |+| gain "1.2"
+
+d1 silence
+
+
+
+d2 silence
+
+d2 $ echo (7/8) $ density 10 $ sound (samples "~ jvbass" (iter 8 "0 2 1 3 5 6 7 4 8"))
+  |+| speed "1.1 1.2 1.3"
+  |+| gain "0.9"
+
+
+
+d3 $ echo (7/4) $ density 2 $ sound "~ speech*2"
+  |+| speed "1.1 1.5 1.2"
+
+d3 silence
+
+d4 $ echo (7/4) $ every 4 (echo (7/8)) $ every 3 ((|+| speed "0.6 0.6 0.6")) $ every 2 (density 4 . (|+| resonance "0.5")) $ density 3 $ striate' 64 (0.1) $ interlace (sound "~ cp") (sound "~ ifdrums")
+  |+| speed "1.1 1.5 1.2"
+
+  |+| delay "0.9"
+  |+| delayfeedback "0.5"
+  |+| delaytime "0.9"
+
+d4 silence
+
+
+d4 $ every 2 ((slow 2) . rev . (striate 3)) $ every 4 (density 2) $ smash 2 [4..8] $ density 16 $ striate' 42 (0.1) $ stack[sound "~ speech", sound "bass0/4"]
+  |+| speed "1.1 1.2 1.3"
+
+d4 $ every 2 (rev . density 2) $ smash 5 [2..8] $ density 8 $ striate' 12 (0.1) $ stack[sound "~ speech", sound "bass0/4"]
+  |+| speed "1.4 0.9 1.5"
+  |+| gain "0.5"
+
+d9 $ density 8 $ sound "bass0"
+
+
+  |+| delay "0.5"
+  |+| delayfeedback "0.5"
+  |+| delaytime "0.9"

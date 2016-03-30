@@ -1,0 +1,49 @@
+cps 0.5
+
+d1 $ echo (7/4) $ chop 2 $ sound "glitch ~ glitch2"
+ |+| speed (every 9 ((*2) <$>) $ every 2 ((0.1-) <$>) $ scale 0.5 0.8 $ sine1)
+
+d2 $ echo (7/4) $ iter 3 . chop 3 $ sound "visco:4"
+ |+| speed (((*2) <$>) $ scale 0.5 0.8 $ sine1)
+
+
+d2 $ every 5 (rev) . palindrome . slow 2 . chop 3 . chop 2 . iter 3 $ sound "metal:3 mouth d mouth"
+ |+| speed (every 3 ((0.1-) <$>) $ "1")
+
+
+d5 $ juxcut rev . every 3 (retrig) $ jux ((|+| vowel "i") . every 3 (|+| vowel "a") . rev) $ sound "ade:3"
+ |+| speed (every 3 ((0.1-) <$>) $ scale 0.2 0.5 $ sine1)
+ |+| gain (scale 0.4 0.5 $ sine1)
+
+
+hush
+
+
+
+cps 0.7
+
+d6 $ stut 3 0.5 0.4 . spread' density "3 4 4 3" $ sound (samples "jvbass" (iter 5 $ run 5))
+ |+| slow 2 (vowel "i a")
+ |+| gain "1.2"
+ |+| gain (scale 0.5 0.6 $ sine1)
+
+d1 $ every 7 ((0.25 <~) . slow 2) $ every 5 (density 2) $ rev . striate 2 . stut 2 0.9 0.5 . density 2 $ sound "bass3 bass3 !?"
+ |+| speed ( every 2 ( (*4) <$>) $ every 4 ( (*2) <$>) $ every 3 ( (*3) <$>) $ iter 4 "0.5 2 0.9 1")
+ |+| vowel "a"
+ |+| gain sinewave1
+
+
+
+d1 $ echo (7/4) $ stut 2 0.5 0.5 $ sound "house house"
+ |+| speed (every 2 ((*2) <$>) $ every 2 ((0.1-) <$>) $ scale 0.5 0.8 $ sine1)
+ |+| gain "1.2"
+
+d2 $ echo (7/4) $ stut 2 0.9 0.5 . chop 2 $ sound "visco:4 ~ ~ visco:4"
+ |+| speed (scale 0.5 0.99 $ sine1)
+
+d5 $ juxcut rev . every 3 (retrig) $ jux ((|+| vowel "u") . every 3 (|+| vowel "a") . rev) $ sound "ade:3"
+ |+| speed (every 3 ((0.1-) <$>) $ scale 0.5 0.666 $ sine1)
+ |+| gain (scale 0.4 0.5 $ sine1)
+
+
+hush

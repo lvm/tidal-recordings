@@ -1,0 +1,140 @@
+cps 1
+
+let randpick xs = (xs !!) <$> (irand $ fromIntegral $ length xs)
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+    sttd t d = (# stt t) . (# std d)
+    st2 = stut 2 0 0.25
+
+q $ gap 2 $ stack[
+slowcat[
+nm "[c2 ~ c2 ~]",
+nm "[c2 c3 ~ c2]",
+nm "[~ d3 ~ d2]",
+nm "[~ g2 ~ ~]",
+nm "[c3 ~ c3 ~]",
+nm "[c3 c4 ~ c3]",
+nm "[~ d4 ~ d3]",
+nm "[~ g3 ~ ~]"
+],
+slowcat[
+nm "[~ g4 ~ b4]",
+nm "[~ ~ c4 ~]",
+nm "[~ g4 ~ b4]",
+nm "[~ ~ f4 ~]",
+nm "[~ f4 ~ a4]",
+nm "[~ ~ a4 ~]",
+nm "[~ g4 ~ b4]",
+nm "[~ ~ d4 ~]"
+]
+] # vel "0.25" # dur "0.15" # decay (scale 0.9 0.99 squarewave1) # cutoffegint (scale 0 1 rand)  # lfoint "0.2" # lforate "0.7"
+
+b $ stack[
+slowcat[drum "[~ bd] ~ ~ bd", drum "~ bd ~ bd", drum "~ [~ bd] ~ bd"],
+slowcat[drum "~ ~ sn ~", drum "cp([2 3]/2,4)"],
+every 4 (within (0.25, 0.5) (chop 2)) $ slowcat[drum "ch ch ch ch", drum "ch*2 ch*2 ch*2 oh"],
+drum "~ ~ ~ oh/3"
+--,drum "~ cr/4 ~ ~"
+] # lbd "0.6" # stt "0" # std "0" # dch "0.25"
+
+b $ stack[
+--drum "bd bd",
+slowcat[drum "[~ bd] ~ ~ bd", drum "~ bd ~ bd", drum "~ [~ bd] ~ bd"],
+slowspread (stut 2 0) [0.75, 0.5] $ drum "~ ~ cp ~",
+drum "ch ch ch ch",
+drum "~ ~ ~ oh"
+] # dch "0.5"
+
+q $ stack[
+nm "d4 a4 ~ a4",
+slowcat[
+nm "~ ~ d4 ~",
+nm "~ ~ g4 ~"
+]
+] #decay "[0.9 0.95 0.99]/3" # cutoffegint (scale 0 1 $ slow 8 $ triwave1) # lforate (scale 0.7 0.75 sine1) # lfoint (scale 0.1 0.15 sine1)
+
+q $ stack[
+nm "d4 d4 ~ a4",
+slowcat[
+nm "~ ~ d4 ~",
+nm "~ ~ a4 ~"
+]
+] #decay "[0.9 0.95 0.99]/3" # cutoffegint (scale 0 1 $ slow 8 $ triwave1) # lforate (scale 0.7 0.75 sine1) # lfoint (scale 0.1 0.15 sine1)
+
+b $ stack[
+drum "~ ~ ~ bd",
+every 8 st2 $ drum "~ sn ~ ~",
+every 4 st2 $ drum "ch ~ ch ~",
+drum "~ ~ [~ oh/2] ~",
+drum "~ ~ cr/8 ~"
+] # scl (scale 0.05 0.1 $ every 2 rev $ sine1) # stt "0" # std "0"
+
+q $ stack[
+every 4 (# nm "c4 ~ e4 ~") $ nm "c4 ~ c4 ~",
+slowcat[
+nm "~ g4 ~ f4"
+,nm "~ b3 ~ f3"
+,nm "~ d3 ~ f4"
+]
+] # dur "0.05"
+
+
+cps 0.666
+
+b $ density 2 $ stack[
+drum "bd bd",
+every 3 (slowspread (stut 2 0) [0.75, 0.5]) $ drum "~ cp",
+every 3 (wf0 0.5 (zoom(0.5, 1))) $ every 2 (wf0 0.25 (chop 2)) $ density 2 $ drum "ch*2 oh",
+drum "oh ~"
+]
+
+q $ note (randpick [36..50]) # decay "[0.9 0.95 0.99]/3"
+
+# cutoffegint (scale 0.5 0.666 $ slow 8 $ triwave1)
+# lforate (scale 0.7 0.75 sine1) # lfoint (scale 0.1 0.15 sine1)
+
+
+
+hush
+
+
+---
+
+
+cps 1
+
+
+b $ every 2 rev $ stack[
+drum "bd bd",
+every 4 (slowspread (stut 2 0) [0.75, 0.5]) $ drum "~ cp",
+density 2 $ drum "ch*2 oh"
+--,drum "[~ ch]/4 oh"
+] # dch "0.25" # doh "0.5" # stt "0" # std "0"
+
+b $ stack[
+drum "[~ bd ~ ~] [~ bd ~ ~]",
+drum "[~ ~ ~ ~] [ ~ cp ~ ~]",
+drum "[ch ch ch ~] [ch ch ch ~]",
+drum "[~ ~ oh ~] [~ ~ ~ oh]"
+] # stt "0" # std "0" # hg "0.75"
+
+cps 0.666
+
+b $ stack[
+drum "~ ~ ~ bd",
+every 4 st2 $ drum "~ sn ~ ~",
+slowspread (stut 2 0) [0.75, 0.5] $ drum "~ cp/2 ~ ~",
+--every 4 st2 $
+drum "ch ~ ch ~"
+,drum "~ ~ oh/2 ~"
+--drum "~ ~ cr/8 ~"
+]  # stt "0" # std "0" # hg "0.75" # dch (scale 0.25 0.9 sine1)
+
+hush

@@ -1,0 +1,69 @@
+cps 1
+
+b $ every 9 (stut 2 0 0.75) . density 2 $ stack[
+ drum "bd ~",
+ drum "ch*2 oh",
+ slowcat[drum "~ ~", drum "[~ ch] !"],
+ slowcat[every 8 (chop 2) $ drum $ preplace (1,1) "[x(9,16)]/8" "cp", every 5 ( chop 2 ) $ drum "ag [~ ag/2]"]
+] # scp "0.6" # sag "0.6" # std "0" # stt "0"
+
+
+q $ sometimes(within(0, 0.25) (#cutoffegint "0.95")) $ slowcat[
+  chrot' [30,25,26,23] 12 "[1(3,8)]" [0,3,7]
+] # dur "0.2" # cutoffegint (scale 0.23 0.666 sine1) # delay "1"
+
+-- vibraphone
+m5 $ slowcat[
+  chrot' [30] 12 "[1(3,8)]" [0,3,7]
+] # dur "0.5" # vel "0.1"
+
+
+
+--
+
+
+
+cps 1
+
+b $ every 9 (stut 2 0 0.75) . density 2 $ stack[
+ drum "bd ~",
+ drum "ch*2 oh",
+ slowcat[drum "~ ~", drum "[~ ch] !"],
+ slowcat[every 8 (chop 2) $ drum $ preplace (1,1) "[x(9,16)]/8" "cp", every 5 ( chop 2 ) $ drum "ag [~ ag/2]"]
+] # scp "0.6" # sag "0.6" # std "0" # stt "0"
+
+q $ sometimes(within(0, 0.25) (#cutoffegint "0.95")) $ slowcat[
+  chrot' [30] 12 "[1(3,8)]" [0,3,7],
+  chrot' [25] 12 "[1(3,8,2)]" [0,3,7],
+  chrot' [26] 12 "[1(3,8)]" [0,3,7],
+  chrot' [23] 12 "[1(3,8,2)]" [0,3,7]
+] # dur "0.25" # cutoffegint (scale 0.23 0.666 sine1)
+
+-- vibraphone
+m1 $ stut 2 0 0.75 $ slowcat[
+  chrot' [30] 24 "[1(3,8)]" [0,3,7,10],
+  chrot' [25] 24 "[1(3,8)]" [0,3,7,10,14],
+  chrot' [26] 24 "[1(3,8)]" [0,3,7,10],
+  chrot' [23] 24 "[1(3,8)]" [0,3,7,10,14]
+] # dur "0.5" # vel "0.75"
+
+hush
+
+
+---
+
+
+
+-- grand piano
+m5 $ stut 2 0 0.75 $ slowcat[
+  chrot' [30] 24 "[1(3,8)]" [0,5,7,10],
+  chrot' [25] 24 "[1(3,8)]" [0,5,7],
+  chrot' [26] 24 "[1(3,8)]" [0,5,7,10],
+  chrot' [23] 24 "[1(3,8)]" [0,5,7]
+] # dur "0.25" # vel "0.25"
+
+
+-- grand piano
+m5 $ slowcat[
+  chrot' [30,25,26,23] 24 "[1(3,8),1(3,8,2)]" [0,5,7,10]
+] # dur "0.25" # vel "0.15"

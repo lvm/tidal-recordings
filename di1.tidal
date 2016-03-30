@@ -1,0 +1,38 @@
+cps 1
+
+
+d1 $ smash 2 [3] . every 3 (stut 2 1 0.75) $ stack[
+  sound "[cp8, cp(3,8)]",
+  sound "glitch*8",
+  sound "bd8:1 !",
+  sound "ch5 [rim5*2 [rim5*2]/2]",
+  sound "~ cr"
+] # coarse (floor <$> scale 1 7 sine1) # up (scale 1 5 $ palindrome . slow 8 $ squarewave1) # delay "0.25"
+
+
+d1 $ smash 2 [3] . every 3 (stut 2 1 0.75) $ stack[
+  --sound "[rim8, rim5(3,8)]",
+  --every 2 (within(0.5, 0.75)(chop 2)) $ sound "[bd8:1, sn*2 !] !",
+  --chop 2 $ sound "ch:5*2 oh",
+  (density 3 $ sound $ samples "amencutup*2" $ iter 4 $ run 4)
+] # coarse (floor <$> scale 1 7 sine1) # up (scale 1 5 $ palindrome . slow 8 $ squarewave1) # delay "0.25"
+
+
+d1 $ jux (sometimes (within (0, 0.25)(spin 8))) . every 3 (chop 2) $ stack[
+  --sound "[rim8, rim5(3,8)]",
+  --every 2 (within(0.5, 0.75)(chop 2)) $ sound "[bd8:1, sn*2 !] !",
+  --chop 2 $ sound "ch:5*2 oh",
+  (density 3.5 $ sound $ samples "amencutup*2" $ iter 8 $ run 8)
+] # coarse (floor <$> scale 1 7 sine1) # up (scale 1 5 $ palindrome . slow 8 $ squarewave1) # delay "0.25" # end rand # pan (scale 0 0.75 rand)
+
+-- bank 2 - 126: evening3
+m5 $ slow 2 . echo (6/8) . slowspread (stut 2 0) [0.75] $ stack[
+  --sometimes rev . iter 4 $ chrot' [42,30] 0 "[1(1,4,2)]" [0, 5, 7],
+  --randcat[
+  --chrot' [42,30] 24 "[1(1,4)]" [0, 5, 7],
+  chrot' [42,30] 12 "[1([1 2]/2,4)]" [0, 5, 7]
+  --]
+] # dur "0.5" # vel "0.125"
+
+
+hush

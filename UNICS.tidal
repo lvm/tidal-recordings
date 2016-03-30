@@ -1,0 +1,214 @@
+bps 0.97
+
+
+d1 $ echo (3/3) $ every 3 (stut 2 0.9 0.5) $ stack[sound "~ unix unix:1*2? ~", sound "unix:3*2? ~ ~ ~", sound "~ ~ ~ unix:4/2"]
+ |+| speed (every 7 ((0.1-) <$>) $ iter 4 "1 1.2 1.3")
+ |+| shape "0.5"
+
+d1 $ echo (3/3) $ every 3 (stut 2 0.9 0.5) $ stack[sound "~ unix unix:1*2? ~", sound "unix:3*2? ~ ~ ~", sound "~ ~ ~ unix:4/2"]
+ |+| speed (every 7 ((0.1-) <$>) $ iter 4 "0.7 0.92 0.93")
+ |+| shape "0.5"
+ |+| shape (iter 4 "0.2 0.3 0.4")
+
+
+d4 $ every 17 (|+| accelerate "-1") $ every 4 ((0.5 <~)) $ degradeBy 0.3 $ every 9 (iter 8) $ stack[density 2 $ sound "house:4/2 drum*2? less:3/3 fat909:3", sound "glitch*8", striate 2 $ sound "fat909:4" |+| gain sinewave1, sound "dr", sound "house" |+| speed "2" |+| end "0.3"]
+ |+| speed (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.666 0.8")
+ |+| shape (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.2 0.3")
+ |+| gain (slow 2 "0.666 0.8 0.7")
+
+
+d4 $ every 17 (|+| accelerate "-1") $ every 4 ((0.5 <~)) $ every 2 (iter 8) $ stack[density 2 $ sound "house:4/2 drum*2? less:3/2 fat909:3", sound "glitch*8", striate 2 $ sound "fat909:4", sound "dr", sound "house" |+| speed "2" |+| end "0.3"]
+ |+| speed (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.666 0.8")
+ |+| shape (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.2 0.3")
+ |+| gain (slow 2 "0.666 0.8 0.7")
+
+bps 0.5
+
+hush
+
+
+
+d4 $ every 17 (|+| accelerate "-1") $ every 4 ((0.5 <~)) $ every 2 (iter 8) $ stut 2 0.9 0.5 . every 4 (rev) . spread density [2, 2] $ sound "unix*1 unix:2*2 unix:1/3 unix:4?"
+ |+| speed (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.666 0.8")
+ |+| shape (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.2 0.3")
+ |+| gain (slow 2 "0.666 0.8 0.7")
+
+
+
+
+
+d3 $ sound "bass2" 
+ |+| speed "2"
+ |+| end "0.3"
+ |+| speed (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.666 0.8")
+ |+| gain (slow 2 "0.666 0.8 0.7")
+
+d4 $ every 17 (|+| accelerate "-1") $ every 4 ((0.5 <~)) $ every 9 (iter 8) $ stack[sound "house:4/2 drum*2? less:3/3 fat909:3", sound "glitch*8", degradeBy 0.2 $ striate 8 $ sound "fat909:4" |+| gain sinewave1, sound "dr/2", sound "bass0" |+| speed "2" |+| end "0.3"]
+ |+| speed (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.666 0.8")
+ |+| gain (slow 2 "0.666 0.8 0.7")
+
+ |+| shape (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.2 0.3")
+
+hush
+
+
+
+d4 $ every 17 (|+| accelerate "-1") $ every 4 ((0.5 <~)) $ degradeBy 0.3 $ every 9 (iter 8) $ stack[sound "house:4/2 drum*2? less:3/3 fat909:3", sound "glitch*8", degradeBy 0.2 $ striate 8 $ sound "fat909:4" |+| gain sinewave1, sound "dr/2", sound "bass0" |+| speed "2" |+| end "0.3"]
+ |+| speed (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.666 0.8")
+ |+| shape (((*1) <$>) $ every 2 ((*0.9) <$>) $ slow 2 "0.2 0.3")
+ |+| gain (slow 2 "0.666 0.8 0.7")
+
+hush
+
+----------
+
+
+
+
+
+bps 0.666
+
+d1 $ echo (3/3) $ every 3 (stut 2 0.9 0.5) $ stack[sound "~ unix unix:1*2? ~", sound "unix:3 ~ ~ ~", sound "~ ~ ~ unix:4/2"]
+ |+| speed (every 7 ((0.1-) <$>) $ iter 4 "1 1.2 1.3")
+ |+| speed (iter 4 "1 1.2 1.3")
+ |+| shape "0.5"
+
+ |+| gain sinewave1
+
+d1 silence
+
+d2 $ spread' striate "4 2 2" $ sound "unix:2 unix:2"
+ |+| shape (every 7 ((0.1-) <$>) $ slow 8 "0.6 0.3 0.1 0.3 0.5")
+
+d3 $ striate' 2 (0.1) $ sound "unix:4 ~ ~ unix:4/2"
+ |+| speed (every 13 ((0.1-) <$>) $ slow 8 "1.5 1.1 1.2")
+
+d4 $ every 5 (stut 8 0.2 (-0.5)) $ sound "~ unix:3/2 ~"
+ |+| speed "0.8"
+ |+| speed (every 2 ((0.1-) <$>) $ slow 4 "0.666 1.8 0.7")
+
+
+
+d5 $ stack[sound (pick <$> "~ deepsky" <*> iter 2 "0 3 2 1"), sound "~ deepsky:4"]
+
+d5 silence
+
+d5 $ stack[sound "deepsky:2 deepsky:3 ~ deepsky:9/4", every 3 (density 2) $ sound "~ deepsky:4"]
+ |+| gain "1.2"
+ |+| speed (every 8 ((0.1-) <$>) $ iter 4 "1 1.5 1.6 2 1.5 1.2 1") --slow 4 "0.666 1.8 0.7")
+
+
+
+d3 silence
+
+hush
+
+
+
+-----
+
+
+--           every 4 (slow 2) . density 2 $ sound "house house? house/2 house" |+| speed (iter 4 "2 1.5 1.7"),
+
+--            stut 2 0.5 0.5 . striate 2 . every 3 (slow 2) . density 4 $ sound "unix" |+| shape (iter 4 "0.9 0.5 0.8 0.7 0.9 0.5") |+| speed (iter 4 "1 1.2 1.3")
+
+
+bps 0.6
+
+d1 $ spread' density "2 1 2" . stut 2 0.9 (-0.5) $ sound "~ unix unix:1 ~"
+ |+| speed "0.5"
+ |+| shape (slow 8 "0.6 0.5 0.8 0.7 0.5")
+
+d2 $ spread' density "2 1 2" . stut 2 0.9 (-0.5) $ sound "unix:1 ~ unix:4/3 unix:3"
+ |+| shape (slow 8 "0.6 0.5 0.8 0.7 0.5")
+
+d3 $ echo (7/4) $ every 8 (rev) $ every 4 (stut 2 0.9 (-0.5)) . density 2 $ sound "minipops:3 minipops:4?"
+ |+| gain "1.2"
+ |+| speed "0.8"
+ |+| shape "0.666"
+
+d4 $ stut 2 0.9 (-0.5) . spread' striate "2 4 2 4 2%4" $ sound "glitch ~ glitch:3 ~"
+ |+| speed (((0.1-) <$>) $ iter 4 "1 0.71 0.8 1.7 1.5")
+ |+| shape "0.666"
+ |+| gain "1.2"
+
+
+
+
+hush
+-----
+
+
+
+d1 $ spread' density "2 1 2" . stut 2 0.9 (-0.5) $ sound "~ unix unix:1 ~"
+ |+| shape "0.5"
+ |+| shape (slow 8 "0.6 0.5 0.8 0.7 0.5")
+
+d2 $ density 2 . spread' striate "2 4 2 4" $ sound "unix:2 unix:2/2"
+ |+| shape (slow 8 "0.6 0.3 0.8 0.3 0.5")
+ |+| speed (every 7 ((0.1-) <$>) "1")
+
+d3 $ stut 2 0.2 (-0.5) $ sound "~ unix:3"
+ |+| speed (every 16 ((0.1-) <$>) "1")
+
+d4 $ every 8 (|+| vowel "a") $ striate' 2 (0.1) $ sound "unix:4 ~ ~ unix:4/2"
+ |+| speed (every 13 ((0.1-) <$>) $ slow 8 "1.5 1.1 1.2")
+
+
+
+d1 $ spread' density "2 4 2" . every 2 (rev) . stut 2 0.9 (-0.5) $ sound "~ unix unix:1 ~"
+ |+| shape "0.5"
+ |+| shape (slow 8 "0.6 0.5 0.8 0.7 0.5")
+ |+| speed (every 13 ((0.5-) <$>) $ slow 8 "1.5 1.6 1.4")
+
+
+d2 $ stack[sound (pick <$> "jvbass deepsky?" <*> iter 2 "0 3 2 1"), sound "~ deepsky:4", sound "akai? ~ watford:2/2 watford:3/4?"]
+
+
+d2 $ stut 2 0.2 0.5 $ every 2 ((|+| speed "3") . rev) $ every 3 ((|+| speed "4")) $ stack[sound "deepsky  deepsky:3  deepsky:2  deepsky"]
+ |+| speed "2"
+
+d3 $ striate 2 $ stack[sound (pick <$> "minipops minipops minipops minipops" <*> (every 2 (rev) "7 5 1 5 3 0 4")), every 2 (slow 4) $ spread' spin "1 1 1 8" $ sound "drum:0 drum dr drum?" |+| speed ((+0.5) <$> sine1), sound (samples "minipops minipops*2 drum:0 minipops" $ slow 0.5 "7 5 1 5 3 0 4")]
+ |+| speed (every 3 ((*2) <$>) $ every 2 ((/2) <$>) "1.44")
+ |+| end rand
+
+d4 $ every 5 ((|+| shape "0.2")) $ every 4 (iter 8 . rev) $ every 8 (brak) $ stut 2 0.1 1.5 $ striate 2 $ stack[sound "wurlitzer:4/2 ~ deepsky:4 deepsky:2/2", every 8 (spread' striate "4 0 0 0") $ sound "lsdj:2 serge:8/2 deepsky:7 mattel:5/2"]
+ |+| end "0.1"
+ |+| speed (every 2 ((2+) <$>) $ every 3 ((*0.9) <$>) "1.2")
+
+
+
+
+--- kkpdb
+
+bps 0.8
+
+d1 silence
+
+d2 $ whenmod 10 5 (stut 8 0.1 0.2 . iter 4) $ every 4 (striate 2) $ (stut 2 0.2 0.5 $ every 2 ((|+| speed "3") . rev) $ every 3 ((|+| speed "4")) $ stack[sound "deepsky  deepsky:3  deepsky:2  deepsky"]
+ |+| speed "2")
+ |+| gain "1.2"
+
+d3 $ striate 2 $ stack[sound (pick <$> "minipops minipops minipops minipops" <*> (every 2 (rev) "7 5 1 5 3 0 4")), every 2 (slow 4) $ spread' spin "1 1 1 8" $ sound "drum:0 drum dr drum?" |+| speed ((+0.5) <$> sine1), sound (samples "minipops minipops*2 drum:0 minipops" $ slow 0.5 "7 5 1 5 3 0 4")]
+ |+| speed (every 3 ((*2) <$>) $ every 2 ((/2) <$>) "1.44")
+ |+| end rand
+
+d4 $ every 5 ((|+| shape "0.2")) $ every 4 (iter 8 . rev) $ every 8 (brak) $ stut 2 0.1 1.5 $ striate 2 $ stack[sound "wurlitzer:4/2 ~ deepsky:4 deepsky:2/2", every 8 (spread' striate "4 0 0 0") $ sound "lsdj:2 serge:8/2 deepsky:7 mattel:5/2"]
+ |+| end "0.1"
+ |+| speed (every 2 ((2+) <$>) $ every 3 ((*0.9) <$>) "1.2")
+
+
+---- kpppp db 22
+
+
+bps 0.97
+
+d1 $ every 8 (rev . striate 2 . iter 8) $ (every 4 (slow 2) $ every 2 (rev) $ echo (7/4) $ stack[sound "daytone:8? !? daytone*2 dr?", sound "mattel:5? {lsdj:2}*2? dr? mattel:1*2?"])
+ |+| gain sinewave1
+
+d2 $ every 4 (striate 2) $ (stut 2 0.2 0.5 $ every 2 ((|+| speed "3") . rev) $ every 3 ((|+| speed "4")) $ stack[sound "deepsky  deepsky:3  deepsky:2  deepsky"]
+ |+| speed (every 3 ((*2) <$>) $ every 2 ((/2) <$>) "2"))
+
+d3 $ jux ((|+| gain "1") . every 3 (rev)) $ every 13 (brak) $ every 4 ((0.25 <~)) $ every 9 (iter 8) $ every 8 ((juxcut (iter 2)) . rev) $ stack[sound (pick <$> "minipops daytone:6 minipops minipops" <*> (every 2 (rev) "7 5 1 5 3 0 4")), every 2 (slow 4) $ spread' spin "1 1 1 8" $ sound "drum:0 drum daytone:6 drum?" |+| speed ((+0.5) <$> sine1), sound (samples "minipops minipops*2? drum:0 minipops" $ slow 0.5 "7 5 1 5 3 0 4")]
+ |+| speed (every 2 (rev) $ slow 2 "2.5 2 1.5")
+ |+| end rand

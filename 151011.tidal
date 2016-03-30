@@ -1,0 +1,312 @@
+cps 0.5
+
+d1 $ stack[
+sound "[[td:4, dr dr] [td:15, td:9]]"
+,
+sound "td:15"
+]
+|+| gain "[0.5 0.6 0.9]/3"
+
+
+d1 silence
+
+d1 $ sound "bd"
+
+
+d2 silence
+
+d2 $ stack[
+every 4 rev . spread' density "[1 2 4]/3" $ sound "[wobble(3,4)] td:15 glitch:2/2"
+|+| speed (scale 4 3.5 $ rand)
+|+| coarse ((floor <$>) $ scale 1 7 $ rand)
+]
+
+-- |+| pan "[0.25 0.5 0.75]/3"
+
+let c t = echo (t/4)
+
+d2 $ every 3 ((|+| accelerate "-1")) $ slow 1.25 $ stack[
+spread' c "7 4" $ every 8 (slow 2) $ every 4 rev . spread' density "[1 2 4]/3" $ sound "td:15 glitch:2/2 click"
+|+| speed (scale 4 3.5 $ rand)
+|+| coarse ((floor <$>) $ scale 1 7 $ rand)
+,
+slowcat[
+sound "[click !!, click:2*8]"
+,
+sound "[td:9 click !, click:2*8]"
+]
+]
+
+
+hush
+
+d2 $ fadeOut 4 $ slowcat[
+every 8 (stut 4 0.25 0.25) . striate 4 $ sound $ samples "alphabet" $ iter 4 $ run 23
+,
+spread' density "[8 4]/2" $ sound "{hat hat:2?}%4"
+--, sound "numbers:6 numbers:6 numbers:6"
+]
+
+
+
+d3 $ fadeOut 2 $ stut 4 0.25 0.25 . spread' chop "[1 4 2]/3 [1 8]/3" $ sound "td:15 td:9"
+|+| cut "1"
+|+| end "0.05"
+
+
+
+d3 $ every 3 ((|+| accelerate "-1")) $ slow 1.25 $ stack[
+spread' c "7 4" $ every 8 (slow 2) $ every 4 rev . spread' density "[1 2 4]/3" $ sound "td:15 glitch:2/2 click"
+|+| speed (scale 4 3.5 $ rand)
+|+| coarse ((floor <$>) $ scale 1 7 $ rand)
+,
+slowcat[
+sound "[click !!, click:2*8]"
+,
+sound "[td:9 click !, click:2*8]"
+]
+]
+
+
+
+d2 $ slow 4 . every 10 (within (0, 0.25) (density 1.25) . within (0.25, 0.75) (slow 4)) $ every 9 (|+| accelerate "-5") $ every 4 (slow 2) $ every 2 (spread' chop "[8 4 8 2]/4") . striate 2 $ spread' c "7 4" $ slowcat[
+sound "{hat hat:2?}%4"
+]
+|+| speed "[0.25 0.2 0.3 0.5]/4"
+|+| coarse ((floor <$>) $ scale 1 7 $ rand)
+|+| gain (scale 0.6 0.9 $ sine1)
+|+| delay "0.2"
+|+| delayfeedback "0.2"
+|+| delaytime "0.2"
+
+d3 $ rev . every 2 (density 1.25) $ sound "[wobble ! glitch, glitch:2]"
+|+| end "0.15"
+|+| bandq "0.5"
+|+| hcutoff "0.5"
+
+d3 silence
+
+d4 silence
+
+
+d4 $ spread' c "7 4" $ slowcat[
+every 2 rev $ sound "[am:5 am:6, am:9 ! am:1]"
+,
+sound "{am:5 am:9 am:6}%2"
+,
+slow 1.25 . chop 2 $ sound "am:5 td:23 am:6*2"
+]
+|+| end "0.15"
+|+| bandq "0.5"
+|+| hcutoff "0.5"
+
+d1 silence
+
+d1 $ every 2 ( chop 2 ) . striate 8 . chop 4 . slow 4 $ sound "ade:2"
+|+| cut "1"
+|+| end "0.15"
+|+| bandq "0.5"
+|+| hcutoff "0.5"
+|+| speed (scale 0.26 0.59 $ sine1)
+|+| delay "0.2"
+|+| delayfeedback "0.2"
+|+| delaytime "0.2"
+|+| vowel "[o i a]/3"
+
+
+d1 $ every 2 ( chop 2 ) . chop 4 . stut 2 0.25 0.5 . slow 2 $ sound "amen"
+|+| cut "1"
+|+| end "0.15"
+|+| bandq "0.5"
+|+| hcutoff "0.5"
+|+| speed (scale 0.26 0.59 $ sine1)
+|+| delay "0.2"
+|+| delayfeedback "0.2"
+|+| delaytime "0.2"
+
+d2 $ stut 2 0.25 0.5 $ sound "finger"
+|+| bandq "0.5"
+|+| hcutoff "0.5"
+
+|+| vowel "[o i a]/3"
+
+
+
+d1 $ sound $ preplace (1,2) "x(7,16)" "[rapman:2 {cp cp}%4, [rapman(7,16)]/2]"
+
+
+
+d1 $ every 5 (within (0, 0.25) (slow 2)) . every 2 rev $ (sound $ preplace (1,1.75) "x(1,5) x(4,11)" "rapman:2 sd8 [bd8:1 !, sd]")
+|+| bandq "0.5"
+|+| hcutoff "0.5"
+|+| coarse "6"
+
+d4 silence
+
+let t t = echo (t/3)
+let o t = echo (t/8)
+let c n = echo (n/4)
+
+cps 0.3
+
+d4 $ every 9 (c 1) . within (0, 0.25) (chop 4) . gap 4 . every 3 (within (0, 0.25) (c 2)) . slowspread t [4, 4, 4, 7] $ slowcat[
+every 2 rev $ sound "[td:4 [td:23(5,8)]/2 td:4, td:9 td:4*2]"
+]
+|+| resonance "0.7"
+|+| cutoff (scale 0.1 0.4 $ rand)
+|+| bandq "0.01"
+|+| bandf "0.25"
+|+| speed "2.5"
+
+|+| coarse ((floor <$>) $ scale 3 7 $ rand)
+|+| delay (scale 0 0.25 $ rand)
+
+
+hush
+
+
+
+d1 $ stack[
+slow 1.25 . every 5 ((0.1 <~) . within (0, 0.25) (slow 1.25)) $ (sound $ preplace (1,1.75) "x(13,24)" "rapman:2 sd8 [bd8:1 !, sd]")
+|+| bandq "0.5"
+|+| hcutoff "0.5"
+|+| coarse "6"
+,
+slowcat[
+sound "hat:2 hat hat:3 hat:4"
+,
+rev $ sound "hat:2 hat hat:3 hat:4"
+]
+]
+|+| cutoff "0.05"
+|+| bandq "0.01"
+|+| bandf "[0.1 0.25 0.5]/3"
+|+| resonance "0.25"
+|+| coarse "8"
+
+-----
+
+d1 $ stack[
+slow 1.25 . every 5 ((0.1 <~) . within (0, 0.25) (slow 1.25)) $ slowcat[
+(sound $ preplace (1,1.75) "x(13,24)" "rapman:2 sd8 ~")
+,
+(sound $ preplace (1,1.75) "x(7,4)" "~ ~ bd8:1")
+]
+|+| bandq "0.5"
+|+| hcutoff "0.5"
+|+| coarse "6"
+,
+slowcat[
+sound "hat:2 hat hat:3 hat:4"
+,
+rev $ sound "hat:2 hat hat:3 hat:4"
+]
+|+| coarse "8"
+]
+|+| cutoff "0.05"
+|+| bandq "0.01"
+|+| bandf "[0.1 0.25 0.5]/3"
+|+| resonance "0.25"
+
+---
+
+
+d1 $ stack[
+every 8 (within(0,0.25)(|+| speed "-1")) . chop 8 . every 3 ((0.25 <~) . rev) . density 4.5 $ (sound $ samples "am*2 am:1*2?" $ iter 4 $ run 4)
+|+| speed "0.9"
+,
+slowcat[
+sound "hat:2 hat hat:3 hat:4"
+,
+rev $ sound "hat:2 hat hat:3 hat:4"
+]
+|+| coarse "8"
+]
+|+| cutoff "0.05"
+|+| bandq "0.01"
+|+| bandf "[0.1 0.25 0.5]/3"
+|+| resonance "0.25"
+
+
+d1 silence
+
+
+----
+
+d2 $ fadeOut 8 $ stack[
+gap 8 . chop 8 . slow 2 $ slowcat[
+stut 2 0.25 0.5 . sound $ preplace (1,2) "x(7,16)" "hat hat:2"
+,
+stut 4 0.25 0.5 $ sound "hat hat:2"
+,
+sound "[hat:2 !!, hat:4 hat:4?]"
+]
+|+| speed "0.25"
+|+| cutoff "0.05"
+|+| bandq "0.01"
+|+| bandf "[0.1 0.25 0.5]/3"
+|+| resonance "0.25"
+|+| vowel "[o u i]/3"
+|+| accelerate "[-1 0]/4"
+,
+sound "[td:4(3,5)]/2"
+|+| coarse ((floor <$>) $ scale 1 7 $ rand)
+]
+
+
+cps 0.5
+
+d1 $ sometimesBy 0.25 (spread' slow "[2 1.25 0.75]/3") . sometimes (|+| coarse "[4 6 2]/3") $ slow 1.25 . every 23 ((0.1<~)) . within (0, 0.25) (stut 2 0.25 0.25) . every 2 (within (0.25, 0.75) (stut 4 0.25 0.5)) $ slowcat[
+ (sound $ preplace (1,1.25) "x(7,23)" "k k:2 k:4")
+ |+| end "0.04"
+ |+| speed "0.2"
+,
+ (sound $ preplace (1,1.25) "x(7,23)" "hat:4 k")
+ |+| speed (scale 0.25 0.35 $ triwave1)
+]
+|+| cutoff "0.05"
+|+| bandq "[0.1 0.25]/2"
+|+| bandf "[0.1 0.25 0.5]/3"
+|+| resonance "[0.5 0.8]/2"
+
+---
+
+let uo = ((|+| cutoff "0.05") . (|+| bandq "[0.1 0.25]/2") . (|+| bandf "[0.1 0.25 0.5]/3") . (|+| resonance "[0.5 0.8]/2") . (|+| speed (scale 0.25 0.35 $ triwave1)))
+
+d1 $ every 7 uo . slow 1.25 . every 4 rev $ (sound $ preplace (1, 1.75) "x(12,24)" "k hat:4 k:2? k:4*2/3")
+|+| coarse ((floor <$>) $ scale 3 7 $ sine1)
+
+|+| speed "0.25"
+
+----
+
+-- MIDIII vkeys
+
+let noteLookup s = elemIndex s $ take 128 [(n ++ show o) | o <- [0 .. 10], n <- ["c","cs","d","ds","e","f","fs","g","gs","a","as","b"]]
+let toMIDI p = fromJust <$> (filterValues (isJust) (noteLookup <$> p))
+
+k1 $ within (0, 0.25) (density 2.25) . every 2 ( slow 2.25 ) . every 3 (|+| dt (scale 0.25 0.5 $ sine1)) $ slowcat[
+  note "~ 35 ~ 35"
+  |+| dec "0.25"
+  ,
+  note "50 ~ 40 ~"
+  ]
+|+| ctf "[0.25 0.5]/2"
+|+| voi (scale 0.5 0.8 $ sine1)
+|+| dur "[0.5 1]/2"
+|+| por (scale 0.25 0.5 $ triwave1)
+|+| oct "0.25"
+
+cps 0.5
+
+k1 silence
+
+k1 $ note (preplace (1,1) "1 ~ 1" $ ( (+ ((floor <$>) $ scale 20 30 $ rand) ) <$> "45 40 42") )
+
+|+| por "0.25"
+|+| dur "0.75"
+
+k1 $ note (preplace (1,1) "1 ~ 1" $ ( (+20) <$> "45 40 42") )
+
+
+k1 $ note (preplace(1,1) "1 ~ 1 ~ 1 1 ~ 1 ~ 1 ~ 1 ~ 1 1 ~" $ ((+32) <$> "0 4 9 10 15 0 4 9 10 27"))

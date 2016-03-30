@@ -1,0 +1,100 @@
+cps 1
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+    st2' d = stut 2 0 d
+    st2 = st2' 0.25
+    sk :: Int -> [Int] -> Pattern Int ; sk n scale = listToPat [sc + n | sc <- scale]
+    n48 sc = note $ sk 48 sc
+    n n off sc = note $ sk (n+off) sc
+    nn off sc = n 48 off sc
+
+-- skp :: Pattern -> Int -> [Int] -> Pattern Int; 
+let skp n pat scale = preplace(1,1) pat $ listToPat [sc + n | sc <- scale]
+let skp' n off pat scale = skp (n+off) pat scale
+
+let minor = [0,3,7]
+    major = [0,4,7]
+    nine = [0,4,7,10,14]
+    ninesus4 = [0,5,7,10,14]
+    add9 = [0,4,7,14]
+    madd9 = [0,3,7,14]
+    maj9 = [0,4,7,11,14]
+    m9 = [0,3,7,10,14]
+    sus2 = [0,2,7]
+    sus4 = [0,5,7]
+    seven = [0,4,7,10]
+    m7 = [0,3,7,10]
+    eleven = [0,4,7,10,14,17]
+    m11 = [0,3,7,10,14,17]
+    thirteen = [0,4,7,10,14,21]
+    m13 = [0,3,7,10,14,21]
+
+
+b $ chop 2 $ iter 2 $ stack[
+drum "~ bd ~ ~",
+drum "~ ~ ~ cp",
+drum "ch ch ch ~",
+drum "~ ~ ~ oh"
+]
+
+b $ stack[
+every 3 st2 $ drum "~ ~ ~ bd",
+every 4 st2 $ drum "~ sn ~ ~",
+slowspread (stut 2 0) [0.75, 0.5] $ drum "~ cp/3 ~ ~",
+drum "ch ~ ch ~",
+drum "~ ~ oh/2 ~"
+]  # stt "0" # std "0" # hg "0.75" # dch (scale 0.25 0.9 sine1) # scp "0.65"
+
+q $ every 9 (sw((# decay "0.1") . (chop 2))) . every 2 (sw' 0 0.33 (# pitch3 "0.99")) $ foldEvery[5,7](sw(# cutoffegint "1")) $ slowcat[
+  note (skp 36 "1 1? 1 1" [0, 3, 7, 21]),
+  note (skp 36 "1 1? 1 1" [0, 4, 7, 21]),
+  note (skp 36 "1 [1 !?] 1? 1" [0, 7, 14, 21]),
+  note (skp 36 "[1 !] 1 [1 !]  1" [0, 3, 7, 10])
+] # dur "0.05"
+
+
+ # cutoffegint (scale 0.25 0.5 sine1) # decay "0.99" # pitch3 "0.5"
+
+
+----
+
+q $ every 2(spin 2) . sw rev $ stack[
+note $ skp 48 "1 ~ 1 1" [0, 3, 7, 0],
+iter 4 $ note $ skp 48 "~ 1 ~ ~" [12, 3, 7, 0]
+] # dur "0.15" # cutoffegint (scale 0.25 0.35 sine1) # decay "0.99" #lforate "0.75" #lfoint "0.1"
+
+b $ sw(# hg (scale 0 1 rand)) $ every 7 (sw rev) $ stack[
+slowcat[drum "bd ~ bd ~", drum "bd bd? [~ bd] ~", drum "bd ~ bd [~ bd]", drum "~ ~ bd ~"],
+every 4 (slowspread (stut 2 0) [0.5, 0.75, 0.75]) $ drum "~ ~ cp ~",
+every 2 (density 2) $ drum "ch ch ch ~",
+drum "~ ~ ~ oh",
+drum "[cl([3 4 2]/3,8)]/2"
+] # stt "0" # std "0" # scl "0.05" # hg "1" # dch "0.99" # doh "0.99"
+
+hush
+
+
+---
+
+cps 0.666
+
+cps 1
+
+b $ sw' 0 0.25 (chop 2) . revArc (0, 0.25) . every 5 (sw' 0 0.33 (# std "0.1")) . foldEvery [3,5,7] (sw(#drum "ch*2 oh")) $ stack[
+drum "[cl(5,8)]/2",
+drum "oh/2 [ag !?]",
+every 4 (within (0.5, 1)(slowspread (stut 2 0)[0.5, 0.75])) $ slowcat[drum "[~ lt ~ lt] [~ ~ cp ~]", drum "[~ bd ~ bd] [~ ~ cp ~]"]
+] # stt "0" # std (scale 0 0.1 rand) # doh "0.15" # dch "0.25" # scl "[0.0 0.01 0.1]/2" # scp "0.45"
+
+q $ every 3 (sw' 0.5 0.75 (#cutoffegint "1") ) . sw' 0 0.25 (# decay "0") . smash 2 [2] . every 5 (within (0, 0.33)(# pitch3 "1")) $ slowcat[
+  note (cho 36 "1 1 1 [1 !]" [0, 7, 3, 0]),
+  note (cho 38 "1 [1 !] [1 !?] 1" [0, 3, 7, 0])
+] # dur "0.05" # cutoffegint (scale 0 0.15 sine1) # decay "0.99" # pitch3 "0.666"
+

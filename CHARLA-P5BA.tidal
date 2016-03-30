@@ -1,0 +1,572 @@
+-- TIEMPO
+hush
+
+cps 1 -- ciclos por segundo
+
+-- ESTRUCTURA DE UN STREAM
+
+-- d1 -> stream
+-- sound "xyz" -> patron
+-- suena: x / 1 , y / 2, z / 1
+
+d1 $ juxcut rev $ sound "bd [bd bd, sn sn]"
+
+
+-- silenciamos al stream
+
+d1 silence
+
+-- solo un stream
+
+solo $ d1 $ sound "amencutup amencutup:2 amencutup:3"
+
+d2 $ sound "amencutup:4 amencutup:4 amencutup:4"
+
+
+
+-- "SALTOS Y REPETICIONES"
+
+-- SALTOS
+-- el sonido saltea su turno.
+
+d1 $ sound "amencutup amencutup:2/2 amencutup:3"
+
+-- sound "x y/2 z" -> patron de 3 sonidos
+-- suena: x / 1 , y / 2, z / 1
+-- 'x' & 'z' suenan en su espacio, mientras que 'y' solo lo hace cada dos turnos.
+-- cuando 'x' & 'z' sonaron dos veces, 'y' sono solo una vez.
+
+
+-- REPETICIONES
+-- el sonido suena N veces en el mismo espacio.
+
+d1 $ sound "amencutup amencutup:2*2 amencutup:3"
+
+-- sound "x y*2 z" -> patron de 3 sonidos
+-- suena: x * 1 , y * 2, z * 1
+-- 'x' & 'z' suenan solo una vez, mientras que 'y' suena dos veces en el mismo espacio.
+
+
+
+-- "SECUENCIAS y polirritmos"
+
+-- sound "x [y z]" -> suena 'x', luego 'y z' juntos.
+d1 $ sound "amencutup [amencutup:2 amencutup:3]"
+
+-- ej:
+
+d1 $ sound "[amencutup amencutup:2] amencutup:3"
+
+d1 $ sound "amencutup [[amencutup:2 amencutup:3] amencutup:4]"
+
+d1 $ sound "[amencutup [amencutup:2 amencutup:3] amencutup:4]"
+
+d1 $ sound "[amencutup [amencutup:2, amencutup:6 [amencutup amencutup:3]] amencutup:4]"
+
+d1 $ sound "[amencutup [amencutup:2 [amencutup amencutup:3]] [amencutup:4 amencutup:2]]"
+
+-- polirritmos
+
+-- []
+
+hush
+
+-- sound "x [y z]"
+d1 $ sound "amencutup [amencutup:2, amencutup:3]"
+
+-- suena 'x', luego '[y z]' al mismo tiempo ocupando el mismo espacio que 'x'
+
+hush
+
+-- ej:
+d1 $ sound "[amencutup amencutup amencutup, amencutup:2 amencutup:2]"
+
+d1 $ sound "[amencutup, amencutup:3 amencutup:3, amencutup:2]"
+
+-- {}
+
+d1 $ sound "amencutup {amencutup:2, amencutup:3}"
+
+d1 $ sound "amencutup {amencutup:2, amencutup:3}%2"
+
+d1 $ sound "amencutup {amencutup:2, amencutup:3}%4"
+
+-- ej:
+d1 $ sound "[amencutup amencutup amencutup, {amencutup:2, amencutup:2}]"
+
+d1 $ sound "[amencutup {amencutup amencutup}%4, {amencutup:2, amencutup:2}%1]"
+
+d1 $ sound "[amencutup {amencutup amencutup}%4, {amencutup:2, amencutup:2}%2]"
+
+
+
+-- "FUNCIONES"
+
+-- SOBRE PATRONES
+
+-- ~> <~
+-- desplazamos un loop para una direccion (atras o adelante)
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+
+d1 $ within (0, 0.5) (0.5<~) $ sound  "amencutup amencutup:2 amencutup:3"
+
+d1 $ within (0, 0.25) (0.25~>) $ sound  "amencutup amencutup:2 amencutup:3*2"
+
+
+-- brak
+-- simula un ritmo breakbeat
+
+d1 $ brak $ sound  "[amencutup amencutup:2 amencutup:3]"
+
+
+-- degrade
+-- remueve partes del patron, por defecto el 50%.
+
+d1 $ degrade $ sound  "amencutup amencutup:2 amencutup:3"
+
+d1 $ sound  "amencutup amencutup:2? amencutup:3"
+
+d1 $ sound  "amencutup [amencutup:2 amencutup:3]?"
+
+-- igual que degrade pero podemos definir el % a remover.
+
+d1 $ degradeBy 0.75 $ sound  "amencutup amencutup:2 amencutup:3"
+
+
+d1 $ degradeBy 0.25 $ sound  "amencutup amencutup:2 amencutup:3"
+
+
+-- density
+-- acelera al patron
+
+d1 $ density 2 $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ density 0.5 $ sound "amencutup amencutup:2 amencutup:3"
+
+-- slow
+-- desacelera al patron
+
+d1 $ slow 2 $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ slow 0.5 $ sound "amencutup amencutup:2 amencutup:3"
+
+
+hush
+
+-- iter
+-- cicla los elementos de un patron
+
+d1 $ iter 3 $ sound "amencutup amencutup:2 amencutup:3"
+
+-- equivale a:
+
+d1 $ sound "amencutup amencutup:2 amencutup:3"
+d1 $ sound "amencutup:2 amencutup:3 amencutup"
+d1 $ sound "amencutup:3 amencutup amencutup:2"
+
+
+
+d1 $ stack[
+every 4 (density 2) $ sound "bd ! ! ",
+sound "~ ch",
+palindrome $ sound "~ ~ sn"
+] 
+
+
+-- jux
+-- jux aplica un sonido estereo y aplica una funcion o parametro al canal derecho
+
+d1 $ jux (|+| coarse "21") $ sound "amencutup amencutup:2 amencutup:3"
+
+-- juxcut
+-- similar a jux pero silencia al mismo sample que este sonando del otro lado
+d1 $ juxcut (|+| coarse "21") $ sound "amencutup amencutup:2 amencutup:3"
+
+-- juxby
+-- similar a jux pero elegimos donde se posiciona.
+
+-- aca lo aplica arriba del patron
+d1 $ juxBy 0 ((|+| coarse "21")) $ sound "amencutup amencutup:2 amencutup:3"
+
+-- entonces podemos hacer esto
+d1 $ juxBy 0 (every 2 (rev) . (|+| coarse "21")) $ sound "amencutup amencutup:2 amencutup:3"
+
+-- o esto
+d1 $ density 1.25 $ juxBy 0 (within (0, 0.25) (|+| vowel "o") . every 2 (rev) . (|+| coarse "21")) $ sound "amencutup amencutup:2 amencutup:3"
+
+-- aca es igual a jux
+d1 $ juxBy 1 (|+| coarse "21") $ sound "amencutup amencutup:2 amencutup:3"
+
+
+-- rev
+-- invierte el patron
+
+d1 $ rev $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ sound "amencutup amencutup:2 amencutup:3"
+
+-- x y z ->  z y x
+
+
+-- palindrome
+-- similar a rev pero cada 2
+
+d1 $ palindrome $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ every 2 rev $ sound "amencutup amencutup:2 amencutup:3"
+
+-- spread
+-- mapea una funcion con diferentes parametros a un patron
+
+d1 $ density 2 $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ density 1 $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ spread density [2, 1] $ sound "amencutup amencutup:2 amencutup:3"
+
+-- spread' (spread prima)
+
+d1 $ spread' density "2 1" $ sound "amencutup amencutup:2 amencutup:3"
+
+hush
+
+-- slowspread
+-- aplica una funcion tomada de una lista a un patron por cada ciclo.
+
+d1 $ slowspread ($) [palindrome, density 2, slow 2, juxBy 0 (|+| coarse "12")] $ sound "amencutup amencutup:2 amencutup:3"
+
+-- primero aplica palindrome
+-- luego density 2
+-- luego slow 2
+-- luego juxBy 0 (|+| coarse "12")
+-- vuelve a empezar
+
+-- tambien es posible
+
+d1 $ slowspread (density) [2, 0.5, 2, 1] $ sound "amencutup amencutup:2 amencutup:3"
+
+-- aplica density 2
+-- luego density 0.5
+-- luego density 2
+-- luego density 1
+-- vuelve a empezar
+
+
+-- smash
+-- spread + striate
+
+
+d1 $ smash 2 [1,2,3,4,5] $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ smash 2 [1..5] $ sound "amencutup amencutup:2 amencutup:3"
+
+-- seria la suma de esto.
+d1 $ spread (slow) [1,2,3,4,5] $ striate 2 $ sound "amencutup amencutup:2 amencutup:3"
+
+
+-- trunc
+-- recorta al patron a un determinado %
+
+d1 $ trunc 0.25 $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ spread trunc [0.25, 0.5] $ sound "amencutup amencutup:2 amencutup:3"
+
+-- zoom
+-- recorta al patron y lo reproduce en la duracion del patron
+
+d1 $ zoom (0.25, 0.5) $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ density 2 . every 2 (zoom (0.25, 0.5)) $ sound "amencutup amencutup:2 amencutup:3"
+
+
+-- SOBRE SAMPLES
+
+-- chop
+-- granuliza al sample en el momento.
+
+d1 $ chop 2 $ sound "amencutup amencutup:2 amencutup:3"
+
+-- gap
+-- granuliza al sample al igual que chop pero solo algunos son reproducidos.
+
+d1 $ gap 2 $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ chop 2 . slowspread(striate) [2, 4] . gap 2 $ sound "amencutup amencutup:2 amencutup:3"
+
+-- striate
+-- granuliza al sample reproduciendo porciones en base a la cantidad.
+
+d1 $ striate 2 $ sound "amencutup amencutup:2 amencutup:3"
+
+-- 4 veces, primero 1/4, luego 2/4, luego 3/4, luego 4/4
+
+d1 $ striate 4 $ sound "amencutup amencutup:2 amencutup:3"
+
+-- striate' (striate prima)
+-- igual pero acepta un parametro extra que define la duracion de la porcion.
+
+d1 $ striate' 4 (0.1) $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ striate' 4 (0.5) $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ striate' 4 (0.8) $ sound "amencutup amencutup:2 amencutup:3"
+
+
+-- stut
+-- delay que toma 3 parametros, depth, feedback y tiempo
+
+d1 $ stut 2 0.5 0.5 $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ stut 2 0.5 (-0.1) $ sound "amencutup amencutup:2 amencutup:3"
+
+d1 $ spread (stut 2 0.5) [0.5, 0.9] $ sound "amencutup amencutup:2 amencutup:3"
+
+
+-- CONDICIONALES
+
+-- every
+-- cada N (f)
+
+d1 $ every 2 (density 2) $ sound "amencutup amencutup:2 amencutup:3"
+
+-- foldEvery
+-- cada [N, N1, N2] (f)
+
+d1 $ foldEvery [2,3] (density 2) $ sound "amencutup amencutup:2 amencutup:3"
+
+
+-- sometimesBy
+-- el N% de las veces (f)
+
+d1 $ sometimesBy 0.5 (density 2) $ sound "amencutup amencutup:2 amencutup:3"
+
+
+-- whenmod
+-- whenmod X Y (f)
+-- cuando el restante del loop dividido X es menor a Y  -> (f)
+
+d1 $ whenmod 8 4 (density 2) $ sound "amencutup amencutup:2 amencutup:3"
+
+-- within
+-- similar a zoom pero aplica (f) durante el rango (x, y)
+
+d1 $ within (0, 0.25) (density 2) $ sound "amencutup amencutup:2 amencutup:3"
+
+-- PATRONES
+
+-- stack
+-- toma una lista de patrones y los reproduce simultaneamente
+
+d1 $ stack[sound "amencutup amencutup:2", sound "amencutup:3 amencutup:4"]
+
+-- append
+-- suma la porcion del loop del segundo patron al primero patron.
+
+d1 $ append (sound "amencutup amencutup:2") (sound "amencutup:3 amencutup:4")
+
+-- amencutup + amencutup:3
+-- amencutup:2 + amencutup:4
+
+-- append' (append prima)
+-- cada 2 ciclos
+
+d1 $ append' (sound "amencutup amencutup:2") (sound "amencutup:3 amencutup:4")
+
+d1 $ slow 2 $ append (sound "amencutup amencutup:2") (sound "amencutup:3 amencutup:4")
+
+-- cat
+-- concatena patrones.
+
+d1 $ cat[sound "amencutup amencutup:2", sound "amencutup:3 amencutup:4"]
+
+d1 $ sound "[amencutup amencutup:2] [amencutup:3 amencutup:4]"
+
+d1 $ cat[sound "amencutup", sound "amencutup:2 amencutup:3", sound "amencutup:4"]
+
+d1 $ sound "amencutup [amencutup:2 amencutup:3] amencutup:4"]
+
+-- interlace
+-- se mueve entre dos patrones y le agrega distrosion
+
+d1 $ interlace (sound "amencutup amencutup:2") (sound "amencutup:3 amencutup:4")
+
+-- slowcat
+-- similar a cat pero mantiene la duracion
+
+d1 $ slowcat[sound "amencutup amencutup:2", sound "amencutup:3 amencutup:4"]
+
+d1 $ slowcat[sound "amencutup", sound "amencutup:2 amencutup:3", sound "amencutup:4"]
+
+
+-- seqP
+-- acepta una lista de patrones con 2 parametros adicionales, el ciclo de comienzo y el ciclo de fin. siendo 0 y 128 los limites.
+
+d1 $ retrig $ seqP [
+  (0, 8, sound "amencutup amencutup:2"),
+  (2, 4, sound "amencutup:3 amencutup:4*2"),
+  (4, 8, sound "amencutup:5*4 amencutup:6")
+]
+
+-- spin
+-- rota entre los samples jugando con los canales.
+
+d1 $ spin 3 $ sound "amencutup amencutup:2 amencutup:3"
+
+-- weave
+-- aplica una funcion a una lista de patrones 'tejiendolos'
+
+
+d1 $ weave 8 (speed $ scale 0.5 1.0 $ sine1) [sound "amencutup amencutup:2", sound "amencutup:3 amencutup:4"]
+
+-- weave' (weave prima)
+-- aplica un patron a una lista de funciones.
+
+d1 $ weave' 8 (sound "amencutup amencutup:2") [density 2, slow 1.25]
+
+
+hush
+
+-- PARAMETROS
+
+-- accelerate
+-- manipula velocidades del sonido.
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| accelerate "2"
+
+-- begin
+-- comienzo de un sample
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| begin "0.2"
+
+-- end
+-- recorta al sample
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| end "0.2"
+
+-- coarse
+-- disminuye la calidad del sample
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| coarse "6"
+
+-- crush
+-- compresion del sample, de 1 a 16
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| crush "6"
+
+-- gain
+-- ganancia
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| gain "0.5"
+
+-- cutoff
+-- filtro de bajos
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| cutoff "0.1"
+|+| resonance "0.1"
+
+-- resonance
+-- resonancia del filtro de bajos
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| cutoff "0.1"
+|+| resonance "0.8"
+
+-- bandf
+-- filtro de banda de medios
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| cutoff "0.1"
+|+| resonance "0.1"
+|+| bandf "0.1"
+
+-- bandq
+-- filtro de banda de calidad
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| cutoff "0.1"
+|+| resonance "0.1"
+|+| bandq "0.8"
+
+-- delay
+-- delay.
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| delay "0.2"
+
+-- delayfeedback
+-- feedback del delay
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| delay "0.23"
+|+| delayfeedback "0.23"
+
+-- delaytime
+-- duracion del delay
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| delay "0.23"
+|+| delayfeedback "0.23"
+|+| delaytime "0.23"
+
+-- hcutoff
+-- filtro de altos
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| hcutoff "0.3"
+|+| hresonance "0.3"
+
+-- hresonance
+-- resonancia del filtro de altos
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| hcutoff "0.1"
+|+| hresonance "0.1"
+
+-- pan
+-- selecciona el canal [0, 0.25, 0.5, 0.75]
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| pan "0 0.5 0.75"
+
+-- shape
+-- distrosion
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| shape "0.5"
+
+-- sound
+-- patrones de samples
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| sound "amencutup:4"
+
+-- speed
+-- pitch
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| speed "2"
+
+-- unit
+-- solo acepta el valor 'c', definiendo a la velocidad (junto con speed) de la duracion del sample en el ciclo.
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| speed "2"
+|+| unit "c"
+
+-- vowel
+-- aplica el sonido de una vocal (a, i, u, e, o) en un sample.
+
+d1 $ sound  "amencutup amencutup:2 amencutup:3"
+|+| vowel "a i u"
+
+-- finalizar
+
+hush -- :)

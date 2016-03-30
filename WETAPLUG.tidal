@@ -1,0 +1,22 @@
+cps 0.6
+
+
+d3 $ density 2 $ chop 2 $ sound "peri:3 peri:2 [~ , ~ visco:5 ~,  visco:5] sid:8"
+ |+| speed (((*0.1) . (0.9+)) <$> "5")
+
+d2 $ chop 2 $ sound "db db [ ~ db]"
+ |+| speed (((*0.1) . (0.9+)) <$> "5")
+
+
+
+d3 $ iter 3 . within (0.25, 0.75) (stut 2 0.2 0.5) $ striate 2 $ sound "sn sn:1"
+ |+| speed "0.5"
+ |+| cut "1"
+ |+| gain (scale 0.7 0.9 $ sine1)
+
+d1 $ sound "peri:3 [ ~ peri:3] db:7"
+ |+| speed (((*0.1) . (0.9+)) <$> "5")
+
+
+
+hush

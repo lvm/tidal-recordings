@@ -1,0 +1,64 @@
+cps 0.666
+
+d1 $ every 23 (# accelerate "-1") . every 2 (gap 2) . every 3 (gap 2) $ stack[
+superimpose (# vowel "u i a i e i") $ (sometimes (juxBy 0.5 (stut 2 1 0.75)) $ slow 2 $ sound $ samples "[arpy:0*2 !] ~ [arpy*2 !?] ~" $ irand 4) # up (scale 0 2 sine1),
+(sound $ preplace (1,1) "[x(9,16)]/2" "conga8 conga5") # gain (scale 0.75 1 $ density 2 $ every 2 rev $ sine1) # up (scale 0.6 2 sine1) # cut "1",
+slowcat[sound "[~ ~ ~ ~] [~ oh5/4 ~ cp]",sound "[~ ~ ~ ~] [~ oh5/4 ~ [cp cp8/3]]"],
+sound $ samples "[ch ~ ch ~] [~ ch ~ ch]" $ irand 3,
+sound "[~ ~ [sn sn/3] ~] [sn/2 sn ~ sn/4]",
+gap 2 $ sound "[~ ride5 ~ ride5/2] [~ ride5 ~ ~]",
+(sound $ preplace (1,1) "[x([7 8 9 11 15]/5,16)]/2" "bd5:4 rim8*2 glitch:2") # speed "0.5 1"
+] # pan (scale 0.25 0.75 $ density 2 $ sine1) # bandq "0.5" # bandf (scale 0.25 0.9 sine1)
+
+--
+
+cps 1.2
+
+cps 1
+
+d1 $ density 1.2 $ stack[
+   --(sound $ samples "[arpy:0 ~ arpy:2 ~] [arpy ~ arpy ~]" $ irand 4) # speed "0.5" # gain (scale 0.6 0.8 triwave1) # pan "[0.25 0.5 0.75]/3" # vowel "[a ~ u ~ i e ~ o]/8",
+   every 23 (stut 2 1 0.75 . slow 2) . every 13 (iter 2 . gap 2) . palindrome $ stack[
+      every 2 (density 2) $ stack[sound "ch5*2 oh5", sound "[~ ch5] !"] # speed (scale 2 4 sine1),
+      slowcat[sound "~ ~ cp" # speed "2", sound "~ ~ cp" # speed "2", sound "~ ~ [shaker5 !?!!!]"],
+      slowcat[
+        (sound $ preplace (1,1) "[x([7 8 9 11 15]/5,16)]/2" "rim5:3 bd5:4*2 glitch:2") # speed "0.5 1 1",
+        (sound $ preplace (1,1) "[x([7 8 9 11 15]/5,16)]/2" "bd5:4 rim5:3*2 glitch:2") # speed "0.5 1 1"
+      ]
+   ]  # gain "1.2"
+] # bandq "0.9" # bandf (scale 0 2 sine1) # resonance "0.25" # cutoff (scale 0 0.25 squarewave1) # gain "1.2"
+
+
+
+
+hush
+
+----
+
+
+
+cps 1.2
+
+d1 $ foldEvery [13,14] ( jux(sometimes (within(0, 0.5)(# speed "2")) . sometimes (# sound "bd ~")) ) . every 23 (stut 2 1 0.75 . slow 2) . every 13 (iter 2 . gap 2) . palindrome $ stack[
+every 2 (density 2) $ stack[sound "ch5*2 oh5", sound "[~ ch5] !"] # speed (scale 2 4 sine1)
+,
+slowcat[sound "~ ~ cp" # speed "2", sound "~ ~ cp" # speed "2", sound "~ ~ shaker5"]
+,
+slowcat[
+(sound $ preplace (1,1) "[x([7 8 9 11 15]/5,16)]/2" "bd5:4*2 glitch:2 glitch:2") # speed "0.5 1 1",
+(sound $ preplace (1,1) "[x([7 8 9 11 15]/5,16)]/2" "bd5:4 rim5:3*2 glitch:2") # speed "0.5 1 1"]
+] # bandq "0.5" # bandf (scale 0 1 sine1) # hresonance "0.1" # hcutoff "0.1" # resonance "0.7" # cutoff "0.8" # hresonance "0.8" # hcutoff "0.18" # gain "1.2" # end "0.023"
+
+ # pan "[0.23 0.5 0.75]/3"
+
+d2 $ slowspread (stut 2 1) [0..0.5] $ (sound $ preplace (1,1) "[x([11 9 15]/3,16)]/2" "arpy:4 rim5:3") # speed (scale 0.5 2 $ density 4 $ sine1) # end (scale 0.01 0.23 squarewave1) # bandq "0.5" # bandf (scale 0 1 sine1) # hresonance "0.1" # hcutoff "0.5" # resonance "0.7" # cutoff "0.8" # end "0.1" # hresonance "0.8" # hcutoff "0.18"
+
+# pan "[0.23 0.5 0.75]/3"
+
+hush
+-- gain (scale 0.75 0.85 sine1)
+
+
+----
+
+

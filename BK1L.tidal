@@ -1,0 +1,10 @@
+cps 2
+
+d1 $ stack[sound (pick <$> "jvbass deepsky?" <*> iter 2 "0 3 2 1"), sound "~ deepsky:4", sound "akai? ~ watford:2/2 watford:3/4?"]
+
+d2 $ stack[sound "kawai:1/2 !? ~ ~" |+| speed "1", slow 2 $ every 2 (density 2) $ density 2 $ striate' 32 (0.1) $ sound "daytone:8*2 !? !? !? !!" |+| gain sinewave1]
+
+d3 $ slow 2 $ sound "seqdru seqdru*2? seqdru? seqdru?"
+ |+| speed ((2+) <$> "4")
+
+hush

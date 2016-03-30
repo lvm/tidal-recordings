@@ -1,0 +1,38 @@
+cps 0.75
+
+q $ every 4 (within (0, 0.33) (iter 2)) . every 11 (within (0, 0.33) (degrade)) . density 1.25 $ stack[
+  sometimes (within (0, 0.5) (chop 2 . slow 2)) $ stack[
+   note $ (toMIDI "[f5 c4 ~ c4] [c5 ~ c4 f4]")
+   ,
+   slowcat[
+   note $ (toMIDI "[~ ~ a4 ~] [~ a3 ~ ~]")
+   ,
+   note $ (toMIDI "[~ ~ a4 ~] [~ a4 ~ ~]")
+   ,
+   note $ (toMIDI "[~ ~ a4 ~] [~ b3 ~ ~]")
+   ]
+   ]
+]
+|+| gate (scale 0 0.5 sine1)
+|+| expression "0.95"
+|+| lforate (scale 0.5 0.7 sine1)
+|+| lfoint (scale 0.2 0.3  $ density 2 $ sine1)
+|+| decay (scale 0 0.9 sine1)
+|+| cutoffegint (scale 0 0.9 squarewave1)
+
+b $ every 11 (within (0, 0.33) (degrade)) . density 1.25 $ stack[
+  stack[
+    drum "bd(2,2)"
+    ,
+    density 2 $ drum "ch*2 oh"
+    ,
+    drum "~ cp"
+    ,
+    degrade $ drum "cl(3,4)"
+    ,
+    drum "~ [ag*2]?"
+   ]
+]
+
+
+b silence

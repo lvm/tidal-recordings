@@ -1,0 +1,54 @@
+cps 1
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+
+b $ stack[
+drum "[bd ~ ~] [[bd,ht] ~ ht]",
+every 4 (within (0, 0.5) (chop 2)) $ slowcat[drum "[ch*2 ch !] [ch [ch !] ~]",drum "[ch ch ~] [ch ch ~]"],
+drum "[~ [oh/2 oh] ~] [~ [~ oh] ~]",
+drum "[~ cr ~] [cr ~ ~]",
+drum "[~ cp/4 ~] [cp ~ ~]"
+] # stt "0" # std "0"
+|+| scr "1"
+
+b $ stack[
+drum "bd ~",
+density 2 $ drum "ch*2 oh",
+drum "~ ch ~",
+drum "~ [cp !?]"
+] # dch "0.25"
+
+cps 0.666
+
+cps 1
+
+b $ foldEvery [3,5,7](sw' 0 0.25 (# std "0.1")) . sw(# dch "0.1") $ stack[
+drum "[bd ~ ~] [bd ~ ~]",
+every 4 (within (0, 0.5) (chop 2)) $ drum "[ch ch ~] [ch ch ~]",
+drum "[~ [~ oh] ~] [~ [~ oh] ~]",
+every 5 (stut 2 0 0.25) $ drum "[~ ~ ~] [cp ~ ~]"
+] # stt "0" # std "0" # dch "0.25"
+
+q $ every 5 (sw(# nm "c4 ! d4 !")) $ every 4 rev $ stack[
+iter 8 $ slowcat[
+--nm "[g3 ~ c3 ~] [f3 d3 ~ c3]",
+nm "[g3 c3 ~ ~]",
+nm "[f3 d3 ~ c3]"
+--,nm "[g3 ~ c3 ~] [~ d3 ~ c3]"
+],
+slowcat[
+nm "[~ ~ ~ g4] [~ ~ ~ ~]",
+nm "[~ ~ ~ g3] [~ ~ ~ ~]",
+nm "[~ ~ ~ d3] [~ ~ d4/4 ~]"
+       ]
+] # decay (scale 0.9 0.99 squarewave1) # cutoffegint (every 5 ((0.25+) <$>) $ scale 0.05 0.5 squarewave1)
+|+| modwheel (scale 0.05 0.6 sine1)
+
+hush

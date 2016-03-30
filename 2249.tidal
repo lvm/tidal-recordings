@@ -1,0 +1,40 @@
+bps 3
+
+d1 silence
+
+
+hush
+
+d1 silence
+
+d1 $ striate 2 $ interlace (sound "sn:2 sn") (spread' slow "2 3 1" $ striate 2 $ sound "bd:1 ~ bd:2")
+ |+| speed "0.5"
+
+
+d2  $ every 2 (juxcut (rev) . (|+| speed "0.9 5") . (|+| shape "0.9")) $ striate 8 $ sound "pluck:1 pluck pluck:4/2"
+ |+| shape "0.2"
+ |+| speed "0.2"
+
+
+d3 $ every 2 ((|+| shape "0.3") .brak . rev) $ striate 2 $ sound "drumtraks:4 drumtraks:4*8/4 [arpy:1*3/4, ~ , arpy:3*4/2]*2/4"
+
+
+d4 $ every 2 ((|+| vowel "u") . rev ) $ sound "cp ~ arp:2/4 ~ cp"
+ |+| vowel "o"
+
+d4 silence
+
+d4 $ every 2 (jux (rev)) $ sound "rave:4"
+
+d5 
+
+d6 $ every 2 (jux (rev)) $ sound "gabba:1"
+ |+| speed "0.5"
+
+d5 $ interlace (every 2 (rev) $ striate' 2 (1) $ sound "e ~ ~") (sound "arp:1*8/4")
+ |+| shape "0.1"
+ |+| vowel "e i o"
+
+d4 $ echo (7/4) $ slow 8 $ sound (samples "bass:4*2 fat909*8 ifdrums*4 world*2" (iter 4 $ run 4))
+
+hush

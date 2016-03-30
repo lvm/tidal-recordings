@@ -1,0 +1,164 @@
+cps 1
+
+
+d1 $ every 2 (juxBy 0 (within (0, 0.5) (|+| sound "am:2*8"))) . slow 1.25 $ sound "[am ~, am ~ ~, am:1 am:3*2 !, am:6*2]"
+
+d1 $ slow 3 . every 2 (juxBy 0 (within (0, 0.5) (|+| sound "am:2*8"))) . slow 1.25 . density 2 $ sound "[am ~ {am ~}%3 ~, am:1 am:3 !, am:6*2]"
+
+d1 $ every 2 (juxBy 0 (within (0, 0.5) (|+| sound "am:2*8"))) . slow 1.25 . density 2 $ sound "[am ~ {am ~}%3 ~, am:1 am:3 !, am:6*2]"
+
+d1 $ slowspread (gap) [4, 2] . every 2 (juxBy 0 (within (0, 0.5) (|+| sound "am:2*8"))) . slow 1.25 . density 2 $ sound "[am ~ {am ~}%3 ~, am:1 am:3 !, am:6*2]"
+
+d1 $ slowcat[
+slowspread (gap) [4, 2] . every 2 (juxBy 0 (within (0, 0.5) (|+| sound "am:2*8"))) . slow 1.25 . density 2 $ sound "[am ~ {am:2 ~}%3 ~, am:1 am:3 !, am:6*2]"
+,
+slow 1.25 . density 2 $ sound (samples "am*2 !" (run 6))
+]
+
+d1 $ slow 1.25 . density 2 $ sound (samples "am*2 !" (run 6))
+
+d1 $ slow 1.25 . every 3 (within (0, 0.25) (gap 8 . every 6 (slow 4) . rev . density 2)) . density 2 $ sound (samples "{am*2}%2" (run 6))
+
+d1 $ slow 1.25 . every 3 (within (0, 0.25) (gap 8 . every 6 (slow 4) . rev . density 2)) . density 2 $ sound (samples "{am*2}%2" (run 2))
+
+
+let brokebeat = slow 1.25 . every 3 (within (0, 0.25) (gap 8 . every 6 (slow 4) . rev . density 2)) . density 2
+
+d1 $ slowcat[
+brokebeat $ sound (samples "{am*2}%2" (run 6))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 4))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 2))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 1))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 2))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 4))
+]
+
+d1 $ brokebeat $ sound (samples "{am*2}%2" (run 1))
+
+d1 $ stack[
+brokebeat $ sound (samples "{am*2}%2" (run 6))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 4))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 2))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 1))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 2))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 4))
+]
+|+| coarse "6"
+
+d2 $ gap 4 $ sound "bass3:5*6"
+|+| speed (scale 0.9 1.1 $ sine1)
+|+| coarse "[4 6 7 13]/4"
+
+d3 $ slowcat[
+slowspread(slow) [4, 8, 2] $ sound "rave:3"
+]
+|+| cut "1"
+
+hush
+
+
+-----
+
+cps 1
+
+
+d1 $ every 5 (gap 4) . every 2 (juxBy 0 (within (0, 0.5) (|+| sound "rapman:2*8"))) . slow 1.25 $ sound "[am ~, am ~ ~, rapman:1 rapman:3*2 !, rapman:6*2]"
+
+d1 $ every 2 (juxBy 0 (within (0, 0.5) (|+| sound "rapman:2*8"))) . slow 1.25 $ sound "[am ~, am ~ ~, rapman:1 rapman:3*2 !, rapman:6*2]"
+
+d1 $ slow 3 . every 2 (juxBy 0 (within (0, 0.5) (|+| sound "rapman:2*8"))) . slow 1.25 . density 2 $ sound "[am ~ {am ~}%3 ~, rapman:1 rapman:3 !, rapman:6*2]"
+
+d1 $ every 2 (juxBy 0 (within (0, 0.5) (|+| sound "rapman:2*8"))) . slow 1.25 . density 2 $ sound "[am ~ {am ~}%3 ~, rapman:1 rapman:3 !, rapman:6*2]"
+
+d1 $ slowspread (gap) [4, 2] . every 2 (juxBy 0 (within (0, 0.5) (|+| sound "rapman:2*8"))) . slow 1.25 . density 2 $ sound "[am ~ {am ~}%3 ~, rapman:1 rapman:3 !, rapman:6*2]"
+
+d1 $ slowcat[
+slowspread (gap) [4, 2] . every 2 (juxBy 0 (within (0, 0.5) (|+| sound "rapman:2*8"))) . slow 1.25 . density 2 $ sound "[am ~ {rapman:2 ~}%3 ~, rapman:1 rapman:3 !, rapman:6*2]"
+,
+slow 1.25 . density 2 $ sound (samples "am*2 !" (run 6))
+]
+
+d1 $ slow 1.25 . density 2 $ sound (samples "am*2 !" (run 6))
+
+d1 $ slow 1.25 . every 3 (within (0, 0.25) (gap 8 . every 6 (slow 4) . rev . density 2)) . density 2 $ sound (samples "{am*2}%2" (run 6))
+
+d1 $ slow 1.25 . every 3 (within (0, 0.25) (gap 8 . every 6 (slow 4) . rev . density 2)) . density 2 $ sound (samples "{am*2}%2" (run 2))
+
+
+let brokebeat = slow 1.25 . every 3 (within (0, 0.25) (gap 8 . every 6 (slow 4) . rev . density 2)) . density 2
+
+d1 $ slowcat[
+brokebeat $ sound (samples "{am*2}%2" (run 6))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 4))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 2))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 1))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 2))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 4))
+]
+
+d1 $ brokebeat $ sound (samples "{am*2}%2" (run 1))
+
+d1 $ stack[
+brokebeat $ sound (samples "{am*2}%2" (run 6))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 4))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 2))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 1))
+,
+brokebeat $ sound (samples "{am*2}%2 !" (run 2))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 4))
+]
+|+| coarse "6"
+
+d2 $ sound "bass3:5*6"
+|+| speed (scale 0.9 1.1 $ sine1)
+|+| coarse "[4 6 7 13]/4"
+|+| cut "1"
+
+d2 $ sound (samples "bass3*6" (iter 6 $ run 6))
+|+| speed (scale 0.9 1.1 $ sine1)
+|+| coarse "[4 6 7 13]/4"
+|+| cut "1"
+
+d3 $ slowcat[
+slowspread(slow) [4, 8, 2] $ sound "rave:3"
+]
+|+| cut "1"
+
+hush
+
+
+
+cps 0.666
+
+d1 $ every 2 (gap 2) . every 4 (chop 2) $ stack[
+brokebeat $ sound (samples "{am*2}%2" (run 6))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 4))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 2))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 1))
+,
+brokebeat $ sound (samples "{am*2}%2 !" (run 2))
+,
+brokebeat $ sound (samples "{am*2}%2" (run 4))
+]

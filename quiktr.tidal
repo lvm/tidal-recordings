@@ -1,0 +1,34 @@
+cps 1
+
+cps 0.666
+
+m3 $ sometimes rev . smash 2 [3]  $ stack[
+  slowcat[
+  note $ toMIDI "d5 g4 c4"
+  ,
+  note $ toMIDI "d5 g5 c5"
+  ,
+  note $ toMIDI "d5 g5 f5"
+  ,
+  note $ toMIDI "d5 ~ ~"
+  ]
+]
+|+| dur "0.6"
+
+
+-- polysynth
+-- (chop 2) .
+m1 $ chop 4 . slow 3 $ slowcat[
+  note $ toMIDI "f5 ! d5"
+  ,
+  note $ toMIDI "d5 ! e5"
+  ,
+  note $ toMIDI "e5 ! f5"
+  ]
+|+| dur "0.9"
+
+
+-- xg scream
+m3 $ |+| dur "0.9"
+
+hush

@@ -1,0 +1,63 @@
+cps 1.25
+
+d1 $ slow 2 . chop 8 $ sound "amen"
+ |+| cut "1"
+
+d1 $ slow 1.75 . jux (rev . every 2 ((26/8) <~)) $ spread' (striate' 8) (((+0.04) . (*0.04)) <$> slow 4 sinewave1) $ sound "amen"
+
+
+d1 $ every 3 (rev) . slow 1.5 . every 2 (within (0.5, 0.666) (chop 2)) . spread' (striate' 32) (((+0.04) . (*0.08)) <$> slow 128 sinewave1) $ sound "amen"
+ |+| cut "1"
+
+hush
+
+cps 0.35
+
+d1 $ stut 2 0.9 0.5 . chop 2 . density 2 $ jux (iter 32) $ sound "bass3:2 bass3:0" |+| (speed $ every 2 rev  $ "[3 8 4]/3")
+
+
+cps 1
+
+d2 $ spread' (stut 2 0.5) "0.5 0.4" . every 3 (rev) $ sound "sn(2,1) ~ bd(4,8)" |+| speed "0.5 1 0.23"
+
+d3 $ spread' density "2 2 2 2 1 2 2 2 2" . within (0.25, 0.3) (density 2) . chop 2 $ sound "sid:8 !? !?"
+
+
+d4 $ spread' (striate' 4) "0.2 0.3 0.4 0.5" $ spread' density "2 2 1" $ sound "bass3:2 ~" |+| (speed $ every 2 rev  $ "[3 8 4]/3")
+
+
+cps 0.25
+
+hush
+
+cps 0.666
+
+d1 $ juxcut rev . every 3 (revArc(0, 0.5)) . spread' chop "5 5 6 5 5 4" $ sound "sea"
+ |+| cut "1"
+ |+| speed (every 2 ((0.1-) <$>) $ scale 0.1 0.5 $ "2.35")
+
+d2 $ every 8 (within (0, 0.25) (|+| vowel "o")) . slow 2 $ sound "{[~ ~ deepsky ~, ~ ] techno(3,8)}%6"  |+| speed "0.666" |+| shape "0.666"
+
+d2 $ every 8 (within (0, 0.25) (|+| vowel "o")) . slow 2 $ sound "{[~ techno:1 ! !?, ~ ] techno(3,8)}%6" |+| speed "0.666" |+| shape "0.666"
+
+d3 $ every 8 (within (0, 0.25) (|+| vowel "o")) . slow 2 $ stack[sound "{[~ visco:5 !? ~, ~ ] techno(3,8)}%6", spread' density "2 4 1 2 1 2 3" $ sound "house"]
+ |+| speed "0.666"
+ |+| shape "0.666"
+
+d3 $ every 8 (within (0, 0.25) (|+| vowel "o")) . slow 2 $ stack[sound "{[~ ~ visco:5 ~, ~ ] techno(3,8)}%6", spread' density "2 4 1 2 1 2 3" $ sound "house"]
+ |+| speed "0.666"
+ |+| shape "0.666"
+
+d4 $ slow 2 $ stack[(|+| pan "0") $ sound "glitch(1,1) !? !!", (|+| pan "1") . spread' density "2 4 1 2 1 2 3" $ sound "glitch(2,8)"]
+ |+| speed "[0.6 0.666 0.69]/3"
+ |+| shape "0.666"
+
+d5 $ every 2 (striate 2) $ sound "~ acetoneace:1(2,4) ~"
+ |+| speed "[0.6 0.666 0.69]/3"
+ |+| shape "0.666"
+ |+| cut "1"
+ |+| end rand
+
+
+
+hush

@@ -1,0 +1,66 @@
+cps 1
+
+let sw f = sometimes(within (0, 0.5) f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+
+let pbd = [drum "[~ bd ~ bd] [~ bd ~ ~]", drum "[~ bd ~ ~] [~ bd ~ ~]", drum "[bd bd ~ ~] [bd ~ ~ ~]"]
+    psn = [drum "[~ ~ ~ ~] [sn ~ ~ sn]", drum "[~ ~ ~ ~] [~ ~ sn ~]"]
+    poh = [drum "[ ~ ~ ] [oh ~]", drum "[ ~ ~ ] [~ oh]"]
+
+b $ sw (# hg "0.1") $ foldEvery [3,5,7] (sw' 0 0.5 (# std "[1 0.5]/2")) . every 8 (sw' 0 0.25 (slow 2)) $ sw' 0 0.33 ((#std "0.1")) . sw((# dch "0.1")) $ stack[
+slowcat pbd
+,
+drum "[~ sn/3 cp ~] [~ cp ~ sn/2]"
+,
+slowcat[drum "ch(7,8)", drum "[ch(2,2) !] [ch(2,2) !]"],
+cat poh
+]
+|+| hg "0.75"
+|+| dch "[0.5 0.9]/2"
+|+| stt "0"
+|+| std "0"
+
+hush
+
+let pm2a = nm "[c4 ~ a3 ~] [g4 ~ b4 ~]"
+    pm2b = nm "[c4 ~ a3 ~] [g4 ~ f4 ~]"
+    pm2c = nm "[c4 ~ f3 ~] [g3 ~ f3 ~]"
+
+m2 $ every 8 (sw (chop 4)) . slow 1.2 $ slowcat[
+  pm2a, pm2a, pm2a, pm2b, pm2b, pm2c
+  ]
+|+| dur "0.05"
+|+| vel "0.4"
+|+| modwheel (scale 0.5 0.9 rand)
+
+m2 silence
+
+jux (spin 2 . chop 3)
+
+m3 $ slowcat[
+  nm "c6",
+  nm "a5",
+  nm "b5",
+  nm "g5"
+  ]
+|+| dur "0.05"
+|+| vel (scale 0 0.35 $ slow 2 $ sine1)
+|+| modwheel (scale 0.5 0.9 rand)
+|+| sustainpedal (scale 0 0.666 sine1)
+
+m3 silence
+
+let pm4a = nm "[c4 ~ a3 ~] [g4 ~ b4 ~]"
+    pm4b = nm "[c4 ~ a3 ~] [g4 ~ f4 ~]"
+    pm4c = nm "[c4 ~ f3 ~] [g4 ~ d4 ~]"
+
+m4 $ fadeOut 4 . every 8 rev . slow 2.4 $ slowcat[
+  pm4a, pm4b, pm4c, pm4c, pm4b, pm4a, pm4c
+  ]
+|+| dur "0.9"
+|+| vel "0.2"
+|+| modwheel (scale 0.7 0.9 sine1)
+
+hush

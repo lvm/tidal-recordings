@@ -1,0 +1,36 @@
+
+cps 0.666
+
+
+
+
+b $ stack[
+   drum "[bd ~ bd ~] [~ ~ bd ~] [~ ~ bd ~] [~ ~ ~ ~]"
+   ,
+   slowcat[
+     every 4 ( within (0.25, 0.75) (chop 2) . within (0.25, 0.5)(slow 2) . within (0.5,0.75) (slow 4) ) $ drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ ~ ~]"
+     ]
+  ]
+
+b $ stack[
+        every 4 ( within (0.25, 0.75) (chop 2) . within (0.25, 0.5)(slow 2) . within (0.5,0.75) (slow 4) ) $ drum "[ch ch ch ch] ! ! !"
+        ,
+        drum "[~ ~ ~ ~] ! ! [~ ~ ~ oh/3]"
+  ]
+
+
+---
+
+cps 0.6
+
+b $ foldEvery [15, 17] (sometimes(zoom(0, 0.5))) $ every 4 ( sometimes (within (0, 0.5) (stut 2 0 0.25)) ) $ every 23 ((#stt "0.23") . (# std "0.1")) $ stack[
+    drum "[bd ~ bd ~] [~ ~ bd ~] [~ ~ bd ~] [~ ~ ~ ~]"
+    ,
+    drum "[~ ~ ~ ~] [sn ~ ~ sn] [~ sn ~ ~] [sn ~ ~ ~]"
+    ,
+    every 4 ( within (0.25, 0.75) (chop 2) . within (0.25, 0.5)(slow 2) . within (0.5,0.75) (slow 4) ) $ drum "[ch ch ch ~] ! ! !"
+    ,
+    drum "[~ ~ ~ ~] ! ! [~ ~ ~ oh/3]"
+] # stt "0" # std "0"
+
+

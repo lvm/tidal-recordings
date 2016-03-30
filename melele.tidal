@@ -1,0 +1,121 @@
+cps 0.666
+
+whenmod 16 8 (   (# lbd (scale 0.5 0.666 $ sometimes (sometimes rev . density 2) $ sine1)) )  $ 
+
+cps 0.666
+
+let sm3 n = smash n [3]
+
+b1 $ stack[
+  drum "~ ~ ~ oh"
+  ,
+  slowcat[
+  stack[
+   drum "bd*2 ~ ~ ~ "
+   ,
+   every 4 (within (0, 0.75) (chop 4)) $ drum "ch ch ch ch"
+   ,
+   drum "~ ~ sn [~ sn]"
+   ]
+  ,
+  stack[
+   drum "bd bd ~ ~"
+   ,
+   drum "ch ch ch ch"
+   ,
+   drum "~ ~ sn ~"
+   ]
+  ,
+  stack[
+   drum "bd ~ ~ [~ bd]"
+   ,
+   every 4 (within (0, 0.75) (chop 4)) $ drum "ch ch ch ch"
+   ,
+   drum "~ ~ sn ~"
+   ]
+  ,
+  slow 2 $ stack[
+   drum "bd ~ ~ [~ bd] bd ~ ~"
+   ,
+   every 4 (within (0, 0.75) (chop 4)) $ drum "ch ch? ch ch? ~ ch ch ch"
+   ,
+   drum "~ ~ sn ~ ~ ~ sn ~"
+   ]
+  ]
+  |+| lbd "0.666"
+]
+|+| stt "0"
+|+| std (every 4 (within (0, 0.8) ((0.2-) <$>) ) $ scale 0.25 0.35 $ sine1)
+
+hush
+
+
+b1 $ slowcat[
+  stack[
+   drum "bd bd ~ ~"
+   ,
+   drum "ch ch ch ch"
+   ,
+   drum "~ ~ sn ~"
+   ]
+  ,
+  slow 2 $ stack[
+   drum "bd ~ ~ bd bd ~ ~ bd"
+   ,
+   every 4 (within (0, 0.75) (chop 4)) $ drum "ch ch? ch ch? ~ ch ch ch"
+   ,
+   drum "~ ~ sn ~ ~ ~ sn ~"
+   ]
+  ,
+  stack[
+   drum "bd ~ ~ [~ bd]"
+   ,
+   every 4 (within (0, 0.75) (chop 4)) $ drum "ch ch ch ch"
+   ,
+   drum "~ ~ sn ~"
+   ]
+]
+
+------------------------------------------------------
+
+cps 0.666
+
+let nostd = (# std "0")
+
+-- . every 30 (fadeIn 2)
+
+b1 $ drum "[oh ~ ~ ~]"
+
+hush
+
+b1 $ smash 2 [3] . chop 2 $ foldEvery [14, 18] (within (0, 0.5) (nostd)) . sometimes (within (0, 0.25) nostd ) . every 32 (sometimes (slow 32)) $ stack[
+drum "[~ ~ oh/8 ~] [~ ~ oh ~] [~ ~ oh/4 ~] [~ ~ oh ~]"
+,
+slowcat[
+  stack[
+   drum "[bd bd ~ ~] [bd ~ ~ bd]"
+   |+| std "[0.3 0.3 ~ ~] [0.3 ~ ~ 0.3]"
+   ,
+   drum "[ch ch ch ch] !"
+   ,
+   drum "[~ ~ sn ~] !"
+   ]
+  ,
+  stack[
+   drum "[bd ~ ~ bd] [bd ~ ~ bd]"
+   |+| std "[0.3 ~ ~ 0.3] [0.3 ~ ~ 0.3]"
+   ,
+   slow 2 . every 4 (within (0, 0.75) (chop 4)) $ drum "ch ch? ch ch? ~ ch ch ch"
+   ,
+   drum "[~ ~ sn ~] [~ ~ sn ~]"
+   ]
+]
+]
+|+| stt "0"
+|+| std "0.2"
+|+| dhg "0.75"
+|+| doh "0.5"
+|+| dch "0.5"
+
+
+hush

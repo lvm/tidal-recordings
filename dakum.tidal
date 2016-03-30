@@ -1,0 +1,63 @@
+-- custom Tidal functions
+let rip a b p = within (0.25, 0.75) (slow 2 . rev . stut 8 a b) p
+let rip' a b c d e p = within (a, b) (slow 2 . rev . stut c d e) p
+let up = speed . ((1.059466**) <$>)
+
+
+cps 0.5
+
+
+let dz = density 2 . zoom (0, 0.5)
+
+let dz2 = density 2 . zoom (0.5, 0.9)
+
+let e7 = every 7 (within (0, 0.5) (density 2 . dz))
+    
+let e11 = every 11 (within (0, 0.2) (brak))
+
+let e2 = every 2 (within (0, 0.2) (brak))
+
+let e4 = every 4 (within (0, 0.5) (density 2 . dz))
+
+cps 0.666
+
+
+d1 $stack[
+  sound "[~ bd8:1 ~ ~] [~ [bd8:1,bd] ~ ~] [~ bd8:1 ~ ~] [~ [bd8:1,bd] ~ ~]"
+  ,
+  sound "[~ bd8:1 ~ ~] [~ [bd8:1,bd] ~ [bd8:1,bd]] [~ bd8:1 ~ ~] [[bd8:1,bd] [bd8:1,bd] ~ ~]"
+  ,
+  sound "visco:5(16,16)"
+  ]
+  |+| coarse ((floor <$>) $ scale 1 4 $ rand)
+
+d2 $stack[
+  sound "[beacch !!!] ! ! !"
+  |+| end "0.25"
+  ,
+  sound "[ ~ ~ ~ oc] ! ! !"
+  |+| end "0.25"
+  ]
+  |+| coarse ((floor <$>) $ scale 1 4 $ rand)
+
+d3 $ stack[
+  sometimes (slow 2) $ sound "cp(9,16)"
+  ,
+  sometimes (# gain "1") $ jux ( superimpose (# speed (scale 1 10 $ squarewave1)) ) $ (sound $ samples "cy(16,16)" $ iter 12 $ run 12)
+  |+| coarse ((floor <$>) $ scale 3 8 $ rand)
+  |+| accelerate (scale 5 20 $ squarewave1)
+  |+| vowel "[a i u e o]/5"
+  |+| gain "0"
+  ]
+|+| shape (scale 0.15 0.25 $ sine1)
+|+| speed "[4 2 5 4 3]/5"
+|+| up "[4 2 5 4 3]/5"
+
+d4 $ sound "uxay(16,16)"
+|+| shape (scale 0.15 0.25 $ sine1)
+|+| speed (scale 2 10 $ sometimes rev $ rand)
+|+| up "[4 2 5 4 3]/5"
+|+| coarse ((floor <$>) $ scale 3 8 $ rand)
+|+| accelerate (scale 5 20 $ squarewave1)
+
+hush

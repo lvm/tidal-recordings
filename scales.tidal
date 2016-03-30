@@ -1,0 +1,40 @@
+let scaleOctave scale n = (12 *) . fromIntegral . floor . ((fromIntegral n) /) $ fromIntegral $ length scale
+    scaleElt scale n = fromIntegral . (scale !!) $ fromIntegral $ remPos n (fromIntegral $ length scale)
+    remPos num den = if x<0 then x+den else x where x = rem num den
+    sc s n = scaleOctave s n + scaleElt s n
+
+let dorian = mode ionian 2
+let phrygian = mode ionian 3
+
+let minor = [0,3,7]
+    major = [0,4,7]
+    nine = [0,4,7,10,14]
+    ninesus4 = [0,5,7,10,14]
+    add9 = [0,4,7,14]
+    madd9 = [0,3,7,14]
+    maj9 = [0,4,7,11,14]
+    m9 = [0,3,7,10,14]
+    sus2 = [0,2,7]
+    sus4 = [0,5,7]
+    seven = [0,4,7,10]
+    m7 = [0,3,7,10]
+    eleven = [0,4,7,10,14,17]
+    m11 = [0,3,7,10,14,17]
+    thirteen = [0,4,7,10,14,21]
+    m13 = [0,3,7,10,14,21]
+
+let scramble p = within (0.25, 0.5) (0.25 <~) $ within (0.5,1) (1.25 ~>) $ within (0, 0.5) (0.5 ~>) $ within (0.25, 0.75) (0.75 <~) $ p
+    mel' scale runSize f p = note (preplace(1,1) p (f $ sc scale <$> run runSize))
+    mel scale runSize p = mel' scale runSize (scramble) p
+
+q $ stut' 2 (0.125/4) (|+| note "5") $ stut' 3 (0.125/2) (|+| note "-12") $ (|+| note "57") $ slow 4 $ mel m9 6 "{0 0*2 [~ 0] [~ 0]*2 0 [~ 0]}%16"
+
+q $ stack[
+  smash 2 [2] . iter 4 $  (# nm "c4 e4 ~ g4") $ mel seven 4 "0 0 0 0"
+] # dur "0.5" # cutoffegint (scale 0 0.5 $ slow 4 $ sine1)
+
+
+
+
+
+---

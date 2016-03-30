@@ -1,0 +1,167 @@
+hush
+
+cps 0.8
+
+cps 0.7
+
+d1 $ echo (7/4) $ (0.1 <~) . every 3 (iter 2) $ sound "{ht:2 dr:1/2} lt:3/3"
+
+d2 $ echo (5/3) $ every 2 (iter 2 . (0.25 <~)) $ striate 2 $ stack[sound "hands", sound "hands:4/2"]
+
+d3 $ stack[palindrome $ sound "e e e/2 e?", sound "sn/2 {sn sn?}"]
+ |+| speed "0.7"
+
+d4 $ echo (7/4) $ every 3 (density 2) $ striate' 32 (0.1) $ sound "bd house gab:3 akai"
+ |+| end "0.1"
+ |+| shape (((*0) <$>) $ every 4 ((*1) <$>) "0.666")
+
+d5 $ density 4 . smash 8 [2..15] $ striate 32 $ sound "latibro"
+ |+| speed (every 4 ( (2.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) $ iter 2 "0.666")
+ |+| vowel (slow 3 "a ~")
+ |+| gain "0.8"
+
+
+hush
+----------------------
+
+bps 2
+
+d1 $ every 7 ((|+| accelerate "-10") . slow 2) $ every 3 (density 2) $ every 2 (slow 4) $ sound "deepsky:0 deepsky:3"
+ |+| speed (every 4 ( (2.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) $ iter 2 "2.666")
+
+d2 $ every 15 (echo (2/3)) $ every 3 (|+| vowel "o") $ every 4 (rev) $ density 2 $ (sound $ samples "bass0" $ iter 2 $ run 9)
+ |+| speed "2.9"
+ |+| gain "0.7"
+
+
+--------------------
+
+
+d1 $ every 3 (echo (7/4)) $ striate 2 $ sound "~ ul:3 ~"
+ |+| end rand
+
+d2 $ every 3 (echo (7/4)) $ striate 2 $ sound "~ ul:4"
+ |+| end rand
+
+d3 $ every 3 (echo (7/4)) $ striate 2 $ sound "ul:2"
+ |+| end rand
+
+hush
+--------------------
+
+d1 $ echo (7/4) $ brak . stut 8 0.8 (-0.2) $ sound "gab:3"
+ |+| end "0.1"
+ |+| speed (every 4 ( (2.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) $ iter 2 "2 5")
+ |+| gain "0.9"
+
+d2 $ density 2 $ echo (7/4) $ brak . stut 8 0.8 (-0.2) $ sound "gab:6"
+ |+| speed (every 4 ( (2.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) $ iter 2 "0.666 2 0.1 10")
+ |+| gain (slow 2 "0.9 0.6")
+
+d3 $ every 3 (echo (7/4)) $ rev . every 4 (striate 2) $ striate' 2 (0.5) $ sound "casio:2*2 casio:2"
+ |+| gain "1.2"
+
+ |+| speed (every 4 ( (2.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) $ iter 2 "0.666 1")
+
+hush
+
+
+
+
+
+
+--------------------
+
+bps 1
+
+d1 $ stack[sound "house*2 {fat909 !?}", sound "cp/5"]
+
+d2 $ every 4 (striate 4) $ sound "dr dr dr dr"
+
+d3 $ sound "bass bass3 bass bass"
+ |+| speed (every 4 ( (0.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) $ iter 2 "1 1.2")
+
+d4 $ every 7 (rev) $ every 5 (striate 4) $ density 4 $ stack[sound "[casio casio/3]" |+| speed (every 4 ( (0.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) $ iter 2 "0.1"), sound "casio:2/2"]
+
+--------------------
+
+hush
+
+bps 1
+
+cps 1
+
+cps 8
+
+d1 $ stack[sound "house*2 {fat909 !?}", sound "cp/5"]
+
+d2 $ every 4 (striate 4) $ sound "dr dr dr dr"
+
+d3 $ sound "bass bass3/2 bass bass"
+ |+| speed (every 4 ( (0.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) $ iter 2 "1 1.2")
+
+d4 $ every 4 (density 2) $ every 7 (rev) $ every 5 (striate 4) $ density 2 $ sound (pick <$> "notes" <*> iter 2 "0 1")
+ |+| speed (every 4 ( (0.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) $ iter 2 "1 1.1")
+
+d5 $ slow 4 $ sound (pick <$> "numbers" <*> iter 10 "0 1 2 3 4 5 6 7 8 9")
+
+
+---------------------------
+
+hush
+
+bps 0.666
+
+d1 $ every 8 (echo (9/4)) $ stack[every 4 (slow 2) $ every 3 (|+| gain "0") $ striate 2 $ sound "gab:6 ~ ~ {gab:2 !?}", sound "~ gabba ~ gab:3" |+| speed "0.4" |+| vowel "e"]
+ |+| speed (every 3 ((*1.3) <$>) $ every 7 ((*2) <$>) $ iter 2 "1 0.5")
+
+d2 $ every 2 (|+| gain "1") $ sound "tabla:2 tabla:4*4 tabla:3"
+ |+| speed (every 4 ( (0.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) "1.2 1.3")
+ |+| gain "0"
+
+d3 $ every 2 (rev) $ stack[striate 4 . density 2 $ sound "kawai:1" |+| vowel (iter 2 $ every 2 (rev) "u ~ a"), striate 2 $ sound "casio:2/2" |+| vowel (iter 2 "u ~ a")]
+ |+| speed (every 4 ( (0.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) "0.2 0.5")
+
+d4 $ echo (7/4) $ every 2 (density 2 . (0.25 <~)) . every 3 (striate 4) . striate 2 $ sound "minipops:4?"
+ |+| speed (every 4 ( (0.5+) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) $ iter 2 "1 2")
+
+d2 silence
+
+
+d5 $ striate 3 $ sound "breath"
+ |+| speed "0.8"
+ |+| gain "1.2"
+
+
+d6 $ rev . striate' 2 (0.1) $ sound "gabba"
+ |+| speed (every 3 ((*2) <$>) $ every 4 ( (*1.45) <$>) $ iter 2 "0.5 1")
+
+
+
+
+
+d5 silence
+
+
+
+
+-----
+cps 0.666
+
+d5 $ echo (7/4) $ every 8 (spin 8) . smash 2 [1..3] . stut 8 0.9 0.5 . density 2 $ sound "notes:2"
+ |+| speed (every 4 ( (0.1+) <$>) $ every 2 ( (0.2+) <$>) $ every 7 ( (0.3+) <$>) $ every 3 ((0.2+) <$>) "0.3")
+
+d2 $ density 2 . every 3 (density 2) $ density 4 $ sound "minipops:2"
+ |+| speed (every 4 ( (0.5+) <$>) $ every 2 ( (*1.5) <$>) $ every 6 ( (*0.5) <$>) $ every 3 ((*1.5) <$>) "2 1 3")
+
+d4 $ sound "[sid:2(2,1) bd:8(2,1) bd, sn sn(2,1)]"
+
+-----
+
+
+hush
+
+
+
+
+

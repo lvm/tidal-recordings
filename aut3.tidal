@@ -1,0 +1,58 @@
+cps 0.8
+
+cps 1
+
+import System.Cmd -- for `espeak`
+
+
+-- lazy helpers
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    nm p = note $ toMIDI p
+    ---
+    ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    --- q $ note (cho 48 "1 [~ 1] 1 1 " [0, 3, 7, 5])
+    cho n pat chord = preplace(1,1) pat $ listToPat [ch + n | ch <- chord]
+    --- q $ note (cho' 48 3 "1 [~ 1] 1 1 " [0, 3, 7, 5])
+    cho' n off pat chord = cho (n+off) pat chord
+    --- q $ slowcho [47, 45, 42] "[1 !] 1 1 1" [0, 3, 0, 3]
+    slowcho nlist pat chord = slowcat[note (cho n pat chord) | n <- nlist]
+    --- q $ slowcho' [47, 45, 42] 3 "[1 !] 1 1 1" [0, 3, 0, 3]
+    slowcho' nlist off pat chord = slowcat[note (cho' n off pat chord) | n <- nlist]
+    --  q $ slowcat[note (cho 60 "1 1 1" (rotate i [0,3,7,10])) | i <- [0..3]]
+    rotate :: Int -> [a] -> [a]
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+    -- q $ chrot [51, 48] "1 1 1 1" [0, 3, 5, 7] 3
+    chrot nlist pat chord = slowcat[slowcho nlist pat (rotate i chord) | i <- [0..((length chord)-1)]]
+    -- espeak: msg, voice, amp, pitch, speed
+    espeak' m v a p s = system $ "espeak -v " ++ v ++ " -a " ++ a ++ " -p " ++ p ++ " -s " ++ s ++ " \"" ++ m ++ "\""
+    shespeak' m v a p s = system $ "espeak -v " ++ v ++ "+f1 -a " ++ a ++ " -p " ++ p ++ " -s " ++ s ++ " \"" ++ m ++ "\""
+    whisper' m v a p s = system $ "espeak -v " ++ v ++ "+whisper -a " ++ a ++ " -p " ++ p ++ " -s " ++ s ++ " \"" ++ m ++ "\""
+    croak' m v a p s = system $ "espeak -v " ++ v ++ "+croak -a " ++ a ++ " -p " ++ p ++ " -s " ++ s ++ " \"" ++ m ++ "\""
+    espeak m = espeak' m "en" "25" "50" "160"
+    shespeak m = shespeak' m "en" "25" "50" "160"
+    whisper m = whisper' m "en" "25" "50" "160"
+    croak m = croak' m "en" "25" "50" "160"
+
+
+let bdsncl = stut 2 0 0.25 $ drum $ preplace (1,1) "[x([3 2]/2,8)]" "bd sn cl"
+    bdsn2cl = stut 2 0 0.25 $ drum $ preplace (1,1) "[x([3 2]/2,8)]" "bd sn*2 cl"
+    bd2cl8 = drum $ preplace (1,1) "[x(8, 8)]" "bd bd cl"
+    bd2cl5 = drum $ preplace (1,1) "[x(5, 8)]" "bd bd cl"
+
+b $ foldEvery [7,8,9] (# dch "0.5") . every 23 palindrome $ stack[
+slowcat[bdsncl, bdsncl, bdsn2cl, bd2cl8, bdsn2cl, bdsncl, bdsn2cl, bdsncl, bd2cl5],
+drum "~ cp/3",
+stut 2 0 0.75 $ drum "~ cp/2",
+sometimes(foldEvery[3,4,5] (stut 2 0 0.5)) $ drum "ch(7,8)",
+drum $ "oh(1,4) !"
+] # dch "0.1" # doh "0.75" # stt "0" # std "0" # scl "1" # scr "1"
+
+q $ every 2 (sometimes(within(0, 0.5)(# decay "0.23"))) $ foldEvery [3,5,7] (sometimes(within(0, 0.5)(#cutoffegint "0.23"))) $ stack[
+chrot [36, 42, 48, 42] "[1([8 7 9 11 15]/5,16)]" [0, 3, 5, 7]
+] # decay (scale 0.75 1 rand) # lforate "0.75" # lfoint (scale 0 0.05 $ slow 8 $ sine1) # cutoffegint (scale 0.5 1 $ palindrome . slow 4 . iter 4 $ sine1) # cutoffegint (scale 0 0.5 $ slow 2 $ rand)
+
+
+hush

@@ -1,0 +1,46 @@
+cps 1
+
+let sw f = sometimes(within (0, 0.5) f)
+    sw' d h f = sometimes(within (d, h) f)
+    sttd t d = (#stt t) . (#std d)
+    notem p = note $ toMIDI p
+    nm p = notem p
+
+q $ gap 2 . sw (# modwheel (scale 0.25 0.66 sine1)) $ stack[
+iter 2 . whenmod 16 4 (sometimes rev) $ slowcat[
+nm "[c4 ~ d4 ~] [ e4 ~ f4 ~]"
+,nm "[g4 ~ a4 ~] [bs4 ~ a4 ~]"
+,nm "[b4 ~ cs4 ~] [d4 ~ a4 ~]"
+,nm "[a4 ~ c4 ~] [d4 ~ f4 ~]"
+]
+]
+|=| decay "0.99" --(scale 0.25 0.9 sine1)
+|=| cutoffegint (scale 0.5 0.75 rand)
+|=| lforate (scale 0.75 0.8 sine1)
+|=| lfoint (scale 0 0.9 squarewave1)
+|=| pitch3 "0.35" --(scale 0.35 0.666 rand) --"0.35"
+|=| modwheel "0.99"
+
+
+cps 1
+
+b $ foldEvery [3,5,7] (gap 2 . iter 2) . sw (# dch "0.1") $ stack[
+append' (drum "[~ ~ bd ~] [~ ~ bd ~]") (drum "[~ ~ ~ ~] [~ ~ ~ [~ bd]]")
+,
+slowcat[drum "ch*2", drum "ch*2", drum "ch*2", drum "ch*2", drum "[ch ch]"]
+,
+drum "[cp ~ ~ ~] [~ cp ~ ~]"
+,
+drum "[~ sn ~ ~] [~ sn/4 sn ~]"
+--,drum "cl(8,8)",slow 2 $ drum "ag(5,8)"
+] # lsn "0.9" # lcp "0.9" # lcl "0.9" # lbd "0.5" # lag "0.9" # dch (scale 0.25 0.5 sine1) # stt "0" # std "0" # sag "0.99" # nudge "0.2"
+
+q $ every 7 (gap 4) . sw' 0 0.25 (#lfoint (scale 0 0.9 sine1)) $ stack[
+nm "c3*2 ! c4 !", palindrome $ slowcat[nm "~ ~ ~ c8",nm "~ ~ ~ d8",nm "~ ~ ~ e8"]
+         ]
+|=| decay (scale 0 0.9 squarewave1)
+|=| lfoint "0.666"
+|=| lforate "0.166"
+|+| cutoffegint (scale 0.5 0.9 sine1)
+
+hush

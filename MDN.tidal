@@ -1,0 +1,269 @@
+cps 0.5
+
+
+d1 $ density 2 $ stack[every 4 (rev) $ sound "{rolandlofi:3*2? rolandlofi:1 ~ drum*2}%3", every 3 (slow 1.5) $ sound "{~ odx ~ ~}%3"]
+ |+| speed "0.5"
+ |+| end "0.2"
+ |+| pan "0"
+ |+| gain "0.8"
+
+
+d2 $ every 2 (density 2) . chop 4 $ sound "{rolandlofi:3 rolandlofi:1*2}%3"
+ |+| speed (((/2) <$>) $ iter 4 "1 1.9 1.8 1.9")
+ |+| end "0.5"
+ |+| pan "1"
+ |+| gain "0.8"
+
+
+d3 $ echo (6/8) $ every 9 (brak . slow 2) . whenmod 6 4 ((0.1 <~) . iter 2) . every 7 (|+| speed "1.2") $ every 3 (iter 4) . every 2 (iter 2 . (stut 2 0.5 (-0.5))) . rev . density 3 . every 2 (rev) $ chop 4 $ stack[sound "bend", sound "hammondauto:6/2", sound "watford:2/3", sound "watford:3/4"]
+ |+| speed (every 4 ((0.5+) <$>) $ every 3 ((0.45+) <$>) $ every 5 ((0.4+) <$>) $ scale 0.5 0.9 $ "0.666")
+ |+| shape (scale 0.2 0.666 $ "0.2")
+ |+| end rand
+ |+| gain "0.45"
+ |+| pan "0.5"
+
+
+d4 $ every 2 (density 3) . every 8 (chop 2) . slow 4 . every 7 (rev) . every 3 ((0.25 <~)) . chop 12 $ sound (samples "numbers" (run 10))
+ |+| speed (((0.1-) <$>) $ iter 2 "0.9 1")
+ |+| end rand
+ |+| cut "1"
+
+
+hush
+
+
+
+
+
+
+
+
+
+cps 0.63
+
+d2 $ every 3 (echo (4/4)) $ every 3 (stut 2 0.5 0.1) . every 5 (|+| vowel "o") . density 2 $ stack[every 4 (rev) $ sound "{drum bin:1 ~ drum:0*2}%3", every 3 (slow 1.5) $ sound "{~ odx ~ ~}%3"]
+ |+| speed "0.2"
+ |+| shape "0.666"
+ |+| end rand
+ |+| gain "0.8"
+
+d3 $ echo (7/4) $ every 5 (|+| vowel "o") . every 3 (|+| vowel "a") . spread' density "2 1 3 2 1 1" . stut 2 0.5 0.1 . every 3 (rev) $ sound "{blip:2/2 ~ blip:3}%3"
+ |+| speed (every 23 ((*0.666) <$>) . every 4 ((/1.3) <$>) $ every 3 ((/1.2) <$>) $ every 2 ((/1.5) <$>) $ scale 0.2 0.3 $ "0.2")
+
+
+d1 $ echo (7/4) $ palindrome . density 2 $ stack[every 4 (rev) $ sound "{rolandlofi:3*2? rolandlofi:1 ~ drum*2}%3", every 3 (slow 1.5) $ sound "{~ odx ~ ~}%3"]
+ |+| speed "0.5"
+ |+| end "0.2"
+ |+| shape "0.666"
+
+ |+| pan "0"
+ |+| gain "0.8"
+
+
+
+hush
+
+
+
+
+
+
+
+
+
+cps 1
+
+cps 0.7
+
+cps 0.5
+
+
+d1 $ every 8 (slow 2) . every 4 (density 2 . revArc (0.25, 0.5)) . stut 2 0.5 0.1 . spread' density "2 1 1 1 2" $ sound "{rm rm*2 e:4}%3"
+ |+| speed "0.666"
+ |+| coarse "10"
+
+d2 $ stack[
+density 2 $ every 2 (rev) $ sound "{rm can bin:1*2? rm:1*2}%3",
+slow 2 . chop 8 . striate 2 . stut 2 0.5 0.5 $ sound "ma8 ~"
+]
+ |+| speed "0.2"
+ |+| gain "1.2"
+
+d3 $ echo (7/4) $ spread' density "2 1 3 2 1 1" . stut 2 0.5 0.1 . every 3 (rev) $ sound "{blip:2/2 ~ blip:3}%3"
+ |+| speed (every 4 ((/1.3) <$>) $ every 3 ((/1.2) <$>) $ every 2 ((/1.5) <$>) $ scale 0.2 0.3 $ "0.2")
+ |+| coarse "10"
+
+
+hush
+
+
+
+
+
+
+
+d3 $ striate' 32 (0.5) . slow 4 $ sound "kawai:2 kawai:2"
+ |+| speed (every 2 ((/2)<$>) $ every 3 ((/2.1)<$>) $ every 4 ((/1.9)<$>) $ scale 0.5 0.9 $ "2.5")
+ |+| shape (scale 0.9 0.2 $ "0.9")
+ |+| end "0.98 0.4"
+
+d4 $ slow 3 . every 3 (rev) . density 2 . stut 2 0.6 0.2 $ sound "{~ kawai:2*2}%3"
+ |+| speed (scale 0.5 0.9 $ "3")
+ |+| shape (scale 0.9 0.2 $ "0.9")
+
+
+
+
+
+
+hush
+
+
+
+cps 0.666
+
+d1 $ every 2 (density 3) . slow 8 . every 7 (rev) . every 3 ((0.5 <~)) . chop 16 $ sound "moan"
+ |+| speed (every 2 (rev) $ iter 2 "0.9 1")
+ |+| end rand
+ |+| cut "1"
+
+d2 $ every 3 (iter 2 . (|+| sound "rm:1*4")) . density 2 . every 2 (rev) $ sound "{rm bd rm rm:1*2}%3"
+ |+| speed "0.2"
+ |+| shape (scale 0.2 0.9 $ "0.9")
+
+d3 $ echo (4/4) $ every 3 (iter 4) . every 2 (stut 2 0.5 (-0.5)) . density 3 . every 2 (rev) $ chop 4 $ sound "bend"
+ |+| speed (every 4 ((0.5+) <$>) $ every 3 ((0.45+) <$>) $ every 5 ((0.4+) <$>) $ scale 0.5 0.9 $ "1.2")
+ |+| shape (scale 0.2 0.9 $ "0.2")
+
+
+
+
+
+
+
+
+cps 0.63
+
+
+d1 $ every 2 (density 3) . slow 8 . every 7 (rev) . every 3 ((0.5 <~)) . chop 16 $ sound "moan/8 hmm/4"
+ |+| speed (every 2 (rev) $ iter 2 "0.9 1")
+ |+| end rand
+ |+| cut "1"
+
+d2 $ every 3 (stut 2 0.5 0.1) . within (0, 0.25) (chop 32) . density 2 $ stack[every 4 (rev) $ sound "{rm bin:1 ~ rm:1*2}%3", every 3 (slow 1.5) $ sound "{~ odx ~ ~}%3"]
+ |+| speed "0.2"
+ |+| shape "0.666"
+
+d3 $ density 1.5 $ every 16 (striate 2) . spread' striate (every 3 (rev) "4 2 2") $ sound "{watford:2 bend watford:3/2}%2"
+ |+| speed (every 8 ((0.1-) <$>) $ every 13 ((0.5-) <$>) "1")
+
+d4 $ echo (7/4) $ every 2 (density 3) . every 7 (rev) . every 3 ((0.5 <~)) $ sound "visco:5 visco:5"
+ |+| speed (every 2 (rev) $ iter 2 "0.2 1")
+ |+| pan "[1 0]/2"
+ |+| coarse "10"
+
+d5 $ echo (7/4) $ every 2 (density 3) . every 7 (rev) . every 3 ((0.5 <~)) $ sound "visco:5 visco:5"
+ |+| speed (every 2 (rev) $ iter 2 "0.9 0.5")
+ |+| pan "[0 1]/2"
+ |+| coarse "11"
+
+ |+| end rand
+ |+| cut "1"
+
+
+-- d3 $ echo (4/4) $ every 3 (iter 4) . every 2 (stut 2 0.5 (-0.5)) . density 3 . every 2 (rev) $ chop 4 $ stack[sound "bend" |+| shape "0.2", jux rev $ slow 2 . chop 4 $ sound "sn:1/2", (|+| pan "1") $ slow 4 . striate 8 $ sound "sn:4/2"]
+--  |+| speed (every 4 ((0.5+) <$>) $ every 3 ((0.45+) <$>) $ every 5 ((0.4+) <$>) $ scale 0.5 0.9 $ "1.2")
+--  |+| shape (scale 0.2 0.9 $ "0.2")
+
+
+hush
+
+
+
+
+
+
+
+
+
+
+cps 0.63
+
+
+d1 $ every 2 (density 3) . slow 8 . every 7 (rev) . every 3 ((0.5 <~)) . chop 16 $ sound "moan hmm"
+ |+| speed (every 2 (rev) $ iter 2 "0.9 1")
+ |+| end rand
+ |+| speed (((*1.9) <$>) $ every 2 ((0.1+) <$>) $ every 2 (rev) $ sine1)
+
+d2 $ every 3 (echo (4/4)) $ every 3 (stut 2 0.5 0.1) . every 5 (|+| vowel "o") . density 2 $ stack[every 4 (rev) $ sound "{drum bin:1 ~ drum:0*2}%3", every 3 (slow 1.5) $ sound "{~ odx ~ ~}%3"]
+ |+| speed "0.2"
+ |+| shape "0.666"
+ |+| end rand
+ |+| gain "0.8"
+
+d3 $ echo (4/4) $ every 7 (|+| speed "2") $ every 3 (iter 4) . every 2 (stut 2 0.5 (-0.5)) . density 3 . every 2 (rev) $ chop 4 $ sound "bend"
+ |+| speed (every 4 ((0.5+) <$>) $ every 3 ((0.45+) <$>) $ every 5 ((0.4+) <$>) $ scale 0.5 0.9 $ "1.2")
+ |+| shape (scale 0.2 0.9 $ "0.2")
+ |+| end rand
+ |+| gain "0.8"
+
+
+d4 $ slow 1.2 $ every 16 (striate 2) . spread' striate (every 3 (rev) "4 2 2") $ sound "{watford:2 watford:3/2}%2"
+ |+| speed (every 8 ((0.1-) <$>) $ every 13 ((0.5-) <$>) sine1)
+
+
+
+
+
+
+hush
+
+
+cps 0.63
+
+
+d1 $ every 2 (density 2.5) . slow 6.66 . every 7 (rev) . every 3 ((0.666 <~)) . chop 16 $ sound "moan hmm"
+ |+| speed (every 2 (rev) $ iter 2 "0.9 1")
+ |+| end rand
+ |+| cut "1"
+
+
+d2 $ every 2 (rev) $ every 6 (chop 8) $ density 2.5 $ sound "{drum:1*2 rhodes*2 ~}%3"
+ |+| speed ((+0.5) <$> sine1)
+ |+| end (scale 0.5 0.2 $ rand)
+
+d3 $ density 2.59 . every 4 ((|+| vowel "a")) .every 5 (slow 1.5) . every 2 (rev) $ stack[sound "bend"]
+ |+| speed (every 4 ((0.1-) <$>) $ every 3 ((0.45+) <$>) $ every 5 ((0.4+) <$>) $ scale 0.5 0.9 $ sine1)
+ |+| shape (scale 0.2 0.9 $ "0.2")
+
+
+hush
+
+
+cps 1
+
+
+
+
+
+
+
+cps 0.6
+
+
+d2 $ density 1.5 $ every 16 (striate 2) . spread' striate (every 3 (rev) "4 2 2") $ sound "watford:2? watford:3"
+ |+| speed (every 8 ((0.1-) <$>) $ every 13 ((0.5-) <$>) "1")
+ |+| pan "0"
+ |+| vowel "o"
+
+d3 $ echo (4/4) $ every 7 (|+| speed "2") $ every 3 (iter 4) . every 2 (stut 2 0.5 (-0.5)) . every 2 (rev) $ every 2 (chop 2 . slow 2) . chop 2 $ sound "hammondauto:19"
+ |+| speed (every 2 ((0.1-) <$>) $ every 4 ((0.5+) <$>) $ every 3 ((0.45+) <$>) $ every 5 ((0.4+) <$>) $ scale 0.5 0.9 $ "1.2")
+ |+| end rand
+ |+| pan "0.5"
+
+d4 $ echo (4/4) $ every 3 (iter 4) . every 2 (stut 2 0.5 (-0.5)) . every 2 (rev) $ sound "bend"
+ |+| speed (every 4 ((0.5+) <$>) $ every 3 ((0.45+) <$>) $ every 5 ((0.4+) <$>) $ scale 0.5 0.9 $ "1.2")
+ |+| pan "1"
+ |+| vowel "o"
+
+hush

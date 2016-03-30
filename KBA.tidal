@@ -1,0 +1,22 @@
+bps 1
+
+d1 $ slow 32 . every 15 (spin 2) . every 2 (iter 2) . every 4 (slow 2) $ every 5 (spread' striate "2 4") $ spread' striate "2 4 4" $ sound "acetoneace:2"
+
+d2 silence
+
+hush
+
+d2 $ slow 32 . every 5 (slow 2 . rev) $ density 4 . spread' striate "2 1" . every 4 (stut 2 0.8 (-0.9)) $ sound "watford:4"
+ |+| shape (every 2 ((0.3-) <$>) $ "0.4")
+ |+| end rand
+ |+| speed (every 2 ((0.3-) <$>) $ slow 4 "0.5 0.7")
+ |+| speed (slow 4 "0.5 0.666")
+ |+| speed (slow 4 "0.5 0.9")
+ |+| accelerate "-32"
+
+
+d3 $ every 23 (|+| accelerate "-5") $ every 11 (rev) $ every 5 (density 2) $ density 2 $ sound "deepsky:9"
+ |+| shape (every 2 ((0.5-) <$>) $ "0.4")
+ |+| gain "0.8 0.7 0.5 0.3 0.2 0.1"
+
+d3 silence

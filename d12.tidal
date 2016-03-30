@@ -1,0 +1,66 @@
+cps 1
+
+b $ fadeOut 4 $ sometimes (# dch "0.01") . density 1.2 . every 37 (slow 4) . every 25 (# drum "cr [cr!!] cr cr") . foldEvery [15, 21, 10, 14] (sometimes (# std (scale 0 1 rand))) . foldEvery [3,5,7] (# stt (scale 0 1 rand)) . every 8 rev . every 13 (slow 2 . chop 2) $ stack[
+slowcat[drum "~ ~ ~ bd",drum "~ bd bd [~ bd]"],
+whenmod 16 8 (slowspread (stut 2 0) [0.75, 0.5]) $ drum "~ sn ~ sn",
+every 7 (within (0.25, 0.75) (chop 2)) $ density 2 $ drum "ch*4",
+drum "~ ~ ~ oh",
+slowcat[drum "[cp(5,8)]/2",drum "cp(3,8)"]
+] # dch "0.25 0.5 0.75" # lbd "0.65" # lch "0.5" # sag "0.5" # lcr "1"  # stt "0" # std "0" # dch "0.25" # stt "0" # std "0" # scr "0.75"
+
+-- amsynth 13 - 16: intheend / 72: elderfour
+m5 $ every 2 (slow 2) $ stack[
+  chrot' [37,35,30] 12 "[1(3,8)]" [0,3,5,0,3,7,0,3,7]
+] # dur "1" # vel "0.75" # nudge "[0.01 0]/2"
+
+q $ sometimes (# vel "0.2") $ stack[
+  iter 4 $ chrot' [37,35,30] 24 "[1(1,8)]" [0]
+  --,chrot' [37,35,30] 24 "[1(3,8)]" [0,2,3,5,7]
+] # dur "1" # nudge "[0.01 0]/2" -- # vel (scale 0 0.25 $ palindrome $ sine1) --"0.25" 
+
+hush
+
+
+-----
+
+-- amsynth 3 - 1: cat / 7 - 111: hmm
+m4 $ sometimes (# vel "0.2") $ slowcat[
+  chrot' [37,35,30] 24 "[1(3,8)]" [0],
+  chrot' [37,35,30] 24 "[1(3,8)]" [0,2,3,5,7]
+] # dur "0.15" # nudge "[0.01 0]/2" # vel (scale 0 0.25 $ palindrome $ sine1) --"0.25" 
+
+-- q $ sometimes (# vel "0.2") $ slowcat[
+--   chrot' [37,35,30] 24 "[1(3,8)]" [0],
+--   chrot' [37,35,30] 24 "[1(3,8)]" [0,2,3,5,7]
+-- ] # dur "0.15" # nudge "[0.01 0]/2" # vel (scale 0 0.25 $ palindrome $ sine1) --"0.25" 
+
+
+
+
+
+
+
+
+
+
+q $ stack[
+  chrot' [42] 12 "1(8,8)"  [0, 5, 0, 3, 5, 0, 3, 7, 0, 3, 7, 10, 5],
+  slowcat[
+  iter 4 $ slowcho' [38,35] 12 "1(3,8)"  [0, 5, 0, 3, 5, 0, 3, 7, 0, 3, 7, 10, 5],
+  iter 4 $ chrot' [38,35] 12 "1(3,8)"  [0, 5, 0, 3, 5, 0, 3, 7, 0, 3, 7, 10, 5]
+  ]
+] # dur "0.05"
+
+m5 $ every 6 (# chrot' [42] 12 "1 ~ 1 1" [0, 5, 0, 3, 5, 0, 3, 7, 0, 3, 7, 10, 5]) $ stack[
+  chrot' [37] 12 "1 ! ! !" [0, 5, 0, 3, 5, 0, 3, 7, 0, 3, 7, 10, 5]
+] # dur (every 6 ((+0.45) <$>) "0.5") # vel "0.25"
+
+hush
+
+-- bank 1 - 59: warm 1
+m5 $ stut 2 0 0.75 $ randcat[
+  chrot' [42,37,38,35,30] 12 "1(3,4)" [0,4,7]
+] # dur "0.05" # vel "0.5"
+
+
+hush

@@ -1,0 +1,31 @@
+bps (140/60)
+
+d1 $ echo (7/4) $ stack[sound "mattel:1*2 ~ mattel:3*4", striate 2 $ sound "ho/4 hc*8" |+| speed (every 2 (rev) "3 5 2")]
+ |+| gain "1.1"
+
+d2 $ jux rev $ density 8 $ slow 16 $ striate 64 $ smash 4 [4..12] $ striate' 32 (0.1) $ sound "~ mattel:5"
+ |+| pan (slow 2 triwave1)
+ |+| speed (every 2 (rev) "1 0.9 2 0.9")
+
+d3 $ density 8 $ every 4 (rev) $ sound (samples "jvbass ~" (iter 5 $ run 5))
+ |+| pan (slow 8 triwave1)
+ |+| speed "0.9"
+ |+| gain "0.9"
+ |+| speed (every 2 (rev) "1 5 2 1.5 1 0.1 5 1")
+
+d4 $ sound "dr*2 lsdj:2 dr2/3 cp/4"
+ |+| gain "1.1"
+
+
+d1 silence
+d2 silence
+d3 silence
+d4 silence
+
+d5 silence
+d6 silence
+d7 silence
+d8 silence
+d9 silence
+
+hush

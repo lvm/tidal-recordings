@@ -1,0 +1,57 @@
+bps $ 150/40
+
+
+-----------------------------------------------------------------------------------------
+-- 000a
+-----------------------------------------------------------------------------------------
+
+bps $ 140/60
+
+
+solo $ d1 $ echo (1/2) $ stack[every 2 (|+| speed "0.5") $ sound "e", slow 2 $ every 2 ((echo (7/4)) . (|+| speed "5") . (density 2)) $ striate' 32 (0.1) $ sound " [fat909:2]/3 [fat909:2*8]/2", every 2 (rev . (density 2)) $ interlace (sound "gab:3*8") (sound $ samples "jvbass" $ iter 2 $ run 5 )]
+ |+| speed ((0.5+) <$> sine1)
+
+ |+| accelerate "1 -5 1"
+
+ |+| gain (slow 2 "0.9 0.5 0.2 0.1")
+
+
+
+-----------------------------------------------------------------------------------------
+-- 000b
+-----------------------------------------------------------------------------------------
+
+d1 silence
+
+
+d2 $ every 8 (rev) $ stack[every 8 (|+| speed ((0.1-) <$> sine1)) $ every 3 ((0.5 <~)) $ slow 2 $ striate 32 $ sound "breaks125", every 4 (|+| vowel "a o i") $ density 2 $ striate 32 $ sound $ samples "jvbass e*8" $ iter 2 $ run 2]
+ |+| speed ((0.5+) <$> sine1)
+
+ |+| gain "0.1"
+
+d3 $ echo (7/4) $ every 2 (rev) $ stack[interlace (sound "dr*2 dr") (sound "e cp/4 [mouth*8]/3")  |+| accelerate "1 3 4 1", slow 2 $ smash 2 [1..1] $ striate' 2 (0.1) $ sound $ samples "arpy jvbass" $ iter 5 $ run 5, (every 2 (rev) $ density 2 $ sound $ samples "amencutup" $ iter 5 $ run 5), slow 4 $ sound "dr dr dr dr"]
+
+ |+| gain "0.1"
+
+-----------------------------------------------------------------------------------------
+-- 000c
+-----------------------------------------------------------------------------------------
+
+
+d4 $ every 2 (density 2) $ every 3 (slow 2) $ smash 8 [1..5] $ striate' 32 (0.1) $  (sound $ samples "arp" $ iter 5 $ run 5)
+ |+| shape "0.7 0.5 0.1 0.9"
+ |+| speed ((5+) <$> sine1)
+ |+| gain (every 2 (rev) "0.5 0.3 0.1")
+ |+| slow 32 (vowel "o i u")
+
+
+hush
+
+d5 $ echo (7/8) $ slow 8 $ stack[every 3 (density 2) $ sound "house house/6 house*3/3", slowspread ($) [(|+| speed "5 1 -5"), striate 33 ] $ sound "cp*2 co" |+| end "0.1", interlace (sound "~ lsdj:1/8") (sound "~ e"), striate 32 $ sound "kurt" |+| speed "0.5" |+| end "0.1"]
+
+-----------------------------------------------------------------------------------------
+-- 000d
+-----------------------------------------------------------------------------------------
+
+
+d6 $ density 2 $ stack[sound "gab:4*2", striate 16 $ sound "gab:2*16" |+| gain (slow 2 "0.9 0.5 0.7"), slow 2 $ every 4 (|+| vowel "a") $ every 2 (density 2) $ sound "industrial" |+| speed ((1+) <$> sine1)]

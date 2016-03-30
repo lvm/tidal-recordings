@@ -1,0 +1,85 @@
+cps 0.666
+
+
+cps 1
+
+d1 $ density 3 $ (sound $ samples "sylltch" $ iter 10 $ run 10)
+ |+| speed (((*0.6) <$>) $ every 3 ((*1.3) <$>) $ every 5 ((*1.5) <$>) $ every 7 ((*1.8) <$>) $ every 11 ((*1.2) <$>) $ "1")
+
+d2 $ sound "syllnon:4"
+ |+| cut "1"
+ |+| shape (scale 0.5 0.4 $ "0.9")
+
+ |+| cut "1"
+
+
+
+hush
+
+
+d8 $ chop 4 $ slow 2 $ sound "idmel:1"
+ |+| gain "1.2"
+ |+| cut "1"
+
+
+d8 $ chop 4 $ slow 2 $ (sound $ samples "idm:11" $ iter 2 ("12 13"))
+ |+| cut "1"
+
+
+d7 $ chop 16 $ slow 4 $ sound "amenfixed:4"
+ |+| gain "0"
+
+d9 $ every 4 ( within (0, 0.25) (|+| accelerate "-1")) $ spread' chop "16 32 16" $ spread' slow "4 4 2" $ sound "amenfixed:7"
+
+ |+| speed (every 10 ((0.1-)<$>) $ scale 1 1.1 $ sine1)
+
+d9 $ smash 4 [1,2,3,4] . density 2 $ (sound $ samples "sylloh" $ iter 5 $ run 5)
+
+d7 $ slow 8 $ sound "atari:4 ~ ~ [atari:3 ~ ~ atari:10]"
+ |+| cut "1"
+
+
+
+
+d9 silence
+
+cps 0.666
+
+cps 1
+
+hush
+
+
+
+
+
+d1 $ every 4 (echo (7/4)) $ revArc(0, 0.25) . within (0.25, 0.35) (density 2) . chop 8 $ slow 2 $ sound "amen"
+ |+| cut "1"
+ |+| speed (every 2 ((*0.9)<$>) $ "1")
+
+d7 $ fadeOut 4 $ slow 2 $ sound "atari:4 ~ ~ [atari:3 ~ ~ atari:10]"
+ |+| cut "1"
+ |+| speed (every 6 ((0.1-) <$>) $ every 2 ((*0.9)<$>) $ "1")
+
+
+d5 $ every 2 (revArc(0, 0.5)) . spread' density "2 4 1 4" $ (sound $ samples "egoless egoless:2" $ iter 3 ("1 0 2"))
+ |+| speed (every 2 ((*0.9)<$>) $ iter 3 "1.5 1.2 1")
+
+ |+| end (scale 0.1 0.25 $ rand)
+
+
+d5 $ striate 32 $ slow 8 $ sound "bev"
+ |+| gain "1.2"
+ |+| cut "1"
+
+d6 $ every 2 (chop 2 . slow 4) . within (0.9, 1.2) (revArc(0,0.25) . density 2) $ every 4 (rev) $ chop 16 $ slow 4 $ sound "amenfixed:2"
+ |+| cut "1"
+
+
+d7 $ echo (7/4) $ spread' chop "128 256" . within (0, 0.5) (density 2 . chop 2) $ sound "gabba(3,8)"
+ |+| speed (every 2 ((*0.9)<$>) $ iter 3 "1.5 1.2 1")
+ |+| vowel "a o u p"
+
+
+
+hush  

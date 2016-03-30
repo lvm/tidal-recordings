@@ -1,0 +1,31 @@
+bps 2
+
+d1 $ echo (7/4) $ sound "~ mattel:5*8/4"
+  |+| gain "1.1"
+  |+| speed (every 64 (rev) "1 0.9 1 1.5")
+  |+| accelerate "5 -10 5"
+  |+| end "0.1"
+
+d2 $ sound "lsdj:2 dr*4"
+  |+| gain "1.1"
+
+
+d3 $ echo (7/4) $ slowspread ($) [rev, density 4, striate 3] $ sound "fat909 fat909:4/2"
+
+d3 $ echo (7/4) $ 
+     stack[sound "jvbass:2/5 jvbass:0/3 jvbass:1/2 jvbass:4",
+           every 2 (rev . (0.5 ~>)) $ 
+           interlace (sound "[mattel:2*8/5 mattel:0*3/3 mattel:1*5/2 mattel:4*3]/2")
+                     (sound "dr/5 fat909/3 ~ cp/2")]
+  |+| speed (every 4 (rev) "1 0.9 1 1.5")
+  |+| accelerate "5 -10 5"
+
+
+-----
+
+solo $ d4 $ slow 2 $ striate 8 $ sound "breaks125"
+
+d5 $ slow 2 $ striate 8 $ stack[sound "cp dr", every 4 (density 2) $ sound "hmm ~" |+| vowel "i o a", smash 16 [1..4] $ sound (samples "atari" (iter 23 $ run 23))]
+
+
+hush

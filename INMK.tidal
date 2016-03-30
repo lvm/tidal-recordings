@@ -1,0 +1,187 @@
+cps 0.35
+
+
+d3 $ every 2 (striate 2) . striate 2 $ sound "db db db db"
+ |+| shape (scale 0.5 0.5666 $ sinewave1)
+ |+| speed (((*0.6) <$>) $ "0.666")
+
+d2 $ within (0, 0.5) (stut 4 0.2 0.5) $ stack[sound "sid:2 [sn:2 sid:2] ~ db:7", degradeBy 0.5 $ sound "~ ~ visco:5*4? ~"]
+ |+| shape (scale 0.5 0.5666 $ sinewave1)
+ |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ "0.666")
+
+d1 $ sound "peri:3 peri:1 peri peri:5"
+ |+| shape (scale 0.5 0.5666 $ sinewave1)
+ |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ "0.666")
+
+
+
+-------------
+hush
+-------------
+
+
+d1 $ stut 2 0.5 0.5 . density 3 $ sound "~ rapman:3 [~ rapman:2 ~ lsdj:2] "
+ |+| speed (iter 3 $ scale 0.1 0.5 $ "0.666")
+
+-------------
+hush
+-------------
+
+d9 $ spin 4 . density 8 . chop 8 $ sound "sundance !?"
+ |+| speed (((*0.98) <$>) $ every 2 ((/1.52) <$>) $ every 3 ((/2) <$>) $ scale 0.666 1 $ sine1)
+ |+| speed (((*1.666) <$>) $ every 2 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ "0.666")
+
+
+
+d9 $ every 4 (spin 2) . every 5 (density 2) . spin 2 . density 8 . chop 8 $ sound "sundance !?"
+ |+| speed (((*0.98) <$>) $ every 2 ((/1.52) <$>) $ every 3 ((/2) <$>) $ scale 0.666 1 $ sine1)
+ |+| speed (((*2.666) <$>) $ every 2 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ "0.666")
+
+
+
+d9 $ every 4 (spin 2) . density 2 . spin 2 . density 8 . chop 8 $ sound "sundance !?"
+ |+| speed (((*2.666) <$>) $ every 2 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ "0.666")
+ |+| shape (iter 4 $ scale 0.1 0.9 $ sinewave1)
+ |+| sound "db"
+
+d8 $ every 4 (spin 2) . density 2 . spin 2 . density 8 . chop 8 $ sound "sundance !?"
+ |+| speed (((*2.666) <$>) $ every 2 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ "0.666")
+ |+| shape (iter 4 $ scale 0.1 0.9 $ sinewave1)
+ |+| sound "visco:5"
+
+
+hush
+
+cps 0.23
+
+
+d9 $ iter 3 . ((0.25<~)) . every 4 ((0.25~>) . spin 2) . density 2 . spin 2 . density 8 . chop 8 $ sound "sundance !?"
+ |+| speed (((*2.223) <$>) $ every 4 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ every 2 (rev) "0.666 0.8")
+ |+| speed (((*2.223) <$>) $ every 4 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ scale 0.9 (-0.58) $ sine1)
+ |+| shape (iter 4 $ scale 0.1 0.9 $ sinewave1)
+
+
+d9 $ slow 1.25 . superimpose ((|+| gain "0.5") . (|+| speed (((*2.223) <$>) $ every 4 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ scale 0.9 (-0.58) $ sine1))) . iter 3 . ((0.25<~)) . every 4 ((0.25~>) . spin 2) . density 2 . spin 2 . density 8 . chop 8 $ sound "sundance !?"
+ |+| speed (((*2.223) <$>) $ every 4 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ every 2 (rev) "0.666 0.8")
+ |+| shape (iter 4 $ scale 0.1 0.9 $ sinewave1)
+
+
+d9 $ every 4 (spin 2) . density 2 . every 8 (chop 2) . density 6 . chop 8 $ sound "sundance !?"
+ |+| speed (((*2.1223) <$>) $ every 4 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ every 2 (rev) "0.666 0.8")
+ |+| shape (iter 4 $ scale 0.1 0.9 $ sinewave1)
+
+
+d9 $ superimpose(within (0, 0.25) (retrig)) $ every 4 (spin 2) . every 5 (density 2) . spin 2 . density 8 . chop 8 $ sound "sundance !?"
+ |+| speed (((*0.98) <$>) $ every 2 ((/1.52) <$>) $ every 3 ((/2) <$>) $ scale 0.666 1 $ sine1)
+ |+| speed (((*1.666) <$>) $ every 2 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ "0.666")
+
+
+d9 $ superimpose(within (0, 0.25) (retrig)) $ every 4 (spin 2) . spin 2 . density 8 . chop 8 $ degradeBy 0.2 $ sound "sundance !?"
+ |+| speed (((*1.666) <$>) $ every 2 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ "0.666")
+
+
+cps 0.25
+
+hush
+
+d8 $ every 4 (slow 2) . striate 4 . density 4 $ sound "{rapman:2 !! !?}%2"
+
+
+
+d8 $ density 4 $ sound "{rapman:2(3,1) !?}%2"
+
+
+
+hush
+
+
+cps 0.35
+
+d1 $ every 4 (iter 3) . every 3 (within (0, 0.25) (chop 4)) . within (0, 0.25) (chop 2) . within (0.5, 0.75) (chop 4) $ sound "rapman [~ rapman rapman] [rapman, rapman:2 ~ ~, rapman:11 ~ rapman:2]"
+
+d2 $ density 2 . every 3 (within (0, 0.25) (chop 8)) . within (0.5, 0.75) (chop 4) $ sound "dr bd:8 db bd"
+
+
+
+
+d1 $ density 2 . every 3 (within (0, 0.25) (chop 2)) $ sound "rapman [~ rapman house] [sid:8, house ~ visco:5]"
+
+
+d1 $ density 2 $ sound "rapman [~ rapman house] [sid:8, house ~ visco:5]"
+
+
+
+hush
+
+
+
+d1 $ density 3 . every 4 (iter 3) . every 3 (within (0, 0.25) (chop 4)) . within (0, 0.25) (chop 2) . within (0.5, 0.75) (chop 4) $ sound "rapman [~ rapman rapman] [rapman, rapman:2 ~ ~, rapman:11 ~ rapman:2]"
+
+
+
+d1 $ density 2 $ sound "rapman [~ rapman ~] [sid:8, house ~ visco:5]"
+
+
+d1 $ every 2 (stut 2 0.2 0.5) $ density 3 $ sound "rapman:2 !? rapman:11"
+ |+| speed "0.5"
+ |+| cut "1"
+ |+| gain (scale 0.7 0.9 $ sine1)
+ |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ "0.666")
+
+d2 $ stut 2 0.5 0.5 . density 2 $ sound "~ [rapman:8 ~ ~ db:8] ~"
+ |+| speed "0.5"
+ |+| speed (((*1.666) <$>) $ every 2 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ "0.666")
+
+
+
+every 4 (iter 3) . every 3 (within (0, 0.25) (chop 4)) . within (0, 0.25) (chop 2) . within (0.5, 0.75) (chop 4) $ 
+
+d1 $ every 4 (stut 2 0.5 0.5) . density 3 $ sound "rapman:2 [rapman:3 rapman:11] "
+ |+| cut "1"
+ |+| gain (scale 0.7 0.9 $ sine1)
+ |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ every 3 ((*2) <$>) $ every 5 ((*1.2) <$>) $ every 7 ((*3) <$>) $ every 13 ((0.1-) <$>) $ every 21 ((*4) <$>) $ "0.666")
+
+
+cps 0.35
+
+d1 $ within (0, 0.25) (superimpose(|+| vowel "u o i")) . every 8 (stut 2 0.5 0.5) . density 3 $ every 3 (within (0, 0.25) (chop 4)) . within (0, 0.25) (chop 2) . within (0.5, 0.75) (chop 4) $ sound "rapman:2 [rapman:3 rapman:11] "
+ |+| gain (scale 0.7 0.9 $ sine1)
+ |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ every 5 ((*1.2) <$>) $ every 13 ((0.1-) <$>) $ "0.666")
+ |+| shape (iter 4 $ scale 0.1 0.5 $ sinewave1)
+
+
+
+d1 $ cr2 . within (0, 0.25) (superimpose(|+| vowel "u o i")) . every 8 (stut 2 0.5 0.5) $ every 3 (within (0, 0.25) (chop 4)) . within (0, 0.25) (chop 2) $ sound "rapman:2 [rapman:3 rapman:11] "
+ |+| gain (scale 0.7 0.9 $ sine1)
+ |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ every 5 ((*1.2) <$>) $ every 13 ((0.1-) <$>) $ "0.666")
+ |+| shape (iter 4 $ scale 0.1 0.5 $ sinewave1)
+
+hush
+
+cps 0.35
+
+cps 0.45
+
+d2 $ density 3 $ sound "~ house house sf:3(1,1)"
+ |+| speed (((*2.666) <$>) $ scale 0.5 0.5 $ "0.666")
+ |+| shape (iter 4 $ scale 0.1 0.5 $ sinewave1)
+
+d3 $ sound "sf !! ~"
+ |+| speed (every 9 ((0.1-) <$>) $ "[0.566 0.5 0.6]/2")
+
+d4 $ every 44 (|+| vowel "a") . within (0, 0.5) (density 2) . iter 3 . chop 2 . density 3 $ sound "~ sf"
+ |+| speed (((2*) <$>) $ every 2 ((*2) <$>) $ every 4 ((*1.2) <$>) $ every 3 ((0.1-) <$>) $ scale 1.2 2.5 $ sine1)
+ |+| shape "0.2"
+ |+| cut "1"
+
+d5 $ chop 2 . rev . density 3 . within (0, 0.25) (superimpose(|+| vowel "u o i")) $ sound "rapman:2 [visco:5 rapman:11] "
+ |+| gain (scale 0.7 0.9 $ sine1)
+ |+| speed (((*0.666) <$>) $ every 2 (scale 0.5 0.5) $ every 5 ((*1.2) <$>) $ every 13 ((0.1-) <$>) $ "0.666")
+ |+| shape (iter 4 $ scale 0.1 0.5 $ sinewave1)
+
+
+
+hush
+
+
+

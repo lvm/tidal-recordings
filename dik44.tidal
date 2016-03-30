@@ -1,0 +1,46 @@
+bps (120/150)
+
+let sm n = smash n [2]
+
+let st n = stut n 0.01 0.025
+
+b1 $ stack[
+  stack[
+drum "[~ bd ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ bd ~ bd]"
+,
+slowcat[
+drum "[~ ~ ~ ~] [~ sn ~ sn] [sn ~ sn sn] [~ ~ sn ~]"
+,
+drum "[sn sn sn sn] [~ sn sn sn] [sn ~ sn sn] [~ ~ sn ~]"
+]
+,
+slowcat[
+drum "[~ ~ ~ ~] [~ ch ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+,
+drum "[~ ~ ~ ~] [~ ch ~ ~] [~ ~ ~ ~] [ch ch ch ch]"
+,
+drum "[ch ch ch ~] [~ ch ~ ~] [~ ~ ~ ~] [~ ch ch ~]"
+]
+,
+drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ oh ~ ~]"
+]
+,
+slowspread st [2,2,4] $ drum "[~ cl ~ cl] [~ ~ cl ~] [~ cl cl cl] [~ ~ ~ cl]"
+|+| scl (scale 0.9 0.99 $ sine1)
+]
+
+---
+
+
+b1 $ smash 2 [3] . iter 4 . density 1.25 $ stack[
+slowspread st [2,2,4] $ drum "cr(9,16)"
+|+| scr (scale 0.9 0.99 $ sine1)
+,
+slow 2 . chop 2 $ drum "ch(16,16)"
+,
+drum "bd(4,16)"
+,
+drum "sn(7,16)"
+]
+
+b1 silence

@@ -1,0 +1,38 @@
+bps 1.8
+
+bps (120/60)
+
+hush
+
+d1 $ slow 2 $ sound "less:3 ~ less:4 ~"
+
+d3 $ sound $ samples "glitch*8" $ iter 4 $ run 4
+d3 silence
+
+d4 $ slow 16 $ striate 128 $ sound "pointless" |+| gain "0.2"
+d4 silence
+
+d5 $ sound "{less:1, ~ less:2/2}" 
+
+d6 $ sound "glitch:0"
+
+d2 silence
+
+d2 $ stack[sound "sn*2? ~ less:4*8? ~", slow 2 $ striate 8 $ sound "bass3 dr*2 dr? jvbass" |+| speed (every 2 ((*2) <$>) $ every 3 ((*1.3) <$>) $ "0.9"), (every 7 (|+| accelerate "-5") $ every 9 (density 2) $ striate' 8 (0.5) $  (sound $ samples "gabba:0*2 deepsky gab:3*4" $ iter 10 $ run 10)
+ |+| gain (every 2 ((*2) <$>) $ every 3 ((*1.3) <$>) $ every 2 (rev) "0.5 0.2")
+ |+| speed (every 2 ((*2) <$>) $ every 3 ((*1.3) <$>) $ "0.9")
+ |+| end "0.4 0.1")]
+
+d2 $ slow 4 $ striate 2 $ sound "cp? cp cp/2 cp"
+
+
+d2 silence
+
+-- d1 $ every 8 (density 4) $ every 4 (brak) $ striate 8 $ (sound $ samples "kurt*8?" $ iter 3 $ run 3)
+--  |+| speed (every 3 ((*0.9) <$>) $ every 2 ((*2) <$>) "2")
+--  |+| vowel (slow 2 "a o e i")
+--  |+| accelerate (every 4 (rev) $ slow 2 "-5 3 14 15 16 9 2 ")
+
+
+
+hush

@@ -1,0 +1,53 @@
+cps 0.666
+
+-- d4 $ stack[
+-- every 2 (stut 2 0.5 (-0.1)) . every 3 (echo (7/4)) $ juxcut palindrome $ every 5 (smash 2 [1..2]) . every 4 (revArc(0, 0.25)) $ within (0, 0.25) (striate 2) . density 4 $ sound (samples "ab*2?" $ iter 6 $ "0 2 10 4 8 5" )
+--  |+| cut "1"
+--  |+| speed (every 2 ((0.5+) <$>) sine1)
+--  |+| coarse "[4 1 2 3]/2",
+-- superimpose (|+| coarse "[9 10]/2") $ echo (7/4) $ every 4 (within (0, 0.23) (|+| vowel "u") ) $ sound "~ bd8 ~ bd8:1*2?"
+-- ,
+-- within (0, 0.5) (echo (1/4)) . every 4 (within (0, 0.5) (stut 2 0.5 (-0.1))) . every 2 (striate 2 . slow 2) . striate' 2 (0.5) $ sound "~ ~ sn:3 ~"
+-- |+| gain "0.8"
+-- ]
+
+
+d4 $ stack[
+every 2 (stut 2 0.5 (-0.1)) . every 3 (echo (7/4)) $ juxcut palindrome $ every 5 (smash 2 [1..2]) . every 4 (revArc(0, 0.25)) $ within (0, 0.25) (striate 2) . density 4 $ sound (samples "ab*2?" $ iter 6 $ "0 2 10 4 8 5" )
+ |+| cut "1"
+ |+| speed (every 2 ((0.5+) <$>) sine1)
+ |+| coarse "[4 1 2 3]/2",
+superimpose (|+| coarse "[9 10]/2") $ echo (7/4) $ every 4 (within (0, 0.23) (|+| vowel "u") ) $ sound "~ bd8 ~ bd8:1*2?"
+,
+echo (7/4) . every 2 (striate 2 . slow 2) . striate' 4 (0.5) $ sound "~ ~ sn:3/2 ~"
+|+| gain "0.8"
+]
+
+d1 $ every 3 (rev) $ superimpose (|+| coarse "[9 10]/2") $ echo (7/4) $ every 4 (within (0, 0.23) (|+| vowel "u") ) $ sound "bd8 ch [bd:2 bd8:1*2?]"
+ |+| speed (every 4 ((*2) <$>) $ "[1 0.5]/2")
+ |+| coarse "11"
+
+
+cps 0.666
+
+d1 $ sound "~ bd8:1(2,1) ~ bd8:1 "
+ |+| coarse "[9 11 10]/3"
+
+
+
+d2 $ superimpose (|+| crush "4") . every 2 (rev) . every 5 (within (0, 0.25) (slow 2)) $ sound "minipops:4 cy:5/2 wurlitzer:4 cy:4"
+ |+| coarse "[9 11 10]/3"
+
+-- d2 $ fadeOut 2 $ sound "db dr/2 d"
+--  |+| speed (every 4 ((*2) <$>) $ "[1 0.5]/2")
+--  |+| gain "0.8"
+
+solo $ d3 $ every 2 (density 1.5) $ sound "bass bass/2 bass3"
+ |+| speed (every 4 ((*2) <$>) $ "[0.666 0.5]/2")
+
+
+hush
+
+
+
+

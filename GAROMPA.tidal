@@ -1,0 +1,40 @@
+bps 2
+
+
+d1 $ stack[(every 2 (slow 2) $ density 8 $ striate' 2 (0.1) $ sound "dr [bass0 {bass0 bass0} bass0] bass0 dr" |+| gain "0.5"), sound "dr dr dr dr"]
+ |+| accelerate "1 10 -10 1"
+ |+| speed (((*0.1) . (0.9+)) <$> sine1)
+ |+| gain (slow 2 "1.2 0.6")
+
+d2 $ striate 32 . within (0,0.5) (rev) . stut 2 0.5 0.5 . every 4 (spread' density "1 3 1") $ sound "{[bd, bd, bd, bd]/2 sn} dr dr2 ~"
+ |+| gain "1.2"
+ |+| speed ((+0.6) <$> saw1)
+
+d3 $ every 2 (palindrome) $ every 4 (density 4) $ density 4 $ striate' 3 (0.1) $ sound "arp arp arp"
+ |+| end "0.1"
+ |+| vowel "a" --"i e"
+ |+| speed ((0.6+) <$> sine1)
+ |+| gain "0.8"
+
+hush
+
+
+
+
+d1 $ density 3 $ sound "gab:4"
+ |+| gain "0.7"
+
+d2 $ every 2 (slow 2) $ density 2 $ sound "dr dr dr dr"
+
+d3 $ stack[density 3 $ striate 4 $ every 4 (spread density [1, 4]) $ sound "{bass bass0/4} bass3/4 ~ ", sound "~ ~ dr*8/5"]
+ |+| gain "1.2"
+ |+| accelerate "1 -5 2"
+ |+| speed "2"
+ |+| vowel (slow 2 "o u")
+ |+| shape "0.9"
+
+d4 $ slow 2 $ striate 32 $ sound "believe"
+ |+| gain "0.5"
+ |+| speed ((+1.2) <$> triwave1)
+
+hush

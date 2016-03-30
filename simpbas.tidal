@@ -1,0 +1,182 @@
+cps 1
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+    st2' d = stut 2 0 d
+    st2 = st2' 0.25
+    ch :: Int -> [Int] -> Pattern Int ; ch n chord = listToPat [ch + n | ch <- chord]
+    -- cho :: Pattern -> Int -> [Int] -> Pattern Int;
+    -- q $ note (cho 60 "1 1 1" [0, 3, 7])
+    cho n pat chord = preplace(1,1) pat $ listToPat [ch + n | ch <- chord]
+    cho' n off pat chord = cho (n+off) pat chord
+    n48 sc = note $ ch 48 sc
+    n n off sc = note $ ch (n+off) sc
+    nn off sc = n 48 off sc
+    --  m1 $ slowcat[note (skp 60 "1 1 1" (rotate i [0,3,7,10])) | i <- [0..3]]
+    rotate :: Int -> [a] -> [a]
+    rotate _ [] = []
+    rotate n xs = zipWith const (drop n (cycle xs)) xs
+    -- chords
+    minor = [0,3,7]
+    major = [0,4,7]
+    nine = [0,4,7,10,14]
+    ninesus4 = [0,5,7,10,14]
+    add9 = [0,4,7,14]
+    madd9 = [0,3,7,14]
+    maj9 = [0,4,7,11,14]
+    m9 = [0,3,7,10,14]
+    sus2 = [0,2,7]
+    sus4 = [0,5,7]
+    seven = [0,4,7,10]
+    m7 = [0,3,7,10]
+    eleven = [0,4,7,10,14,17]
+    m11 = [0,3,7,10,14,17]
+    thirteen = [0,4,7,10,14,21]
+    m13 = [0,3,7,10,14,21]
+
+hush
+
+q $ slow 2 $ slowcat[
+  note (cho 48 "[~ 1 ~ ~] [~ 1 ~ 1 ] [~ 1 ~ ~] [~ 1 ~ 1]" [0, 2 , 0, 3])
+] # decay "1"  # cutoffegint (scale 0.5 1 $ slow 16 $ sine1)
+
+q $ every 3 (# decay "1") $ every 5 (iter 2) . iter 2 . every 2 (iter 2 . slow 2) . chop 4 . chop 4 $ slowcat[
+slowcat[note (cho 48 "[1 ~ 1 ~] [~ 1 ~ 1]" (rotate i [3,0,5,0,7])) | i <- [0..4]],
+slowcat[note (cho 51 "[1 ~ 1 ~] [~ 1 ~ 1]" (rotate i [3,0,0,0,7])) | i <- [0..4]],
+slowcat[note (cho 60 "[1 ~ 1 ~] [~ 1 ~ 1]" (rotate i [7,0,10,0,3])) | i <- [0..4]],
+slowcat[note (cho 51 "[1 ~ 1 ~] [~ 1 ~ 1]" (rotate i [3,0,7,0,5])) | i <- [0..4]],
+slowcat[note (cho 48 "[1 ~ 1 ~] [~ 1 ~ 1]" (rotate i [5,0,3,0,7])) | i <- [0..4]]
+] # dur "0.5" # decay "0.01" # lforate (scale 0 1 rand) # lfoint (scale 0 0.5 sine1)
+
+b $ stack[
+drum "ag([4 8 3]/2,4)",
+drum "lt lt", every 2 (stut 2 0 0.75) $ drum "[sn!] [sn!]", every 4 (stut 2 0 0.75) $ drum "~ cp", every 4 (wf0 0.5 (chop 2)) $ density 2 $ drum  "ch*2 [cr*2, oh]"
+         ]
+
+hush
+
+
+
+
+d1 $ jux(sw(# vowel (iter 4 "a e i o"))) $ stack[
+sw(striate 3) $ stack[
+sound "bd:5(2,2) !" # coarse ((floor <$>) $ scale 1 8 $ sine1)
+,
+every 2 (stut 2 0 0.5) $ stut 2 0 0.75 $ sound "~ cp"
+],
+density 2 $ sound "ch:5*2 oh:1" # speed (scale 1 2 $ rand)
+]
+
+d1 $ stack[
+(sound $ samples "bd(2,2) sn(2,2)" $ irand 4)
+,
+every 2 (stut 2 0 0.5) $ stut 2 0 0.75 $ sound "~ cp"
+,
+density 2 $ sound "ch*2 oh" |+| cut "1 1" |+| end rand,
+degrade $ (sound $ samples "cp(8,8)" $ irand 4)
+]
+
+hush
+
+
+cps 0.666
+
+d1 $ every 5 (sw(# accelerate "-1")) . every 7 (sw' 0 0.25 (slow 2)) . sw (# delay "1") . every 4 (jux(sw(spin 8))) . every 3 (sw(density 2)) . sw (# coarse "[1 8 4 7]/4") $ stack[
+(sound $ samples "bd8(2,2) sn8(2,2)" $ irand 4)
+,
+every 2 (stut 2 0 0.5) $ stut 2 0 0.75 $ sound "~ cp"
+,
+every 4 (wf0 0.25 (density 2)) $ density 2 $ sound "ch:4*2 oh" |+| cut "1 1" |+| end rand,
+sound "rim8([5 8]/2,8)"
+|+| speed (scale 1 2 $ squarewave1)
+] # delay "0" # coarse "0" # crush "1"
+
+
+
+
+--
+
+
+d1 $ slowcat[
+  stack[
+(sound $ samples "bd(2,2) sn(2,2)" $ irand 4)
+,
+every 2 (stut 2 0 0.5) $ stut 2 0 0.75 $ sound "~ cp"
+,
+density 2 $ sound "ch*2 oh" |+| cut "1 1" |+| end rand,
+degrade $ (sound $ samples "cp(8,8)" $ irand 4)
+]
+,
+every 5 (sw(# accelerate "-1")) . every 7 (sw' 0 0.25 (slow 2)) . sw (# delay "1") . every 4 (jux(sw(spin 8))) . every 3 (sw(density 2)) . sw (# coarse "[1 8 4 7]/4") $ stack[
+(sound $ samples "bd8(2,2) sn8(2,2)" $ irand 4)
+,
+every 2 (stut 2 0 0.5) $ stut 2 0 0.75 $ sound "~ cp"
+,
+every 4 (wf0 0.25 (density 2)) $ density 2 $ sound "ch:4*2 oh" |+| cut "1 1" |+| end rand,
+sound "rim8([5 8]/2,8)"
+|+| speed (scale 1 2 $ squarewave1)
+]
+] # delay "0"
+
+
+cps 0.666
+
+
+d1 $ density 1.2 . every 5 (# coarse ((floor <$>) $ scale 1 8 $ sine1)) . every 3 (sw(# accelerate "-1")) $ stack[
+   every 2 (stut 2 0.5 0.5) $ sound "rim8(8,8)"
+   ,
+   sound "[bd8 ~ ~ ~] [~ bd8 ~ bd8]"
+   ,
+   every 2 (stut 2 0.5 0.5) . foldEvery [3,5,7] (stut 2 0.5 0.75) $ sound "[~ cp ~ ~] [~ cp ~ ~]"
+   ,
+   sound "[~ ~ sn ~] [~ ~ sn ~]"
+   ,
+   slowcat[sound "[ch ch oh:1 ~] [~ oh:1 ~ ~]",sound "[~ ~ oh:1 ~] [~ oh:1 ~ ~]"]
+  ] # cut "1" # coarse "0" # end rand # gain "0.7"
+
+hush
+
+--
+  ,
+  stack[
+   sound "[bd8:4 ~ ~ bd8:4] [~ ~ ~ ~]"
+   ,
+   sound "[~ sn ~ ~] [~ sn ~ sn]"
+   ,
+   sound "[ch ch ch rim8] [ch ch ch rim8]"
+   ,
+   sound "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+  ,
+  stack[
+   sound "[~ bd8:4 ~ ~] [bd8:4 ~ ~ ~]"
+   ,
+   sound "[~ ~ sn ~] [~ sn [~ sn]/2 [~ sn]/2]"
+   ,
+   sound "[ch ch ch rim8] [ch ch ch rim8]"
+   ,
+   sound "[~ ~ ~ oh] [~ ~ oh ~]"
+  ]
+
+
+
+--
+
+hush
+
+
+
+cps 1
+
+d1 $ sound "[[cp8 ~ bd8?], sn rim8([5 8]/2,8)]" |+| gain "[8 1]"
+
+d1 $ sound "[cp , rim8([5 8]/2,4)]"
+
+
+--

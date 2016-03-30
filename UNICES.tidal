@@ -1,0 +1,36 @@
+bps 2
+
+
+d1 $ echo (7/4) $ sound "unix ~ ~ ~"
+ |+| speed (every 4 ((*2) <$>) $ iter 2 "1 0.9 1.5 1.2")
+
+-- d2 $ slow 0.5 $ sound "~ unix ~ ~"
+--  |+| speed (every 4 ((*2) <$>) $ every 2 (rev) $ "0.4 0.2")
+
+-- d2 silence
+
+
+d3 $ echo (2/2) $ every 2 (density 2) $ sound "~ ~ unix ~"
+ |+| speed (every 2 ((/3) <$>) $ every 5 ((/2) <$>) $ iter 2 "0.9 1.9 1.2 2")
+
+
+
+
+d4 $ echo (7/4) $ every 4 (rev . (|+| speed "2")) $ sound "~ unix:1 ~ unix:2"
+ |+| gain sinewave1
+
+
+
+
+d5 $ echo (7/4) $ every 3 ((|+| speed "2")) $ spread' density "1 2" $ sound "~ ~ unix:3 ~"
+ |+| speed (iter 2 "1 0.9 1.5 1.2")
+ |+| gain sinewave1
+
+d1 silence
+
+hush
+
+d6 $ slow 16 . stut 2 0.9 (-0.5) $ sound "~ ~ ~ unix:4"
+ |+| speed (iter 4 "1 5 2 1")
+
+d6 silence

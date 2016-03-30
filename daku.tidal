@@ -1,0 +1,172 @@
+cps 0.35
+
+b1 $ stack[
+  slowcat[
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [~ ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [bd ~ ~] [bd ~ ~]"
+  ]
+  ,
+  slowcat[
+  chop 2 $ drum "[~ cl ~] [~ ~ cl] [~ cl ~] [~ cl [cl cl?]]"
+  ,
+  drum "[cl ~ cl ~] [~ cl ~ cl] [~ ~ cl ~]"
+  ]
+ |+| scl "0.9"
+ |+| lcl "0.9"
+ ,
+ slowcat[
+   drum "[~ ~ sn ~] [~ ~ sn ~] [~ [sn*4 ~]/3 ~ ~]"
+   ,
+   drum "[~ sn sn ~] [~ ~ sn ~] [~ sn ~ sn]"
+   ,
+   drum "[~ ~ sn ~] [~ ~ sn ~] [~ ~ ~ sn]"
+ ]
+ ,
+ slow 2 . chop 2 $ drum "[~ ~ ~ ~] [~ ~ ~ ch*2] [oh/4 ~ ch ~]"
+ |+| dch "0.75"
+ |+| doh "0.75"
+ |+| loh "0.75"
+ |+| dhg "0.5"
+]
+
+---
+
+
+-- STD
+
+let stdt = (# std "0.3") . (# stt "0.35")
+
+b1 $ retrig $ smash 2 [3] . every 9 ( sometimes (within (0.25, 0.5) (slow 2)) ) $ stack[
+  within (0.9, 0.99) (0.1~>) $ every 4 stdt $ slowcat[
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ [bd ~]] [[~ bd] ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[bd/2 ~ ~ ~] [bd/2 ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ]
+  |+| std "0"
+  |+| stt "0"
+ ,
+ within (0.9, 0.99) (0.05~>) $ drum "[~ ~ sn ~] [~ ~ sn ~] [~ ~ ~ sn]"
+ ,
+ slowcat[
+        drum "[ch ~ ch ~] [~ ch ~ ch] [~ ~ ch*2 ~]"
+        ,
+        chop 2 . slow 2 $ drum "[ch ~ ch ~] [~ ch ~ ch] [~ ~ ch*2 ~]"
+        ,
+        sometimes (within (0.9, 0.99) (0.1~>)) $ drum "[ch ~ ch ~] [~ ch ~ ch] [~ ~ ch*2 ~]"
+        ,
+        within (0.9, 0.99) (0.1~>) $ drum "[ch ~ ch ~] [~ ch ~ ch] [~ ~ ch*2 ~]"
+        ,
+        slow 2 . chop 2 $ drum "[~ ~ ~ ~] [~ ~ ~ ch*2] [oh/2 ~ ch ~]"
+ ]
+ |+| dch "0.75"
+ |+| doh "0.75"
+ |+| loh "0.75"
+ |+| dhg "0.5"
+]
+
+----
+
+-- NO STD
+
+let sdhg = (# dhg (scale 0.5 0.55 $ sine1))
+
+b1 $ retrig $ every 9 ( sometimes (within (0.25, 0.5) (slow 2)) ) $ stack[
+  within (0.9, 0.99) (0.1~>) $ slowcat[
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ [bd ~]] [[~ bd] ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[bd/2 ~ ~ ~] [bd/2 ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ]
+  |+| lbd "0.8"
+ ,
+ within (0.9, 0.99) (0.05~>) $ drum "[~ ~ sn ~] [~ ~ sn ~] [~ ~ ~ sn]"
+ ,
+ gap 2 $ slowcat[
+        drum "[ch ~ ch ~] [~ ch ~ ch] [~ ~ ch*2 ~]"
+        ,
+        chop 2 . slow 2 $ drum "[ch ~ ch ~] [~ ch ~ ch] [~ ~ ch*2 ~]"
+        ,
+        sometimes (within (0.9, 0.99) (0.1~>)) $ drum "[ch ~ ch ~] [~ ch ~ ch] [~ ~ ch*2 ~]"
+        ,
+        sometimes sdhg . within (0.9, 0.99) (0.1~>) $ drum "[ch ~ ch ~] [~ ch ~ ch] [~ ~ ch*2 ~]"
+        ,
+        slow 2 . chop 2 $ drum "[~ ~ ~ ~] [~ ~ ~ ch*2] [oh/2 ~ ch ~]"
+ ]
+ |+| dch "0.75"
+ |+| doh "0.75"
+ |+| loh "0.75"
+ |+| dhg "0.5"
+]
+
+
+--- LCL RELOKO
+
+let rlcl = (# lcl "0.99")
+
+b1 $ retrig $ every 9 ( sometimes (within (0.25, 0.5) (slow 2)) ) $ stack[
+  within (0.9, 0.99) (0.1~>) $ slowcat[
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ [bd ~]] [[~ bd] ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[bd/2 ~ ~ ~] [bd/2 ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ,
+  drum "[bd ~ ~ ~] [bd ~ ~ ~] [~ ~ bd ~] [bd ~ ~]"
+  ]
+  |+| lbd "0.8"
+ ,
+  every 9 (within (0, 0.5) (spin 2)) $ sometimesBy 0.25 (within (0, 0.5) (chop 2)) $ within (0.9, 0.99) (0.05~>) $ drum "[~ ~ sn ~] [~ ~ sn ~] [~ ~ ~ sn]"
+ ,
+ every 4 (sometimesBy 0.25 (within (0, 0.5) (slow 4))) $ gap 2 $ slowcat[
+        drum "[~ ~ ch ~] [~ ch ~ ch] [~ ~ oh ch]"
+        ,
+        drum "[~ ~ ch ~] [~ ch ~ ch] [~ ~ ch*2 ~]"
+        ,
+        within (0.5, 0.75) (slow 2 . chop 2) $ drum "[~ ~ ch ~] [~ ch ~ ch*2] [oh/2 ~ ch ~]"
+        ]
+ |+| dch "0.5"
+ |+| doh "0.5"
+ |+| loh "0.75"
+ |+| dhg "0.5"
+  ,
+  whenmod 16 4 rlcl . foldEvery [5, 7, 11, 23] rlcl $ slowcat[
+  chop 2 $ drum "[~ cl ~] [~ ~ cl] [~ cl ~] [~ cl [cl cl?]]"
+  ,
+  within (0.9, 0.99) (0.1~>) $ drum "[cl ~ cl ~] [~ cl ~ cl] [~ ~ cl*4 ~]"
+  ]
+ |+| scl "0.9"
+ |+| lcl "0"
+]
+
+
+
+
+b1 silence

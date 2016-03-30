@@ -1,0 +1,5 @@
+cps 1
+
+b $ drum "bd bd"
+
+q $ slowcat[note (cho 36 "1 1 1" (rotate i [0,3,7,10,14,21])) | i <- [0..3]] # decay "1"

@@ -1,0 +1,64 @@
+cps 1
+
+q $ stack[
+nm "[~ c4 ~ ] [d4 ~ e4] [f4 ~ g4] [a5 ~ b5]",
+nm "[~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~] [~ ~ ~ ~]"
+]
+
+let wf0 n = within(0, n)
+    sw f = sometimes(wf0 0.5 f)
+    sw' d h f = sometimes(within (d, h) f)
+    notem p = note $ toMIDI p
+    nm p = notem p
+    ra n = revArc(0, n)
+    sra n = sometimes(revArc(0, n))
+    swra n = sw(revArc(0, n))
+
+
+
+
+b $ stack[
+drum "[bd ~ ~] [bd ~ ~]",
+every 4 (within (0, 0.5) (chop 2)) $ drum "[ch ch ~] [ch ch ~]",
+drum "[~ [~ oh] ~] [~ [~ oh] ~]",
+drum "[~ ~ ~] [cp ~ ~]"
+] # stt "0" # std "0"
+|+| scr "0.75"
+
+
+b $ every 3 (ra 0.5) $ stack[
+--drum "bd [sn sn*2]",
+drum "bd bd",
+density 2 $ drum "ch*2 oh",
+--every 8 (slow 2) . every 4 (sw(chop 2)) . chop 2 $ drum "[~ cr] [~ cr]",
+drum "~ cp"
+--,degrade $ drum "~ [ag !]"
+] # stt "0" # std "0"
+|+| scr "0.99"
+|+| hg "0.75"
+|+| dch "0.1"
+|+| doh "0.9"
+|+| sag "0.5"
+
+
+q $ swra 0.25 . gap 2 $ stack[
+slowspread iter [4,2] $ slowcat[nm "[~ c3 ~ ~] [~ d4 ~ ~]",nm "[~ c4 ~ ~] [~ d3 ~ ~]"],
+every 2 rev $ slowcat[
+nm "[c5 ~ ~ ~] [~ ~ d3 ~]",
+nm "[d3 ~ ~ ~] [~ ~ c5 ~]",
+nm "[c4 ~ ~ ~] [~ ~ d4 ~]"
+]
+] # decay "0.99" # lfoint "0.0666" # lforate "0.85" -- (scale 0.8 0.9 sine1) --(scale 0.05 0.09 sine1)
+|+| modwheel (scale 0 0.7 sine1)
+
+q $ stack[
+--slowspread iter [4,2] $ slowcat[nm "[~ c3 ~ ~] [~ d4 ~ ~]",nm "[~ c4 ~ ~] [~ d3 ~ ~]"],
+every 2 rev $ slowcat[
+nm "[c5 ~ ~ ~] [~ ~ d3 ~]",
+nm "[d3 ~ ~ ~] [~ ~ c5 ~]",
+nm "[c4 ~ ~ ~] [~ ~ d4 ~]"
+]
+] # decay "0.99" # lfoint "0.0666" # lforate "0.85" -- (scale 0.8 0.9 sine1) --(scale 0.05 0.09 sine1)
+|+| modwheel (scale 0 0.7 sine1)
+
+hush

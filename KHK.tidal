@@ -1,0 +1,52 @@
+
+cps 0.666
+
+d1 $ within (0, 0.25) ( |+| crush "4" ) . within (0.5, 0.9) (rev . chop 8) . stut 2 0.5 0.5 $ spread' iter "[4, 2, 1]" $ sound "kawai:10(3,8) kawai:11"
+ |+| shape "0.5"
+
+
+
+
+d1 $ juxcut rev . within (0, 0.25) ( |+| crush (iter 6 "6 6 8") ) . within (0.5, 0.9) (rev . chop 8) . stut 2 0.5 0.5 $ spread' iter "[4, 2, 1]" $ sound "kawai:10(3,8) kawai:11"
+ |+| shape "0.5"
+ |+| gain (scale 0.5 0.5 $ sine1)
+
+d2 $ stack[every 2 (within (0, 0.25) (|+| crush "2") . every 2 (|+| vowel "a") ) . within (0,0.5) (rev) $ sound "deepbass"
+ |+| cut "1"
+ |+| end "0.2",
+every 2 (density 2) . spread' chop (iter 3 "4 2 2") $ sound "gabba:1 uxay(4,4) lt bd"
+ |+| crush "4"
+ |+| speed (every 2 ((*2) <$>) $ "1"),
+sound "db db(4,8) db*2 db"
+]
+
+ |+| gain (scale 0.5 0.5 $ sine1)
+
+
+hush
+
+
+
+cps 0.666
+
+d3 $ within (0, 0.23) (|+| accelerate "-5") . every 4 (within (0.666, 0.8) (|+| accelerate "-20") . within (0.5, 0.666) (|+| accelerate "-10") . smash 2 [1..2]) . chop 8 $ sound "amen"
+ |+| crush "6 6 6"
+ |+| cut "1"
+
+
+
+cps 0.23
+
+d3 $ within (0.23, 0.666) (density 2) . chop 2 . every 4 (smash 2 [1..2]) . chop 8 $ sound "amen"
+ |+| crush "6 6 6"
+ |+| cut "1"
+
+
+cps 1
+
+d3 $ density 8 . chop 128 $ sound "amen"
+ |+| crush "6 6 6"
+ |+| cut "1"
+
+
+hush

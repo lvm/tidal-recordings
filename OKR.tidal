@@ -1,0 +1,63 @@
+bps (80/60)
+
+d1 $ echo (7/8) $ every 3 (echo (7/4)) $ every 4 (|+| end "0.3") $ every 2 (|+| end "0.1") $ every 5 ((0.25 ~>)) $ every 6 ((0.25 <~)) $ interlace (sound "ifdrums ~ ~ ~") (sound "cp")
+ |+| end "0.2"
+ |+| speed (slow 2 "1.5 2")
+ |+| gain "1"
+
+
+
+----------------------------------------------------------------
+hush
+----------------------------------------------------------------
+
+
+d1 $ echo (7/8) $ every 3 (echo (7/4)) $ every 4 (|+| end "0.3") $ every 2 (|+| end "0.1") $ every 5 ((0.25 ~>)) $ every 6 ((0.25 <~)) $ interlace (sound "ifdrums ~ ~ ~") (sound "ifdrums:4")
+ |+| end "0.2"
+ |+| speed (slow 2 "1.5 2")
+ |+| gain "1"
+
+ |+| resonance "0.9"
+ |+| delay "0.9"
+ |+| delayfeedback "0.5"
+ |+| delaytime "0.9"
+
+d2 $ echo (7/4) $ every 3 (echo (7/8)) $ density 4 $ striate' 64 (0.1) $ smash 4 [4..9] $ stack[sound (samples "jvbass ~" (iter 3 "0 2 4 5")), slow 2 $ interlace (sound "speech ~") (sound "glitch:4*8/3")]
+ |+| end "0.3"
+ |+| gain (slow 2 "0.7 0.8")
+
+d3 $ every 16 ((jux (iter 8)) . (|+| vowel "i") . (0.5 ~>)) $ stack [every 2 (rev) $ sound "ifdrums:2 ifdrums:1", every 3 (rev . (0.25 <~)) $ every 4 (0.25 <~) $ every 2 (|+| speed "1") $ density 2 $ smash 8 [4..8] $ striate' 32 (0.1) (sound "erk/2 ~" |+| resonance "0.5")]
+ |+| speed "0.9"
+ |+| delay "0.5"
+ |+| delayfeedback "0.5"
+ |+| delaytime "0.7"
+ |+| slow 2 (vowel (pick <$> "a i o i a i o" <*> run 6))
+ |+| gain "0.6"
+
+d4 $ echo (7/4) $ every 3 (echo (7/8)) $ every 4 (|+| end "0.3") $ every 6 ((0.25 <~)) $ every 2 (|+| end "0.1") $ every 5 ((0.25 ~>)) $ interlace (sound "ifdrums:1 ~ ~ ~") (sound "ifdrums:5")
+ |+| end "0.2"
+ |+| speed (slow 2 "1.5 2")
+ |+| gain "1"
+
+----------------------------------------------------------------
+hush
+----------------------------------------------------------------
+
+bps (80/60)
+
+d2 $ echo (7/4) $ every 3 (echo (7/8)) $ density 4 $ striate' 64 (0.1) $ smash 4 [4..9] $ stack[sound (samples "fat909 ~" (iter 3 "0 2 4 5")), slow 2 $ interlace (sound "hand/2 ~") (every 2 (density 2) $ sound "ifdrums")]
+ |+| end "0.3"
+ |+| gain (slow 2 "0.777 0.6")
+
+d3 $ jux rev $ density 4 $ stack[striate 16 $ sound (samples "jvbass ~" (iter 2 $ run 2)), interlace (striate 2 $ sound "mash*2" |+| vowel "i") (density 4 $ sound "hand/2")]
+ |+| end (slow 2 "0.3 0.9 0.2")
+ |+| gain (slow 2 "0.8 0.9")
+
+
+d4 $ echo (7/4) $ every 4 ((density 2) . (|+| speed "2")) $ every 9 (smash 2 [1..3]) $ stack[every 3 (|+| vowel "o a") $ sound "orchestral:0*2/4 orchestral:1 ", sound "sn*8"]
+ |+| gain "0.8"
+
+d5 $ echo (7/4) $ every 3 (|+| vowel "o a") $ sound "e*8/4"
+ |+| gain "1.2"
+
+hush
