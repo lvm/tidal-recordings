@@ -1,0 +1,26 @@
+bps (100/120)
+
+let n = S.note
+    n7 not = (n $ preplace (1,1) "1(7,16,1)" ((+(not)) <$> "0")) # S.dur "0.1"
+    sn7 nlist = slowcat[n7 nn | nn <- nlist]
+
+b $ every 7 (within(0,0.25) (chop 2)) . foldEvery [3,5,7] (# stt (scale 0 1 rand)) . sometimes ((#std "0.1") . (# hg (scale 0.1 1 rand))) $ stack[
+  drum "[cp(2,8,2), sn(5,8), bd([4 10 9 7]/4,16), [ch(16,8)]]",
+  drum "oh(7,16)"
+] # hg "0.5" # stt "0" # std "0"
+
+-- titan
+m5 $ stack[
+  n "48 50 43 42",
+  n $ preplace (1,1) "1(3,8)" ((+60) <$> "0 3 7")
+] # S.dur "0.05"
+
+-- modernthird
+m4 $ stack[sn7 [42,45], (n $ preplace (1,1) "1(1,16)" ((+(40)) <$> "0")) # S.dur "0.5"]
+
+-- twerp
+m3 $ stut 2 0 0.75 $ stack[
+  n $ preplace (1,1) "1(15,16,2)" ((+48) <$> "0 6 12 24")
+] # S.vel "0.15" # S.dur "0.05"
+
+
