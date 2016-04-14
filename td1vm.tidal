@@ -3,6 +3,8 @@ bps (100/120)
 let n = S.note
     n7 not = (n $ preplace (1,1) "1(7,16,1)" ((+(not)) <$> "0")) # S.dur "0.1"
     sn7 nlist = slowcat[n7 nn | nn <- nlist]
+    n7' not = (n $ preplace (1,1) "1(6,8,1)" ((+(not)) <$> "0")) # S.dur "0.5"
+    sn7' nlist = slowcat[n7' nn | nn <- nlist]
 
 b $ every 7 (within(0,0.25) (chop 2)) . foldEvery [3,5,7] (# stt (scale 0 1 rand)) . sometimes ((#std "0.1") . (# hg (scale 0.1 1 rand))) $ stack[
   drum "[cp(2,8,2), sn(5,8), bd([4 10 9 7]/4,16), [ch(16,8)]]",
@@ -23,4 +25,15 @@ m3 $ stut 2 0 0.75 $ stack[
   n $ preplace (1,1) "1(15,16,2)" ((+48) <$> "0 6 12 24")
 ] # S.vel "0.15" # S.dur "0.05"
 
+
+---
+
+
+b $ smash 2[3] . density 4 . sometimes (stut 2 0 0.75) $ stack[
+  drum "[bd*2!?]", drum "~ [cp [~ cp?]]", every 3 (within(0,0.25)(chop 2)) . density 2 $ drum "ch*2 oh" --, sometimes degrade $ drum "[~ ch] !", degr\
+adeBy 0.6 $ drum "[oh ~] [oh oh]"
+]
+
+-- modernthird
+m4 $ stack[stut 2 0 0.5 $ sn7' [42,45,47,50], (n $ preplace (1,1) "1(1,16)" ((+(40)) <$> "0")) # S.dur "0.5"]
 
