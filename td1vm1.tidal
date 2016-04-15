@@ -1,0 +1,14 @@
+bps (100/120)
+
+let n = S.note
+    ee n = e n 16
+
+b $ whenmod 16 4 (iter 4) . sometimes (# hg (scale 0.01 1 rand)) $ stack[
+  every 7 (within(0,0.25)(chop 2)) . slowspread ee [10..16] $ drum "[sn(5,8,2), bd([6 3 3 3]/4,8), [ch(16,8)]?, oh(5,16)]",
+  every 3 (stut 2 0 0.75) . every 4 (chop 2) $ sometimes degrade $ drum "cp(2,8,2)"
+] # hg "0.5"
+
+m5 $ stack[
+  n "40 50 36 38" # S.dur "0.15",
+  (sometimes degrade $ n $ preplace (1,1) "1(2,4)" ((+60) <$> "0 6 12")) # S.dur "0.05"
+] # S.vel "0.75"
